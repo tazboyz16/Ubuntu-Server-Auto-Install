@@ -3,7 +3,7 @@
 tar xf roundcubemail-*.tar.gz
 sleep 10
 
-cd /home/taz/roundcubemail-*
+cd /home/xxxusernamexxx/roundcubemail-*
 cp -r index.php /opt/www/roundcubemail-*/
 
 cp -r bin/ /opt/www/roundcubemail-*/
