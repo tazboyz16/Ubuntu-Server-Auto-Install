@@ -2,11 +2,11 @@
 
 
 echo "<---- Cleaning Up Install files --->"
-rm -r /home/taz/WebTools.bundle/
-rm -r /home/taz/install/
-rm -r /home/taz/ts3/
-rm -r /home/taz/iRedMail-*
-rm -r /home/taz/sinusbot/
+rm -r /home/xxxusernamexxx/WebTools.bundle/
+rm -r /home/xxxusernamexxx/install/
+rm -r /home/xxxusernamexxx/ts3/
+rm -r /home/xxxusernamexxx/iRedMail-*
+rm -r /home/xxxusernamexxx/sinusbot/
 
 sudo chmod 0777 -R /opt/
 sudo apt-get update -qq
