@@ -1,6 +1,7 @@
 Program-------------------Description-------------------------Port #------------------Offical Website
 Plex                      Media Server                        32400/web               Plesx.tv
 --WebTools Addon          Plex Addon                          33400                   Github.com/ukdtom/WebTools.bundle
+--Plex Update Script                                                                  Github.com/mrworf/plexupdate
 #SickRage                 Show Automation Finder/Manager      8081                    Github.com/SickRage/SickRage
 Mylar                     Comic Automation Finder/Manager     8090                    Github.com/evilhero/mylar
 #CouchPotato              Video Automation Finder/Manager     5050                    Github.com/CouchPotato/CouchPotatoServer
