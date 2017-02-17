@@ -1,4 +1,7 @@
 #!/bin/bash
+
+#/media/SystemBackup/ is my backup Flash Drive
+
 sudo systemctl stop plexmediaserver
 cd /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server
 sudo tar -cvf PlexBackup.tgz.bz2 --exclude='./Metadata' --exclude='./Cache' --exclude='./Plugin\ Support' . /media/SystemBackup/ 
