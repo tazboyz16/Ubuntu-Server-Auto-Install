@@ -33,3 +33,6 @@ NZBGet                    Usenet Downloader                                     
 Sabnzbd                   Usenet Downloader                                           Sabnzbd.org
 Jackett                   Add Custom Providers for Sonarr                             Github.com/Jackett/Jackett
 Radarr                    Video Automation Finder/Manager                             Github.com/Radarr/Radarr
+
+
+##deluged webui script -github.com/maulvi/Deluge-WebUI-Installer
