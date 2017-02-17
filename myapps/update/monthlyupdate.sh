@@ -30,10 +30,10 @@ echo "Update SSL Certs"
 #run cron job for 'letsencrypt renew' every 90 days
 #plus rewrite files to apache folder every run
 letsencrypt renew 
-cat /etc/letsencrypt/live/tazserver.noip.me/cert.pem > /etc/letsencrypt/live/tazserver.noip.me/apache.crt
-cat /etc/letsencrypt/live/tazserver.noip.me/privkey.pem > /etc/letsencrypt/live/tazserver.noip.me/apache.key
-cat /etc/letsencrypt/live/tazserver.noip.me/chain.pem > /etc/letsencrypt/live/tazserver.noip.me/apacheca.ca
-cat /etc/letsencrypt/live/tazserver.noip.me/fullchain.pem > /etc/letsencrypt/live/tazserver.noip.me/apachecafull.ca
+cat /etc/letsencrypt/live/yourdomain.com/cert.pem > /etc/letsencrypt/live/yourdomain.com/apache.crt
+cat /etc/letsencrypt/live/yourdomain.com/privkey.pem > /etc/letsencrypt/live/yourdomain.com/apache.key
+cat /etc/letsencrypt/live/yourdomain.com/chain.pem > /etc/letsencrypt/live/yourdomain.com/apacheca.ca
+cat /etc/letsencrypt/live/yourdomain.com/fullchain.pem > /etc/letsencrypt/live/yourdomain.com/apachecafull.ca
 systemctl restart apache2
 echo
 
