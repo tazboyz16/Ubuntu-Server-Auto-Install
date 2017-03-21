@@ -1,4 +1,4 @@
-# Ubuntu Server Auto Install
+# Ubuntu Server Auto Install (Currently Using 16.04.2 LTS Server 64bit 3/20/2017)
 
 Credit for begining work on Creating Custom Auto Install Server ISO
 https://pricklytech.wordpress.com/2013/04/21/ubuntu-server-unattended-installation-custom-cd/
