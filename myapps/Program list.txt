@@ -21,11 +21,11 @@ Grive                     Google Drive Sync                                     
 Teamspeak3                Voip Chat                           9987/10011/30033        Teamspeak.com
 Letsencrypt               Free SSL Cert Creator               req 80/443 for install  Letsencrypt.org
 
-Samba                     Windows File Sharing                LAN acces only          install by rep
-Apache2                   Web Server                          HTTP80/SSL443           install by rep
-Phpmyadmin                Web Interface for MYSQl             /phpmyadmin             install by rep
-MYSQL                     Data Management System                                      install by rep
-SSH                                                           22                      install by rep
+Samba                     Windows File Sharing                LAN acces only          install by repository 
+Apache2                   Web Server                          HTTP80/SSL443           install by repository 
+Phpmyadmin                Web Interface for MYSQl             /phpmyadmin             install by repository 
+MYSQL                     Data Management System                                      install by repository 
+SSH                                                           22                      install by repository 
 
 ------To be installed/Setup/Tried
 LazyLibrarian             Book Automation Finder/Manager                              Github.com/DobyTang/LazyLibrarian
