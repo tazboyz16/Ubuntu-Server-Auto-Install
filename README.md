@@ -4,7 +4,7 @@
 Credit for begining work on Creating Custom Auto Install Server ISO
 https://pricklytech.wordpress.com/2013/04/21/ubuntu-server-unattended-installation-custom-cd/
 
-Quick break down for creating iso is in the Creating ISO.txt
+Steps are under Wiki for installation and creating the ISO
 
 Before creating ISO edit FirstbootInstall.sh unless on usb flash drive for control on what programs install with commenting out unneeded programs
 
