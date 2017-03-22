@@ -3,7 +3,7 @@
 echo "SickRage Update"
 sudo systemctl stop sickrage
 sleep 5
-cd /home/xxxusernamexxx/.sickrage
+cd /opt/sickrage
 git pull
 sudo systemctl start sickrage
 echo
@@ -11,7 +11,7 @@ echo
 echo "Mylar Update"
 sudo systemctl stop Mylar
 sleep 5
-cd /home/xxxusernamexxx/.mylar
+cd /opt/mylar
 git pull
 sudo systemctl start Mylar
 echo
@@ -19,7 +19,7 @@ echo
 echo "Headphones Update"
 sudo systemctl stop Headphones
 sleep 5
-cd /home/xxxusernamexxx/.headphones
+cd /opt/headphones
 git pull
 sudo systemctl start Headphones
 echo
@@ -27,15 +27,15 @@ echo
 echo "CouchPotato Update"
 sudo systemctl stop Couchpotato
 sleep 5
-cd /home/xxxusernamexxx/.couchpotato
+cd /opt/couchpotato
 git pull
 sudo systemctl start Couchpotato
 echo
 
-echo "Grive Website backup" 
+echo "Grive Website backup"
+#have to setup Grive for it leaves a config after setup on dir location
 cd /var/www
 sudo grive 
-cd /home/xxxusernamexxx/
 echo
 
 echo "Plex Server Update"
