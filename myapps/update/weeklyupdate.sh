@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "SickRage Auto Update"
+echo "SickRage Update"
 sudo systemctl stop sickrage
 sleep 5
 cd /home/xxxusernamexxx/.sickrage
@@ -24,7 +24,7 @@ git pull
 sudo systemctl start Headphones
 echo
 
-echo "CouchPotato Auto Update"
+echo "CouchPotato Update"
 sudo systemctl stop Couchpotato
 sleep 5
 cd /home/xxxusernamexxx/.couchpotato
