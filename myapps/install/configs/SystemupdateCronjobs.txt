@@ -1,7 +1,7 @@
 #weekly on Mondays
-15   5   *   *   1   sudo bash /home/taz/update/weeklyupdate.sh
+15   5   *   *   1   sudo bash /home/xxxusernamexxx/update/weeklyupdate.sh
 #monthly on 1st of every month
-15   4   1   *   *   sudo bash /home/taz/update/monthlyupdate.sh
+15   4   1   *   *   sudo bash /home/xxxusernamexxx/update/monthlyupdate.sh
 
 #weekly Reboot
 0    4   *   *   1   sudo reboot
