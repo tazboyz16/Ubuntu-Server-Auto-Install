@@ -3,7 +3,7 @@
 echo "SickRage Auto Update"
 sudo systemctl stop sickrage
 sleep 5
-cd /home/xxxusernamexxx/.sickrage
+cd /opt/sickrage
 git fetch --all
 git reset --hard origin/master
 git pull
@@ -13,7 +13,7 @@ echo
 echo "Mylar Update"
 sudo systemctl stop Mylar
 sleep 5
-cd /home/xxxusernamexxx/.mylar
+cd /opt/mylar
 git fetch --all
 git reset --hard origin/master
 git pull
@@ -23,7 +23,7 @@ echo
 echo "Headphones Update"
 sudo systemctl stop Headphones
 sleep 5
-cd /home/xxxusernamexxx/.headphones
+cd /opt/headphones
 git fetch --all
 git reset --hard origin/master
 git pull
@@ -33,7 +33,7 @@ echo
 echo "CouchPotato Auto Update"
 sudo systemctl stop Couchpotato
 sleep 5
-cd /home/xxxusernamexxx/.couchpotato
+cd /opt/couchpotato
 git fetch --all
 git reset --hard origin/master
 git pull
