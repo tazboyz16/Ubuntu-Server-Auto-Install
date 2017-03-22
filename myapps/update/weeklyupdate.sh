@@ -39,7 +39,7 @@ cd /home/xxxusernamexxx/
 echo
 
 echo "Plex Server Update"
-sudo bash /home/xxxusernamexxx/update/plexupdate.sh -p -a -d
+sudo bash /home/xxxusernamexxx/update/plexupdate.sh -p -a -d -u
 echo
 
 echo "Running System Security Updates"
