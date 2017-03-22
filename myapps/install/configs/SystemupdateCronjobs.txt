@@ -1,0 +1,19 @@
+#weekly on Mondays
+15   5   *   *   1   sudo bash /home/taz/update/weeklyupdate.sh
+#monthly on 1st of every month
+15   4   1   *   *   sudo bash /home/taz/update/monthlyupdate.sh
+
+#weekly Reboot
+0    4   *   *   1   sudo reboot
+
+#order of Crons
+#1257am weekly sunday mdadm for Raid devices that i dont have
+#124am daily Amavisd  (anitvirus) clean
+#310am daily awstats log analzyer
+#4am daily System Reboot
+#415am monthly update script
+#501am daily Amavisd scan
+#515am Weekly update script
+#625am daily logwatch
+#647am weekly Sunday updates on Ubuntu OS
+#939am daily sessionclean to up php sessions
