@@ -1,6 +1,8 @@
 # Ubuntu Server Auto Install 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)
 
+My setup is great for Fresh installs and for Reinstall with applying current settings
+
 Credit for begining work on Creating Custom Auto Install Server ISO
 https://pricklytech.wordpress.com/2013/04/21/ubuntu-server-unattended-installation-custom-cd/
 
