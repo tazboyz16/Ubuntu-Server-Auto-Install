@@ -1,0 +1,16 @@
+[Unit]
+Description=Jackett Daemon
+After=network.target
+
+[Service]
+User=jackett
+Group=jackett
+Type=simple
+ExecStart=/usr/bin/mono /opt/Jackett/JackettConsole.exe
+TimeoutStopSec=20
+Restart=no
+RemainAfterExit=yes
+
+
+[Install]
+WantedBy=multi-user.target
