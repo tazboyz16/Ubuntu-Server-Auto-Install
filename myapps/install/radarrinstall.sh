@@ -11,8 +11,8 @@ tar -xvzf Radarr.develop.0.2.0.99.linux.tar.gz
 
 
 #cd /opt && sudo git clone https://github.com/Radarr/Radarr/releases
-sudo chown -R radarr:radarr /opt/radarr/
-sudo chmod -R 0777 /opt/radarr
+sudo chown -R radarr:radarr /opt/Radarr/
+sudo chmod -R 0777 /opt/Radarr
 
 
 echo "Creating Startup Script"
