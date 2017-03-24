@@ -3,8 +3,8 @@ Description=Radarr Daemon
 After=syslog.target network.target
 
 [Service]
-User=username
-Group=group
+User=radarr
+Group=radarr
 
 Type=simple
 ExecStart=/usr/bin/mono /opt/Radarr/Radarr.exe -nobrowser
