@@ -17,3 +17,9 @@ For my Media server protection I will be replacing username, passwords with xxxu
 
 Take a look also to my mini plex server instructions / might create a auto install for it soon to
 https://github.com/tazboyz16/Ubuntu-Portable-PMS
+
+
+
+
+
+https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE
