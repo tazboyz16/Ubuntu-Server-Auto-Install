@@ -4,72 +4,106 @@ echo "<---Updaing System....Please Wait..--->"
 sudo apt-get update -qq
 sudo apt-get upgrade -yqq
 
-sudo apt-get install python2.7 mono-complete git-core python-lxml python-pip unzip libcurl4-openssl-dev bzip2
+sudo apt-get install -yqq python2.7 mono-complete git-core python-lxml python-pip unzip libcurl4-openssl-dev bzip2 python python-cheetah python-pyasn1 unrar-free openssl libssl-dev
 
 echo "<--- Running Install Scripts --->" 
 
+#Web Programs
 echo "<--- Installing iRedMail --->"
-bash /home/xxxusernamexxx/install/mailinstaller.sh
+bash /home/taz/install/Iredmail/mailinstaller.sh
 
 echo "<--- Installing Apache2 --->"
-bash /home/xxxusernamexxx/install/Apache2-install.sh
+bash /home/taz/install/Apache2/Apache2-install.sh
+
+echo "<--- Installing SSL Cert --->"
+bash /home/taz/install/Apache2/Certbot.sh
 
 echo "<--- Installing Mysql and Phpmyadmin --->"
-bash /home/xxxusernamexxx/install/Mysql.sh
+bash /home/taz/install/Apache2/Mysql.sh
 
+#DDNS
 echo "<--- Installing Noip --->"
-bash /home/xxxusernamexxx/install/Noip2Install.sh
+bash /home/taz/install/Noip2/Noip2Install.sh
 
+#
 echo "<--- Installing Deluge --->"
-bash /home/xxxusernamexxx/install/deluge_webui.sh
+bash /home/taz/install/Deluge/deluge_webui.sh
 
 echo "<--- Installing CouchPotato --->"
-bash /home/xxxusernamexxx/install/couchpotato-installer.sh
+bash /home/taz/install/couchpotato-installer.sh
 
 echo "<--- Installing Headphones --->"
-bash /home/xxxusernamexxx/install/headphones-installer.sh
+bash /home/taz/install/Headphones/headphones-installer.sh
 
 echo "<--- Installing Mylar --->"
-bash /home/xxxusernamexxx/install/mylar-installer.sh
+bash /home/taz/install/Mylar/mylar-installer.sh
 
 echo "<--- Installing SickRage --->"
-bash /home/xxxusernamexxx/install/sickrage-installer.sh
+bash /home/taz/install/SickRage/sickrage-installer.sh
 
 echo "<--- Installing Webmin --->"
-bash /home/xxxusernamexxx/install/webmin-installer.sh
+bash /home/taz/install/Webmin/webmin-installer.sh
 
 echo "<--- Installing Plex Media Server --->"
-bash /home/xxxusernamexxx/install/plexinstall.sh
+bash /home/taz/install/Plex/plexinstall.sh
 
 echo "<--- Installing Emby Media Server --->"
-bash /home/xxxusernamexxx/install/EmbyServerInstall.sh
+bash /home/taz/install/EmbyServer/EmbyServerInstall.sh
 
 echo "<--- Installing Grive --->"
-bash /home/xxxusernamexxx/install/GriveInstaller.sh
+bash /home/taz/install/Grive/GriveInstaller.sh
 
 echo "<--- Installing ZoneMinder --->"
-bash /home/xxxusernamexxx/install/zminstall.sh
+bash /home/taz/install/Zoneminder/zminstall.sh
 
 echo "<--- Installing TeamSpeak Server --->"
-bash /home/xxxusernamexxx/install/ts3install.sh
+bash /home/taz/install/TeamSpeak3/ts3install.sh
 
-echo "<--- Installing Sinusbot --->"
-bash /home/xxxusernamexxx/install/sinusbotinstall.sh
+echo "Installing Sonarr"
+bash /home/taz/install/Sonarr/sonarrinstall.sh
+
+echo "installing Jackett"
+bash /home/taz/install/Jackett/jackettinstall.sh
 
 echo "<--- Installing Samba --->"
-bash /home/xxxusernamexxx/install/samba.sh
+bash /home/taz/install/Samba/samba.sh
 
-echo "<--- Installing Mybb for Website Forums --->"
-bash /home/xxxusernamexxx/install/Mybb.sh
+echo "<--- Installing Kodi --->"
+bash /home/taz/install/Kodi/Kodi-install.sh
+
+echo "<--- Installing Muximux --->"
+bash /home/taz/install/Muximux/Muximuxinstall.sh
+
+echo "<--- Installing HTPC-Manager --->"
+bash /home/taz/HTPCManager/HTPCManager.sh
+
+echo "<--- Installing LazyLibrarian --->"
+bash /home/taz/Lazylibrarian/Lazylibrarian.sh
+
+echo "<--- Installing Shinobi --->"
+bash /home/taz/Shinobi/Shinobi.sh
+
+echo "<--- Installing MadSonic --->"
+bash /home/taz/Madsonic/MadSonic.sh
+
+echo "<--- Installing Organizr --->"
+bash /home/taz/Organizr/Organizr.sh
+
+echo "<--- Installing Ubooquity --->"
+bash /home/taz/Organizr/Ubooquity.sh
+
+#commented out due to TS3 client requires interaction for install
+#echo "<--- Installing SinusBot --->"
+#bash /home/taz/install/SinusBot/sinusbot.sh
 
 echo "<-- Installing Cron Jobs -->"
-bash /home/xxxusernamexxx/install/Cronjobs.sh
+bash /home/taz/install/System/Cronjobs.sh
 
 #echo "<--- Restoring Fstab settings --->"
-#cat /home/xxxusernamexxx/install/configs/fstab.txt >> /etc/fstab
+#cat /home/taz/install/System/fstab.txt >> /etc/fstab
 
 echo "<---- Running Cleanup from Installs --->"
-bash /home/xxxusernamexxx/Cleanup.sh
+bash /home/taz/Cleanup.sh
 
 echo "<-----Reboot is needed to take effect of All System Restores and Installs------>"
 sleep 5
