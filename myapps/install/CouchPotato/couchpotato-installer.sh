@@ -13,6 +13,9 @@ echo "<--- Restoring CouchPotato Settings --->"
 sudo chmod -R 0777 /opt/ProgramData/
 
 #changing this line to edit SSL settings to accept the SSL Created in Certbot
+#line 5 and 7 for
+#ssl_key =
+#ssl_cert =
 #cp /home/xxxsernamexxx/install/CouchPotato/CouchPotato.txt /opt/ProgramData/couchpotato/.couchpotato/settings.conf
 
 echo "Creating Startup Script"
