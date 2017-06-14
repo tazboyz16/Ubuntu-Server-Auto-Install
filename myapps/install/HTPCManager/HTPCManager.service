@@ -1,0 +1,13 @@
+[Unit]
+Description=HTPC-Manager Daemon
+After=network.target
+
+[Service]
+User=HTPCManager
+Group=HTPCManager
+Type=forking
+ExecStart=/usr/bin/python /opt/HTPCManager/Htpc.py
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
