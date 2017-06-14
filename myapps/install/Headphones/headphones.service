@@ -1,0 +1,13 @@
+[Unit]
+Description=Headphones Daemon
+After=network.target
+
+[Service]
+User=headphones
+Group=headphones
+Type=simple
+ExecStart=/opt/headphones/Headphones.py
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
