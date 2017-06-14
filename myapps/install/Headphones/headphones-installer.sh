@@ -5,8 +5,8 @@ sudo adduser --disabled-password --system --home /opt/ProgramData/headphones --g
 echo '<--- Downloading latest Headphones --->'
 cd /opt &&  git clone https://github.com/rembo10/headphones.git
 
-echo "<--- Restoring Headphones Settings --->"
-cat /home/xxxusernamexxx/install/Headphones/Headphones.txt > /opt/headphones/config.ini
+#echo "<--- Restoring Headphones Settings --->"
+#cat /home/xxxusernamexxx/install/Headphones/Headphones.txt > /opt/headphones/config.ini
 
 sudo chown -R headphones:headphones /opt/headphones
 sudo chmod -R 0777 /opt/headphones
