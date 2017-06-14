@@ -36,8 +36,8 @@ sleep 15
 #SSL Cert
 # "pkey": "/etc/apache2/ssl/apache.key", 
 # "cert": "/etc/apache2/ssl/apache.crt",
-sed -i "s/ssl_key = .*/ssl_key = /etc/apache2/ssl/apache.key" /var/lib/deluge/.config/deluge/web.conf
-sed -i "s/ssl_cert = .*/ssl_cert = /etc/apache2/ssl/apache.crt/" /var/lib/deluge/.config/deluge/web.conf
+#sed -i "s/ssl_key = .*/ssl_key = /etc/apache2/ssl/apache.key" /var/lib/deluge/.config/deluge/web.conf
+#sed -i "s/ssl_cert = .*/ssl_cert = /etc/apache2/ssl/apache.crt/" /var/lib/deluge/.config/deluge/web.conf
 
 #uncomment below lines for backup settings to be restored
 #sudo chmod 0777 -R /var/lib/deluge/
