@@ -127,7 +127,7 @@
 # Mylar
 #-A INPUT -p tcp --dport 8090 -j ACCEPT
 
-# CoachPotato
+# CouchPotato
 #-A INPUT -p tcp --dport 5050 -j ACCEPT
 
 # Webmin
