@@ -17,4 +17,4 @@ systemctl restart apache2
 echo
 echo "<--- Changing Rights for dir WWW --->"
 chmod 0777 -R /var/www
-chown taz:taz -R /var/www
+chown xxxusernamexxx:xxxusernamexxx -R /var/www
