@@ -11,6 +11,10 @@ cd /opt && sudo git clone https://github.com/evilhero/mylar.git
 #echo "<--- Restoring Mylar Settings --->"
 #cat /home/xxxusernamexxx/install/Mylar/Mylar.txt > /opt/mylar/config.ini
 
+echo "<-- enabling SSL --->"
+sed -i "s/https_cert = .*/https_cert = /etc/apache2/ssl/apache.crt/" /opt/mylar/config.ini
+sed -i "s/https_key = .*/https_key = /etc/apache2/ssl/apache.key/" /opt/mylar/config.ini
+
 sudo chown -R mylar:mylar /opt/mylar
 sudo chmod -R 0777 /opt/mylar
 
