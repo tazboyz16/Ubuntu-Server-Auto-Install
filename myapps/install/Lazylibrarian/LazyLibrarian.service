@@ -1,0 +1,13 @@
+[Unit]
+Description=LazyLibrarian Daemon
+After=network.target
+
+[Service]
+User=LazyLibrarian
+Group=LazyLibrarian
+Type=simple
+ExecStart=/opt/LazyLibrarian/LazyLibrarian.py
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
