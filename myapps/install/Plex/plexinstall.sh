@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "<--- Installing Plex Media Server ->"
-bash /home/taz/update/plexupdate.sh -p -a -d
+bash /home/xxxusernamexxx/update/plexupdate.sh -p -a -d
 
 echo "Installing 3rd Party Addons"
-bash /home/taz/install/PlexAddons/PlexAddons.sh
+bash /home/xxxusernamexxx/install/PlexAddons/PlexAddons.sh
