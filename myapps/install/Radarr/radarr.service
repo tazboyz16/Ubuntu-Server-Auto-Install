@@ -1,0 +1,21 @@
+[Unit]
+Description=Radarr Daemon
+After=syslog.target network.target
+
+[Service]
+User=radarr
+Group=radarr
+
+Type=simple
+ExecStart=/usr/bin/mono /opt/Radarr/Radarr.exe -nobrowser
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+#If Radarr does not restart after an update, enable the following
+#ExecStop=-/usr/bin/mono /tmp/radarr_update/Radarr.Update.exe "ps aux | grep Radarr | grep -v grep | awk '{ print $2 }'" /tmp/radarr_update /opt/Radarr/Radarr.exe
