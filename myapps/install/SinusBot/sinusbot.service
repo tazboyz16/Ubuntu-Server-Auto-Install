@@ -1,0 +1,16 @@
+[Unit]
+Description=SinusBot Service
+Wants=syslog.target network.target
+
+[Service]
+User=sinusbot
+ExecStartPre=/bin/rm -f /tmp/.sinusbot.lock
+ExecStopPost=/bin/rm -f /tmp/.sinusbot.lock
+ExecStart=/opt/sinusbot/sinusbot
+WorkingDirectory=/opt/sinusbot
+Type=simple
+KillSignal=2
+SendSIGKILL=yes
+
+[Install]
+WantedBy=multi-user.target
