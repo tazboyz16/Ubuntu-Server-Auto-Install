@@ -1,0 +1,12 @@
+[Unit]
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Type=oneshot
+TTYPath=/dev/tty2
+ExecStart= /home/xxxusernamexxx/FirstbootInstall.sh
+
+[Install]
+WantedBy=multi-user.target
