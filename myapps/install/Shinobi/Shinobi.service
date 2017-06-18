@@ -1,0 +1,13 @@
+[Unit]
+Description=Shinobi Daemon
+After=network.target
+
+[Service]
+User=Shinobi
+Group=Shinobi
+Type=simple
+ExecStart=/opt/Shinobi/Shinobi.py
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
