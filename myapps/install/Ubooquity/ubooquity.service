@@ -1,0 +1,12 @@
+[Unit]
+Description=Ubooquity Daemon
+After=syslog.target network.target
+
+[Service]
+User=ubooquity
+Group=ubooquity
+Type=simple
+ExecStart= jar /opt/ubooquity/Ubooquity.jar -webadmin -headless -port 2022
+
+[Install]
+WantedBy=multi-user.target
