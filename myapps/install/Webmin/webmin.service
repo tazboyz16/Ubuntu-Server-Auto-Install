@@ -1,0 +1,16 @@
+[Unit]
+Description=Webmin Server
+After=network.target
+After=syslog.target
+
+[Service]
+# Start main service
+Restart=always
+Type=forking
+
+ExecStart=/etc/webmin/start
+ExecStop=/etc/webmin/stop
+ExecRestart=/etc/webmin/restart
+
+[Install]
+WantedBy=multi-user.target
