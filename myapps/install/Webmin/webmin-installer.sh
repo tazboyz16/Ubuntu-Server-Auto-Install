@@ -9,7 +9,13 @@ wget http://www.webmin.com/download/deb/webmin-current.deb -O /home/xxxusernamex
 dpkg -i /home/xxxusernamexxx/install/Webmin/webmin_all.deb
 
 echo "Restoring Webmin settings"
-cat /home/xxxusernamexxx/install/Webmin/Webmin.txt > /etc/webmin/miniserv.conf
+#cat /home/xxxusernamexxx/install/Webmin/Webmin.txt > /etc/webmin/miniserv.conf
+
+sed -i "s/ssl= .*/ssl=1" /etc/webmin/miniserv.conf
+sed -i "s/keyfile= .*/keyfile=/etc/apache2/ssl/apache.key" /etc/webmin/miniserv.conf
+sed -i "s/ssl_redirect= .*/ssl_redirect=1" /etc/webmin/miniserv.conf
+sed -i "s/certfile= .*/certfile=/etc/apache2/ssl/apache.crt" /etc/webmin/miniserv.conf
+
 cat /home/xxxusernamexxx/install/Webmin/config > /etc/webmin/system-status/config
 
 echo
