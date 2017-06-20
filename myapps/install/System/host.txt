@@ -2,7 +2,7 @@
 127.0.1.1       xxxPCNamexxx.xxxdomainxxx xxxPCNamexxx
 
 xxxdomainxxx	mail.xxxdomainxxx mail
-xxxstaticIPofserverxxx	mail.xxxdomainxxx mail
+xxxStaticIpaddressxxx	mail.xxxdomainxxx mail
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
