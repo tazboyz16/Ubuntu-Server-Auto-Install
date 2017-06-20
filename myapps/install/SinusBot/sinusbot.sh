@@ -19,7 +19,7 @@ sed -i "s/SSLCertFile = .*/SSLCertFile = "/etc/apache2/ssl/apache.crt" /opt/sinu
 
 
 #Saved settings
-#cp /home/taz/install/SinusBot/config.ini /opt/sinusbot/config.ini
+#cp /home/xxxusernamexxx/install/SinusBot/config.ini /opt/sinusbot/config.ini
 
 chown -R sinusbot:sinusbot /opt/sinusbot
 chmod 0755 -R /opt/sinusbot
@@ -28,7 +28,7 @@ wget http://dl.4players.de/ts/releases/3.0.18.2/TeamSpeak3-Client-linux_amd64-3.
 chmod 0755 TeamSpeak3-Client-linux_amd64-3.0.18.2.run
 ./TeamSpeak3-Client-linux_amd64-3.0.18.2.run
 
-cp -p -R /home/taz/install/SinusBot/youtube-dl /usr/local/bin/
+cp -p -R /home/xxxusernamexxx/install/SinusBot/youtube-dl /usr/local/bin/
 cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
 
 chown -R sinusbot:sinusbot /opt/sinusbot
@@ -37,7 +37,7 @@ chmod 0755 -R /opt/sinusbot
 cd
 
 echo "Creating Sinusbot startup Script"
-cp /home/taz/install/SinusBot/sinusbot.service /etc/systemd/system/
+cp /home/xxxusernamexxx/install/SinusBot/sinusbot.service /etc/systemd/system/
 chmod 644 /etc/systemd/system/sinusbot.service
 systemctl enable sinusbot.service
 systemctl restart sinusbot.service
