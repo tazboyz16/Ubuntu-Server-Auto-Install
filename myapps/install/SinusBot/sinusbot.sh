@@ -30,11 +30,11 @@ chmod 0755 TeamSpeak3-Client-linux_amd64-3.0.18.2.run
 
 cp -p -R /home/xxxusernamexxx/install/SinusBot/youtube-dl /usr/local/bin/
 cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
-
+cd
 chown -R sinusbot:sinusbot /opt/sinusbot
 chmod 0755 -R /opt/sinusbot
 
-cd
+./sinusbot --pwreset=xxxpasswordxxx
 
 echo "Creating Sinusbot startup Script"
 cp /home/xxxusernamexxx/install/SinusBot/sinusbot.service /etc/systemd/system/
