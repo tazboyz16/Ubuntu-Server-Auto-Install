@@ -12,6 +12,8 @@ I will be replacing username, passwords with xxxusernamexxx and xxxpasswordxxx t
    
    
    
+**(Update/Upcoming 6/27/17)**  I will be updating Scripts and Programs to be installed under /opt due to less script edits plus easier location to access vs Admin home dir    
+   
 Take a look also to my mini plex server instructions / might create a auto install for it soon to   
 https://github.com/tazboyz16/Ubuntu-Portable-PMS   
 
