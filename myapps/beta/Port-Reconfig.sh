@@ -17,9 +17,9 @@ if [[ $exitstatus = 0 ]]; then
     source "$SCRIPTPATH/inc/app-constant-reset.sh"
     case "$MAINCHOICE" in
         "Media Servers" )
-            source "$SCRIPTPATH/menus/Media Servers.sh" ;;
+            source "$SCRIPTPATH/menus/Media-Servers.sh" ;;
         "Media Finders" )
-            source "$SCRIPTPATH/menus/Media Finders.sh" ;;
+            source "$SCRIPTPATH/menus/Media-Finders.sh" ;;
         "Bittorrent & Usenet Clients" )
             source "$SCRIPTPATH/menus/menu-bittorrent.sh" ;;
         "Admin Tools" )
