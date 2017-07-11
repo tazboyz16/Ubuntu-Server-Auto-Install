@@ -18,3 +18,7 @@ Take a look also to my mini plex server instructions / might create a auto insta
 https://github.com/tazboyz16/Ubuntu-Portable-PMS   
 
 https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE   
+  
+By  
+Daniel Parson
+tazboyz16@gmail.com
