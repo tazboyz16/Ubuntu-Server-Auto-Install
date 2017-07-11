@@ -5,41 +5,31 @@ SCRIPTPATH=/opt/beta
 MAINCHOICE=$(whiptail --title "Port Reconfigure" \
 --menu "Which app would you like to manage?" --backtitle "$BACKTITLE" \
 --fb --cancel-button "Exit" $LINES $COLUMNS "$NETLINES" \
-"PVRs" "Automatic Media Library Manager" \
-"Usenet Downloaders" "Download binary files from Usenet servers" \
-"Bittorrent Clients" "Download Torrents" \
-"Personal Media Servers" "Organise and serve Media" \
-"Home Theater" "Media Playback" \
-"Sync Tools" "Keep files and folders synchronized" \
-"Administration Tools" "system configuration tools e.g. Webmin" \
-"Utilities" "Other miscellaneous tools" \
-"Maintenance" "Perform maintenance tasks" 3>&1 1>&2 2>&3)
+"Media Servers" "Organise and serve Media" \
+"Media Finders" "Media Manager and Downloaders" \
+"Bittorrent & Usenet Clients" "Download Torrents" \
+"Admin Tools" "system configuration tools e.g. Webmin" \
+"Voip Server" "TeamSpeak Server" \
+"Home Security" "Personal home IpCamera Security" 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 if [[ $exitstatus = 0 ]]; then
     source "$SCRIPTPATH/inc/app-constant-reset.sh"
     case "$MAINCHOICE" in
-        "PVRs" )
-            source "$SCRIPTPATH/menus/menu-pvrs.sh" ;;
-        "Usenet Downloaders" )
-            source "$SCRIPTPATH/menus/menu-usenet.sh" ;;
-        "Bittorrent Clients" )
+        "Media Servers" )
+            source "$SCRIPTPATH/menus/Media Servers.sh" ;;
+        "Media Finders" )
+            source "$SCRIPTPATH/menus/Media Finders.sh" ;;
+        "Bittorrent & Usenet Clients" )
             source "$SCRIPTPATH/menus/menu-bittorrent.sh" ;;
-        "Personal Media Servers" )
-            source "$SCRIPTPATH/menus/menu-personal-media-servers.sh" ;;
+        "Admin Tools" )
+            source "$SCRIPTPATH/menus/menu-Admin-Tools.sh" ;;
         "Home Theater" )
-            source "$SCRIPTPATH/menus/menu-home-theater.sh" ;;
+            source "$SCRIPTPATH/menus/menu-Voip-Server.sh" ;;
         "Sync Tools" )
-            source "$SCRIPTPATH/menus/menu-sync-tools.sh" ;;
-        "Administration Tools" )
-            source "$SCRIPTPATH/menus/menu-administration-tools.sh" ;;
-        "Utilities" )
-            source "$SCRIPTPATH/utils/utils-menu.sh" ;;
-        "Maintenance" )
-            source "$SCRIPTPATH/maintenance/maintenance-menu.sh" ;;
+            source "$SCRIPTPATH/menus/menu-Home-Security.sh" ;;
         *)
-            echo -e "${RED}Invalid Option$ENDCOLOR"
-            source "$SCRIPTPATH/inc/exit.sh" ;;
+            exit 0
     esac
 else
     echo
