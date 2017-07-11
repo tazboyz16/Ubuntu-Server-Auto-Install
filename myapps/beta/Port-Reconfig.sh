@@ -14,7 +14,6 @@ MAINCHOICE=$(whiptail --title "Port Reconfigure" \
 
 exitstatus=$?
 if [[ $exitstatus = 0 ]]; then
-    source "$SCRIPTPATH/inc/app-constant-reset.sh"
     case "$MAINCHOICE" in
         "Media Servers" )
             source "$SCRIPTPATH/menus/Media-Servers.sh" ;;
