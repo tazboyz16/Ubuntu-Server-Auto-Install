@@ -3,10 +3,6 @@
 clear
 menua=0
 menub=0
-menuc=0
-menud=0
-menue=0
-menuf=0
 Port=0
 
 clear
@@ -80,7 +76,7 @@ case $menua in
     ;;
 esac
 
-echo $menua $menub $menuc 
+echo $menua $menub
 
 if [ $menua == 1 ]
 then
@@ -101,3 +97,163 @@ then
 esac
 fi
 
+if [ $menua == 2 ]
+then
+    case $menub in
+    1)
+    clear
+    echo "CouchPotato Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    2)
+    echo "Headphones Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    3)
+    echo "HTPCManager Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    4)
+    echo "LazyLibrarian Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    5)
+    echo "Mylar Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    6)
+    echo "Muximux Port Change"
+    echo "**uses apache**"
+    read Port
+    exit 0
+    ;;
+    7)
+    echo "Radarr Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    8)
+    echo "SickRage Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    9)
+    echo "Sonarr Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    10)
+    echo "Jackett Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    2)
+    echo "Ubooquity Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+esac
+fi
+
+if [ $menua == 3 ]
+then
+    case $menub in
+    1)
+    clear
+    echo "Deluge w/ Web UI Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    2)
+    echo "NZBGet Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    3)
+    echo "Sabnzbd Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+esac
+fi
+
+if [ $menua == 4 ]
+then
+    case $menub in
+    1)
+    clear
+    echo "Grive Port Change"
+    echo "What New hange to?"
+    read Port
+    exit 0
+    ;;
+    2)
+    echo "Noip2 Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    3)
+    echo "Webmin Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+esac
+fi
+
+if [ $menua == 5 ]
+then
+    case $menub in
+    1)
+    clear
+    echo "Sinusbot Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    2)
+    echo "TeamSpeak 3 Server Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+esac
+fi
+
+if [ $menua == 6 ]
+then
+    case $menub in
+    1)
+    clear
+    echo "Shinobi Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+    2)
+    echo "ZoneMinder Port Change"
+    echo "What New Port Would you like to change to?"
+    read Port
+    exit 0
+    ;;
+esac
+fi
