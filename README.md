@@ -11,14 +11,11 @@ If anyone has ideas to help set up the process faster or add more programs to th
   
 **I will be replacing username, passwords with xxxusernamexxx and xxxpasswordxxx to help with replacing with credentials easy .... if anyone knows how to work in a "probing" .sh for that info to use on the full install let me know I will work it in**  
    
-   
-**(Update/Upcoming 6/27/17)**  I will be updating Scripts and Programs to be installed under /opt due to less script edits plus easier location to access vs Admin home dir    
-   
 Take a look also to my mini plex server instructions / might create a auto install for it soon to   
 https://github.com/tazboyz16/Ubuntu-Portable-PMS   
 
 https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE   
   
 By  
-Daniel Parson
+Daniel Parson  
 tazboyz16@gmail.com
