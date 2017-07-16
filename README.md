@@ -24,7 +24,7 @@ https://github.com/tazboyz16/Ubuntu-Portable-PMS
 
 
 Please see the wiki for futher information   
-https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki
+[https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki)
    
 Update Release notes    
 https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki/Update-Release-Notes
