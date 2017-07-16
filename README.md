@@ -5,7 +5,9 @@
 [![Download latest release](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 [![Download total](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
 [![master](https://img.shields.io/badge/master-stable-green.svg?maxAge=2592000)]()
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()    
+
+[![Feature Requests](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install?format=svg)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
