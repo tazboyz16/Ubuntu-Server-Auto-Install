@@ -22,8 +22,22 @@ If anyone has ideas to help set up the process faster or add more programs to th
 Take a look also to my mini plex server instructions / might create a auto install for it soon to   
 https://github.com/tazboyz16/Ubuntu-Portable-PMS   
 
-https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE   
+
+Please see the wiki for futher information   
+https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki
+   
+To download, go here:   
+https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest    
   
 By  
 Daniel Parson  
 tazboyz16@gmail.com
+   
+   
+   
+  
+   
+   
+   
+
+https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE  
