@@ -1,4 +1,12 @@
 # Ubuntu Server Auto Install 
+
+[![GitHub issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
+[![Release](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
+[![Download latest release](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
+[![Download total](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
+[![master](https://img.shields.io/badge/master-stable-green.svg?maxAge=2592000)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
 Credit for beginning work on Creating Custom Auto Install Server ISO   
