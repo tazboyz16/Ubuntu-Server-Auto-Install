@@ -26,18 +26,13 @@ https://github.com/tazboyz16/Ubuntu-Portable-PMS
 Please see the wiki for futher information   
 https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki
    
+Update Release notes    
+https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki/Update-Release-Notes
+   
 To download, go here:   
 https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest    
   
 By  
 Daniel Parson  
-tazboyz16@gmail.com
-   
-   
-   
-  
-   
-   
-   
-
+tazboyz16@gmail.com    
 https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE  
