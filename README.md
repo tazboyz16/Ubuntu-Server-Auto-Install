@@ -1,6 +1,5 @@
 # Ubuntu Server Auto Install 
-  
-Created by Daniel Parson - tazboyz16@gmail.com    
+    
 https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE  
 
 [![GitHub issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
@@ -9,7 +8,6 @@ https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE
 [![Download total](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
 [![master](https://img.shields.io/badge/master-stable-green.svg?maxAge=2592000)]()
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()    
-
 [![Feature Requests](http://i.imgur.com/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
@@ -20,7 +18,7 @@ https://pricklytech.wordpress.com/2013/04/21/ubuntu-server-unattended-installati
 Steps are under Wiki for installation and creating the ISO   
 Before creating ISO edit FirstbootInstall.sh for what programs to be install   
 
-If anyone has ideas to help set up the process faster or add more programs to this list feel free to reach out to me  
+If anyone has ideas to help set up the process faster or add more programs to this list feel free to Click on the Feature Link  
   
 **I will be replacing username, passwords with xxxusernamexxx and xxxpasswordxxx to help with replacing with credentials easy .... if anyone knows how to work in a "probing" .sh for that info to use on the full install let me know I will work it in**  
    
