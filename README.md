@@ -1,4 +1,7 @@
 # Ubuntu Server Auto Install 
+  
+Created by Daniel Parson - tazboyz16@gmail.com    
+https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE  
 
 [![GitHub issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
 [![Release](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
@@ -23,8 +26,7 @@ If anyone has ideas to help set up the process faster or add more programs to th
    
 Take a look also to my mini plex server instructions / might create a auto install for it soon to   
 https://github.com/tazboyz16/Ubuntu-Portable-PMS   
-
-
+  
 Please see the wiki for futher information   
 https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki
    
@@ -34,7 +36,5 @@ https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki/Update-Release-Note
 To download, go here:   
 https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest    
   
-By  
-Daniel Parson  
-tazboyz16@gmail.com    
-https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE  
+# Preview  
+![Preview](http://i.imgur.com/ZCzZzLf.jpg)
