@@ -7,7 +7,7 @@
 [![master](https://img.shields.io/badge/master-stable-green.svg?maxAge=2592000)]()
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()    
 
-[![Feature Requests](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install?format=svg)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
+[![Feature Requests](http://i.imgur.com/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
