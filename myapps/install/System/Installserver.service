@@ -6,7 +6,7 @@ After=network-online.target
 User=root
 Type=oneshot
 TTYPath=/dev/tty2
-ExecStart= /home/xxxusernamexxx/FirstbootInstall.sh
+ExecStart= /opt/FirstbootInstall.sh
 
 [Install]
 WantedBy=multi-user.target
