@@ -2,11 +2,12 @@
 
 sudo adduser --disabled-password --system --home /opt/ProgramData/ubooquity --gecos "Ubooquity Service" --group ubooquity
 
-echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | sudo tee -a /etc/apt/sources.list.d/webupd8team-java.list
-echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | sudo tee -a /etc/apt/sources.list.d/webupd8team-java.list
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install oracle-java8-installer unzip -y
+
+echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+sudo apt install oracle-java8-installer unzip -y
 
 sudo mkdir -p /opt/ubooquity
 cd /opt/ubooquity
@@ -20,7 +21,7 @@ sudo chown -R ubooquity:ubooquity /opt/ubooquity
 
 
 echo "Creating Startup Script"
-cp /home/xxxusernamexxx/install/Ubooquity/ubooquity.service /etc/systemd/system/
+cp /opt/install/Ubooquity/ubooquity.service /etc/systemd/system/
 chmod 644 /etc/systemd/system/ubooquity.service
 systemctl enable ubooquity.service
 systemctl restart ubooquity.service
