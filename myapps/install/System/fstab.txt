@@ -1,1 +1,2 @@
 #add to this file your other HDDs for automount
+# for ex.  UUID=54ce83ca-e8c6-44db-9702-1daf359642ec       /media/3rdShare         auto    defaults        0 0 
