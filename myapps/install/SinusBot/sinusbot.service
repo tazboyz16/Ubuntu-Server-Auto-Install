@@ -4,10 +4,10 @@ Wants=syslog.target network.target
 
 [Service]
 User=sinusbot
-ExecStartPre=/bin/rm -f /tmp/.sinusbot.lock
-ExecStopPost=/bin/rm -f /tmp/.sinusbot.lock
-ExecStart=/opt/sinusbot/sinusbot
-WorkingDirectory=/opt/sinusbot
+ExecStartPre=rm -f /tmp/.sinusbot.lock
+ExecStopPost=rm -f /tmp/.sinusbot.lock
+ExecStart=/opt/Sinusbot/sinusbot -pwreset=foobar
+WorkingDirectory=/opt/Sinusbot
 Type=simple
 KillSignal=2
 SendSIGKILL=yes
