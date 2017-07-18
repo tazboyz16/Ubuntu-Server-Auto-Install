@@ -5,8 +5,8 @@ After=syslog.target network.target
 [Service]
 User=ubooquity
 Group=ubooquity
-Type=simple
-ExecStart= jar /opt/ubooquity/Ubooquity.jar -webadmin -headless -port 2022
+WorkingDirectory= /opt/ubooquity
+ExecStart=/usr/bin/java -jar Ubooquity.jar -headless -remoteadmin 
 
 [Install]
 WantedBy=multi-user.target
