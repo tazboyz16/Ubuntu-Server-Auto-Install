@@ -1,6 +1,0 @@
-UUID=1b91e567-2df5-4a85-9c96-95e63aa95392       /media/SystemBackup     auto    defaults        0 0
-UUID=54ce83ca-e8c6-44db-9702-1daf359642ec       /media/3rdShare         auto    defaults        0 0
-UUID=21023598-75f7-471b-b07a-67e25db29aa9       /media/Music            auto    defaults        0 0
-UUID=8aa8a63b-61c4-449b-8088-ea7038436551       /media/2TBShare         auto    defaults        0 0
-UUID=8f211f60-17d1-4305-9175-2f7c586001f4       /media/Pictures         auto    defaults        0 0
-UUID=91bf782c-415d-47d8-9a58-0a03d55ad94c       /media/2TBMovies        auto    defaults        0 0
