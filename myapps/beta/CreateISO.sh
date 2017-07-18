@@ -21,22 +21,29 @@ rm $WorkingDir/README.md
 rm $WorkingDir/_config.yml
 echo "Setting up KickStart Config File"
 
-echo "Admin Account UserName?"
-read AdminUsername
+echo "System Language?"
+echo " 'locale' running this Command shows your Current System Setting Format"
+read SystemLanguage
 
-echo "Admin Account Password?"
-read AdminPassword
+#dpkg-reconfigure keyboard-configuration
+echo "System Keyboard Setup?"
+read SystemKeyboard
 
 echo "TimeZone?"
 echo "if dont know the format for your timezone check out:"
 echo "https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
 read TimeZone
 
+echo "Admin Account UserName?"
+read AdminUsername
+
+echo "Admin Account Password?"
+read AdminPassword
+
 echo "Swap Partition Size?"
 echo "Partition Setup as under MB NOT AS GB"
 read SwapPartition
 
-echo "System Language?"
-echo " 'locale' running this Command shows your Current System Setting Format"
-read SystemLanguage
+
+
 
