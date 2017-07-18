@@ -3,12 +3,17 @@
 sudo add-apt-repository -y ppa:iconnor/zoneminder
 sudo apt-get update -qq
 
-echo mysql-server mysql-server/root_password password xxxpasswordxxx | debconf-set-selections
-echo mysql-server mysql-server/root_password_again password xxxpasswordxxx | debconf-set-selections
+#mariadb or mysql for the server
+server=mysql-server
+sqlpass=xxxpasswordxxx
+zmsqlpass=xxxpasswordxxx
 
-sudo apt install zoneminder php7.0-gd -y
-sudo mysql --user=root -pxxxpasswordxxx mysql -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmadmin'@localhost identified by 'xxxpasswordxxx';"
-sudo mysql --user=root -pxxxpasswordxxx -h localhost zm  < /usr/share/zoneminder/db/zm_create.sql
+echo $server $server/root_password password $sqlpass | debconf-set-selections
+echo $server $server/root_password_again password $sqlpass | debconf-set-selections
+
+sudo apt install zoneminder php7.0-gd $server -y
+sudo mysql --user=root -p$sqlpass mysql -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmadmin'@localhost identified by '$zmsqlpass';"
+sudo mysql --user=root -p$sqlpass -h localhost zm  < /usr/share/zoneminder/db/zm_create.sql
 sudo systemctl enable zoneminder
 sudo a2enconf zoneminder
 sudo a2enmod cgi
