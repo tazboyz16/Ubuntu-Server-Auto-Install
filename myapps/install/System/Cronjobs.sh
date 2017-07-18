@@ -16,4 +16,4 @@
 
 echo "Adding CronJobs for Update System daily and monthly"
 #will save in /var/spool/cron/crontabs
-sudo crontab /home/xxxusernamexxx/install/System/SystemupdateCronjobs.txt
+sudo crontab /opt/install/System/SystemupdateCronjobs.txt
