@@ -44,6 +44,22 @@ echo "Swap Partition Size?"
 echo "Partition Setup as under MB NOT AS GB"
 read SwapPartition
 
+echo "Renaming Kickstart Config File"
+mv ks-example.cfg ks.cfg
 
+cd $WorkingDir/myapps/
 
+echo "Editing FirstbootInstall.sh File"
+echo "What Programs to be installed?"
 
+echo "Install iRedMail?"
+read Installiredmail
+
+echo "Install Apache2?'
+echo "If no, No webservers will be installed due to only have Apache2 setup scripts"
+read InstallApache2
+
+echo "Install Cerbot (Lets Encrypt Cert)?"
+read InstallCerbot
+
+echo 
