@@ -59,7 +59,7 @@ echo "What Programs to be installed ?"
 echo "Install iRedMail ?"
 read Installiredmail
 
-echo "Install Apache2 ?'
+echo "Install Apache2 ?"
 echo "If no, No webservers will be installed due to only have Apache2 setup scripts"
 read InstallApache2
 
