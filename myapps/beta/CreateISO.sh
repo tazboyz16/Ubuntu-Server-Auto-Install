@@ -138,6 +138,31 @@ read InstallUbooquity
 echo "Install Sinusbot?"
 read InstallSinusbot
 
-echo "What version of ubuntu?
+echo "What version of ubuntu?"
 echo "Desktop or Server?"
 read UbuntuDistro
+
+echo "What Version of Ubuntu?"
+read UbuntuDistroVer
+
+echo " i386(32 bit) or amd64 (64 bit) ?"
+read UbuntuBit
+
+echo "Downloading Distro"
+wget http://releases.ubuntu.com/$UbuntuDistroVer/ubuntu-$UbuntuDistroVer-$UbuntuDistro-$UbuntuBit.iso -O /opt
+
+echo "Creating Iso Folder"
+sudo mkdir -p /mnt/iso
+cd /opt
+sudo mount -o loop ubuntu-$UbuntuDistroVer-$UbuntuDistro-$UbuntuBit.iso /mnt/iso
+sudo mkdir -p /opt/serveriso
+sudo cp -rT /mnt/iso /opt/serveriso
+sudo chmod -R 777 /opt/serveriso/
+cd /opt/serveriso
+echo $SystemLanguage >isolinux/langlist (to set default/only Language of installer)
+#edit /opt/serveriso/isolinux/txt.cfg  At the end of the append line add ks=cdrom:/ks.cfg. You can remove quiet — and vga=788
+sed -i 
+cp $WorkingDir/myapps /opt/serveriso
+echo "Pausing in Case for extra edits of myapss"
+create ISO with sudo mkisofs -D -r -V "ATTENDLESS_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/autoinstall.iso /opt/serveriso
+    Rerun sudo chmod -R 777 /opt to gain rights to iso file
