@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#for the case for program yes or no 
+#case $answer in
+# Y|y|yes|Yes)
+# *) for other options
 #Example Locations of Ubuntu ISOs
 #http://releases.ubuntu.com/16.04/
 #http://releases.ubuntu.com/16.04.2/
@@ -133,9 +137,3 @@ read InstallUbooquity
 
 echo "Install Sinusbot?"
 read InstallSinusbot
-
-
-#for the case for program yes or no 
-#case $answer in
-# Y|y|yes|Yes)
-# *) for other options
