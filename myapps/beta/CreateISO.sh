@@ -164,5 +164,7 @@ echo $SystemLanguage >isolinux/langlist (to set default/only Language of install
 sed -i 
 cp $WorkingDir/myapps /opt/serveriso
 echo "Pausing in Case for extra edits of myapss"
-create ISO with sudo mkisofs -D -r -V "ATTENDLESS_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/autoinstall.iso /opt/serveriso
-    Rerun sudo chmod -R 777 /opt to gain rights to iso file
+read -p "Press [Enter] key to Continue"
+#https://www.cyberciti.biz/tips/linux-unix-pause-command.html
+sudo mkisofs -D -r -V "ATTENDLESS_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/autoinstall.iso /opt/serveriso
+sudo chmod -R 777 /opt
