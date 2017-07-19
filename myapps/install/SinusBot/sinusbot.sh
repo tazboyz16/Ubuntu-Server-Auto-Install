@@ -24,7 +24,7 @@ wget http://dl.4players.de/ts/releases/3.0.18.2/TeamSpeak3-Client-linux_amd64-3.
 chmod 0755 TeamSpeak3-Client-linux_amd64-3.0.18.2.run
 printf '\ny\n' | LESS='+q' ./TeamSpeak3-Client-linux_amd64-3.0.18.2.run
 
-curl -I http://yt-dl.org/downloads/latest/youtube-dl -o /opt/Sinusbot/youtube-dl
+wget https://yt-dl.org/downloads/latest/youtube-dl -o /opt/Sinusbot/youtube-dl
 chmod a+rx /opt/Sinusbot/youtube-dl
 
 cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
