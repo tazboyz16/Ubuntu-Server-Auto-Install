@@ -159,9 +159,10 @@ sudo mkdir -p /opt/serveriso
 sudo cp -rT /mnt/iso /opt/serveriso
 sudo chmod -R 777 /opt/serveriso/
 cd /opt/serveriso
-echo $SystemLanguage >isolinux/langlist (to set default/only Language of installer)
+#(to set default/only Language of installer)
+echo $SystemLanguage >isolinux/langlist 
 #edit /opt/serveriso/isolinux/txt.cfg  At the end of the append line add ks=cdrom:/ks.cfg. You can remove quiet — and vga=788
-sed -i 
+sed -i "s/initrd.gz/initrd.gz ks=cdrom:/ks.cfg" /opt/serveriso/isolinux/txt.cfg
 cp $WorkingDir/myapps /opt/serveriso
 echo "Pausing in Case for extra edits of myapss"
 read -p "Press [Enter] key to Continue"
