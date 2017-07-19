@@ -39,7 +39,7 @@ case $menua in
     echo "9) Sonarr"
     echo "10) Jackett"
     echo "11) Ubooquity"
-    readmenub
+    read menub
     ;;
     3)
     clear
