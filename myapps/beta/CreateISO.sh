@@ -137,3 +137,7 @@ read InstallUbooquity
 
 echo "Install Sinusbot?"
 read InstallSinusbot
+
+echo "What version of ubuntu?
+echo "Desktop or Server?"
+read UbuntuDistro
