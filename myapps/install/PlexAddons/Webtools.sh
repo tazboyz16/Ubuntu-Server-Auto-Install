@@ -10,38 +10,38 @@ cd
 
 echo "Installing CouchPotato"
 sudo git clone https://github.com/mikedm139/CouchPotato.bundle.git
-cp -fR /home/xxxusernamexxx/CouchPotato.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/CouchPotato.bundle
+cp -fR /opt/CouchPotato.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/CouchPotato.bundle
 
 echo "Installing Headphones"
 sudo git clone https://github.com/willpharaoh/headphones.bundle.git
-cp -fR /home/xxxusernamexxx/headphones.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/headphones.bundle
+cp -fR /opt/headphones.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/headphones.bundle
 
 echo "Installing SickBeard/SickRage"
 sudo git clone https://github.com/mikedm139/SickBeard.bundle.git
-cp -fR /home/xxxusernamexxx/SickBeard.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/SickBeard.bundle
+cp -fR /opt/SickBeard.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/SickBeard.bundle
 
 echo "Installing Speedtest"
 sudo git clone https://github.com/Twoure/Speedtest.bundle.git
-cp -fR /home/xxxusernamexxx/Speedtest.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/Speedtest.bundle
+cp -fR /opt/Speedtest.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/Speedtest.bundle
 
 echo "Installing SS-Plex"
 sudo git clone https://github.com/mikew/ss-plex.bundle.git
-cp -fR /home/xxxusernamexxx/ss-plex.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/ss-plex.bundle
+cp -fR /opt/ss-plex.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/ss-plex.bundle
 
 echo "Installing Sub Zero Subtitles"
 sudo git clone https://github.com/pannal/Sub-Zero.bundle.git
-cp -fR /home/xxxusernamexxx/Sub-Zero.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/Sub-Zero.bundle
+cp -fR /opt/Sub-Zero.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/Sub-Zero.bundle
 
 echo "Installing WebTools"
 sudo git clone https://github.com/ukdtom/WebTools.bundle.git
-cp -fR /home/xxxusernamexxx/WebTools.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /home/xxxusernamexxx/WebTools.bundle
+cp -fR /opt/WebTools.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
+rm -r /opt/WebTools.bundle
 
 chown plex:plex -R /var/lib/plexmediaserver
 sudo chmod 0777 -R /var/lib/plexmediaserver
