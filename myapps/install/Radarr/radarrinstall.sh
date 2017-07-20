@@ -8,9 +8,8 @@ apt update && apt install libmono-cil-dev curl mediainfo mono-devel -y
 sudo adduser --disabled-password --system --home /opt/ProgramData/radarr --gecos "Radarr Service" --group radarr
 
 echo "<--- Downloading latest Radarr --->"
-#At the time 0.2.0.535 is the latest Radarr that is stable
-cd /opt && wget https://github.com/Radarr/Radarr/releases/download/v0.2.0.535/Radarr.develop.0.2.0.535.linux.tar.gz
-tar -xvzf Radarr.develop.0.2.0.535.linux.tar.gz
+cd /opt && wget https://github.com/Radarr/Radarr/releases/download/v0.2.0.778/Radarr.develop.0.2.0.778.linux.tar.gz
+tar -xvzf Radarr.develop.0.2.0.778.linux.tar.gz
 
 
 #cd /opt && sudo git clone https://github.com/Radarr/Radarr/releases
