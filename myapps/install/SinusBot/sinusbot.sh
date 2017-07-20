@@ -37,7 +37,3 @@ cp /opt/install/SinusBot/sinusbot.service /etc/systemd/system/
 chmod 644 /etc/systemd/system/sinusbot.service
 systemctl enable sinusbot.service
 systemctl restart sinusbot.service
-
-cd
-echo "Backing up default Admin Password to /opt/Sinusbot"
-#su sinusbot -c "screen -A -m -d -S sinusbot /opt/Sinusbot/sinusbot -pwreset=foobar"
