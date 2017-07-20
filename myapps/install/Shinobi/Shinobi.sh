@@ -7,16 +7,43 @@ cd /opt &&  git clone https://github.com/moeiscool/Shinobi.git
 sudo chown -R Shinobi:Shinobi /opt/Shinobi
 sudo chmod -R 0777 /opt/Shinobi
 
-sudo bash /opt/Shinobi/INSTALL/ubuntu.sh
-
 cd /opt/Shinobi
-cp conf.sample.json conf.json
-#edit conf.json with correct timezone and with correct mysql login
-#to start pm2 start camera.js
 
-cd
+#Copied Ubuntu install file 
+#mariadb or mysql-server
+server=mysql-server
+sqlpass=Z874HBVbD3augd2A
+
+sudo apt-get update -y
+sudo apt install libav-tools ffmpeg -y
+echo "$server $server/root_password password $sqlpass" | debconf-set-selections
+echo "$server $server/root_password_again password $sqlpass" | debconf-set-selections
+sudo apt install $server -y
+service mysql start
+update-rc.d mysql enable
+sudo apt-get install nodejs npm -y
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+ln -s /usr/bin/nodejs /usr/bin/node
+#might be harmful to system >
+chmod -R 755 .
+mysql -u root -p$sqlpass -e "source sql/user.sql" || true
+mysql -u root -p$sqlpass -e "source sql/framework.sql" || true
+#adding Default user accounts
+mysql -u root -p$sqlpass --database ccio -e "source sql/default_data.sql" || true
+npm install
+sudo npm install pm2 -g
+cp conf.sample.json conf.json
+cp super.sample.json super.json
+touch INSTALL/installed.txt
+
 echo "Creating Startup Script" 
-cp /home/xxxusernamexxx/install/Shinobi/Shinobi.service /etc/systemd/system/
-chmod 644 /etc/systemd/system/Shinobi.service
-systemctl enable Shinobi.service
-systemctl restart Shinobi.service
+pm2 start camera.js
+pm2 start cron.js
+pm2 list
+pm2 startup
+pm2 save
+
+echo "Creating Symbolic link for Shinobi Service"
+ln -s /etc/systemd/system/pm2-root.service /etc/systemd/system/Shinobi.service
