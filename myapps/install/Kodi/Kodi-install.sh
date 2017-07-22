@@ -1,11 +1,8 @@
 #!/bin/bash
 
-#install is only for desktop environment 
-sudo add-apt-repository -y ppa:team-xbmc/ppa
-sudo apt-get update
-sudo apt-get install -yqq kodi
+#Kodi Requires Desktop Gui to function
+#this bash script will install Kodi with its own Desktop gui on start up 
 
-
-
-#https://forum.kodi.tv/showthread.php?tid=210762 - non desktop gui
-#https://forum.kodi.tv/showthread.php?tid=141369
+cd /opt && git clone https://github.com/abacao/Kodi17-UbuntuServer.git
+cd Kodi17-UbuntuServer
+sudo ./install.sh
