@@ -7,7 +7,7 @@
 [![master](https://img.shields.io/badge/master-stable-green.svg?maxAge=2592000)]()
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-[![License](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![License](https://img.shields.io/badge/license-GNU%20GPL%20v3-blue.svg?maxAge=60&style=flat-square)](http://www.gnu.org/licenses/gpl.html)
      
 [![Feature Requests](http://i.imgur.com/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)     
 
