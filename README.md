@@ -1,7 +1,5 @@
 # Ubuntu Server Auto Install 
     
-https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE  
-
 [![GitHub issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
 [![Release](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 [![Download latest release](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
@@ -9,7 +7,8 @@ https://www.gnu.org/licenses/gpl-3.0.en.html - GNU GENERAL PUBLIC LICENSE
 [![master](https://img.shields.io/badge/master-stable-green.svg?maxAge=2592000)]()
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-      
+[![License](https://www.gnu.org/licenses/gpl-3.0.en.html)
+     
 [![Feature Requests](http://i.imgur.com/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)     
 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
