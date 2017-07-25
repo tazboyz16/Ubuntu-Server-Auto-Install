@@ -22,7 +22,7 @@ If anyone has ideas to help set up the process faster or add more programs to th
 **I will be replacing username, passwords with xxxusernamexxx and xxxpasswordxxx to help with replacing with credentials easy .... if anyone knows how to work in a "probing" .sh for that info to use on the full install let me know I will work it in**  
    
 Take a look also to my mini plex server instructions / might create a auto install for it soon to   
-https://github.com/tazboyz16/Ubuntu-Portable-PMS   
+[https://github.com/tazboyz16/Ubuntu-Portable-PMS](https://github.com/tazboyz16/Ubuntu-Portable-PMS)   
   
 Please see the wiki for futher information   
 https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki
