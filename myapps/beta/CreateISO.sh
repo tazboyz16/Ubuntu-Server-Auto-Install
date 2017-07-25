@@ -88,7 +88,7 @@ case AdminPasswordencrypted in
 esac
 
 echo "Swap Partition Size ?"
-echo "Partition Setup as under MB NOT AS GB"
+echo "Partition Setup Does it under MB NOT AS GB"
 read SwapPartition
 sed -i "size 5000\size $SwapPartition" /opt/serveriso/ks.cfg
 
@@ -98,7 +98,7 @@ echo "What Programs to be installed ?"
 echo "Install iRedMail ?"
 read Installiredmail
 case $Installiredmail in
-  n|N)
+  n|N|no|No)
     sed -i "mailinstaller.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
     ;;
   *)
@@ -108,63 +108,205 @@ esac
 echo "Install Apache2 ?"
 echo "If no, No webservers will be installed due to only have Apache2 setup scripts"
 read InstallApache2
+case $InstallApache2 in
+  n|N|no|No)
+    sed -i "Apache2-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Cerbot (Lets Encrypt Cert) ?"
+echo "If Apache2 was not Selected to be installed, This will not install properly!!!"
 read InstallCerbot
+case $InstallCerbot in
+  n|N|no|No)
+    sed -i "Certbot.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Mysql and PhpMyAdmin ?"
 read InstallMysql
+case $InstallMysql in
+  n|N|no|No)
+    sed -i "Mysql.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Noip2 Client ?"
 read InstallNoip2
+case $InstallNoip2 in
+  n|N|no|No)
+    sed -i "Noip2Install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Deluge with web UI ?"
 read InstallDeluge
+case $InstallDeluge in
+  n|N|no|No)
+    sed -i "deluge_webui.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install CouchPotato ?"
 read InstallCouchPotato
+case $InstallCouchPotato in
+  n|N|no|No)
+    sed -i "couchpotato-installer.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install HeadPhones?"
 read InstallHeadPhones
+case $InstallHeadPhones in
+  n|N|no|No)
+    sed -i "headphones-installer.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Mylar ?"
 read InstallMylar
+case $InstallMylar in
+  n|N|no|No)
+    sed -i "mylar-installer.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install SickRage ?"
 read InstallSickRage
+case $InstallSickRage in
+  n|N|no|No)
+    sed -i "sickrage-installer.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Webmin ?"
 read InstallWebmin
+case $InstallWebmin in
+  n|N|no|No)
+    sed -i "webmin-installer.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Plex Media Server?"
 read InstallPlexServer
+case $InstallPlexServer in
+  n|N|no|No)
+    sed -i "plexupdate.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    sed -i "PlexAddons.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Emby Media Server?"
 read InstallEmbyServer
+case $InstallEmbyServer in
+  n|N|no|No)
+    sed -i "EmbyServerInstall.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
-echo "Install Grive (Google Drvie Sync) ?"
+echo "Install Grive (Google Drive Sync) ?"
 read InstallGrive
+case $InstallGrive in
+  n|N|no|No)
+    sed -i "GriveInstaller.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install ZoneMinder?"
 read InstallZoneMinder
+case $InstallZoneMinder in
+  n|N|no|No)
+    sed -i "zminstall.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install TeamSpeak 3 Server?"
 read InstallTeamSpeakServer
+case $InstallTeamSpeakServer in
+  n|N|no|No)
+    sed -i "ts3install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Sonarr?"
 read InstallSonarr
+case $InstallSonarr in
+  n|N|no|No)
+    sed -i "sonarrinstall.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Jackett?"
 read InstallJackett
+case $InstallJackett in
+  n|N|no|No)
+    sed -i "jackettinstall.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Samba?"
 read InstallSamba
+case $InstallSamba in
+  n|N|no|No)
+    sed -i "samba.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Muximux?"
 read InstallMuximux
+case $InstallMuximux in
+  n|N|no|No)
+    sed -i "Muximuxinstall.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install HTPC-Manager?"
 read InstallHTPCManager
+case $InstallHTPCManager in
+  n|N|no|No)
+    sed -i "HTPCManager.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install LazyLibrarian?"
 read InstallLazyLibrarian
