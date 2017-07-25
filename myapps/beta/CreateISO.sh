@@ -71,25 +71,26 @@ sed -i "America/New_York\$TimeZone" /opt/serveriso/ks.cfg
 
 echo "Admin Account UserName ?"
 read AdminUsername
+sed -i "xxxusernamexxx\$AdminUsername" /opt/serveriso/ks.cfg
 
 echo "Admin Account Password ?"
 read AdminPassword
+echo "Is the password already Ubuntu encrypted?"
+read AdminPasswordencrypted
+case AdminPasswordencrypted in
+  y|yes|Y|Yes|YES)
+  sed -i "xxxpassword\$AdminPassword" /opt/serveriso/ks.cfg
+  ;;
+  n|no|No|N|NO)
+  sed -i "--iscrypted\  " /opt/serveriso/ks.cfg
+  sed -i "xxxpassword\$AdminPassword" /opt/serveriso/ks.cfg
+  ;;
+esac
 
 echo "Swap Partition Size ?"
-echo "Default I have it set as 5GB"
 echo "Partition Setup as under MB NOT AS GB"
 read SwapPartition
-
-echo "Editing Kickstart Config with Setup"
-sed -i "/$SystemLanguage" $WorkingDir/ks-example.cfg
-sed -i "/$SystemLanguage" $WorkingDir/ks-example.cfg
-sed -i "/$SystemKeyboard" $WorkingDir/ks-example.cfg
-sed -i "/$TimeZone" $WorkingDir/ks-example.cfg
-sed -i "/$AdminUsername" $WorkingDir/ks-example.cfg
-sed -i "/$AdminPassword" $WorkingDir/ks-example.cfg
-sed -i "/$SwapPartition" $WorkingDir/ks-example.cfg
-
-cd $WorkingDir/myapps/
+sed -i "size 5000\size $SwapPartition" /opt/serveriso/ks.cfg
 
 echo "Editing FirstbootInstall.sh File"
 echo "What Programs to be installed ?"
@@ -99,7 +100,9 @@ read Installiredmail
 case $Installiredmail in
   n|N)
     sed -i "mailinstaller.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
   *)
+    ;;
 esac
 
 echo "Install Apache2 ?"
@@ -188,13 +191,13 @@ read InstallSinusbot
 
 
 
-
-
-
-
-cp $WorkingDir/myapps /opt/serveriso
-echo "Pausing in Case for extra edits of myapss"
-read -p "Press [Enter] key to Continue"
 #https://www.cyberciti.biz/tips/linux-unix-pause-command.html
-sudo mkisofs -D -r -V "ATTENDLESS_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/autoinstall.iso /opt/serveriso
+echo "Pausing in Case for extra edits of myapps"
+read -p "Press [Enter] key to Continue"
+
+echo "What Would You like the Disc Labeled As?"
+read UbuntuLabel
+sudo mkisofs -D -r -V "$UbuntuLabel" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/$UbuntuLabel.iso /opt/serveriso
 sudo chmod -R 777 /opt
+
+echo "Done!!!  Enjoy!!!"
