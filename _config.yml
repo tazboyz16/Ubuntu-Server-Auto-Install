@@ -1,2 +1,4 @@
 theme: jekyll-theme-midnight
 title: Welcome to Tazboyz16's Ubuntu Server Auto Installer
+show_downloads: true
+google_analytics: UA-103234629-1
