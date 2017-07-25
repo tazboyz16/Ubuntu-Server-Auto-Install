@@ -25,13 +25,13 @@ Take a look also to my mini plex server instructions / might create a auto insta
 [https://github.com/tazboyz16/Ubuntu-Portable-PMS](https://github.com/tazboyz16/Ubuntu-Portable-PMS)   
   
 Please see the wiki for futher information   
-https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki
+[https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki)
    
 Update Release notes    
-https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki/Update-Release-Notes
+[https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki/Update-Release-Notes](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki/Update-Release-Notes)
    
 To download, go here:   
-https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest    
+[https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)    
   
 # Preview  
 ![Preview](http://i.imgur.com/ZCzZzLf.jpg)
