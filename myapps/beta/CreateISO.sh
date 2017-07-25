@@ -310,22 +310,79 @@ esac
 
 echo "Install LazyLibrarian?"
 read InstallLazyLibrarian
+case $InstallLazyLibrarian in
+  n|N|no|No)
+    sed -i "Lazylibrarian.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Shinobi?"
 read InstallShinobi
+case $InstallShinobi in
+  n|N|no|No)
+    sed -i "Shinobi.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install MadSonic?"
 read InstallMadSonic
+case $InstallMadSonic in
+  n|N|no|No)
+    sed -i "MadSonic.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Organizr?"
 read InstallOrganizr
+case $InstallOrganizr in
+  n|N|no|No)
+    sed -i "Organizr.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Ubooquity?"
 read InstallUbooquity
+case $InstallUbooquity in
+  n|N|no|No)
+    sed -i "Ubooquity.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
 echo "Install Sinusbot?"
 read InstallSinusbot
+case $InstallSinusbot in
+  n|N|no|No)
+    sed -i "sinusbot.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
+  *)
+    ;;
+esac
 
+case UbuntuDistro in
+  desktop|Desktop)
+  echo "Install Kodi?"
+  read InstallKodi
+      case InstallKodi in
+      n|N|no|No)
+      sed -i "Kodi-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+      ;;
+      *)
+      ;;
+      esac
+  ;;
+  *)
+  ;;
+esac
 
 
 
