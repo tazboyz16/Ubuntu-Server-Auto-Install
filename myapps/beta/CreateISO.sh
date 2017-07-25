@@ -14,7 +14,7 @@ echo "Fully Automated Script to Download Your Ubuntu ISO, "
 echo "Unpack it, edit the MyApps Scripts and then ReImage the ISO back together for you"
 
 echo "What version of Ubuntu?"
-echo "Desktop or Server?"
+echo "desktop or server?"
 read UbuntuDistro
 
 echo "What Version of Ubuntu?"
@@ -28,6 +28,7 @@ wget http://releases.ubuntu.com/$UbuntuDistroVer/ubuntu-$UbuntuDistroVer-$Ubuntu
 
 echo "System Language for the install?"
 echo " 'locale' running this Command shows your Current System Setting Format"
+echo "ex. en_US is USA English"
 read SystemLanguage
 
 echo "Setting up  ISO Folder"
@@ -41,26 +42,32 @@ cd /opt/serveriso
 #(to set default/only Language of installer)
 echo $SystemLanguage >isolinux/langlist 
 #edit /opt/serveriso/isolinux/txt.cfg  At the end of the append line add ks=cdrom:/ks.cfg. You can remove quiet — and vga=788
-sed -i "s/initrd.gz/initrd.gz ks=cdrom:/ks.cfg" /opt/serveriso/isolinux/txt.cfg
+sed -i "s#initrd.gz#initrd.gz ks=cdrom:/ks.cfg" /opt/serveriso/isolinux/txt.cfg
 
-sudo git clone https://github.com/tazboyz16/Ubuntu-Server-Auto-Install.git
+sudo git clone https://github.com/tazboyz16/Ubuntu-Server-Auto-Install.git /opt
+cd /opt/Ubuntu-Server-Auto-Install
 
 rm README.md
 rm _config.yml
+
 echo "Setting up KickStart Config File"
 
+echo "Renaming Kickstart Config File"
+mv ks-example.cfg ks.cfg
+
 #echo "System Language ?"
-#echo " 'locale' running this Command shows your Current System Setting Format"
-#read SystemLanguage
+sed -i "en_US\$SystemLanguage" /opt/serveriso/ks.cfg
 
 #dpkg-reconfigure keyboard-configuration
 echo "System Keyboard Setup ?"
 read SystemKeyboard
+sed -i "keyboard us\keyboard $SystemKeyboard" /opt/serveriso/ks.cfg
 
 echo "TimeZone ?"
 echo "if dont know the format for your timezone check out:"
 echo "https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
 read TimeZone
+sed -i "America/New_York\$TimeZone" /opt/serveriso/ks.cfg
 
 echo "Admin Account UserName ?"
 read AdminUsername
@@ -81,9 +88,6 @@ sed -i "/$TimeZone" $WorkingDir/ks-example.cfg
 sed -i "/$AdminUsername" $WorkingDir/ks-example.cfg
 sed -i "/$AdminPassword" $WorkingDir/ks-example.cfg
 sed -i "/$SwapPartition" $WorkingDir/ks-example.cfg
-
-echo "Renaming Kickstart Config File"
-mv ks-example.cfg ks.cfg
 
 cd $WorkingDir/myapps/
 
