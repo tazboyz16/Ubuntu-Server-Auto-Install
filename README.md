@@ -9,7 +9,7 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 [![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)
      
-[![Feature Requests](http://i.imgur.com/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)    
+<a href="http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install" rel="Feature Requests">![Feature Requests](http://i.imgur.com/mFO0OuX.png)]</a>
 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
