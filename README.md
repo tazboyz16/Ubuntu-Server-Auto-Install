@@ -34,4 +34,5 @@ To download, go here:
 [https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)    
   
 # Preview  
-[![Preview Example 1](https://i.imgur.com/ZCzZzLf.jpg)](http://imgur.com/gallery/ZCzZzLf)
+[![Preview Example 1](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)
+
