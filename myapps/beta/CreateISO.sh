@@ -370,23 +370,20 @@ esac
 
 case UbuntuDistro in
   desktop|Desktop)
-  echo "Install Kodi?"
-  read InstallKodi
-      case InstallKodi in
-      n|N|no|No)
-      sed -i "Kodi-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
-      ;;
-      *)
-      ;;
-      esac
-  ;;
+      echo "Install Kodi?"
+      read InstallKodi
+        case InstallKodi in
+        n|N|no|No)
+          sed -i "Kodi-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+          ;;
+        *)
+          ;;
+        esac
+    ;;
   *)
-  ;;
+    sed -i "Kodi-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+    ;;
 esac
-
-
-
-
 
 
 
