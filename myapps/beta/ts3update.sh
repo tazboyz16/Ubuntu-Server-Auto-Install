@@ -45,6 +45,8 @@ case "$1" in
     (*) break;;
 esac
 done
+install;
+exit 0
 
 backup() {
 echo "Stopping TS3 Server"
