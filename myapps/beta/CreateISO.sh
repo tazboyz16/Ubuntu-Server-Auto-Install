@@ -12,7 +12,7 @@
 
 echo "Fully Automated Script to Download Your Ubuntu ISO, "
 echo "Unpack it, edit the MyApps Scripts and then ReImage the ISO back together for you"
-
+echo " "
 echo "What version of Ubuntu?"
 echo "desktop or server?"
 read UbuntuDistro
