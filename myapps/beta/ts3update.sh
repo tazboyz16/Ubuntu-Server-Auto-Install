@@ -1,13 +1,14 @@
 #! /bin/bash
 
 #Modes 
-# b=backup i=install ri=reinstall r=restore u=update U=Force Update
+# b=backup i=install ri=reinstall r=restore u=update U=Force Update 
 mode=i
 server=/opt/ts3
 backupdir=/opt/backup/ts3
 dl=/tmp
 BK=$(cat $server/version)
 force=0
+time=(date +"%m_%d_%y-%H_%M")
 
 echo "Preforming System Check Up and Getting Latest Version Number from TeamSpeak"
 #System Specs
@@ -26,7 +27,7 @@ wget -q https://www.teamspeak.com/downloads --output-document=$dl/Temp
 Version=$(grep -Pom 1 "server_linux_$arch-\K.*?(?=\.tar\.bz)" $dl/Temp)
 rm $dl/Temp
 if [ "$Version" == "" ]; then
-    echo "Failed to get version!"
+    echo "Failed to get Current version!"
     exit
 fi
 
@@ -46,13 +47,36 @@ esac
 done
 
 backup() {
+echo "Stopping TS3 Server"
+systemctl stop ts3
 
+echo "Backing up TS3 Folder to /opt/backup"
+tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
+
+echo "Starting Updated Server"
+systemctl start ts3
 }
 
 install() {
+echo "Creating Teamspeak User account"
+sudo adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
+
+echo "Downloading Latest Version of TeamSpeak 3 Server"
+wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+
+echo "Installing TS3 Server Version $Version"
+tar -xjf $dl/package.tar.bz2 -C $dl/
+mv $dl/teamspeak3-server_linux_$arch $server
+rm $dl/package.tar.bz2
+
 sudo ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
-
-
+sudo apt install libmariadb2 -y
+sudo touch /opt/ts3/query_ip_blacklist.txt
+echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
+cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
+cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
+chmod 0777 /opt/ts3 -R
+chown teamspeak:teamspeak /opt/ts3 -R
 
 echo "Creating Startup Script"
 cp /opt/install/TeamSpeak3/ts3.service /etc/systemd/system/
@@ -63,10 +87,17 @@ systemctl restart ts3.service
 
 restore() {
 
+
+
+echo "Starting Updated Server"
+systemctl start ts3
 }
 
 reinstall() {
 
+
+echo "Starting Updated Server"
+systemctl start ts3
 }
 
 update() {
@@ -77,8 +108,7 @@ if [ "$BK" == "$Version" ]; then
     echo= "Run Script with '-U' to Force Update"
     exit 0
     ;;
-    *)
-    ;;
+    1) return;;
     esac
 fi
 
