@@ -373,10 +373,11 @@ case UbuntuDistro in
       echo "Install Kodi?"
       read InstallKodi
         case InstallKodi in
-        n|N|no|No)
-          sed -i "Kodi-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
+        y|Y|yes|Yes)
+          sed -i "abash/bash" /opt/serveriso/myapps/FirstbootInstall.sh
           ;;
         *)
+          sed -i "Kodi-install.sh/  " /opt/serveriso/myapps/FirstbootInstall.sh
           ;;
         esac
     ;;
