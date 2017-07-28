@@ -1,3 +1,11 @@
+#!/bin/bash
+
+echo "Checking if Script is Running as Root"
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
 sudo adduser --disabled-password --system --home /opt/ProgramData/LazyLibrarian --gecos "LazyLibrarian Service" --group LazyLibrarian
 
 cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
