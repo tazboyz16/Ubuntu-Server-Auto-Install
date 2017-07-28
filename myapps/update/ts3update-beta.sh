@@ -55,7 +55,7 @@ systemctl stop ts3
 echo "Backing up TS3 Folder to /opt/backup"
 tar -zcvf $backupdir/ts3_FullBackup-$time.tar.b2z $server
 
-echo "Starting Updated Server"
+echo "Starting TS3 Server"
 systemctl start ts3
 }
 
@@ -70,6 +70,7 @@ echo "Installing TS3 Server Version $Version"
 tar -xjf $dl/package.tar.bz2 -C $dl/
 mv $dl/teamspeak3-server_linux_$arch $server
 rm $dl/package.tar.bz2
+echo $Version > $server/version
 
 sudo ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
 sudo apt install libmariadb2 -y
@@ -88,25 +89,38 @@ systemctl restart ts3.service
 }
 
 restore() {
+echo "Stopping TS3 Server"
+systemctl stop ts3
 
+echo "Location with the file name and type of the backup to be restored?"
+echo "Ex. /opt/backup/ts3-xxx.tar.bz2"
+read restorebackup
 
+echo "Untar Zip file to /opt/ts3"
+tar -xjf $restorebackup /opt/ts3
 
-
-
-
-echo "Starting Updated Server"
+echo "Starting TS3 Server"
 systemctl start ts3
 }
 
 reinstall() {
+echo "Stopping TS3 Server"
+systemctl stop ts3
 
+echo "1) 'Clean' Install"
+echo "2) 'Reinstall' over Current Installation"
+read rianswer
+    case $rianswer in
+        Clean)
+        rm -rf $server
+        install;
+        exit 1;;
+        Reinstall)
+        update;
+        exit 1;;
+    esac
 
-
-
-
-
-
-echo "Starting Updated Server"
+echo "Starting TS3 Server"
 systemctl start ts3
 }
 
@@ -153,22 +167,3 @@ systemctl start ts3
 }
 
 exit 0
-
-######################################
-#Store variable for latest backup available
-#BK=$(ls $backup/ | cut -d':' -f1 | sort -n | tail -1)
-#$server/ts3server_startscript.sh stop
-#rm -rf $server
-#echo "Installing version: $Version"
-#wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-#tar -xjf $dl/package.tar.bz2 -C $dl/
-#mv $dl/teamspeak3-server_linux_$arch $server
-#rm $dl/package.tar.bz2
-#Fetch files from latest backup
-#cp -r $backup/$BK/files $server/
-#Fetch server db from latest backup
-#cp $backup/$BK/ts3server.sqlitedb $server/
-#echo $Version > $server/version
-#echo "Starting Updated Server"
-#$server/ts3server_startscript.sh start
-############
