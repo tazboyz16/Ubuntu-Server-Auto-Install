@@ -24,6 +24,7 @@ echo " i386(32 bit) or amd64 (64 bit) ?"
 read UbuntuBit
 
 echo "Downloading Distro"
+chmod -R 0777 /opt
 wget http://releases.ubuntu.com/$UbuntuDistroVer/ubuntu-$UbuntuDistroVer-$UbuntuDistro-$UbuntuBit.iso -O /opt
 
 echo "System Language for the install?"
