@@ -3,3 +3,6 @@
 README.md
 _config.yml
 .travis.yml
+
+.circleci/config.yml
+.circleci
