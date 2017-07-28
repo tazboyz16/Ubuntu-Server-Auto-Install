@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo "Checking if Script is Running as Root"
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
 sudo adduser --disabled-password --system --home /opt/ProgramData/Muximux --gecos "Muximux Service" --group Muximux
 
 sudo bash /opt/install/Apache2/Apache2-install.sh
