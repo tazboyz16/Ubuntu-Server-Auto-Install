@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #Modes 
-# b=backup i=install ri=reinstall r=restore u=update U=Force Update 
+# b=Backup i=Install ri=Reinstall r=Restore u=Update U=Force Update 
 mode=i
 server=/opt/ts3
 backupdir=/opt/backup/ts3
@@ -53,7 +53,7 @@ echo "Stopping TS3 Server"
 systemctl stop ts3
 
 echo "Backing up TS3 Folder to /opt/backup"
-tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
+tar -zcvf $backupdir/ts3_FullBackup-$time.tar.b2z $server
 
 echo "Starting Updated Server"
 systemctl start ts3
@@ -91,11 +91,19 @@ restore() {
 
 
 
+
+
+
 echo "Starting Updated Server"
 systemctl start ts3
 }
 
 reinstall() {
+
+
+
+
+
 
 
 echo "Starting Updated Server"
@@ -149,18 +157,18 @@ exit 0
 ######################################
 #Store variable for latest backup available
 #BK=$(ls $backup/ | cut -d':' -f1 | sort -n | tail -1)
-
-$server/ts3server_startscript.sh stop
-rm -rf $server
-echo "Installing version: $Version"
-wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-tar -xjf $dl/package.tar.bz2 -C $dl/
-mv $dl/teamspeak3-server_linux_$arch $server
-rm $dl/package.tar.bz2
+#$server/ts3server_startscript.sh stop
+#rm -rf $server
+#echo "Installing version: $Version"
+#wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+#tar -xjf $dl/package.tar.bz2 -C $dl/
+#mv $dl/teamspeak3-server_linux_$arch $server
+#rm $dl/package.tar.bz2
 #Fetch files from latest backup
-cp -r $backup/$BK/files $server/
+#cp -r $backup/$BK/files $server/
 #Fetch server db from latest backup
-cp $backup/$BK/ts3server.sqlitedb $server/
-echo $Version > $server/version
-echo "Starting Updated Server"
-$server/ts3server_startscript.sh start
+#cp $backup/$BK/ts3server.sqlitedb $server/
+#echo $Version > $server/version
+#echo "Starting Updated Server"
+#$server/ts3server_startscript.sh start
+############
