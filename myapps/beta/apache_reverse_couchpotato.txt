@@ -1,0 +1,34 @@
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo service apache2 restart
+cd /etc/apache2/mods-available
+sudo mv proxy.conf proxy.conf.default
+edit file with
+
+<ifmodule mod_proxy.c>
+  #turning ProxyRequests on and allowing proxying from all may allow
+  #spammers to use your proxy to send email.
+
+  ProxyRequests Off
+  <proxy *>
+    AddDefaultCharset off
+    Order Allow,Deny
+    Allow from all
+  </proxy>
+
+  ProxyPass /couchpotato/ http://localhost:5000/
+  ProxyPassReverse /couchpotato/ http://localhost:5000/
+  # Line below is optional
+  Redirect permanent /couchpotato https://myserver.com/couchpotato/
+
+  # Enable/disable the handling of HTTP/1.1 "Via:" headers.
+  # ("Full" adds the server version; "Block" removes all outgoing Via: headers)
+  # Set to one of: Off | On | Full | Block
+
+  ProxyVia On
+</ifmodule>
+
+sudo service apache2 restart
+edit Couchpotato config file for URL Base option 
+
+
