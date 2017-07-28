@@ -1,0 +1,17 @@
+add to proxy.conf
+#shellinabox
+
+ProxyRequests Off
+
+<Proxy *>
+        AddDefaultCharset off
+        Order Allow,Deny
+        Allow from all
+</Proxy>
+
+<Location /shell>
+    ProxyPass http://localhost:6125/
+    Order allow,deny
+    Allow from all
+</Location>
+Redirect permanent /shell https://domain.com/shell
