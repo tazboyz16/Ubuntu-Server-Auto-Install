@@ -18,10 +18,8 @@ Steps are under Wiki for installation and creating the ISO
 Before creating ISO edit FirstbootInstall.sh for what programs to be install   
 
 If anyone has ideas to help set up the process faster or add more programs to this list feel free to Click on the Feature Link  
-  
-**I will be replacing username, passwords with xxxusernamexxx and xxxpasswordxxx to help with replacing with credentials easy .... if anyone knows how to work in a "probing" .sh for that info to use on the full install let me know I will work it in**  
    
-Finished Creating a Script to Download Ubuntu ISO, Download this repo, walkthrough questions to full setup install ISO and make the Finished ISO
+Finished Creating a Script to Download Ubuntu ISO, Download this repo, walkthrough questions to full setup install ISO and make the Finished ISO    
 [https://github.com/tazboyz16/Ubuntu-Full-Installer-Script](https://github.com/tazboyz16/Ubuntu-Full-Installer-Script)
    
 Take a look also to my mini plex server instructions / might create a auto install for it soon to   
