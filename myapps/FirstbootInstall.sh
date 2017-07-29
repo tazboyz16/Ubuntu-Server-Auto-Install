@@ -5,7 +5,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-echo "<---Updaing System....Please Wait..--->"
+echo "<---Updating System....Please Wait..--->"
 sudo apt-get update -qq
 sudo apt-get upgrade -yqq
 
