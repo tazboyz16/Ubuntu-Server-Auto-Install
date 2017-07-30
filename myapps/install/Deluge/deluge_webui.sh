@@ -34,6 +34,9 @@ sleep 15
 echo "<--Restoring Deluge Settings and Switch to Systemctl startup scripts-->"
 #defaults settings stored at /var/lib/deluge/.config/deluge
 #core.conf and web.conf
+#cp /opt/install/Deluge/core.conf /var/lib/deluge/.config/deluge
+#cp /opt/install/Deluge/web.conf /var/lib/deluge/.config/deluge
+
 systemctl stop deluged
 systemctl stop deluge-web
 sleep 15
