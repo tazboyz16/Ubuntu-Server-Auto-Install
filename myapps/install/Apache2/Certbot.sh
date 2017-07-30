@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
 #mysql install has SSL Certs made
 #/etc/apache2/ssl/apache.crt
 #/etc/apache2/ssl/apache.key
