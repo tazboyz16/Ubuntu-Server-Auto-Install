@@ -1,8 +1,21 @@
 #! /bin/bash
 
-#Modes 
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
+#Modes (Variables)
 # b=Backup i=Install ri=Reinstall r=Restore u=Update U=Force Update 
-mode=i
+
+case "$1" in
+     (" ")
+      mode=i
+      ;;
+      (*)
+      ;;
+ esac
+ 
 server=/opt/ts3
 backupdir=/opt/backup/ts3
 dl=/tmp
@@ -30,23 +43,6 @@ if [ "$Version" == "" ]; then
     echo "Failed to get Current version!"
     exit
 fi
-
-#Checking if there was any Arguments with starting the script
-while true;
-do
-case "$1" in
-    (-b) backup;;
-    (-i) install;;
-    (-r) restore;;
-    (-ri) reinstall;;
-    (-u) update;;
-    (-U) force=1; update;;
-    (-*) echo "Invalid Argument"; exit 0;;
-    (*) break;;
-esac
-done
-install;
-exit 0
 
 backup() {
 echo "Stopping TS3 Server"
@@ -166,4 +162,19 @@ echo "Starting Updated Server"
 systemctl start ts3
 }
 
+#Checking if there was any Arguments with starting the script
+while true;
+do
+case $mode in
+    (-b) backup;;
+    (-i) install;;
+    (-r) restore;;
+    (-ri) reinstall;;
+    (-u) update;;
+    (-U) force=1; update;;
+    (-*) echo "Invalid Argument"; exit 0;;
+    (*) break;;
+esac
+done
+install;
 exit 0
