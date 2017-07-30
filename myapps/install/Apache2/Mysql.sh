@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
 echo mysql-server mysql-server/root_password password xxxpasswordxxx | debconf-set-selections
 echo mysql-server mysql-server/root_password_again password xxxpasswordxxx | debconf-set-selections
 echo phpmyadmin phpmyadmin/dbconfig-install boolean true | debconf-set-selections
@@ -64,7 +69,7 @@ echo "< ---Creating SSL Certificate ---> "
 mkdir /etc/apache2/ssl
 
 #Run Certbot.sh and Create Symbolinks to Certbot Certs for they renew 90 days
-sudo bash /home/xxxusernamexxx/install/Apache2/Certbot.sh
+sudo bash /opt/install/Apache2/Certbot.sh
 
 ###lines 32 and 33
 sed -i '33s#/etc/ssl/private/ssl-cert-snakeoil.key#/etc/apache2/ssl/apache.key#g' /etc/apache2/sites-available/default-ssl.conf
