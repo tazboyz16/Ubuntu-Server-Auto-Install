@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=headphones
 Group=headphones
-Type=simple
-ExecStart=/opt/headphones/Headphones.py
+Type=forking
+ExecStart=/opt/headphones/Headphones.py --daemon --nolaunch
 GuessMainPID=no
 
 [Install]
