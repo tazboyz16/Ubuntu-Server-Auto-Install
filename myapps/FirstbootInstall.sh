@@ -103,6 +103,9 @@ bash /opt/Organizr/Ubooquity.sh
 echo "<--- Installing SinusBot --->"
 bash /opt/install/SinusBot/sinusbot.sh
 
+echo "<--- Installing NZBget --->"
+bash /opt/install/Nzbget.sh
+
 echo "<-- Installing Cron Jobs -->"
 bash /opt/install/System/Cronjobs.sh
 
