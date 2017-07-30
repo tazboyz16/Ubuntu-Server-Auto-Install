@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
 add-apt-repository -y ppa:iconnor/zoneminder
 apt-get update -qq
 
