@@ -12,7 +12,7 @@ time=(date +"%m_%d_%y-%H_%M")
 
 echo "Preforming System Check Up and Getting Latest Version Number from TeamSpeak"
 #System Specs
-arch=`uname -m`
+arch=$(uname -m)
 if [ "$arch" == "x86_64" ]; then
     arch="amd64"
 else
