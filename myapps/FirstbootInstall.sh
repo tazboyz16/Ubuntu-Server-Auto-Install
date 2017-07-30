@@ -106,8 +106,8 @@ bash /opt/install/SinusBot/sinusbot.sh
 echo "<-- Installing Cron Jobs -->"
 bash /opt/install/System/Cronjobs.sh
 
-#echo "<--- Restoring Fstab settings --->"
-#cat /opt/install/System/fstab.txt >> /etc/fstab
+echo "<--- Restoring Fstab settings --->"
+cat /opt/install/System/fstab.txt >> /etc/fstab
 
 echo "<---- Running Cleanup from Installs --->"
 bash /opt/Cleanup.sh
