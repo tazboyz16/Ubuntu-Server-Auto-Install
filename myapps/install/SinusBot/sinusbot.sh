@@ -13,9 +13,9 @@ wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2
 
 tar -xjf sinusbot-beta.tar.bz2
 #if new install
-#cp config.ini.dist config.ini
+cp config.ini.dist config.ini
 #Saved settings
-cp /opt/install/SinusBot/config.ini /opt/Sinusbot/config.ini
+#cp /opt/install/SinusBot/config.ini /opt/Sinusbot/config.ini
 
 chown -R sinusbot:sinusbot /opt/Sinusbot
 chmod 0777 -R /opt/Sinusbot
