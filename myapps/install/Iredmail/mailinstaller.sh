@@ -1,5 +1,7 @@
 #!/bin/bash
 
+iredmail leaves its current installed version at /etc/iredmail
+
 if [[ $EUID -ne 0 ]]; then
 	echo "This Script must be run as root"
 	exit 1
