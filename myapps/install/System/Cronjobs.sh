@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
 #Run updates on Mondays at 530am
 
 #* * * * * "command to be executed"
@@ -16,4 +21,4 @@
 
 echo "Adding CronJobs for Update System daily and monthly"
 #will save in /var/spool/cron/crontabs
-sudo crontab /opt/install/System/SystemupdateCronjobs.txt
+crontab /opt/install/System/SystemupdateCronjobs.txt

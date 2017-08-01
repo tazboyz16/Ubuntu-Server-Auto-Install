@@ -24,4 +24,4 @@ mv /opt/backup/www/ /var
 echo
 echo "<--- Changing Rights for dir WWW --->"
 chmod 0777 -R /var/www
-chown xxxusernamexxx:xxxusernamexxx -R /var/www
+chown www-data:www-data -R /var/www

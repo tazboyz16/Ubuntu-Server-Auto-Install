@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
 echo "<-- Installing Deps and Webmin -->"
 apt install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python -y
 sleep 10
@@ -18,7 +23,7 @@ echo
 
 #Works 2/12/2017
 echo "Creating Startup Script"
-sudo update-rc.d webmin remove
+update-rc.d webmin remove
 cp /opt/install/Webmin/webmin.service /etc/systemd/system/
 chmod 644 /etc/systemd/system/webmin.service
 systemctl enable webmin.service

@@ -1,12 +1,15 @@
 #!/bin/bash
 
-sudo adduser --disabled-password --system --home /opt/ProgramData/Shinobi --gecos "Shinobi Service" --group Shinobi
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
+adduser --disabled-password --system --home /opt/ProgramData/Shinobi --gecos "Shinobi Service" --group Shinobi
 
 cd /opt &&  git clone https://github.com/moeiscool/Shinobi.git
-
-sudo chown -R Shinobi:Shinobi /opt/Shinobi
-sudo chmod -R 0777 /opt/Shinobi
-
+chown -R Shinobi:Shinobi /opt/Shinobi
+chmod -R 0777 /opt/Shinobi
 cd /opt/Shinobi
 
 #Copied Ubuntu install file 
@@ -14,16 +17,15 @@ cd /opt/Shinobi
 server=mysql-server
 sqlpass=Z874HBVbD3augd2A
 
-sudo apt-get update -y
-sudo apt install libav-tools ffmpeg -y
+apt-get update; apt install libav-tools ffmpeg -y
 echo "$server $server/root_password password $sqlpass" | debconf-set-selections
 echo "$server $server/root_password_again password $sqlpass" | debconf-set-selections
-sudo apt install $server -y
+apt install $server -y
 service mysql start
 update-rc.d mysql enable
-sudo apt-get install nodejs npm -y
-sudo npm cache clean -f
-sudo npm install -g n
+apt get install nodejs npm -y
+npm cache clean -f
+npm install -g n
 sudo n stable
 ln -s /usr/bin/nodejs /usr/bin/node
 #might be harmful to system >
@@ -33,7 +35,7 @@ mysql -u root -p$sqlpass -e "source sql/framework.sql" || true
 #adding Default user accounts
 mysql -u root -p$sqlpass --database ccio -e "source sql/default_data.sql" || true
 npm install
-sudo npm install pm2 -g
+npm install pm2 -g
 cp conf.sample.json conf.json
 cp super.sample.json super.json
 touch INSTALL/installed.txt
