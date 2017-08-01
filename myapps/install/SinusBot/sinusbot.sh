@@ -1,15 +1,15 @@
 #!/bin/bash
 
-sudo apt install debconf-utils lsb-release screen x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 less python -y
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
 
-sudo adduser --disabled-password --system --home /opt/ProgramData/Sinusbot --gecos "Sinusbot Service" --group sinusbot
-
+apt install debconf-utils lsb-release screen x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 less python -y
+adduser --disabled-password --system --home /opt/ProgramData/Sinusbot --gecos "Sinusbot Service" --group sinusbot
 mkdir -p /opt/Sinusbot
 cd /opt/Sinusbot
 wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2
-
-#if first command fails
-#curl -O https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2
 
 tar -xjf sinusbot-beta.tar.bz2
 #if new install
