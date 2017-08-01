@@ -5,9 +5,9 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-sudo systemctl stop plexmediaserver
+systemctl stop plexmediaserver
 cd /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/
 
-sudo tar -cvpzf /opt/backup/PlexBackup.tgz.bz2 *  
+tar -cvpzf /opt/backup/PlexBackup.tgz.bz2 *  
 
-sudo systemctl start plexmediaserver
+systemctl start plexmediaserver
