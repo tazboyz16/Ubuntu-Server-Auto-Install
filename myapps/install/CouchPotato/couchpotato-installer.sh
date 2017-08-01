@@ -5,17 +5,17 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-sudo apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
+apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 
-sudo adduser --disabled-password --system --home /opt/ProgramData/couchpotato --gecos "CouchPotato Service" --group couchpotato
+adduser --disabled-password --system --home /opt/ProgramData/couchpotato --gecos "CouchPotato Service" --group couchpotato
 
 echo "<--- Downloading latest CouchPotato --->"
 cd /opt && sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git
-sudo chown -R couchpotato:couchpotato /opt/CouchPotatoServer/
-sudo chmod -R 0777 /opt/CouchPotatoServer
+chown -R couchpotato:couchpotato /opt/CouchPotatoServer/
+chmod -R 0777 /opt/CouchPotatoServer
 
 echo "<--- Restoring CouchPotato Settings --->"
-sudo chmod -R 0777 /opt/ProgramData/couchpotato
+chmod -R 0777 /opt/ProgramData/couchpotato
 #cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/couchpotato/.couchpotato/settings.conf
 
 echo "Creating Startup Script"
