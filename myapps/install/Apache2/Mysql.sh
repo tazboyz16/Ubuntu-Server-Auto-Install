@@ -5,21 +5,29 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-echo mysql-server mysql-server/root_password password xxxpasswordxxx | debconf-set-selections
-echo mysql-server mysql-server/root_password_again password xxxpasswordxxx | debconf-set-selections
+sqlpassword=xxxpasswordxxx
+#Phpmyadmin login Secure
+phpadmin=xxxusernamexxx
+phppassword=xxxphppasswordxxx
+#Mysql Admin account for root is disabled
+mysqladmin=xxxsqlxxx
+mysqlpassword=xxxsqlpassxxx
+
+echo mysql-server mysql-server/root_password password $sqlpassword | debconf-set-selections
+echo mysql-server mysql-server/root_password_again password $sqlpassword | debconf-set-selections
 echo phpmyadmin phpmyadmin/dbconfig-install boolean true | debconf-set-selections
-echo phpmyadmin phpmyadmin/app-password-confirm password xxxpasswordxxx | deconf-set-selections
-echo phpmyadmin phpmyadmin/mysql/admin-pass password xxxpasswordxxx | deconf-set-selections
-echo phpmyadmin phpmyadmin/mysql/app-pass password xxxpasswordxxx | debconf-set-selections
+echo phpmyadmin phpmyadmin/app-password-confirm password $sqlpassword | deconf-set-selections
+echo phpmyadmin phpmyadmin/mysql/admin-pass password $sqlpassword | deconf-set-selections
+echo phpmyadmin phpmyadmin/mysql/app-pass password $sqlpassword | debconf-set-selections
 echo phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2 | debconf-set-selections
 
 echo "<--- Installing Mysql and Phpmyadmin --->"
-apt-get -yqq install mysql-server phpmyadmin
+apt get install mysql-server phpmyadmin -y
 
 echo "<--- Installing PHP packages --->"
-apt-get -yqq install php7.0 apache2 php7.0-mbstring libapache2-mod-php7.0 php7.0-curl php7.0-gd php7.0-mcrypt php7.0-mysql php7.0-* php-gettext
+apt get install php7.0 apache2 php7.0-mbstring libapache2-mod-php7.0 php7.0-curl php7.0-gd php7.0-mcrypt php7.0-mysql php7.0-* php-gettext -y
 #not needed program
-apt-get remove php7.0-snmp -yy
+apt get remove php7.0-snmp -y
 
 echo "<--- Configuring Settings on Website Packages --->"
 a2enmod rewrite
@@ -50,13 +58,13 @@ echo -e "AuthUserFile /etc/phpmyadmin/.htpasswd" >> /usr/share/phpmyadmin/.htacc
 echo -e "Require valid-user" >> /usr/share/phpmyadmin/.htaccess
 
 echo "<--- Creating Second login file --->"
-apt-get install -yqq apache2-utils
+apt get install apache2-utils -y
 
 #Have to type in user password for Config
 # to add more users sudo htpasswd /etc/phpmyadmin/.htpasswd username
 echo
 echo "<--- Enter Password for Second Login Screen to Access PhpmyAdmin --->"
-htpasswd -b -c /etc/phpmyadmin/.htpasswd xxxusernamexxx xxxpasswordxxx
+htpasswd -b -c /etc/phpmyadmin/.htpasswd $phpadmin $phppassword
 
 systemctl restart apache2 
 
@@ -83,6 +91,5 @@ echo
 
 #Need to create mysql user other then Root for use
 echo "Creating Admin User for mysql use with Phpmyadmin"
-sudo mysql --user=root -pxxxpasswordxxx mysql -e "CREATE USER 'xxxusernamexxx'@'localhost' IDENTIFIED BY 'xxxpasswordxxx';"
-sudo mysql --user=root -pxxxpasswordxxx mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'xxxusernamexxx'@'localhost' WITH GRANT OPTION;"
-
+sudo mysql --user=root -p$sqlpassword mysql -e "CREATE USER 'xxxsqlxxx'@'localhost' IDENTIFIED BY 'xxxsqlpassxxx';"
+sudo mysql --user=root -p$sqlpassword mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'xxxsqlxxx'@'localhost' WITH GRANT OPTION;"
