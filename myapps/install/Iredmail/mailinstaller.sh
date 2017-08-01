@@ -10,6 +10,7 @@ iRedMailVer=0.9.7
 
 echo "<--- Restoring Hostname and FQ Hostname --->"
 cat /opt/install/System/host.txt > /etc/hosts
+#Double Checking for hostname has been updated
 hostname -f 
 sleep 1
 
