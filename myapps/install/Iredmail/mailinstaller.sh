@@ -31,7 +31,7 @@ AUTO_USE_EXISTING_CONFIG_FILE=y \
     AUTO_CLEANUP_RESTART_IPTABLES=y \
     AUTO_CLEANUP_REPLACE_MYSQL_CONFIG=y \
     AUTO_CLEANUP_RESTART_POSTFIX=n \
-    bash /opt/iRedMail-*/iRedMail.sh
+    bash /opt/iRedMail-$iRedMailVer/iRedMail.sh
 
 echo "Adding Relay to PostFix"
 #Change smtp server to according to Your Outbound ISP email server
