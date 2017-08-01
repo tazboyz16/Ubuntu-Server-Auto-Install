@@ -15,7 +15,7 @@ sleep 1
 
 echo "<--- Downloading Latest IredMail Version --->"
 cd /opt
-sudo wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$iRedMailVer.tar.bz2
+wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$iRedMailVer.tar.bz2
 
 echo "<--- Installing iRedMail email--->"
 tar xjf /opt/iRedMail-$iRedMailVer.tar.bz2
