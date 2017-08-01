@@ -7,18 +7,18 @@ fi
 
 ## get packages required to build deluge ##
 echo "<--- Adding Deluge Team Dep Packages--->"
-sudo add-apt-repository -y ppa:deluge-team/ppa
+add-apt-repository -y ppa:deluge-team/ppa
 apt get update
 
 ## setup deluge user
 echo "<--- Now we will setup a user for Deluge --->"
-sudo adduser --disabled-password --system --home /var/lib/deluge --gecos "Deluge service" --group deluge
+adduser --disabled-password --system --home /var/lib/deluge --gecos "Deluge service" --group deluge
 
-sudo touch /var/log/deluged.log
-sudo touch /var/log/deluge-web.log
-sudo chown deluge:deluge /var/log/deluge*
+touch /var/log/deluged.log
+touch /var/log/deluge-web.log
+chown deluge:deluge /var/log/deluge*
 
-sudo apt get update -qq && sudo apt install deluged deluge-webui -y
+apt get update; apt install deluged deluge-webui -y
 
 echo "Creating New Startup Script"
 cp /opt/install/Deluge/deluged.service /etc/systemd/system/
