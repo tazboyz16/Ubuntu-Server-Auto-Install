@@ -1,4 +1,8 @@
 #!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
 
 clear
 menua=0
