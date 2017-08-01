@@ -1,5 +1,8 @@
 #!/bin/bash
-
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
 systemctl stop plexmediaserver
 cd
 tar xjf /media/SystemBackup/PlexBackup.tgz.bz2
