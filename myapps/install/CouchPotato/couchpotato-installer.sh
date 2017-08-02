@@ -11,7 +11,6 @@ mode="$1"
 
 Programloc=/opt/CouchPotatoServer/
 backupdir=/opt/backup/CouchPotatoServer
-dl=/tmp
 time=$(date +"%m_%d_%y-%H_%M")
 apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 
