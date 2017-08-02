@@ -49,7 +49,7 @@ case $mode in
     echo "Starting Updated Server"
     systemctl start ts3
     ;;
-    	(-i)
+    	(-i|"")
     	echo "Creating Teamspeak User account"
 	sudo adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
 	echo "Downloading Latest Version of TeamSpeak 3 Server"
