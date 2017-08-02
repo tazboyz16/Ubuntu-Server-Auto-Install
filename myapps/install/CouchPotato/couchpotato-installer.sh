@@ -16,7 +16,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 
 case $mode in
-	(-i)
+	(-i|"")
 	apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 	adduser --disabled-password --system --home /opt/ProgramData/couchpotato --gecos "CouchPotato Service" --group couchpotato
 	echo "<--- Downloading latest CouchPotato --->"
