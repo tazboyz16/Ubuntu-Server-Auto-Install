@@ -26,8 +26,6 @@ else
     arch="x86"
 fi
 
-sudo apt install libmariadb2
-
 echo "Getting Current Version Info"
 wget -q https://www.teamspeak.com/downloads --output-document=$dl/Temp
 Version=$(grep -Pom 1 "server_linux_$arch-\K.*?(?=\.tar\.bz)" $dl/Temp)
@@ -51,15 +49,16 @@ case $mode in
     ;;
     	(-i|"")
     	echo "Creating Teamspeak User account"
-	sudo adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
+	adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
+	apt install libmariadb2
 	echo "Downloading Latest Version of TeamSpeak 3 Server"
 	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
 	echo "Installing TS3 Server Version $Version"
 	tar -xjf $dl/package.tar.bz2 -C $dl/
 	mv $dl/teamspeak3-server_linux_$arch/* $server
 	rm $dl/package.tar.bz2
-	sudo ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
-	sudo touch /opt/ts3/query_ip_blacklist.txt
+	ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
+	touch /opt/ts3/query_ip_blacklist.txt
 	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
 	cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
 	cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
@@ -92,15 +91,15 @@ case $mode in
         Clean)
         rm -rf $server
         echo "Creating Teamspeak User account"
-	sudo adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
+	adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
 	echo "Downloading Latest Version of TeamSpeak 3 Server"
 	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
 	echo "Installing TS3 Server Version $Version"
 	tar -xjf $dl/package.tar.bz2 -C $dl/
 	mv $dl/teamspeak3-server_linux_$arch/* $server
 	rm $dl/package.tar.bz2
-	sudo ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
-	sudo touch /opt/ts3/query_ip_blacklist.txt
+	ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
+	touch /opt/ts3/query_ip_blacklist.txt
 	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
 	cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
 	cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
