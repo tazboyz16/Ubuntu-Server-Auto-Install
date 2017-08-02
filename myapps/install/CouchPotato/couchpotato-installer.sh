@@ -12,7 +12,6 @@ mode="$1"
 Programloc=/opt/CouchPotatoServer/
 backupdir=/opt/backup/CouchPotatoServer
 time=$(date +"%m_%d_%y-%H_%M")
-apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 
 case $mode in
 	(-i|"")
@@ -20,8 +19,8 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/couchpotato --gecos "CouchPotato Service" --group couchpotato
 	echo "<--- Downloading latest CouchPotato --->"
 	cd /opt && sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git
-	chown -R couchpotato:couchpotato /opt/CouchPotatoServer/
-	chmod -R 0777 /opt/CouchPotatoServer
+	chown -R couchpotato:couchpotato $Programloc
+	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
 	cp /opt/install/CouchPotato/couchpotato.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/couchpotato.service
@@ -49,7 +48,7 @@ case $mode in
 	echo "Stopping CouchPotato to Update"
 	sudo systemctl stop Couchpotato
 	sleep 5
-	cd /opt/CouchPotatoServer
+	cd $Programloc
 	git pull
 	sudo systemctl start Couchpotato
 	;;
@@ -57,7 +56,7 @@ case $mode in
 	echo "Stopping CouchPotato to Force Update"
 	sudo systemctl stop Couchpotato
 	sleep 5
-	cd /opt/CouchPotatoServer
+	cd $Programloc
 	git fetch --all
 	git reset --hard origin/master
 	git pull
