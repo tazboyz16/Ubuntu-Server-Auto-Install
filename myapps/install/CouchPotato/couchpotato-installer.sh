@@ -39,7 +39,9 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
-    	tar -zcvf $backupdir/CouchPotato_FullBackup-$time.tar.gz $Programloc
+	cp /opt/ProgramData/couchpotato/.couchpotato/settings.conf $backupdir
+	cp /opt/CouchPotatoServer/Data $backupdir
+    	tar -zcvf /opt/backup/CouchPotato_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
 	;;
