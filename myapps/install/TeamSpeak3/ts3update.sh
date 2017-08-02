@@ -5,6 +5,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+#if theres issues with install, install mysql-server
+
 #Modes (Variables)
 # b=backup i=install ri=reinstall r=restore u=update U=Force Update 
 mode="$1"

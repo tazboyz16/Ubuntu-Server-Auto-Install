@@ -2,6 +2,8 @@
 
 #Monthly Updates
 
+domain=xxxDomainxxx
+
 echo "Running SinusBot update"
 sudo systemctl stop sinusbot
 sleep 5
@@ -20,14 +22,14 @@ echo "Update SSL Certs"
 #run cron job for 'letsencrypt renew' every 90 days
 #plus rewrite files to apache folder every run
 letsencrypt renew 
-cat /etc/letsencrypt/live/tazserver.noip.me/cert.pem > /etc/letsencrypt/live/tazserver.noip.me/apache.crt
-cat /etc/letsencrypt/live/tazserver.noip.me/privkey.pem > /etc/letsencrypt/live/tazserver.noip.me/apache.key
-cat /etc/letsencrypt/live/tazserver.noip.me/chain.pem > /etc/letsencrypt/live/tazserver.noip.me/apacheca.ca
-cat /etc/letsencrypt/live/tazserver.noip.me/fullchain.pem > /etc/letsencrypt/live/tazserver.noip.me/apachecafull.ca
+cat /etc/letsencrypt/live/$domain/cert.pem > /etc/letsencrypt/live/$domain/apache.crt
+cat /etc/letsencrypt/live/$domain/privkey.pem > /etc/letsencrypt/live/$domain/apache.key
+cat /etc/letsencrypt/live/$domain/chain.pem > /etc/letsencrypt/live/$domain/apacheca.ca
+cat /etc/letsencrypt/live/$domain/fullchain.pem > /etc/letsencrypt/live/$domain/apachecafull.ca
 systemctl restart apache2
 echo
 
 echo "Running Full System Updates"
-apt-get update
+apt get update
 sleep 5
-apt-get upgrade -yqq
+apt get upgrade -y
