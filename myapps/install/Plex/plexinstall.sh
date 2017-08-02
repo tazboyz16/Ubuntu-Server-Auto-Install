@@ -1,5 +1,5 @@
 #!/bin/bash
 
 echo "<--- Installing Plex Media Server ->"
-bash /opt/update/plexupdate.sh -p -a -d
+bash /opt/install/Plex/plexupdate.sh -p -a -d
 
