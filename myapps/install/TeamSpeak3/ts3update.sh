@@ -46,7 +46,7 @@ case $mode in
     mkdir -p $backupdir
     echo "Backing up TS3 Folder to /opt/backup"
     tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
-    echo "Starting Updated Server"
+    echo "Restarting up Server"
     systemctl start ts3
     ;;
     	(-i|"")
