@@ -34,9 +34,33 @@ case $mode in
 	chmod -R 0777 /opt/ProgramData/couchpotato
 	cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/couchpotato/.couchpotato/settings.conf
 	;;
-	
-	
-
+	(-b)
+	echo "Stopping CouchPotato"
+    	systemctl stop couchpotato
+    	echo "Making sure Backup Dir exists"
+    	mkdir -p $backupdir
+    	echo "Backing up CouchPotato to /opt/backup"
+    	tar -zcvf $backupdir/CouchPotato_FullBackup-$time.tar.gz $Programloc
+    	echo "Restarting up CouchPotato"
+	systemctl start couchpotato
+	(-u)
+	echo "Stopping CouchPotato to Update"
+	sudo systemctl stop Couchpotato
+	sleep 5
+	cd /opt/CouchPotatoServer
+	git pull
+	sudo systemctl start Couchpotato
+	;;
+	(-U)
+	echo "Stopping CouchPotato to Force Update"
+	sudo systemctl stop Couchpotato
+	sleep 5
+	cd /opt/CouchPotatoServer
+	git fetch --all
+	git reset --hard origin/master
+	git pull
+	sudo systemctl start Couchpotato
+	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
