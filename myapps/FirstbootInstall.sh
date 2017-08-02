@@ -20,7 +20,7 @@ echo "<--- Installing Headphones --->"; bash /opt/install/Headphones/headphones-
 echo "<--- Installing Mylar --->"; bash /opt/install/Mylar/mylar-installer.sh
 echo "<--- Installing SickRage --->"; bash /opt/install/SickRage/sickrage-installer.sh
 echo "<--- Installing Webmin --->"; bash /opt/install/Webmin/webmin-installer.sh
-echo "<--- Installing Plex Media Server --->"; bash /opt/update/plexupdate.sh -p -a -d
+echo "<--- Installing Plex Media Server --->"; bash /opt/install/Plex/plexupdate.sh -p -a -d
 echo "<--- Installing 3rd Party Plex Addons --->"; bash /opt/install/PlexAddons/PlexAddons.sh
 echo "<--- Installing Emby Media Server --->"; bash /opt/install/EmbyServer/EmbyServerInstall.sh
 echo "<--- Installing Grive --->"; bash /opt/install/Grive/GriveInstaller.sh
