@@ -5,7 +5,8 @@
 [![Download latest release](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 [![Download total](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
 [![master](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]()
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()   
+[![Dependency Status](https://gemnasium.com/badges/github.com/tazboyz16/Ubuntu-Server-Auto-Install.svg)](https://gemnasium.com/github.com/tazboyz16/Ubuntu-Server-Auto-Install)   
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 [![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)
      
