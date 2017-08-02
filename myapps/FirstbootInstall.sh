@@ -41,7 +41,7 @@ echo "<--- Installing SinusBot --->"; bash /opt/install/SinusBot/sinusbot.sh
 echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget.sh
 echo "<--- Installing Cron Jobs --->"; bash /opt/install/System/Cronjobs.sh
 echo "<--- Restoring Fstab settings --->"; cat /opt/install/System/fstab.txt >> /etc/fstab
-echo "<---- Running Cleanup from Installs --->"; bash /opt/Cleanup.sh
-echo "<-----Reboot is needed to take effect of All System Restores and Installs------>"
+echo "<--- Running Cleanup from Installs --->"; bash /opt/Cleanup.sh
+echo "<--- Reboot is needed to take effect of All System Restores and Installs------>"
 sleep 5
 sudo reboot
