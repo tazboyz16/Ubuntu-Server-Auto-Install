@@ -91,5 +91,5 @@ echo
 
 #Need to create mysql user other then Root for use
 echo "Creating Admin User for mysql use with Phpmyadmin"
-sudo mysql --user=root -p$sqlpassword mysql -e "CREATE USER 'xxxsqlxxx'@'localhost' IDENTIFIED BY 'xxxsqlpassxxx';"
-sudo mysql --user=root -p$sqlpassword mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'xxxsqlxxx'@'localhost' WITH GRANT OPTION;"
+sudo mysql --user=root -p$sqlpassword mysql -e "CREATE USER '$mysqladmin'@'localhost' IDENTIFIED BY '$mysqlpassword';"
+sudo mysql --user=root -p$sqlpassword mysql -e "GRANT ALL PRIVILEGES ON *.* TO '$mysqladmin'@'localhost' WITH GRANT OPTION;"
