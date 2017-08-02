@@ -42,6 +42,7 @@ case $mode in
     	tar -zcvf $backupdir/CouchPotato_FullBackup-$time.tar.gz $Programloc
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
+	;;
 	(-u)
 	echo "Stopping CouchPotato to Update"
 	sudo systemctl stop Couchpotato
