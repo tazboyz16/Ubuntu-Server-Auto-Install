@@ -26,6 +26,8 @@ case $mode in
 	touch /var/log/deluge-web.log
 	chown deluge:deluge /var/log/deluge*
 	apt get update; apt install deluged deluge-webui -y
+	echo "Creating Auto load localhost WebUI for DelugeWeb"
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	echo "Creating Startup Scripts For Deluged and Deluge-WebUI"
 	cp /opt/install/Deluge/deluged.service /etc/systemd/system/
 	cp /opt/install/Deluge/deluge-web.service /etc/systemd/system/
@@ -67,9 +69,6 @@ case $mode in
     	echo "Restarting up Deluge"
 	systemctl start deluged
 	systemctl stop deluge-web
-	;;
-	(-d)
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
