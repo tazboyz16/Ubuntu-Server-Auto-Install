@@ -29,9 +29,13 @@ case $mode in
 	;;
 	(-r)
 	echo "<--- Restoring CouchPotato Settings --->"
+	echo "Stopping CouchPotato"
+	systemctl stop couchpotato
 	chmod -R 0777 /opt/ProgramData/couchpotato
 	#NEEDS TO BE EDITED FOR UNZIP TAR FILE TO RESTORE SETTINGS VS SINGLE FILE RESTORE
 	cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/couchpotato/.couchpotato/settings.conf
+	echo "Starting CouchPotato"
+    	systemctl start couchpotato	
 	;;
 	(-b)
 	echo "Stopping CouchPotato"
