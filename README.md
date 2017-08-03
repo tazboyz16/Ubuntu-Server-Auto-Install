@@ -13,6 +13,7 @@
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
 (Currently Using 16.04.2 LTS Server 64bit as of 3/20/2017)   
+(Also tested throu Codeanywhere.com using VM ubuntu 14.04 LTS)
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
    
 Steps are under Wiki for installation and creating the ISO   
