@@ -26,8 +26,6 @@ case $mode in
 	sudo touch /var/log/deluge-web.log
 	sudo chown deluge:deluge /var/log/deluge*
 	apt update; apt install deluged deluge-webui -y
-	echo "Creating Auto load localhost WebUI for DelugeWeb"
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	echo "Creating Startup Scripts For Deluged and Deluge-WebUI"
 	cp /opt/install/Deluge/deluged.service /etc/systemd/system/
 	cp /opt/install/Deluge/deluge-web.service /etc/systemd/system/
@@ -37,7 +35,9 @@ case $mode in
 	systemctl enable deluge-web.service
 	systemctl start deluged
 	systemctl start deluge-web
-	sleep 15
+	sleep 20
+	echo "Creating Auto load localhost WebUI for DelugeWeb"
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
