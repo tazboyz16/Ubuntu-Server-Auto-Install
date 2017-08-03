@@ -10,4 +10,4 @@ fi
 echo "<--- Installing Grive --->"
 add-apt-repository -y ppa:nilarimogard/webupd8
 echo "<-- Installing dependencies for Grive for Website Sync -->"
-apt get update; apt get install grive -y
+apt update; apt install grive -y
