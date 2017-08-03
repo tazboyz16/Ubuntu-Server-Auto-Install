@@ -22,9 +22,9 @@ case $mode in
 	## setup deluge user
 	echo "<--- Now we will setup a user for Deluge --->"
 	adduser --disabled-password --system --home /var/lib/deluge --gecos "Deluge service" --group deluge
-	touch /var/log/deluged.log
-	touch /var/log/deluge-web.log
-	chown deluge:deluge /var/log/deluge*
+	sudo touch /var/log/deluged.log
+	sudo touch /var/log/deluge-web.log
+	sudo chown deluge:deluge /var/log/deluge*
 	apt get update; apt install deluged deluge-webui -y
 	echo "Creating Auto load localhost WebUI for DelugeWeb"
 	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
