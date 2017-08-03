@@ -39,6 +39,7 @@ case $mode in
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
+	echo "Stopping Deluge"
 	#defaults settings stored at /var/lib/deluge/.config/deluge
 	#core.conf and web.conf
 	#cp /opt/install/Deluge/core.conf /var/lib/deluge/.config/deluge
@@ -49,6 +50,7 @@ case $mode in
 	sudo chmod 0777 -R $Programloc
 	cp /opt/install/Deluge/core.conf $Programloc/.config/deluge
 	cp /opt/install/Deluge/web.conf $Programloc/.config/deluge
+	echo "Restarting up Deluge"
 	systemctl start deluged
 	systemctl start deluge-web
 	;;
