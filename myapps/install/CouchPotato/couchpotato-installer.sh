@@ -40,7 +40,8 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
 	cp /opt/ProgramData/couchpotato/.couchpotato/settings.conf $backupdir
-	# Data Folder might be located under /root/.couchpotato/ if theres a Data Folder created  
+	echo "Data Folder might be located under /root/.couchpotato/ if theres a Data Folder created"
+	echo "some install dont have it"
 	cp /opt/CouchPotatoServer/Data $backupdir
     	tar -zcvf /opt/backup/CouchPotato_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up CouchPotato"
