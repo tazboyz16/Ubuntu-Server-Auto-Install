@@ -69,7 +69,7 @@ case $mode in
 	systemctl stop deluge-web
 	;;
 	(-d)
-	sed -e 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
