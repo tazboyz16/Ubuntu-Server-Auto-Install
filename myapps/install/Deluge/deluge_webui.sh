@@ -68,6 +68,10 @@ case $mode in
 	systemctl start deluged
 	systemctl stop deluge-web
 	;;
+	(-d)
+	stringa=' "default_daemon":* '
+	stringb=' "default_daemon": "127.0.0.1:58846" '
+	sed -i "s#$stringa#$stringb#"
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
