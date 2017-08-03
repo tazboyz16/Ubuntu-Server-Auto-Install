@@ -49,21 +49,21 @@ case $mode in
 	;;
 	(-u)
 	echo "Stopping CouchPotato to Update"
-	sudo systemctl stop Couchpotato
+	sudo systemctl stop couchpotato
 	sleep 5
 	cd $Programloc
 	git pull
-	sudo systemctl start Couchpotato
+	sudo systemctl start couchpotato
 	;;
 	(-U)
 	echo "Stopping CouchPotato to Force Update"
-	sudo systemctl stop Couchpotato
+	sudo systemctl stop couchpotato
 	sleep 5
 	cd $Programloc
 	git fetch --all
 	git reset --hard origin/master
 	git pull
-	sudo systemctl start Couchpotato
+	sudo systemctl start couchpotato
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
