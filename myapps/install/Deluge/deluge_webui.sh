@@ -61,9 +61,7 @@ case $mode in
     	echo "Backing up Deluge to /opt/backup"
 	cp $Programloc/.config/deluge/core.conf $backupdir
 	cp $Programloc/.config/deluge/web.conf $backupdir
-	# Data Folder might be located under /root/.couchpotato/ if theres a Data Folder created  
-	cp /opt/CouchPotatoServer/Data $backupdir
-    	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
+	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Deluge"
 	systemctl start deluged
 	systemctl stop deluge-web
