@@ -68,3 +68,6 @@ case $mode in
 	systemctl start deluged
 	systemctl stop deluge-web
 	;;
+    	(-*) echo "Invalid Argument"; exit 0;;
+esac
+exit 0
