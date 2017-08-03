@@ -70,7 +70,7 @@ case $mode in
 	;;
 	(-d)
 	stringa="default_daemon"
-	stringb=$stringa: "127.0.0.1:58846"'
+	stringb=$stringa: "127.0.0.1:58846"
 	sed -e "s#$stringa#$stringb#" /var/lib/deluge/.config/deluge/web.conf
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
