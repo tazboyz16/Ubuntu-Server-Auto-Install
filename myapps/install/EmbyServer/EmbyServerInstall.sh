@@ -1,7 +1,8 @@
 #!/bin/bash
 
+version=$(lsb_release -rs)
 echo "<--- Adding Emby to Repository --->"
-add-apt-repository "deb http://download.opensuse.org/repositories/home:emby/xUbuntu_16.04/ /"
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/emby/xUbuntu_$version/ /' > /etc/apt/sources.list.d/emby-server.list"
 echo "<--- Installing Emby Server --->"
 apt update; apt install emby-server -y
 
