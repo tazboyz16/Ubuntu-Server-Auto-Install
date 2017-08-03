@@ -53,6 +53,7 @@ case $mode in
 	sleep 5
 	cd $Programloc
 	git pull
+	echo "Starting CouchPotato"
 	sudo systemctl start couchpotato
 	;;
 	(-U)
@@ -63,6 +64,7 @@ case $mode in
 	git fetch --all
 	git reset --hard origin/master
 	git pull
+	echo "Starting CouchPotato"
 	sudo systemctl start couchpotato
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
