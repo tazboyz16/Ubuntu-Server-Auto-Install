@@ -16,17 +16,17 @@ time=$(date +"%m_%d_%y-%H_%M")
 case $mode in
 	(-i|"")
 	apt install python
-   adduser --disabled-password --system --home /opt/ProgramData/LazyLibrarian --gecos "LazyLibrarian Service" --group LazyLibrarian
-   cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
-   chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
-   chmod -R 0777 /opt/LazyLibrarian
-   echo "Creating Startup Script" 
-   cp /opt/install/Lazylibrarian/LazyLibrarian.service /etc/systemd/system/
-   chmod 644 /etc/systemd/system/LazyLibrarian.service
-   systemctl enable LazyLibrarian.service
-   systemctl restart LazyLibrarian.service
-   ;;
-   (-r)
+	adduser --disabled-password --system --home /opt/ProgramData/LazyLibrarian --gecos "LazyLibrarian Service" --group LazyLibrarian
+   	cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
+   	chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
+   	chmod -R 0777 /opt/LazyLibrarian
+  	echo "Creating Startup Script" 
+   	cp /opt/install/Lazylibrarian/LazyLibrarian.service /etc/systemd/system/
+   	chmod 644 /etc/systemd/system/LazyLibrarian.service
+   	systemctl enable LazyLibrarian.service
+   	systemctl restart LazyLibrarian.service
+   	;;
+   	(-r)
 	echo "<--Restoring LazyLibrarian Settings -->"
 	echo "Stopping LazyLibrarian"
 	systemctl stop LazyLibrarian
