@@ -38,37 +38,37 @@ case $mode in
 	systemctl start headphones
 	;;
 	(-b)
-	echo "Stopping Headphhones"
+	echo "Stopping Headphones"
     	systemctl stop headphones
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
-    	echo "Backing up CouchPotato to /opt/backup"
+    	echo "Backing up Headphones to /opt/backup"
 	cp /opt/headphones/config.ini $backupdir
 	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
 	echo "some install dont have it"
 	cp $Programloc/Data $backupdir
     	tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
-    	echo "Restarting up Headphhones"
+    	echo "Restarting up Headphones"
 	systemctl start headphones
 	;;
 	(-u)
-	echo "Stopping Headphhones to Update"
+	echo "Stopping Headphones to Update"
 	sudo systemctl stop headphones
 	sleep 5
 	cd $Programloc
 	git pull
-	echo "Starting Headphhones"
+	echo "Starting Headphones"
 	sudo systemctl start headphones
 	;;
 	(-U)
-	echo "Stopping Headphhones to Force Update"
+	echo "Stopping Headphones to Force Update"
 	sudo systemctl stop headphones
 	sleep 5
 	cd $Programloc
 	git fetch --all
 	git reset --hard origin/master
 	git pull
-	echo "Starting Headphhones"
+	echo "Starting Headphones"
 	sudo systemctl start headphones
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
