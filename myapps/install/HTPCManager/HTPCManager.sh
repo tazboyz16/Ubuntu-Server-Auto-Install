@@ -28,13 +28,14 @@ case $mode in
 	;;
 		(-r)
 	echo "<--- Restoring Headphones Settings --->"
-	echo "Stopping Headphones"
-	systemctl stop headphones
-	cat /opt/install/Headphones/Headphones.txt > /opt/headphones/config.ini
+	echo "Stopping HTPCManager"
+	systemctl stop HTPCManager
+	#
+	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPC-Manager/userdata
 	chown -R headphones:headphones /opt/headphones
 	chmod -R 0777 /opt/headphones
-	echo "Starting up Headphones"
-	systemctl start headphones
+	echo "Starting up HTPCManager"
+	systemctl start HTPCManager
 	;;
 	(-b)
 	echo "Stopping Headphhones"
