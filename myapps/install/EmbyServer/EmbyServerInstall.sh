@@ -1,4 +1,5 @@
 #!/bin/bash
+#As of 8/3/2017 Emby only has 12.04 14.04 16.04 16.10 17.04 and Next versions of ubuntu
 
 version=$(lsb_release -rs)
 versionm=$(lsb_release -cs)
