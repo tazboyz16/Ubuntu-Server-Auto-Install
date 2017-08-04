@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version=$(lsb_release -rs)
-versionm=$(lsb_realease -cs)
+versionm=$(lsb_release -cs)
 echo "<--- Adding Emby to Repository --->"
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/emby/xUbuntu_$version/ /' > /etc/apt/sources.list.d/emby-server.list"
 echo "Grabbing Repository Key"
