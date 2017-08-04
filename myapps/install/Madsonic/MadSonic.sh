@@ -32,7 +32,6 @@ case $mode in
 	systemctl enable madsonic.service
 	systemctl restart madsonic.service
 	;;
-	;;
 	(-r)
 	echo "<-- Restoring Madsonic Settings -->"
 	echo "Stopping Jackett"
