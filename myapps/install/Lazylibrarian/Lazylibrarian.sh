@@ -31,7 +31,7 @@ case $mode in
 	echo "Stopping LazyLibrarian"
 	systemctl stop LazyLibrarian
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json ~/.config/Jackett/
+	cp /opt/install/Jackett/ServerConfig.json $Programloc/config.ini
 	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
 	;;
@@ -40,8 +40,9 @@ case $mode in
     	systemctl stop LazyLibrarian
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
+	#config file will not show up till after making any changes to settings
     	echo "Backing up LazyLibrarian to /opt/backup"
-	cp ~/.config/Jackett/ServerConfig.json $backupdir
+	cp $Programloc/config.ini $backupdir
 	tar -zcvf /opt/backup/LazyLibrarian_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
