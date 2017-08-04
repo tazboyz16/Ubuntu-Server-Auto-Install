@@ -25,27 +25,33 @@ case $mode in
 	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
 	dpkg -i 20161208_madsonic-6.2.9040.deb
 	#edit MADSONIC_USER variable to not run as root under /var/madsonic or /etc/default/madsonic
-	sed -i 
+	sed -i
+	echo "Creating Startup Script"
+	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
+	chmod 644 /etc/systemd/system/madsonic.service
+	systemctl enable madsonic.service
+	systemctl restart madsonic.service
+	;;
 	;;
 	(-r)
 	echo "<-- Restoring Madsonic Settings -->"
 	echo "Stopping Jackett"
-	systemctl stop jackett
+	systemctl stop madsonic
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json ~/.config/Jackett/
+	cp /opt/install/Madsonic/ServerConfig.json ~/.config/Jackett/
 	echo "Restarting up Madsonic"
-	systemctl start jackett
+	systemctl start madsonic
 	;;
 	(-b)
 	echo "Stopping Madsonic"
-    	systemctl stop jackett
+    	systemctl stop madsonic
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Madsonic to /opt/backup"
-	cp ~/.config/Jackett/ServerConfig.json $backupdir
+	cp ~/.config/Madsonic/ServerConfig.json $backupdir
 	tar -zcvf /opt/backup/Madsonic_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Madsonic"
-	systemctl start jackett
+	systemctl start madsonic
 	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
