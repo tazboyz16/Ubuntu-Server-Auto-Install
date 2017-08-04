@@ -1,6 +1,11 @@
 #!/bin/bash
 #As of 8/3/2017 Emby only has 12.04 14.04 16.04 16.10 17.04 and Next versions of ubuntu
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This Script must be run as root"
+	exit 1
+fi
+
 version=$(lsb_release -rs)
 versionm=$(lsb_release -cs)
 
