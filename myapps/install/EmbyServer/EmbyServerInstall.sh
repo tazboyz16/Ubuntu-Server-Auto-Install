@@ -57,6 +57,11 @@ case $mode in
 	systemctl start emby-server
 	service emby-server start
 	;;
+	(-f)
+	#only run if getting a libembysqlite3.so.0 error
+	#create symlinks for in x86 for libembysqlite3.so.0 in bin/etc/and root folder of emby
+	ln -s 
+	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
