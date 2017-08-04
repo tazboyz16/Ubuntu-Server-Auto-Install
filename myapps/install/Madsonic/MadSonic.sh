@@ -15,7 +15,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 case $mode in
 	(-i|"")
 	add-apt-repository -y ppa:webupd8team/java
-	apt get update
+	apt update
 	echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 	apt install oracle-java8-installer -y
