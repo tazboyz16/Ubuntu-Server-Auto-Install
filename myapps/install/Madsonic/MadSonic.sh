@@ -34,7 +34,7 @@ case $mode in
 	;;
 	(-r)
 	echo "<-- Restoring Madsonic Settings -->"
-	echo "Stopping Jackett"
+	echo "Stopping Madsonic"
 	systemctl stop madsonic
 	sudo chmod 0777 -R $Programloc
 	cp /opt/install/Madsonic/ServerConfig.json ~/.config/Jackett/
