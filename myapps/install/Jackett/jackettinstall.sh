@@ -52,24 +52,24 @@ case $mode in
 	systemctl start jackett
 	;;
 	(-u)
-	echo "Stopping CouchPotato to Update"
-	sudo systemctl stop couchpotato
+	echo "Stopping Jackett to Update"
+	sudo systemctl stop jackett
 	sleep 5
 	cd $Programloc
 	git pull
-	echo "Starting CouchPotato"
-	sudo systemctl start couchpotato
+	echo "Starting Jackett"
+	sudo systemctl start jackett
 	;;
 	(-U)
-	echo "Stopping CouchPotato to Force Update"
-	sudo systemctl stop couchpotato
+	echo "Stopping Jackett to Force Update"
+	sudo systemctl stop jackett
 	sleep 5
 	cd $Programloc
 	git fetch --all
 	git reset --hard origin/master
 	git pull
-	echo "Starting CouchPotato"
-	sudo systemctl start couchpotato
+	echo "Starting Jackett"
+	sudo systemctl start jackett
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
