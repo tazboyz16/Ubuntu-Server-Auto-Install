@@ -9,67 +9,63 @@ fi
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/headphones
-backupdir=/opt/backup/headphones
+Programloc=/opt/HTPCManager
+backupdir=/opt/backup/HTPCManager
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
 	apt install libjpeg-dev libpng12-dev libfreetype6-dev zlib1g-dev libc6-dev libc-dev libjpeg8-dev python -y
-	adduser --disabled-password --system --home /opt/ProgramData/HTPC-Manager --gecos "HTPC-Manager Service" --group HTPCManager
-	cd /opt &&  git clone https://github.com/styxit/HTPC-Manager.git
-	chown -R HTPCManager:HTPCManager /opt/HTPC-Manager
-	chmod -R 0777 /opt/HTPC-Manager
+	adduser --disabled-password --system --home /opt/ProgramData/HTPCManager --gecos "HTPCManager Service" --group HTPCManager
+	git clone https://github.com/styxit/HTPC-Manager.git /opt/HTPCManager
+	chown -R HTPCManager:HTPCManager /opt/HTPCManager
+	chmod -R 0777 /opt/HTPCManager
 	echo "Creating Startup Script"
 	cp /opt/install/HTPCManager/HTPCManager.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/HTPCManager.service
 	systemctl enable HTPCManager.service
 	systemctl restart HTPCManager.service
 	;;
-		(-r)
-	echo "<--- Restoring Headphones Settings --->"
+	(-r)
+	echo "<--- Restoring HTPCManager Settings --->"
 	echo "Stopping HTPCManager"
 	systemctl stop HTPCManager
-	#
-	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPC-Manager/userdata
-	chown -R headphones:headphones /opt/headphones
-	chmod -R 0777 /opt/headphones
+	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPCManager/userdata
+	chown -R HTPCManager:HTPCManager /opt/HTPCManager
+	chmod -R 0777 /opt/HTPCManager
 	echo "Starting up HTPCManager"
 	systemctl start HTPCManager
 	;;
 	(-b)
-	echo "Stopping Headphhones"
-    	systemctl stop headphones
+	echo "Stopping HTPCManager"
+    	systemctl stop HTPCManager
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
-    	echo "Backing up CouchPotato to /opt/backup"
-	cp /opt/headphones/config.ini $backupdir
-	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
-	echo "some install dont have it"
-	cp $Programloc/Data $backupdir
-    	tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
-    	echo "Restarting up Headphhones"
-	systemctl start headphones
+    	echo "Backing up HTPCManager to /opt/backup"
+	cp /opt/HTPCManager/userdata $backupdir
+    	tar -zcvf /opt/backup/HTPCManager_FullBackup-$time.tar.gz $backupdir
+    	echo "Restarting up HTPCManager"
+	systemctl start HTPCManager
 	;;
 	(-u)
-	echo "Stopping Headphhones to Update"
-	sudo systemctl stop headphones
+	echo "Stopping HTPCManager to Update"
+	sudo systemctl stop HTPCManager
 	sleep 5
 	cd $Programloc
 	git pull
-	echo "Starting Headphhones"
-	sudo systemctl start headphones
+	echo "Starting HTPCManager"
+	sudo systemctl start HTPCManager
 	;;
 	(-U)
-	echo "Stopping Headphhones to Force Update"
-	sudo systemctl stop headphones
+	echo "Stopping HTPCManager to Force Update"
+	sudo systemctl stop HTPCManager
 	sleep 5
 	cd $Programloc
 	git fetch --all
 	git reset --hard origin/master
 	git pull
-	echo "Starting Headphhones"
-	sudo systemctl start headphones
+	echo "Starting HTPCManager"
+	sudo systemctl start HTPCManager
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
