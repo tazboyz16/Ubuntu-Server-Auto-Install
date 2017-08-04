@@ -30,8 +30,8 @@ case $mode in
 	echo "<--- Restoring HTPCManager Settings --->"
 	echo "Stopping HTPCManager"
 	systemctl stop HTPCManager
-	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPC-Manager/userdata
-	chown -R HTPCManager:HTPCManager /opt/HTPC-Manager
+	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPCManager/userdata
+	chown -R HTPCManager:HTPCManager /opt/HTPCManager
 	chmod -R 0777 /opt/HTPC-Manager
 	echo "Starting up HTPCManager"
 	systemctl start HTPCManager
@@ -42,7 +42,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up HTPCManager to /opt/backup"
-	cp /opt/HTPC-Manager/userdata $backupdir
+	cp -rf /opt/HTPC-Manager/userdata $backupdir
     	tar -zcvf /opt/backup/HTPCManager_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up HTPCManager"
 	systemctl start HTPCManager
