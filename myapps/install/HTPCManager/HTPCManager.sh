@@ -9,8 +9,8 @@ fi
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/HTPC-Manager
-backupdir=/opt/backup/HTPC-Manager
+Programloc=/opt/HTPCManager
+backupdir=/opt/backup/HTPCManager
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
@@ -32,7 +32,7 @@ case $mode in
 	systemctl stop HTPCManager
 	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPCManager/userdata
 	chown -R HTPCManager:HTPCManager /opt/HTPCManager
-	chmod -R 0777 /opt/HTPC-Manager
+	chmod -R 0777 /opt/HTPCManager
 	echo "Starting up HTPCManager"
 	systemctl start HTPCManager
 	;;
@@ -42,7 +42,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up HTPCManager to /opt/backup"
-	cp -rf /opt/HTPC-Manager/userdata $backupdir
+	cp -rf /opt/HTPCManager/userdata $backupdir
     	tar -zcvf /opt/backup/HTPCManager_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up HTPCManager"
 	systemctl start HTPCManager
