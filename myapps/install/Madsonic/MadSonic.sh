@@ -24,7 +24,8 @@ case $mode in
 	#http://beta.madsonic.org/pages/download.jsp
 	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
 	dpkg -i 20161208_madsonic-6.2.9040.deb
-	#edit MADSONIC_USER variable to not run as root under /var/madsonic or /etc/default/madsonic
+	#edit MADSONIC_USER variable to not run as root under /etc/default/madsonic for port number change
+	#also /var/lib/madsonic/madsonic.properties for auto-generated settings file
 	sed -i
 	echo "Creating Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
@@ -47,7 +48,8 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Madsonic to /opt/backup"
-	cp ~/.config/Madsonic/ServerConfig.json $backupdir
+	cp /var/lib/madsonic/db $backupdir
+	cp /var/lib/madsonic/madsonic.properties $backupdir
 	tar -zcvf /opt/backup/Madsonic_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Madsonic"
 	systemctl start madsonic
