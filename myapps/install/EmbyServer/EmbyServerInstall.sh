@@ -37,7 +37,7 @@ case $mode in
 	systemctl stop emby-server
 	service emby-server stop
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json $Programloc/bin/ProgramData-Server/config/
+	cp /opt/install/Jackett/ServerConfig.json /var/lib/emby-server/config/
 	echo "Restarting up Emby Server"
 	systemctl start emby-server
 	service emby-server start
@@ -49,7 +49,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Emby Server to /opt/backup"
-	cp $Programloc/bin/ProgramData-Server/config/system.xml $backupdir
+	cp /var/lib/emby-server/config/system.xml $backupdir
 	tar -zcvf /opt/backup/EmbyServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Emby Server"
 	systemctl start emby-server
