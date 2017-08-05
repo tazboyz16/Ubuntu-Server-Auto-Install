@@ -58,7 +58,9 @@ case $mode in
 	(-f)
 	#only run if getting a libembysqlite3.so.0 error
 	#create symlinks for in x86 for libembysqlite3.so.0 in bin/etc/and root folder of emby
-	ln -s 
+	ln -s /usr/lib/emby-server/x86_64-linux-gnu/libembysqlite3.so.0 /usr/lib/emby-server/
+	ln -s /usr/lib/emby-server/x86_64-linux-gnu/libembysqlite3.so.0 /usr/lib/emby-server/bin
+	ln -s /usr/lib/emby-server/x86_64-linux-gnu/libembysqlite3.so.0 /usr/lib/emby-server/etc
 	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
