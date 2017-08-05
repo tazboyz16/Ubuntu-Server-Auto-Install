@@ -8,11 +8,9 @@ fi
 
 version=$(lsb_release -rs)
 versionm=$(lsb_release -cs)
-
 #Modes (Variables)
 # b=backup i=install r=restore 
 mode="$1"
-
 Programloc=/usr/lib/emby-server
 backupdir=/opt/backup/EmbyServer
 time=$(date +"%m_%d_%y-%H_%M")
@@ -28,7 +26,7 @@ case $mode in
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
 	echo "<--- Installing Emby Server --->"
 	apt update
-	apt install mono-complete -y
+	apt install mono-complete mono-devel -y
 	apt install emby-server -y
 	systemctl enable emby-server
 	echo "<--- Finished Installing Emby Server --->"
