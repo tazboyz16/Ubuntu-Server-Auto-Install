@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update(coming soon)
+# b=backup i=install r=restore u=update
 mode="$1"
 Programloc=~/.noipy
 backupdir=/opt/backup/Noipy
