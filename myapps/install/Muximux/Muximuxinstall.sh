@@ -9,6 +9,7 @@ fi
 adduser --disabled-password --system --home /opt/ProgramData/Muximux --gecos "Muximux Service" --group Muximux
 
 bash /opt/install/Apache2/Apache2-install.sh
+apt update
 apt install php7.0 php7.0-* openssl libapache2-mod-php7.0 -y
 apt get remove php7.0-snmp -yy
 
