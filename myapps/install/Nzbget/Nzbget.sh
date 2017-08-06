@@ -5,11 +5,14 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+#Successfully installed into /home/cabox/workspace/nzbget
+#Web-interface is on http://127.0.0.2:6789 (login:nzbget, password:tegbzn6789) - Default settings
+
 #Modes (Variables)
 # b=backup i=install r=restore u=update(coming soon)
 mode="$1"
-Programloc=/opt/mylar
-backupdir=/opt/backup/Mylar
+Programloc=/opt/Nzbget
+backupdir=/opt/backup/Nzbget
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
@@ -25,15 +28,27 @@ case $mode in
 	systemctl enable nzbget.service
 	systemctl restart nzbget.service
 	;;
-
+	(-r)
+	echo "<--- Restoring Nzbget Settings --->"
+	echo "Stopping Nzbget"
+	systemctl stop nzbget
+	cp /opt/install/Nzbget/nzbget.conf > $Programloc/
+	chown -R Nzbget:Nzbget /opt/Nzbget
+	chmod -R 0777 /opt/Nzbget
+	echo "Starting up nzbget"
+	systemctl start nzbget
+	;;
+	(-b)
+	echo "Stopping Nzbget"
+    	systemctl stop nzbget
+    	echo "Making sure Backup Dir exists"
+    	mkdir -p $backupdir
+    	echo "Backing up Nzbget to /opt/backup"
+	cp -rf $Programloc/nzbget.conf $backupdir
+    	tar -zcvf /opt/backup/Nzbget_FullBackup-$time.tar.gz $backupdir
+    	echo "Restarting up Nzbget"
+	systemctl start nzbget
+	;;
+	(-*) echo "Invalid Argument"; exit 0;;
 esac
-
-#Config file nzbget.conf
-#Quick help (from nzbget-directory):
-#   ./nzbget -s        - start nzbget in console mode
-#   ./nzbget -D        - start nzbget in daemon mode (in background)
-#   ./nzbget -C        - connect to background process
-#   ./nzbget -Q        - stop background process
-#   ./nzbget -h        - help screen with all commands
-#Successfully installed into /home/cabox/workspace/nzbget
-#Web-interface is on http://127.0.0.2:6789 (login:nzbget, password:tegbzn6789)
+exit 0
