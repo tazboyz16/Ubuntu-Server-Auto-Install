@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update(coming soon)
+# b=backup(coming soon) i=install r=restore u=update
 mode="$1"
 Programloc=/opt/Muximux
 backupdir=/opt/backup/Muximux
