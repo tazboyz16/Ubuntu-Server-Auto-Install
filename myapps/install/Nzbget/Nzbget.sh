@@ -14,8 +14,16 @@ time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
+	echo "Setting up User Account and Downloading Nzbget"
+	adduser --disabled-password --system --home /opt/ProgramData/Nzbget --gecos "Nzbget Service" --group Nzbget
 	wget https://nzbget.net/download/nzbget-latest-bin-linux.run
+	echo "Installing NZBget"
 	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
+	echo "Creating Startup Script"
+	cp /opt/install/Nzbget/nzbget.service /etc/systemd/system/
+	chmod 644 /etc/systemd/system/nzbget.service
+	systemctl enable nzbget.service
+	systemctl restart nzbget.service
 	;;
 
 esac
