@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore 
+# b=backup i=install r=restore -vpn(coming soon)
 mode="$1"
 
 Programloc=/var/lib/deluge
@@ -70,6 +70,10 @@ case $mode in
     	echo "Restarting up Deluge"
 	systemctl start deluged
 	systemctl stop deluge-web
+	;;
+	(-vpn)
+	#lookup Reverse Proxy with Deluge 
+	
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
