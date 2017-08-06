@@ -8,8 +8,8 @@ fi
 #Modes (Variables)
 # b=backup(coming soon) i=install r=restore u=update
 mode="$1"
-Programloc=/opt/Muximux
-backupdir=/opt/backup/Muximux
+Programloc=/opt/Organizr
+backupdir=/opt/backup/Organizr
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
