@@ -32,7 +32,7 @@ case $mode in
 	echo "<--- Restoring Nzbget Settings --->"
 	echo "Stopping Nzbget"
 	systemctl stop nzbget
-	cp /opt/install/Nzbget/nzbget.conf > $Programloc/
+	cp /opt/install/Nzbget/nzbget.conf  $Programloc/
 	chown -R Nzbget:Nzbget /opt/Nzbget
 	chmod -R 0777 /opt/Nzbget
 	echo "Starting up nzbget"
