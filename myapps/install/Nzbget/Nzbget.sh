@@ -23,6 +23,7 @@ case $mode in
 	echo "Installing NZBget"
 	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
 	rm -f /opt/nzbget-latest-bin-linux.run
+	sed -i "/DaemonUsername=/c\DaemonUsername=Nzbget" /opt/Nzbget/nzbget.conf
 	echo "Creating Startup Script"
 	cp /opt/install/Nzbget/nzbget.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/nzbget.service
