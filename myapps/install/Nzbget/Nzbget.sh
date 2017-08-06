@@ -5,8 +5,18 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-cd /opt & wget https://nzbget.net/download/nzbget-latest-bin-linux.run
-sh nzbget-latest-bin-linux.run
+#Modes (Variables)
+# b=backup i=install r=restore u=update(coming soon)
+mode="$1"
+Programloc=/opt/mylar
+backupdir=/opt/backup/Mylar
+time=$(date +"%m_%d_%y-%H_%M")
+
+case $mode in
+	(-i|"")
+	wget https://nzbget.net/download/nzbget-latest-bin-linux.run
+	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
+	;;
 
 
 #Config file nzbget.conf
