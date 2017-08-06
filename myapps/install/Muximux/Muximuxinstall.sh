@@ -20,7 +20,7 @@ case $mode in
 	bash /opt/install/Apache2/Apache2-install.sh
 	apt update
 	apt install php7.0 php7.0-* openssl libapache2-mod-php7.0 -y
-	apt get remove php7.0-snmp -yy
+	apt remove php7.0-snmp -y
 	echo "Installing Muximux"
 	cd /opt && git clone https://github.com/mescon/Muximux.git
 	chown -R Muximux:Muximux /opt/Muximux
