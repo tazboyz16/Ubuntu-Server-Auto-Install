@@ -50,6 +50,11 @@ case $mode in
     	echo "Restarting up Nzbget"
 	systemctl start nzbget
 	;;
+	(-u)
+	cd /opt && wget https://nzbget.net/download/nzbget-latest-bin-linux.run
+	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
+	rm -f /opt/nzbget-latest-bin-linux.run
+	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
