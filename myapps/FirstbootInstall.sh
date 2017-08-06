@@ -38,7 +38,7 @@ echo "<--- Installing MadSonic --->"; bash /opt/Madsonic/MadSonic.sh
 echo "<--- Installing Organizr --->"; bash /opt/Organizr/Organizr.sh
 echo "<--- Installing Ubooquity --->"; bash /opt/Organizr/Ubooquity.sh
 echo "<--- Installing SinusBot --->"; bash /opt/install/SinusBot/sinusbot.sh
-echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget.sh
+echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget/Nzbget.sh
 echo "<--- Installing Cron Jobs --->"; bash /opt/install/System/Cronjobs.sh
 echo "<--- Restoring Fstab settings --->"; cat /opt/install/System/fstab.txt >> /etc/fstab
 echo "<--- Running Cleanup from Installs --->"; bash /opt/Cleanup.sh
