@@ -18,6 +18,7 @@ case $mode in
 	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
 	;;
 
+esac
 
 #Config file nzbget.conf
 #Quick help (from nzbget-directory):
