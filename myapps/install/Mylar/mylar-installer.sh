@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update(coming soon)
+# b=backup i=install r=restore u=update U=Force Update
 mode="$1"
 Programloc=/opt/mylar
 backupdir=/opt/backup/Mylar
