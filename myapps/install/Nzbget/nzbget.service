@@ -7,9 +7,9 @@ After=network.target
 User=Nzbget
 Group=Nzbget
 Type=forking
-ExecStart=/opt/Nzbget -D
-ExecStop=/opt/Nzbget -Q
-ExecReload=/opt/Nzbget -O
+ExecStart=/opt/Nzbget/nzbget -D
+ExecStop=/opt/Nzbget/nzbget -Q
+ExecReload=/opt/Nzbget/nzbget -O
 KillMode=process
 Restart=on-failure
 
