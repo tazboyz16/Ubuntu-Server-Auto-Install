@@ -13,7 +13,7 @@ echo "<--- Installing iRedMail --->"; bash /opt/install/Iredmail/mailinstaller.s
 echo "<--- Installing Apache2 --->"; bash /opt/install/Apache2/Apache2-install.sh
 echo "<--- Installing SSL Cert --->"; bash /opt/install/Apache2/Certbot.sh
 echo "<--- Installing Mysql and Phpmyadmin --->"; bash /opt/install/Apache2/Mysql.sh
-echo "<--- Installing Noip --->"; bash /opt/install/Noip2/Noip2Install.sh
+#echo "<--- Installing Noip --->"; bash /opt/install/Noip2/Noip2Install.sh
 echo "<--- Installing Deluge --->"; bash /opt/install/Deluge/deluge_webui.sh
 echo "<--- Installing CouchPotato --->"; bash /opt/install/couchpotato-installer.sh
 echo "<--- Installing Headphones --->"; bash /opt/install/Headphones/headphones-installer.sh
@@ -31,14 +31,15 @@ echo "<--- Installing Jackett --->"; bash /opt/install/Jackett/jackettinstall.sh
 echo "<--- Installing Samba --->"; bash /opt/install/Samba/samba.sh
 echo "<--- Installing Kodi --->"; bash /opt/install/Kodi/Kodi-install.sh
 echo "<--- Installing Muximux --->"; bash /opt/install/Muximux/Muximuxinstall.sh
-echo "<--- Installing HTPC-Manager --->"; bash /opt/HTPCManager/HTPCManager.sh
-echo "<--- Installing LazyLibrarian --->"; bash /opt/Lazylibrarian/Lazylibrarian.sh
-echo "<--- Installing Shinobi --->"; bash /opt/Shinobi/Shinobi.sh
-echo "<--- Installing MadSonic --->"; bash /opt/Madsonic/MadSonic.sh
-echo "<--- Installing Organizr --->"; bash /opt/Organizr/Organizr.sh
-echo "<--- Installing Ubooquity --->"; bash /opt/Organizr/Ubooquity.sh
+echo "<--- Installing HTPC-Manager --->"; bash /opt/install/HTPCManager/HTPCManager.sh
+echo "<--- Installing LazyLibrarian --->"; bash /opt/install/Lazylibrarian/Lazylibrarian.sh
+echo "<--- Installing Shinobi --->"; bash /opt/install/Shinobi/Shinobi.sh
+echo "<--- Installing MadSonic --->"; bash /opt/install/Madsonic/MadSonic.sh
+echo "<--- Installing Organizr --->"; bash /opt/install/Organizr/Organizr.sh
+echo "<--- Installing Ubooquity --->"; bash /opt/install/Ubooquity/Ubooquity.sh
 echo "<--- Installing SinusBot --->"; bash /opt/install/SinusBot/sinusbot.sh
 echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget/Nzbget.sh
+
 echo "<--- Installing Cron Jobs --->"; bash /opt/install/System/Cronjobs.sh
 echo "<--- Restoring Fstab settings --->"; cat /opt/install/System/fstab.txt >> /etc/fstab
 echo "<--- Running Cleanup from Installs --->"; bash /opt/Cleanup.sh
