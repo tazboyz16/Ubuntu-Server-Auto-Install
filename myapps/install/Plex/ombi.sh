@@ -11,7 +11,7 @@ unzip Ombi.zip && sudo rm Ombi.zip
 chown -R ombi:ombi /opt/Ombi
 chmod -R 0777 /opt/Ombi
 echo "Creating Startup Script for PlexRequests"
-cp /opt/install/PlexAddons/ombi.service /etc/systemd/system/
+cp /opt/install/Plex/ombi.service /etc/systemd/system/
 chmod 0777 /etc/systemd/system/ombi.service
 systemctl enable ombi.service
 systemctl restart ombi.service
