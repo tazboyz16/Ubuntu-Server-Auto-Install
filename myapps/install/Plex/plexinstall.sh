@@ -6,6 +6,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 SCRIPT_PATH="$(dirname "$0")"
 
+
+#******1.7.5.4035-313f93718 version installs deb repo for Plex.tv self own repo to Sources.list****
+
+
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
 mode="$1"
