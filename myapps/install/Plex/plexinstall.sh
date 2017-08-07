@@ -8,7 +8,7 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
 mode="$1"
-Programloc=/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/
+Programloc=/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/
 backupdir=/opt/backup/Plex
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -22,12 +22,26 @@ case $mode in
 	bash /opt/install/Plex/plexupdate.sh -p -a -d
 	;;
 	(-b)
-	echo "<--- Backing up Plex Media Server ->"
-	
+	echo "Backing up Plex Media Server"
+	echo "<--- Stopping Plex Media Server ->"
+	sudo systemctl stop plexmediaserver
+	echo "Making sure Backup Dir exists"
+	mkdir -p $backupdir
+	echo "Backing up Plex Media Server to /opt/backup"
+	cp $Programloc $backupdir
+    	tar -zcvf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
+    	echo "Restarting up Plex Media Server"
+	systemctl start plexmediaserver
 	;;
 	(-r)
 	echo "<--- Restoring Plex Media Server ->"
-	
+	echo "<--- Stopping Plex Media Server ->"
+	sudo systemctl stop plexmediaserver
+	chmod 0777 -R $Programloc
+	tar xjf $backupdir/PlexMediaServer_FullBackup-*.tar.gz $Programloc
+	sleep 20
+	echo "Restarting up Plex Media Server"
+	systemctl start plexmediaserver
 	;;
 	(-u)
 	echo "<--- Updating Plex Media Server ->"
