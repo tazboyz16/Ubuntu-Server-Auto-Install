@@ -12,10 +12,6 @@ Programloc=/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Se
 backupdir=/opt/backup/Plex
 time=$(date +"%m_%d_%y-%H_%M")
 
-if ! source "/opt/install/Plex/plexupdate.sh"; then
-	git clone https://github.com/mrworf/plexupdate.git /opt/install/Plex
-fi
-
 case $mode in
 	(-i|"")
 	echo "<--- Installing Plex Media Server ->"
