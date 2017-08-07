@@ -4,6 +4,7 @@ if [[ $EUID -ne 0 ]]; then
 	echo "This Script must be run as root"
 	exit 1
 fi
+SCRIPT_PATH="$(dirname "$0")"
 
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
@@ -15,7 +16,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 case $mode in
 	(-i|"")
 	echo "<--- Installing Plex Media Server ->"
-	bash /opt/install/Plex/plexupdate.sh -p -a -d
+	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d
 	;;
 	(-b)
 	echo "Backing up Plex Media Server"
