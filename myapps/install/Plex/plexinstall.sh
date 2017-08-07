@@ -42,11 +42,11 @@ case $mode in
 	;;
 	(-u)
 	echo "<--- Updating Plex Media Server ->"
-	bash /opt/install/Plex/plexupdate.sh -p -a -d
+	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d
 	;;
 	(-U)
 	echo "<--- Force Updating Plex Media Server ->"
-	bash /opt/install/Plex/plexupdate.sh -p -a -d -f
+	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d -f
 	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
