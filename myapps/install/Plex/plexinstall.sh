@@ -12,7 +12,9 @@ Programloc=/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Se
 backupdir=/opt/backup/Plex
 time=$(date +"%m_%d_%y-%H_%M")
 
-git clone https://github.com/mrworf/plexupdate.git /opt/install/Plex
+if ! source "${SCRIPT_PATH}/plexupdate-core"; then
+	git clone https://github.com/mrworf/plexupdate.git /opt/install/Plex
+fi
 
 case $mode in
 	(-i|"")
