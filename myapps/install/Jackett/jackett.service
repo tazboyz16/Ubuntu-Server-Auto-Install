@@ -3,8 +3,8 @@ Description=Jackett Daemon
 After=network.target
 
 [Service]
-User=jackett
-Group=jackett
+User=Jackett
+Group=Jackett
 Type=simple
 ExecStart=/usr/bin/mono /opt/Jackett/JackettConsole.exe
 TimeoutStopSec=20
