@@ -16,7 +16,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 case $mode in
 	(-i|"")
 	apt update
-	apt install python
+	apt install python -y
 	adduser --disabled-password --system --home /opt/ProgramData/LazyLibrarian --gecos "LazyLibrarian Service" --group LazyLibrarian
    	cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
    	chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
