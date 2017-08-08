@@ -15,7 +15,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
-	adduser --disabled-password --system --home /opt/ProgramData/Jackett --gecos "Jackett Service" --group jackett
+	adduser --disabled-password --system --home /opt/ProgramData/Jackett --gecos "Jackett Service" --group Jackett
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 	echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
 	apt install mono-complete libcurl4-openssl-dev -y
@@ -24,7 +24,7 @@ case $mode in
 	mkdir /opt/Jackett
 	mv Jackett/* /opt/Jackett
 	chmod 0777 -R /opt/Jackett
-	chown -R jackett:jackett /opt/Jackett
+	chown -R Jackett:Jackett /opt/Jackett
 	echo "Creating Startup Script"
 	cp /opt/install/Jackett/jackett.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/jackett.service
