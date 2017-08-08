@@ -19,7 +19,7 @@ case $mode in
 	echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 	apt install oracle-java8-installer -y
-	adduser --disabled-password --system --gecos "Madsonic Service" --group Madsonic
+	adduser --disabled-password --system --home /opt/ProgramData/Madsonic --gecos "Madsonic Service" --group Madsonic
 	#Latest Stable as of 5/29/2017
 	#http://beta.madsonic.org/pages/download.jsp
 	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
