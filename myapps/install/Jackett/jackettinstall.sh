@@ -5,7 +5,6 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-version=$(lsb_release -rs)
 versionm=$(lsb_release -cs)
 
 #Modes (Variables)
