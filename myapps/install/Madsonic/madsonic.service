@@ -4,25 +4,8 @@ Description=Madsonic Media Server
 [Service]
 User=Madsonic
 Group=Madsonic
-ExecStart=/usr/bin/madsonic \
-   --init-memory=256 \
-   --pidfile=/run/madsonic/madsonic.pid \
-   --update=false \
-   --home=${MADSONIC_HOME} \
-   --host=${MADSONIC_HOST} \
-   --port=${MADSONIC_PORT} \
-   --https-port=${MADSONIC_HTTPS_PORT} \
-   --context-path=${MADSONIC_CONTEXT_PATH} \
-   --max-memory=${MADSONIC_MAX_MEMORY} \
-   --default-music-folder=${MADSONIC_DEFAULT_MUSIC_FOLDER} \
-   --default-upload-folder=${MADSONIC_DEFAULT_UPLOAD_FOLDER} \
-   --default-podcast-folder=${MADSONIC_DEFAULT_PODCAST_FOLDER} \
-   --default-playlist-import-folder=${MADSONIC_DEFAULT_PLAYLIST_IMPORT_FOLDER} \
-   --default-playlist-export-folder=${MADSONIC_DEFAULT_PLAYLIST_EXPORT_FOLDER} \
-   --default-playlist-backup-folder=${MADSONIC_DEFAULT_PLAYLIST_BACKUP_FOLDER} \
-   --default-transcode-folder=${MADSONIC_DEFAULT_TRANSCODE_FOLDER} \
-   --timezone=${MADSONIC_DEFAULT_TIMEZONE} \
-   --gzip=${MADSONIC_GZIP}
+Type=simple
+ExecStart=/usr/bin/madsonic --host=0.0.0.0 --port=4040
 PIDFile=/run/madsonic/madsonic.pid
 
 [Install]
