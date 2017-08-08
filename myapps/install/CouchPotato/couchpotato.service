@@ -5,8 +5,8 @@ After=network.target
 [Service]
 ExecStart=/opt/CouchPotatoServer/CouchPotato.py
 Type=simple
-User=couchpotato
-Group=couchpotato
+User=Couchpotato
+Group=Couchpotato
 
 [Install]
 WantedBy=multi-user.target
