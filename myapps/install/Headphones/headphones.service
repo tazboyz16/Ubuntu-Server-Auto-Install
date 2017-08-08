@@ -3,8 +3,8 @@ Description=Headphones Daemon
 After=network.target
 
 [Service]
-User=headphones
-Group=headphones
+User=Headphones
+Group=Headphones
 Type=forking
 ExecStart=/opt/headphones/Headphones.py --daemon --nolaunch
 GuessMainPID=no
