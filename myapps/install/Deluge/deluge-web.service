@@ -4,8 +4,8 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=deluge
-Group=deluge
+User=Deluge
+Group=Deluge
 UMask=027
 ExecStart=/usr/bin/deluge-web
 Restart=on-failure
