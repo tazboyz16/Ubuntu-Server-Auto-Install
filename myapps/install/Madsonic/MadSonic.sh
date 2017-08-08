@@ -29,6 +29,7 @@ case $mode in
 	#sed -i
 	echo "Creating Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
+	service madsonic stop
 	sudo update-rc.d madsonic disable
 	chmod 644 /etc/systemd/system/madsonic.service
 	systemctl enable madsonic.service
