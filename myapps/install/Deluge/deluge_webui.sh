@@ -21,10 +21,10 @@ case $mode in
 	apt update
 	## setup deluge user
 	echo "<--- Now we will setup a user for Deluge --->"
-	adduser --disabled-password --system --home /var/lib/deluge --gecos "Deluge service" --group deluge
+	adduser --disabled-password --system --home /var/lib/deluge --gecos "Deluge service" --group Deluge
 	sudo touch /var/log/deluged.log
 	sudo touch /var/log/deluge-web.log
-	sudo chown deluge:deluge /var/log/deluge*
+	sudo chown Deluge:Deluge /var/log/deluge*
 	apt update; apt install python python-twisted python-openssl python-setuptools intltool python-xdg python-chardet geoip-database python-libtorrent python-notify python-pygame python-glade2 librsvg2-common xdg-utils python-mako -y
 	apt install deluged deluge-webui -y
 	echo "Creating Startup Scripts For Deluged and Deluge-WebUI"
