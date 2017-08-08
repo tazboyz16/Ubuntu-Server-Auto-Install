@@ -15,6 +15,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
+	apt update
 	apt install python git-core -y
 	adduser --disabled-password --system --home /opt/ProgramData/Headphones --gecos "Headphones Service" --group Headphones
 	echo '<--- Downloading latest Headphones --->'
