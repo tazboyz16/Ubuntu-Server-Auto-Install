@@ -16,10 +16,10 @@ time=$(date +"%m_%d_%y-%H_%M")
 case $mode in
 	(-i|"")
 	apt install python git-core -y
-	adduser --disabled-password --system --home /opt/ProgramData/headphones --gecos "Headphones Service" --group headphones
+	adduser --disabled-password --system --home /opt/ProgramData/Headphones --gecos "Headphones Service" --group Headphones
 	echo '<--- Downloading latest Headphones --->'
 	cd /opt &&  git clone https://github.com/rembo10/headphones.git
-	chown -R headphones:headphones /opt/headphones
+	chown -R Headphones:Headphones /opt/headphones
 	chmod -R 0777 /opt/headphones
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
@@ -32,7 +32,7 @@ case $mode in
 	echo "Stopping Headphones"
 	systemctl stop headphones
 	cat /opt/install/Headphones/Headphones.txt > /opt/headphones/config.ini
-	chown -R headphones:headphones /opt/headphones
+	chown -R Headphones:Headphones /opt/headphones
 	chmod -R 0777 /opt/headphones
 	echo "Starting up Headphones"
 	systemctl start headphones
