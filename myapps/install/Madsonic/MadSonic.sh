@@ -26,9 +26,10 @@ case $mode in
 	dpkg -i 20161208_madsonic-6.2.9040.deb
 	#edit MADSONIC_USER variable to not run as root under /etc/default/madsonic for port number change
 	#also /var/lib/madsonic/madsonic.properties for auto-generated settings file
-	sed -i
+	#sed -i
 	echo "Creating Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
+	sudo update-rc.d madsonic disable
 	chmod 644 /etc/systemd/system/madsonic.service
 	systemctl enable madsonic.service
 	systemctl restart madsonic.service
