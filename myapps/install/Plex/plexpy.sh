@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo "Installing PlexPy"
-adduser --disabled-password --system --no-create-home --gecos "PlexPy Service"  --group plexpy
+adduser --disabled-password --system --home /opt/ProgramData/PlexPy --gecos "PlexPy Service"  --group plexpy
 cd /opt && git clone https://github.com/JonnyWong16/plexpy.git
 #echo "<--- Restoring PLexPy Settings --->"
 #cat /opt/install/PlexAddons/Headphones.txt > /opt/.headphones/config.ini
