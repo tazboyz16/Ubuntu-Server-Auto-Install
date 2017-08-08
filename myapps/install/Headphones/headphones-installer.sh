@@ -10,7 +10,7 @@ fi
 mode="$1"
 
 Programloc=/opt/headphones
-backupdir=/opt/backup/headphones
+backupdir=/opt/backup/Headphones
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
