@@ -19,6 +19,7 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Jackett --gecos "Jackett Service" --group Jackett
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
+	apt update
 	apt install mono-complete libcurl4-openssl-dev -y
 	wget $(curl -s https://api.github.com/repos/Jackett/Jackett/releases/latest | grep 'Jackett.Binaries.Mono.tar.gz' | cut -d\" -f4)
 	tar -xvf Jackett.Binaries.Mono.tar.gz && sudo rm Jackett.Binaries.Mono.tar.gz
