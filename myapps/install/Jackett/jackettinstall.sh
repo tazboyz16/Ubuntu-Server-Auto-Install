@@ -15,7 +15,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
-	adduser --disabled-password --system --home /opt/ProgramData/jackett --gecos "Jackett Service" --group jackett
+	adduser --disabled-password --system --home /opt/ProgramData/Jackett --gecos "Jackett Service" --group jackett
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 	echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
 	apt install mono-complete libcurl4-openssl-dev -y
