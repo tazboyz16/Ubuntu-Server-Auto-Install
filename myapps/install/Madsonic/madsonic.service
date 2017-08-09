@@ -1,11 +1,13 @@
 [Unit]
 Description=Madsonic Media Server
+After=network.target
 
 [Service]
 User=Madsonic
 Group=Madsonic
 Type=forking
-ExecStart=/usr/share/madsonic/madsonic.sh
+PreExecStart=/usr/share/madsonic/madsonic.sh
+
 Restart=on-failure
 GuessMainPID=no
 
