@@ -7,7 +7,8 @@ User=Madsonic
 Group=Madsonic
 Type=forking
 #/var/bin/madsonic is just a symblink to /usr/share/madsonic/madsonic.sh
-ExecStart=/usr/share/madsonic/madsonic.sh
+ExecStart=/etc/init.d/madsonic start
+ExecStop=/etc/init.d/madsonic stop
 Restart=on-failure
 GuessMainPID=no
 
