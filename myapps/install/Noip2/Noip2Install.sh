@@ -6,6 +6,7 @@ echo noip2 noip2/netdevice select | sudo /usr/bin/debconf-set-selections
 echo noip2 noip2/password select xxxpasswordxxx | sudo /usr/bin/debconf-set-selections
 echo noip2 noip2/updating select 30 | sudo /usr/bin/debconf-set-selections
 echo noip2 noip2/username select xxxusernamexxx | sudo /usr/bin/debconf-set-selections
+#Last one Post on Launchpad for Noip2 .deb file Since Ubuntu 12
 dpkg -i /opt/install/Noip2/noip2_2.1.deb
 
 echo "Creating Startup Script"
