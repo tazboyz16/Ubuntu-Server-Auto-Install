@@ -4,9 +4,10 @@ Description=Madsonic Media Server
 [Service]
 User=Madsonic
 Group=Madsonic
-Type=simple
+Type=forking
 ExecStart=/usr/bin/madsonic --host=0.0.0.0 --port=4040
-PIDFile=/run/madsonic/madsonic.pid
+Restart=on-failure
+GuessMainPID=no
 
 [Install]
 WantedBy=multi-user.target
