@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#common locations for the files with Madsonic
+#/var/madsonic, /usr/bin/madsonic, /usr/share/madsonic, /etc/default/madsonic, 
+
+
 if [[ $EUID -ne 0 ]]; then
 	echo "This Script must be run as root"
 	exit 1
