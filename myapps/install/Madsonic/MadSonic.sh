@@ -24,10 +24,11 @@ case $mode in
 	#http://beta.madsonic.org/pages/download.jsp
 	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
 	dpkg -i 20161208_madsonic-6.2.9040.deb
-	echo "Creating Startup Script"
+	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
 	service madsonic stop
-	sudo update-rc.d madsonic remove
+	sudo killall madsonic
+	sudo update-rc.d -f madsonic remove
 	chmod 644 /etc/systemd/system/madsonic.service
 	systemctl enable madsonic.service
 	systemctl restart madsonic.service
