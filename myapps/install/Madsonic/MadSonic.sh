@@ -2,6 +2,7 @@
 
 #common locations for the files with Madsonic
 #/var/madsonic, /usr/bin/madsonic, /usr/share/madsonic, /etc/default/madsonic, 
+#https://unix.stackexchange.com/questions/233468/how-does-systemd-use-etc-init-d-scripts
 
 
 if [[ $EUID -ne 0 ]]; then
@@ -30,6 +31,9 @@ case $mode in
 	dpkg -i 20161208_madsonic-6.2.9040.deb
 	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
+	#edit MADSONIC_USER variable to not run as root under /etc/default/madsonic for port number change
+	#also /var/lib/madsonic/madsonic.properties for auto-generated settings file
+	sed -i "s#Madsonic_user=root#Madsonic_user=Madsonic#" /etc/default/madsonic
 	service madsonic stop
 	sudo killall madsonic
 	sudo update-rc.d -f madsonic remove
