@@ -29,12 +29,9 @@ case $mode in
 	#http://beta.madsonic.org/pages/download.jsp
 	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
 	dpkg -i 20161208_madsonic-6.2.9040.deb
-	rm -r *_madsonic-*.deb
+	rm -rf *_madsonic-*.deb
 	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
-	#edit MADSONIC_USER variable to not run as root under /etc/default/madsonic for port number change
-	#also /var/lib/madsonic/madsonic.properties for auto-generated settings file
-	sed -i "s#MADSONIC_USER=root#MADSONIC_USER=Madsonic#" /etc/default/madsonic
 	service madsonic stop
 	sudo killall madsonic
 	sudo update-rc.d -f madsonic remove
