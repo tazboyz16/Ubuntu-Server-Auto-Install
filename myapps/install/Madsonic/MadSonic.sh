@@ -33,7 +33,7 @@ case $mode in
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
 	#edit MADSONIC_USER variable to not run as root under /etc/default/madsonic for port number change
 	#also /var/lib/madsonic/madsonic.properties for auto-generated settings file
-	sed -i "s#Madsonic_user=root#Madsonic_user=Madsonic#" /etc/default/madsonic
+	sed -i "s#MADSONIC_USER=root#MADSONIC_USER=Madsonic#" /etc/default/madsonic
 	service madsonic stop
 	sudo killall madsonic
 	sudo update-rc.d -f madsonic remove
