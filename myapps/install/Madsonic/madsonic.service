@@ -6,8 +6,8 @@ After=network.target
 User=Madsonic
 Group=Madsonic
 Type=forking
-PreExecStart=/usr/share/madsonic/madsonic.sh
-
+#/var/bin/madsonic is just a symblink to /usr/share/madsonic/madsonic.sh
+ExecStart=/usr/share/madsonic/madsonic.sh
 Restart=on-failure
 GuessMainPID=no
 
