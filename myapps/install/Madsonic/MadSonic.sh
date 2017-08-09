@@ -26,10 +26,10 @@ case $mode in
 	dpkg -i 20161208_madsonic-6.2.9040.deb
 	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
-	#service madsonic stop
-	#sudo killall madsonic
-	#sudo update-rc.d -f madsonic remove
-	#sudo rm /etc/default/madsonic 
+	service madsonic stop
+	sudo killall madsonic
+	sudo update-rc.d -f madsonic remove
+	sudo rm /etc/default/madsonic 
 	chmod 644 /etc/systemd/system/madsonic.service
 	systemctl enable madsonic.service
 	systemctl restart madsonic.service
