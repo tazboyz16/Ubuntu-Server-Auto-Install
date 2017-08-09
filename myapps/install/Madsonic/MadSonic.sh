@@ -29,6 +29,7 @@ case $mode in
 	service madsonic stop
 	sudo killall madsonic
 	sudo update-rc.d -f madsonic remove
+	sudo rm /etc/default/madsonic 
 	chmod 644 /etc/systemd/system/madsonic.service
 	systemctl enable madsonic.service
 	systemctl restart madsonic.service
