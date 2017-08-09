@@ -5,7 +5,7 @@ Description=Madsonic Media Server
 User=Madsonic
 Group=Madsonic
 Type=forking
-ExecStart=/usr/bin/madsonic --host=0.0.0.0 --port=4040
+ExecStart=/usr/bin/madsonic
 Restart=on-failure
 GuessMainPID=no
 
