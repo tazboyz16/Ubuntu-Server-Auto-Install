@@ -5,7 +5,7 @@ Description=Madsonic Media Server
 User=Madsonic
 Group=Madsonic
 Type=forking
-ExecStart=/usr/bin/madsonic
+ExecStart=/usr/share/madsonic/madsonic.sh
 Restart=on-failure
 GuessMainPID=no
 
