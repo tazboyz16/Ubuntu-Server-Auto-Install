@@ -9,7 +9,7 @@ Group=Nzbget
 Type=forking
 ExecStart=/opt/Nzbget/nzbget -D
 ExecStop=/opt/Nzbget/nzbget -Q
-ExecReload=/opt/Nzbget/nzbget -O
+#ExecReload=/opt/Nzbget/nzbget -O
 KillMode=process
 Restart=on-failure
 
