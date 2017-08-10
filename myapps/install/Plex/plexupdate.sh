@@ -1,52 +1,5 @@
 #!/bin/bash
-#
-# Plex Linux Server download tool
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# This tool will download the latest version of Plex Media
-# Server for Linux. It supports both the public versions
-# as well as the PlexPass versions.
-#
-# PlexPass users:
-#   Create a plexupdate.conf file in your home directory with these
-#   values:
-#
-#   EMAIL='<whatever your plexpass email was>'
-#   PASS='<whatever password you used>'
-#   DOWNLOADDIR='<where you would like to save the downloaded package>'
-#
-# And run the tool using: ./plexupdate.sh --config plexupdate.conf
-# or place the config in /etc/plexupdate.conf
-#
-# See https://github.com/mrworf/plexupdate for more details.
-#
-# Returns 0 on success
-#         1 on error
-#         2 if file already downloaded
-#         3 if page layout has changed.
-#         4 if download fails
-#         6 if update was deferred due to usage
-#
-# All other return values not documented.
-#
-# Call program with -h for available options
-#
-# Enjoy!
-#
-# Check out https://github.com/mrworf/plexupdate for latest version
-# and also what's new.
-#
-##############################################################################
-# Quick-check before we allow bad things to happen
-if [ -z "${BASH_VERSINFO}" ]; then
-	echo "ERROR: You must execute this script with BASH" >&2
-	exit 255
-fi
 
-##############################################################################
-# Don't change anything below this point, use a plexupdate.conf file
-# to override this section.
-# DOWNLOADDIR is the full directory path you would like the download to go.
-#
 EMAIL=
 PASS=
 DOWNLOADDIR="/tmp"
