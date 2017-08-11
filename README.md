@@ -12,8 +12,8 @@
      
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
-(Currently Using 16.04.2 LTS on my personal Server 64bit as of 8/2017)   
-(Also tested with Codeanywhere for Ubuntu 14LTS, and on Codenvy for ubuntu 16 installs)    
+Currently Using 16.04.2 LTS on my personal Server 64bit as of 8/2017  
+Also tested with [Codeanywhere](https://codeanywhere.com) for Ubuntu 14LTS, and on [Codenvy](https://codenvy.io) for ubuntu 16 installs        
 
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
    
