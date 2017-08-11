@@ -1,0 +1,8 @@
+migrateplexserverconfig.sh
+# (User) Configuration found flag and file name
+HaveConfig=0; ConfigPath="/etc/sysconfig/PlexMediaServerConfig"
+
+also look under
+/etc/default/plexmediaserver
+
+
