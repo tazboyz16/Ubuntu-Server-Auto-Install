@@ -1,8 +1,4 @@
-migrateplexserverconfig.sh
-# (User) Configuration found flag and file name
-HaveConfig=0; ConfigPath="/etc/sysconfig/PlexMediaServerConfig"
-
-also look under
-/etc/default/plexmediaserver
+systemd file gets saved under /lib/systemd/system
 
 
+ignore cache folder, plug-ins folder,
