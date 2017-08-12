@@ -7,7 +7,11 @@ fi
 SCRIPT_PATH="$(dirname "$0")"
 
 
-#******1.7.5.4035-313f93718 version installs deb repo for Plex.tv self own repo to Sources.list****
+#******1.7.5.4035-313f93718 version installs deb repo for Plex.tv self own repo to Sources.list******
+#systemd file gets saved under /lib/systemd/system
+#ignore cache folder, plug-ins folder,
+
+
 
 
 #Modes (Variables)
@@ -28,6 +32,9 @@ case $mode in
 	sudo systemctl stop plexmediaserver
 	echo "Making sure Backup Dir exists"
 	mkdir -p $backupdir
+	echo "Please Wait Checking Size of Plex Media Server to be backed up"
+	echo "Once done total memory is on the bottom of list"
+	du -h --max-depth=1 $Programloc
 	echo "Backing up Plex Media Server to /opt/backup"
 	cp $Programloc $backupdir
     	tar -zcvf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
