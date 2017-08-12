@@ -31,7 +31,7 @@
 if [ -z "${BASH_VERSINFO}" ]; then
 	echo "ERROR: You must execute this script with BASH" >&2
 	exit 255
-fi
+fi 
 
 ##############################################################################
 # Don't change anything below this point, use a plexupdate.conf file
