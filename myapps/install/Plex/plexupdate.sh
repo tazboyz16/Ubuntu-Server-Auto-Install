@@ -96,7 +96,7 @@ usage() {
 	exit 0
 }
 
-#!/bin/bash
+#copied over from the plexupdate-core
 ######## INDEX ########
 # GPT -> getPlexToken
 # GPS -> getPlexServerToken
