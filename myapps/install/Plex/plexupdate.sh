@@ -1,5 +1,43 @@
 #!/bin/bash
+#
+# Plex Linux Server download tool
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# This tool will download the latest version of Plex Media
+# Server for Linux. It supports both the public versions
+# as well as the PlexPass versions.
+#
+# See https://github.com/mrworf/plexupdate for more details.
+#
+# Returns 0 on success
+#         1 on error
+#         3 if page layout has changed.
+#         4 if download fails
+#         6 if update was deferred due to usage
+#         7 if update is available (requires --check-update)
+#        10 if new file was downloaded/installed (requires --notify-success)
+#       255 configuration is invalid
+#
+# All other return values not documented.
+#
+# Call program with -h for available options
+#
+# Enjoy!
+#
+# Check out https://github.com/mrworf/plexupdate for latest version
+# and also what's new.
+#
+##############################################################################
+# Quick-check before we allow bad things to happen
+if [ -z "${BASH_VERSINFO}" ]; then
+	echo "ERROR: You must execute this script with BASH" >&2
+	exit 255
+fi
 
+##############################################################################
+# Don't change anything below this point, use a plexupdate.conf file
+# to override this section.
+# DOWNLOADDIR is the full directory path you would like the download to go.
+#
 EMAIL=
 PASS=
 DOWNLOADDIR="/tmp"
@@ -9,59 +47,23 @@ PLEXPORT=32400
 # Defaults
 # (aka "Advanced" settings, can be overriden with config file)
 FORCE=no
-FORCEALL=no
-PUBLIC=yes
-AUTOINSTALL=yes
-AUTODELETE=yes
+PUBLIC=no
+AUTOINSTALL=no
+AUTODELETE=no
 AUTOUPDATE=no
 AUTOSTART=no
 ARCH=$(uname -m)
 SHOWPROGRESS=no
 WGETOPTIONS=""	# extra options for wget. Used for progress bar.
 CHECKUPDATE=yes
+NOTIFY=no
+CHECKONLY=no
 
-# Default options for package managers, override if needed
-REDHAT_INSTALL="dnf -y install"
-DEBIAN_INSTALL="dpkg -i"
-DISTRO_INSTALL=""
-
-# Current pages we need - Do not change unless Plex.tv changes again
-URL_LOGIN='https://plex.tv/users/sign_in.json'
-URL_DOWNLOAD='https://plex.tv/api/downloads/1.json?channel=plexpass'
-URL_DOWNLOAD_PUBLIC='https://plex.tv/api/downloads/1.json'
-
-#URL for new version check
-UPSTREAM_GIT_URL='https://raw.githubusercontent.com/mrworf/plexupdate/master/plexupdate.sh'
-
-#Branch to fetch updates from
-BRANCHNAME="master"
-
-#Files "owned" by plexupdate, for autoupdate
-PLEXUPDATE_FILES="plexupdate.sh extras/installer.sh extras/cronwrapper"
-
-FILE_POSTDATA=$(mktemp /tmp/plexupdate.postdata.XXXX)
-FILE_RAW=$(mktemp /tmp/plexupdate.raw.XXXX)
-FILE_FAILCAUSE=$(mktemp /tmp/plexupdate.failcause.XXXX)
-FILE_KAKA=$(mktemp /tmp/plexupdate.kaka.XXXX)
 FILE_SHA=$(mktemp /tmp/plexupdate.sha.XXXX)
 FILE_WGETLOG=$(mktemp /tmp/plexupdate.wget.XXXX)
-FILE_LOCAL=$(mktemp /tmp/plexupdate.local.XXXX)
-FILE_REMOTE=$(mktemp /tmp/plexupdate.remote.XXXX)
+SCRIPT_PATH="$(dirname "$0")"
 
 ######################################################################
-# Functions for rest of script
-
-warn() {
-	echo "WARNING: $@" >&1
-}
-
-info() {
-	echo "$@" >&1
-}
-
-error() {
-	echo "ERROR: $@" >&2
-}
 
 usage() {
 	echo "Usage: $(basename $0) [-acdfFhlpPqsuU] [<long options>]"
@@ -71,7 +73,6 @@ usage() {
 	echo "    -d Auto delete after auto install"
 	echo "    -f Force download even if it's the same version or file"
 	echo "       already exists unless checksum passes"
-	echo "    -F Force download always"
 	echo "    -h This help"
 	echo "    -l List available builds and distros"
 	echo "    -p Public Plex Media Server version"
@@ -83,16 +84,197 @@ usage() {
 	echo "    -v Show additional debug information"
 	echo ""
 	echo "    Long Argument Options:"
+	echo "    --check-update Check for new version of plex only"
 	echo "    --config <path/to/config/file> Configuration file to use"
 	echo "    --dldir <path/to/download/dir> Download directory to use"
-	echo "    --email <plex.tv email> Plex.TV email address"
-	echo "    --pass <plex.tv password> Plex.TV password"
-	echo "    --server <Plex server address> Address of Plex Server"
+	echo "    --help This help"
+	echo "    --notify-success Set exit code 10 if update is available/installed"
 	echo "    --port <Plex server port> Port for Plex Server. Used with --server"
-	echo
+	echo "    --server <Plex server address> Address of Plex Server"
+	echo "    --token Manually specify the token to use to download Plex Pass releases"
+	echo ""
 	exit 0
 }
 
+#!/bin/bash
+######## INDEX ########
+# GPT -> getPlexToken
+# GPS -> getPlexServerToken
+# GPW -> getPlexWebToken
+# HELPERS -> keypair, rawurlencode, trimQuotes
+# RNNG -> running
+# SHARED -> warn, info, warn
+
+######## CONSTANTS ########
+# Current pages we need - Do not change unless Plex.tv changes again
+URL_LOGIN='https://plex.tv/users/sign_in.json'
+URL_DOWNLOAD='https://plex.tv/api/downloads/1.json?channel=plexpass'
+URL_DOWNLOAD_PUBLIC='https://plex.tv/api/downloads/1.json'
+
+# Default options for package managers, override if needed
+REDHAT_INSTALL="dnf -y install"
+DEBIAN_INSTALL="dpkg -i"
+DISTRO_INSTALL=""
+
+#URL for new version check
+UPSTREAM_GIT_URL="https://raw.githubusercontent.com/${GIT_OWNER:-mrworf}/plexupdate/${BRANCHNAME:-master}"
+
+#Files "owned" by plexupdate, for autoupdate
+PLEXUPDATE_FILES="plexupdate.sh plexupdate-core extras/installer.sh extras/cronwrapper"
+
+
+######## FUNCTIONS ########
+#### Token Management #####
+
+# GPT
+getPlexToken() {
+	if [ -n "$TOKEN" ]; then
+		[ "$VERBOSE" = "yes" ] && info "Fetching token from config"
+	elif getPlexServerToken; then
+		[ "$VERBOSE" = "yes" ] && info "Fetching token from Plex server"
+	elif [ -z "$TOKEN" -a -n "$EMAIL" -a -n "$PASS" ]; then
+		warn "Storing your email and password has been deprecated. Please re-run extras/installer.sh or see https://github.com/mrworf/plexupdate#faq"
+		getPlexWebToken
+	# Check if we're connected to a terminal
+	elif [ -z "$TOKEN" -a -t 0 ]; then
+		info "To continue, you will need to provide your Plex account credentials."
+		info "Your email and password will only be used to retrieve a 'token' and will not be saved anywhere."
+		echo
+		while true; do
+			read -e -p "PlexPass Email Address: " -i "$EMAIL" EMAIL
+			if [ -z "${EMAIL}" ] || [[ "$EMAIL" == *"@"* ]] && [[ "$EMAIL" != *"@"*"."* ]]; then
+				info "Please provide a valid email address"
+			else
+				break
+			fi
+		done
+		while true; do
+			read -e -p "PlexPass Password: " -i "$PASS" PASS
+			if [ -z "$PASS" ]; then
+				info "Please provide a password"
+			else
+				break
+			fi
+		done
+		getPlexWebToken
+	fi
+
+	[ -n "$TOKEN" ] # simulate exit status
+}
+
+# GPS
+getPlexServerToken() {
+	if [ -f /etc/default/plexmediaserver ]; then
+		source /etc/default/plexmediaserver
+	fi
+
+	# List possible locations to find Plex Server preference file
+	local VALIDPATHS=("${PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR}" "/var/lib/plexmediaserver/Library/Application Support/" "${HOME}/Library/Application Support/")
+	local PREFFILE="/Plex Media Server/Preferences.xml"
+
+	for I in "${VALIDPATHS[@]}" ; do
+		if [ ! -z "${I}" -a -f "${I}${PREFFILE}" ]; then
+			# When running installer.sh directly from wget, $0 will return bash
+			if [ "$(basename $0)" = "installer.sh" -o "$(basename $0)" = "bash" ]; then
+				TOKEN=$(sudo sed -n 's/.*PlexOnlineToken="\([[:alnum:]]*\).*".*/\1/p' "${I}${PREFFILE}" 2>/dev/null)
+			else
+				TOKEN=$(sed -n 's/.*PlexOnlineToken="\([[:alnum:]]*\).*".*/\1/p' "${I}${PREFFILE}" 2>/dev/null)
+			fi
+		fi
+	done
+
+	[ -n "$TOKEN" ] # simulate exit status
+}
+
+# GPW
+getPlexWebToken() {
+	local FILE_POSTDATA=$(mktemp /tmp/plexupdate.postdata.XXXX)
+	local FILE_RAW=$(mktemp /tmp/plexupdate.raw.XXXX)
+	local FILE_FAILCAUSE=$(mktemp /tmp/plexupdate.failcause.XXXX)
+
+	# Fields we need to submit for login to work
+	#
+	# Field			Value
+	# utf8			&#x2713;
+	# authenticity_token	<Need to be obtained from web page>
+	# user[login]		$EMAIL
+	# user[password]	$PASS
+	# user[remember_me]	0
+	# commit		Sign in
+
+	# Build post data
+	echo -ne >"${FILE_POSTDATA}" "$(keypair "user[login]" "${EMAIL}" )"
+	echo -ne >>"${FILE_POSTDATA}" "&$(keypair "user[password]" "${PASS}" )"
+	echo -ne >>"${FILE_POSTDATA}" "&$(keypair "user[remember_me]" "0" )"
+
+	# Authenticate (using Plex Single Sign On)
+	wget --header "X-Plex-Client-Identifier: 4a745ae7-1839-e44e-1e42-aebfa578c865" --header "X-Plex-Product: Plex SSO" "${URL_LOGIN}" --post-file="${FILE_POSTDATA}" -q -S -O "${FILE_FAILCAUSE}" 2>"${FILE_RAW}"
+
+	# Provide some details to the end user
+	local RESULTCODE=$(head -n1 "${FILE_RAW}" | grep -oe '[1-5][0-9][0-9]')
+	if [ $RESULTCODE -eq 401 ]; then
+		error "Username and/or password incorrect"
+	elif [ $RESULTCODE -ne 201 ]; then
+		error "Failed to log in, debug information:"
+		cat "${FILE_RAW}" >&2
+	else
+		TOKEN=$(<"${FILE_FAILCAUSE}"  grep -ioe '"authToken":"[^"]*' | cut -c 14-)
+	fi
+
+	# Clean up temp files since they may contain sensitive information
+	rm "${FILE_FAILCAUSE}" "${FILE_POSTDATA}" "${FILE_RAW}"
+
+	[ -n "$TOKEN" ] # simulate exit status
+}
+
+# HELPERS
+keypair() {
+	local key="$( rawurlencode "$1" )"
+	local val="$( rawurlencode "$2" )"
+
+	echo "${key}=${val}"
+}
+
+rawurlencode() {
+	local string="${1}"
+	local strlen=${#string}
+	local encoded=""
+
+	for (( pos=0 ; pos<strlen ; pos++ )); do
+		c=${string:$pos:1}
+		case "$c" in
+		[-_.~a-zA-Z0-9] ) o="${c}" ;;
+		* )               printf -v o '%%%02x' "'$c"
+		esac
+		encoded+="${o}"
+	done
+	echo "${encoded}"
+}
+
+trimQuotes() {
+	local __buffer=$1
+
+	# Remove leading single quote
+	__buffer=${__buffer#\'}
+	# Remove ending single quote
+	__buffer=${__buffer%\'}
+
+	echo $__buffer
+}
+
+getRemoteSHA() {
+	# these two lines can't be combined. `local RESULT=` will gobble up the return
+	local RESULT
+	RESULT=$(wget -q "$1" -O - 2>/dev/null) || return 1
+	sha1sum <<< "$RESULT" | cut -f1 -d" "
+}
+
+getLocalSHA() {
+	[ -f "$1" ] || return 1
+	sha1sum "$1" | cut -f1 -d" "
+}
+
+# RNNG
 running() {
 	local DATA="$(wget --no-check-certificate -q -O - https://$1:$3/status/sessions?X-Plex-Token=$2)"
 	local RET=$?
@@ -118,52 +300,40 @@ running() {
 	fi
 }
 
-trimQuotes() {
-	local __buffer=$1
-
-	# Remove leading single quote
-	__buffer=${__buffer#\'}
-	# Remove ending single quote
-	__buffer=${__buffer%\'}
-
-	echo $__buffer
+verifyToken() {
+	wget -qO /dev/null "https://plex.tv/api/resources?X-Plex-Token=${TOKEN}"
 }
 
-# Useful functions
-rawurlencode() {
-	local string="${1}"
-	local strlen=${#string}
-	local encoded=""
+# Shared functions
 
-	for (( pos=0 ; pos<strlen ; pos++ )); do
-		c=${string:$pos:1}
-		case "$c" in
-		[-_.~a-zA-Z0-9] ) o="${c}" ;;
-		* )               printf -v o '%%%02x' "'$c"
-	esac
-	encoded+="${o}"
-	done
-	echo "${encoded}"
+# SHARED
+warn() {
+	echo "WARNING: $@" >&1
 }
 
-keypair() {
-	local key="$( rawurlencode "$1" )"
-	local val="$( rawurlencode "$2" )"
-
-	echo "${key}=${val}"
+info() {
+	echo "$@" >&1
 }
+
+error() {
+	echo "ERROR: $@" >&2
+}
+
+# Intentionally leaving this hard to find so that people aren't trying to use it manually.
+if [ "$(basename "$0")" = "get-plex-token" ]; then
+	[ -f /etc/plexupdate.conf ] && source /etc/plexupdate.conf
+	getPlexToken && info "Token = $TOKEN"
+fi
 
 # Setup an exit handler so we cleanup
 cleanup() {
-	for F in "${FILE_RAW}" "${FILE_FAILCAUSE}" "${FILE_POSTDATA}" "${FILE_KAKA}" "${FILE_SHA}" "${FILE_LOCAL}" "${FILE_REMOTE}" "${FILE_WGETLOG}"; do
-		rm "$F" 2>/dev/null >/dev/null
-	done
+	rm "${FILE_SHA}" "${FILE_WGETLOG}" &> /dev/null
 }
 trap cleanup EXIT
 
 # Parse commandline
 ALLARGS=( "$@" )
-optstring="-o acCdfFhlpPqrSsuUv -l config:,dldir:,email:,pass:,server:,port:"
+optstring="-o acCdfFhlpPqrSsuUv -l config:,dldir:,email:,pass:,server:,port:,token:,notify-success,check-update,help"
 GETOPTRES=$(getopt $optstring -- "$@")
 if [ $? -eq 1 ]; then
 	exit 1
@@ -183,7 +353,7 @@ done
 # We have to double-check that both files exist before trying to stat them. This is going away soon.
 if [ -z "${CONFIGFILE}" -a -f ~/.plexupdate -a ! -f /etc/plexupdate.conf ] || \
 	([ -f "${CONFIGFILE}" -a -f ~/.plexupdate ] && [ `stat -Lc %i "${CONFIGFILE}"` == `stat -Lc %i ~/.plexupdate` ]); then
-warn ".plexupdate has been deprecated. Please run $(dirname "$0")/extras/installer.sh to update your configuration."
+	warn ".plexupdate has been deprecated. Please run ${SCRIPT_PATH}/extras/installer.sh to update your configuration."
 	if [ -t 1 ]; then
 		for i in `seq 1 5`; do echo -n .\ ; sleep 1; done
 		echo .
@@ -204,7 +374,7 @@ do
 		(-C) error "CRON option is deprecated, please use cronwrapper (see README.md)"; exit 255;;
 		(-d) AUTODELETE=yes;;
 		(-f) FORCE=yes;;
-		(-F) FORCEALL=yes;;
+		(-F) error "FORCEALL/-F option is deprecated, please use FORCE/-f instead"; exit 255;;
 		(-l) LISTOPTS=yes;;
 		(-p) PUBLIC=yes;;
 		(-P) SHOWPROGRESS=yes;;
@@ -217,10 +387,15 @@ do
 
 		(--config) shift;; #gobble up the paramater and silently continue parsing
 		(--dldir) shift; DOWNLOADDIR=$(trimQuotes ${1});;
-		(--email) shift; EMAIL=$(trimQuotes ${1});;
-		(--pass) shift; PASS=$(trimQuotes ${1});;
+		(--email) shift; warn "EMAIL is deprecated. Use TOKEN instead."; EMAIL=$(trimQuotes ${1});;
+		(--pass) shift; warn "PASS is deprecated. Use TOKEN instead."; PASS=$(trimQuotes ${1});;
 		(--server) shift; PLEXSERVER=$(trimQuotes ${1});;
 		(--port) shift; PLEXPORT=$(trimQuotes ${1});;
+		(--token) shift; TOKEN=$(trimQuotes ${1});;
+		(--help) usage;;
+
+		(--notify-success) NOTIFY=yes;;
+		(--check-update) CHECKONLY=yes;;
 
 		(--) ;;
 		(-*) error "Unrecognized option $1"; usage; exit 1;;
@@ -253,6 +428,11 @@ if [ "${KEEP}" = "yes" ]; then
 	exit 255
 fi
 
+if [ "${FORCEALL}" = "yes" ]; then
+	error "FORCEALL is deprecated, please use FORCE instead"
+	exit 255
+fi
+
 if [ ! -z "${RELEASE}" ]; then
 	error "RELEASE keyword is deprecated and should be removed from config file"
 	error "Use DISTRO and BUILD instead to manually select what to install (check README.md)"
@@ -265,58 +445,54 @@ if [ "${AUTOUPDATE}" = "yes" ]; then
 		exit 1
 	fi
 
-	pushd "$(dirname "$0")" >/dev/null
+	pushd "${SCRIPT_PATH}" >/dev/null
 
 	if [ ! -d .git ]; then
-		error "This is not a git repository. Auto-update only works if you've done a git clone"
-		exit 1
-	fi
+		warn "This is not a git repository. Auto-update only works if you've done a git clone"
+	elif ! git diff --quiet; then
+		warn "You have made changes to the plexupdate files, cannot auto update"
+	else
+		# Force FETCH_HEAD to point to the correct branch (for older versions of git which don't default to current branch)
+		if git fetch origin ${BRANCHNAME:-master} --quiet && ! git diff --quiet FETCH_HEAD; then
+			info "Auto-updating..."
 
-	if ! git diff --quiet; then
-		error "You have made changes to the plexupdate files, cannot auto update"
-		exit 1
-	fi
-
-	# Force FETCH_HEAD to point to the correct branch (for older versions of git which don't default to current branch)
-	if git fetch origin $BRANCHNAME --quiet && ! git diff --quiet FETCH_HEAD; then
-		info "Auto-updating..."
-
-		# Use an associative array to store permissions. If you're running bash < 4, the declare will fail and we'll
-		# just run in "dumb" mode without trying to restore permissions
-		declare -A FILE_OWNER FILE_PERMS && \
-		for filename in $PLEXUPDATE_FILES; do
-			FILE_OWNER[$filename]=$(stat -c "%u:%g" "$filename")
-			FILE_PERMS[$filename]=$(stat -c "%a" "$filename")
-		done
-
-		if ! git merge --quiet FETCH_HEAD; then
-			error 'Unable to update git, try running "git pull" manually to see what is wrong'
-			exit 1
-		fi
-
-		if [ ${#FILE_OWNER[@]} -gt 0 ]; then
+			# Use an associative array to store permissions. If you're running bash < 4, the declare will fail and we'll
+			# just run in "dumb" mode without trying to restore permissions
+			declare -A FILE_OWNER FILE_PERMS && \
 			for filename in $PLEXUPDATE_FILES; do
-				chown ${FILE_OWNER[$filename]} $filename &> /dev/null || error "Failed to restore ownership for '$filename' after auto-update"
-				chmod ${FILE_PERMS[$filename]} $filename &> /dev/null || error "Failed to restore permissions for '$filename' after auto-update"
+				FILE_OWNER[$filename]=$(stat -c "%u:%g" "$filename")
+				FILE_PERMS[$filename]=$(stat -c "%a" "$filename")
 			done
-		fi
 
-		# .git permissions don't seem to be affected by running as root even though files inside do, so just reset
-		# the permissions to match the folder
-		chown -R --reference=.git .git
+			if ! git merge --quiet FETCH_HEAD; then
+				error 'Unable to update git, try running "git pull" manually to see what is wrong'
+				exit 1
+			fi
 
-		info "Update complete"
+			if [ ${#FILE_OWNER[@]} -gt 0 ]; then
+				for filename in $PLEXUPDATE_FILES; do
+					chown ${FILE_OWNER[$filename]} $filename &> /dev/null || error "Failed to restore ownership for '$filename' after auto-update"
+					chmod ${FILE_PERMS[$filename]} $filename &> /dev/null || error "Failed to restore permissions for '$filename' after auto-update"
+				done
+			fi
 
-		#make sure we're back in the right relative location before testing $0
-		popd >/dev/null
+			# .git permissions don't seem to be affected by running as root even though files inside do, so just reset
+			# the permissions to match the folder
+			chown -R --reference=.git .git
 
-		if [ ! -f "$0" ]; then
-			error "Unable to relaunch, couldn't find $0"
-			exit 1
-		else
-			[ -x "$0" ] || chmod 755 "$0"
-			"$0" ${ALLARGS[@]}
-			exit $?
+			info "Update complete"
+
+			#make sure we're back in the right relative location before testing $0
+			popd >/dev/null
+
+			if [ ! -f "$0" ]; then
+				error "Unable to relaunch, couldn't find $0"
+				exit 1
+			else
+				[ -x "$0" ] || chmod 755 "$0"
+				"$0" ${ALLARGS[@]}
+				exit $?
+			fi
 		fi
 	fi
 
@@ -324,18 +500,9 @@ if [ "${AUTOUPDATE}" = "yes" ]; then
 	popd &>/dev/null
 fi
 
-# Sanity check
-if [ -z "${EMAIL}" -o -z "${PASS}" ] && [ "${PUBLIC}" = "no" ]; then
-	error "Need username & password to download PlexPass version. Otherwise run with -p to download public version."
-	exit 1
-elif [ ! -z "${EMAIL}" ] && [[ "$EMAIL" == *"@"* ]] && [[ "$EMAIL" != *"@"*"."* ]]; then
-	error "EMAIL field must contain a valid email address"
-	exit 1
-fi
-
-
 if [ "${AUTOINSTALL}" = "yes" -o "${AUTOSTART}" = "yes" ] && [ ${EUID} -ne 0 ]; then
 	error "You need to be root to use AUTOINSTALL/AUTOSTART option."
+	exit 1
 fi
 
 
@@ -377,84 +544,36 @@ else
 fi
 
 if [ "${CHECKUPDATE}" = "yes" -a "${AUTOUPDATE}" = "no" ]; then
-	(wget -q "$UPSTREAM_GIT_URL" -O - 2>/dev/null || echo ERROR) | sha1sum >"${FILE_REMOTE}" 2>/dev/null
-	ERR1=$?
-	(cat "$0" 2>/dev/null || echo ERROR) | sha1sum >"${FILE_LOCAL}" 2>/dev/null
-	ERR2=$?
-	if [ $ERR1 -ne 0 -o $ERR2 -ne 0 ]; then
-		error "When checking for version, was unable to confirm version of script"
-	else
-		# "709c7506b17090bce0d1e2464f39f4a434cf25f1" is the hash for "ERROR" :)
-		if grep -sq "709c7506b17090bce0d1e2464f39f4a434cf25f1" "${FILE_LOCAL}" ; then
-			error "When checking for version, was unable to validate local copy"
-		elif grep -sq "709c7506b17090bce0d1e2464f39f4a434cf25f1" "${FILE_REMOTE}" ; then
-			error "When checking for version, was was unable to validate remote copy"
-		elif ! diff "${FILE_LOCAL}" "${FILE_REMOTE}" >/dev/null 2>/dev/null ; then
-			info "Newer version of this script is available at https://github.com/mrworf/plexupdate"
+	pushd "${SCRIPT_PATH}" > /dev/null
+	for filename in $PLEXUPDATE_FILES; do
+		[ -f "$filename" ] || error "Update check failed. '$filename' could not be found"
+
+		REMOTE_SHA=$(getRemoteSHA "$UPSTREAM_GIT_URL/$filename") || error "Update check failed. Unable to fetch '$UPSTREAM_GIT_URL/$filename'."
+		LOCAL_SHA=$(getLocalSHA "$filename")
+		if [ "$REMOTE_SHA" != "$LOCAL_SHA" ]; then
+			info "Newer version of this script is available at https://github.com/${GIT_OWNER:-mrworf}/plexupdate"
+			break
 		fi
-	fi
-	rm "${FILE_LOCAL}" 2>/dev/null >/dev/null
-	rm "${FILE_REMOTE}" 2>/dev/null >/dev/null
+	done
+	popd > /dev/null
 fi
 
-
-
-# Fields we need to submit for login to work
-#
-# Field			Value
-# utf8			&#x2713;
-# authenticity_token	<Need to be obtained from web page>
-# user[login]		$EMAIL
-# user[password]	$PASSWORD
-# user[remember_me]	0
-# commit		Sign in
-
-if [ "${PUBLIC}" = "no" ]; then
-	info "Authenticating with plex.tv"
-
-	# Clean old session
-	rm "${FILE_KAKA}" 2>/dev/null
-
-	# Build post data
-	echo -ne >"${FILE_POSTDATA}" "$(keypair "user[login]" "${EMAIL}" )"
-	echo -ne >>"${FILE_POSTDATA}" "&$(keypair "user[password]" "${PASS}" )"
-	echo -ne >>"${FILE_POSTDATA}" "&$(keypair "user[remember_me]" "0" )"
-
-	# Authenticate (using Plex Single Sign On)
-	wget --header "X-Plex-Client-Identifier: 4a745ae7-1839-e44e-1e42-aebfa578c865" --header "X-Plex-Product: Plex SSO" --load-cookies "${FILE_KAKA}" --save-cookies "${FILE_KAKA}" --keep-session-cookies "${URL_LOGIN}" --post-file="${FILE_POSTDATA}" -q -S -O "${FILE_FAILCAUSE}" 2>"${FILE_RAW}"
-	# Delete authentication data ... Bad idea to let that stick around
-	rm "${FILE_POSTDATA}"
-
-	# Provide some details to the end user
-	RESULTCODE=$(head -n1 "${FILE_RAW}" | grep -oe '[1-5][0-9][0-9]')
-	if [ $RESULTCODE -eq 401 ]; then
-		error "Username and/or password incorrect"
-		if [ "$VERBOSE" = "yes" ]; then
-			info "Tried using \"${EMAIL}\" and \"${PASS}\" "
-		fi
-		exit 1
-	elif [ $RESULTCODE -ne 201 ]; then
-		error "Failed to login, debug information:"
-		cat "${FILE_RAW}" >&2
-		exit 1
+if [ "${PUBLIC}" = "no" -a -z "$TOKEN" ]; then
+	TO_SOURCE="$(dirname "$0")/extras/get-plex-token"
+	[ -f "$TO_SOURCE" ] && source $TO_SOURCE
+	if ! getPlexToken; then
+		error "Unable to get Plex token, falling back to public release"
+		PUBLIC="yes"
 	fi
+fi
 
-	# If the system got here, it means the login was successfull, so we set the TOKEN variable to the authToken from the response
-	# I use cut -c 14- to cut off the "authToken":" string from the grepped result, can probably be done in a different way
-	TOKEN=$(<"${FILE_FAILCAUSE}"  grep -ioe '"authToken":"[^"]*' | cut -c 14-)
-
-	# Remove this, since it contains more information than we should leave hanging around
-	rm "${FILE_FAILCAUSE}"
-
-elif [ "$PUBLIC" != "no" ]; then
-	# It's a public version, so change URL and make doubly sure that cookies are empty
-	rm 2>/dev/null >/dev/null "${FILE_KAKA}"
-	touch "${FILE_KAKA}"
+if [ "$PUBLIC" != "no" ]; then
+	# It's a public version, so change URL
 	URL_DOWNLOAD=${URL_DOWNLOAD_PUBLIC}
 fi
 
 if [ "${LISTOPTS}" = "yes" ]; then
-	opts="$(wget --load-cookies "${FILE_KAKA}" --save-cookies "${FILE_KAKA}" --keep-session-cookies "${URL_DOWNLOAD}" -O - 2>/dev/null | grep -oe '"label"[^}]*' | grep -v Download | sed 's/"label":"\([^"]*\)","build":"\([^"]*\)","distro":"\([^"]*\)".*/"\3" "\2" "\1"/' | uniq | sort)"
+	opts="$(wget "${URL_DOWNLOAD}" -O - 2>/dev/null | grep -oe '"label"[^}]*' | grep -v Download | sed 's/"label":"\([^"]*\)","build":"\([^"]*\)","distro":"\([^"]*\)".*/"\3" "\2" "\1"/' | uniq | sort)"
 	eval opts=( "DISTRO" "BUILD" "DESCRIPTION" "======" "=====" "==============================================" $opts )
 
 	BUILD=
@@ -478,12 +597,29 @@ fi
 info "Retrieving list of available distributions"
 
 # Set "X-Plex-Token" to the auth token, if no token is specified or it is invalid, the list will return public downloads by default
-RELEASE=$(wget --header "X-Plex-Token:"${TOKEN}"" --load-cookies "${FILE_KAKA}" --save-cookies "${FILE_KAKA}" --keep-session-cookies "${URL_DOWNLOAD}" -O - 2>/dev/null | grep -ioe '"label"[^}]*' | grep -i "\"distro\":\"${DISTRO}\"" | grep -m1 -i "\"build\":\"${BUILD}\"")
+RELEASE=$(wget --header "X-Plex-Token:"${TOKEN}"" "${URL_DOWNLOAD}" -O - 2>/dev/null | grep -ioe '"label"[^}]*' | grep -i "\"distro\":\"${DISTRO}\"" | grep -m1 -i "\"build\":\"${BUILD}\"")
 DOWNLOAD=$(echo ${RELEASE} | grep -m1 -ioe 'https://[^\"]*')
 CHECKSUM=$(echo ${RELEASE} | grep -ioe '\"checksum\"\:\"[^\"]*' | sed 's/\"checksum\"\:\"//')
 
+if [ "$VERBOSE" = "yes" ]; then
+	for i in RELEASE DOWNLOAD CHECKSUM; do
+		info "$i=${!i}"
+	done
+fi
+
 if [ -z "${DOWNLOAD}" ]; then
-	error "Unable to retrieve the URL needed for download (Query DISTRO: $DISTRO, BUILD: $BUILD)"
+	if [ "$DISTRO" = "ubuntu" -a "$BUILD" = "linux-ubuntu-armv7l" ]; then
+		error "Plex Media Server on Raspbian is not officially supported and script cannot download a working package."
+	else
+		error "Unable to retrieve the URL needed for download (Query DISTRO: $DISTRO, BUILD: $BUILD)"
+	fi
+	if [ ! -z "${RELEASE}" ]; then
+		error "It seems release info is missing a link"
+		error "Please try https://plex.tv and confirm it works there before reporting this issue"
+	fi
+	exit 3
+elif [ -z "${CHECKSUM}" ]; then
+	error "Unable to retrieve a checksum for the download. Please try https://plex.tv/downloads before reporting this issue."
 	exit 3
 fi
 
@@ -513,43 +649,40 @@ else
 	INSTALLED_VERSION=$(rpm -qv plexmediaserver 2>/dev/null)
 fi
 
-if [[ $FILENAME == *$INSTALLED_VERSION* ]] && [ "${FORCE}" != "yes" -a "${FORCEALL}" != "yes" ] && [ ! -z "${INSTALLED_VERSION}" ]; then
+if [ "${CHECKONLY}" = "yes" ]; then
+	if [ -z "${INSTALLED_VERSION}" ]; then
+		warn "Unable to detect installed version, first time?"
+	elif [[ $FILENAME != *$INSTALLED_VERSION* ]]; then
+		AVAIL="$(echo "${FILENAME}" | sed -nr 's/^[^0-9]+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\-[^_]+).*/\1/pg')"
+		info "Your OS reports Plex $INSTALLED_VERSION installed, newer version is available (${AVAIL})"
+		exit 7
+	else
+		info "You are running the latest version of Plex (${INSTALLED_VERSION})"
+	fi
+	exit 0
+fi
+
+if [[ $FILENAME == *$INSTALLED_VERSION* ]] && [ "${FORCE}" != "yes" ] && [ ! -z "${INSTALLED_VERSION}" ]; then
 	info "Your OS reports the latest version of Plex ($INSTALLED_VERSION) is already installed. Use -f to force download."
 	exit 0
 fi
 
-if [ -f "${DOWNLOADDIR}/${FILENAME}" ]; then
-	if [ "${FORCE}" != "yes" -a "${FORCEALL}" != "yes" ]; then
-		sha1sum --status -c "${FILE_SHA}"
-		if [ $? -eq 0 ]; then
-			info "File already exists (${FILENAME}), won't download."
-			if [ "${AUTOINSTALL}" != "yes" ]; then
-				exit 2
-			fi
-			SKIP_DOWNLOAD="yes"
-		else
-			info "File exists but fails checksum. Redownloading."
-			SKIP_DOWNLOAD="no"
+if [ -f "${DOWNLOADDIR}/${FILENAME}" -a "${FORCE}" != "yes" ]; then
+	if sha1sum --status -c "${FILE_SHA}"; then
+		info "File already exists (${FILENAME}), won't download."
+		if [ "${AUTOINSTALL}" != "yes" ]; then
+			exit 0
 		fi
-	elif [ "${FORCEALL}" == "yes" ]; then
-		info "Note! File exists, but asked to overwrite with new copy"
+		SKIP_DOWNLOAD="yes"
 	else
-		sha1sum --status -c "${FILE_SHA}"
-		if [ $? -ne 0 ]; then
-			info "File exists but fails checksum. Redownloading."
-		else
-			info "File exists and checksum passes, won't redownload."
-			if [ "${AUTOINSTALL}" != "yes" ]; then
-				exit 2
-			fi
-			SKIP_DOWNLOAD="yes"
-		fi
+		info "File exists but fails checksum. Redownloading."
+		SKIP_DOWNLOAD="no"
 	fi
 fi
 
 if [ "${SKIP_DOWNLOAD}" = "no" ]; then
 	info "Downloading release \"${FILENAME}\""
-	wget ${WGETOPTIONS} -o "${FILE_WGETLOG}" --load-cookies "${FILE_KAKA}" --save-cookies "${FILE_KAKA}" --keep-session-cookies "${DOWNLOAD}" -O "${DOWNLOADDIR}/${FILENAME}" 2>&1
+	wget ${WGETOPTIONS} -o "${FILE_WGETLOG}" "${DOWNLOAD}" -O "${DOWNLOADDIR}/${FILENAME}" 2>&1
 	CODE=$?
 
 	if [ ${CODE} -ne 0 ]; then
@@ -560,8 +693,7 @@ if [ "${SKIP_DOWNLOAD}" = "no" ]; then
 	info "File downloaded"
 fi
 
-sha1sum --status -c "${FILE_SHA}"
-if [ $? -ne 0 ]; then
+if ! sha1sum --status -c "${FILE_SHA}"; then
 	error "Downloaded file corrupt. Try again."
 	exit 4
 fi
@@ -578,9 +710,14 @@ if [ "${AUTOINSTALL}" = "yes" ]; then
 	if ! hash ldconfig 2>/dev/null && [ "${DISTRO}" = "ubuntu" ]; then
 		export PATH=$PATH:/sbin
 	fi
-	# no elif since DISTRO_INSTALL will produce error output for us
 
 	${DISTRO_INSTALL} "${DOWNLOADDIR}/${FILENAME}"
+	RET=$?
+	if [ ${RET} -ne 0 ]; then
+		# Clarify why this failed, so user won't be left in the dark
+		error "Failed to install update. Command '${DISTRO_INSTALL} "${DOWNLOADDIR}/${FILENAME}"' returned error code ${RET}"
+		exit ${RET}
+	fi
 fi
 
 if [ "${AUTODELETE}" = "yes" ]; then
@@ -609,4 +746,8 @@ if [ "${AUTOSTART}" = "yes" ]; then
 	fi
 fi
 
+if [ "${NOTIFY}" = "yes" ]; then
+	# Notify success if we downloaded and possibly installed the update
+	exit 10
+fi
 exit 0
