@@ -21,7 +21,7 @@ case $mode in
 	echo "deb http://apt.sonarr.tv/ master main" | tee /etc/apt/sources.list.d/sonarr.list
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | tee /etc/apt/sources.list.d/mono-offical.list
-	apt get update
+	apt update
 	apt install nzbdrone libmono-cil-dev apt-transport-https mono-devel -y
 	chown -R Sonarr:Sonarr /opt/NzbDrone
 	echo "Creating Startup Script"
