@@ -20,3 +20,8 @@ cp /opt/install/Radarr/radarr.service /etc/systemd/system/
 chmod 644 /etc/systemd/system/radarr.service
 systemctl enable radarr.service
 systemctl restart radarr.service
+
+
+
+wget $( curl -s https://api.github.com/repos/Radarr/Radarr/releases | grep linux.tar.gz | grep browser_download_url | head -1 | cut -d \" -f 4 )
+tar -xvzf Radarr.develop.*.linux.tar.gz
