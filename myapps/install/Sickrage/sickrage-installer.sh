@@ -5,24 +5,71 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-echo '<--- Installing prerequisites for SickRage --->'
-apt install git-core unrar-free openssl libssl-dev python2.7 -y
-adduser --disabled-password --system --home /opt/ProgramData/sickrage --gecos "Sickrage Service" --group sickrage
-echo '<--- Downloading latest SickRage --->'
-cd /opt && git clone https://github.com/SickRage/SickRage.git 
+#Modes (Variables)
+# b=backup i=install r=restore u=update U=Force Update 
+mode="$1"
+Programloc=/opt/SickRage
+backupdir=/opt/backup/SickRage
+time=$(date +"%m_%d_%y-%H_%M")
 
-echo "<--- Restoring SickRage Settings --->"
-#backup files are in sickrage install location for items Cache Folder, failed.db,sickbeard.db, and cache.db
-cd
-tar xjf /opt/install/SickRage/sickrage.tar.bz2 -C /opt
-cp -rf /opt/sickrage/* /opt/SickRage
-rm -rf /opt/sickrage
-
-chown -R sickrage:sickrage /opt/SickRage
-chmod -R 0777 /opt/SickRage
-
-echo "Creating Startup Script"
-cp /opt/install/SickRage/sickrage.service /etc/systemd/system/
-chmod 644 /etc/systemd/system/sickrage.service
-systemctl enable sickrage.service
-systemctl restart sickrage.service
+case $mode in
+	(-i|"")
+	echo '<--- Installing SickRage --->'
+	apt update
+	apt install git-core unrar-free openssl libssl-dev python2.7 -y
+	adduser --disabled-password --system --home /opt/ProgramData/Sickrage --gecos "Sickrage Service" --group Sickrage
+	echo '<--- Downloading latest SickRage --->'
+	cd /opt && git clone https://github.com/SickRage/SickRage.git 
+	chown -R Sickrage:Sickrage /opt/SickRage
+	chmod -R 0777 /opt/SickRage
+	echo "Creating Startup Script"
+	cp /opt/install/SickRage/sickrage.service /etc/systemd/system/
+	chmod 644 /etc/systemd/system/sickrage.service
+	systemctl enable sickrage.service
+	systemctl restart sickrage.service
+	;;
+	(-r)
+	echo "<--- Restoring SickRage Settings --->"
+	echo "Stopping SickRage"
+	systemctl stop sickrage
+	chmod -R 0777 /opt/ProgramData/Sickrage
+	#NEEDS TO BE EDITED FOR UNZIP TAR FILE TO RESTORE SETTINGS VS SINGLE FILE RESTORE
+	cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	echo "Starting SickRage"
+    	systemctl start sickrage	
+	;;
+	(-b)
+	echo "Stopping SickRage"
+    	systemctl stop sickrage
+    	echo "Making sure Backup Dir exists"
+    	mkdir -p $backupdir
+    	echo "Backing up SickRage to /opt/backup"
+	#backup files are in sickrage install location for items Cache Folder, failed.db,sickbeard.db, and cache.db
+	cp /opt/ProgramData/Sickrage/.couchpotato/settings.conf $backupdir
+    	tar -zcvf /opt/backup/Sickrage_FullBackup-$time.tar.gz $backupdir
+    	echo "Restarting up SickRage"
+	systemctl start sickrage
+	;;
+	(-u)
+	echo "Stopping SickRage to Update"
+	sudo systemctl stop sickrage
+	sleep 5
+	cd $Programloc
+	git pull
+	echo "Starting SickRage"
+	sudo systemctl start sickrage
+	;;
+	(-U)
+	echo "Stopping SickRage to Force Update"
+	sudo systemctl stop sickrage
+	sleep 5
+	cd $Programloc
+	git fetch --all
+	git reset --hard origin/master
+	git pull
+	echo "Starting SickRage"
+	sudo systemctl start sickrage
+	;;
+    	(-*) echo "Invalid Argument"; exit 0;;
+esac
+exit 0
