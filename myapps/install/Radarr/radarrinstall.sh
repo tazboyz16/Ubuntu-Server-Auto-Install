@@ -12,7 +12,7 @@ adduser --disabled-password --system --home /opt/ProgramData/radarr --gecos "Rad
 echo "<--- Downloading latest Radarr --->"
 cd /opt && wget https://github.com/Radarr/Radarr/releases/download/v0.2.0.778/Radarr.develop.0.2.0.778.linux.tar.gz
 tar -xvzf Radarr.develop.0.2.0.778.linux.tar.gz
-rm -rf Radarr*.tar.gz
+rm -rf Radarr.develop.0.2.0.778.linux.tar.gz
 chown -R radarr:radarr /opt/Radarr/
 chmod -R 0777 /opt/Radarr
 echo "Creating Startup Script"
