@@ -16,7 +16,7 @@ case $mode in
 	(-i|"")
 	echo '<--- Installing SickRage --->'
 	apt update
-	apt install git-core unrar-free openssl libssl-dev python2.7 -y
+	apt install git-core unrar-free openssl libssl-dev python -y
 	adduser --disabled-password --system --home /opt/ProgramData/Sickrage --gecos "Sickrage Service" --group Sickrage
 	echo '<--- Downloading latest SickRage --->'
 	cd /opt && git clone https://github.com/SickRage/SickRage.git 
