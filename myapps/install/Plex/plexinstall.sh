@@ -17,7 +17,7 @@ SCRIPT_PATH="$(dirname "$0")"
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
 mode="$1"
-Programloc=(/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/)
+Programloc='/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/'
 backupdir=/opt/backup/Plex
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -34,9 +34,9 @@ case $mode in
 	mkdir -p $backupdir
 	echo "Please Wait Checking Size of Plex Media Server to be backed up"
 	echo "Once done total memory is on the bottom of list"
-	du -h --max-depth=1 $Programloc
+	du -h --max-depth=1 "$Programloc"
 	echo "Backing up Plex Media Server to /opt/backup"
-	cp $Programloc $backupdir
+	cp "$Programloc" $backupdir
     	tar -zcvf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
