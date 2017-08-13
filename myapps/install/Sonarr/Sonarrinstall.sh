@@ -10,8 +10,8 @@ versionm=$(lsb_release -cs)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/CouchPotatoServer/
-backupdir=/opt/backup/CouchPotatoServer
+Programloc=/opt/NzbDrone
+backupdir=/opt/backup/Sonarr
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
