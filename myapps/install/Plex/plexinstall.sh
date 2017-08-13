@@ -17,7 +17,7 @@ SCRIPT_PATH="$(dirname "$0")"
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
 mode="$1"
-Programloc="/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/"
+Programloc=(/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/)
 backupdir=/opt/backup/Plex
 time=$(date +"%m_%d_%y-%H_%M")
 
