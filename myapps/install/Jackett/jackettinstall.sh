@@ -53,26 +53,6 @@ case $mode in
     	echo "Restarting up Jackett"
 	systemctl start jackett
 	;;
-	(-u)
-	echo "Stopping Jackett to Update"
-	sudo systemctl stop jackett
-	sleep 5
-	cd $Programloc
-	git pull
-	echo "Starting Jackett"
-	sudo systemctl start jackett
-	;;
-	(-U)
-	echo "Stopping Jackett to Force Update"
-	sudo systemctl stop jackett
-	sleep 5
-	cd $Programloc
-	git fetch --all
-	git reset --hard origin/master
-	git pull
-	echo "Starting Jackett"
-	sudo systemctl start jackett
-	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
