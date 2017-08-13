@@ -37,7 +37,7 @@ case $mode in
 	du -h --max-depth=1 "$Programloc"
 	echo "Backing up Plex Media Server to /opt/backup"
 	cp -rf "$Programloc" $backupdir
-    	tar -zcvf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
+    	tar -zcf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
@@ -45,8 +45,8 @@ case $mode in
 	echo "<--- Restoring Plex Media Server ->"
 	echo "<--- Stopping Plex Media Server ->"
 	sudo systemctl stop plexmediaserver
-	chmod 0777 -R $Programloc
-	tar xjf $backupdir/PlexMediaServer_FullBackup-*.tar.gz $Programloc
+	chmod 0777 -R "$Programloc"
+	tar xjf $backupdir/PlexMediaServer_FullBackup-*.tar.gz "$Programloc"
 	sleep 20
 	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
