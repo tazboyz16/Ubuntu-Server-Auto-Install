@@ -235,30 +235,10 @@
 ;   create mask = 0600
 ;   directory mask = 0700
 
-
-[SystemBackup]
-	path = /media/SystemBackup
-
-[3rdShare]
-	path = /media/3rdShare
-
-[2TBMovies]
-	path = /media/2TBMovies
-
-[2TBShare]
-	path = /media/2TBShare
-
-#[MiscStuff]
-#	path = /media/MiscStuff
-
-[Music]
-	path = /media/Music
-
-[Pictures]
-	path = /media/Pictures
-
-[Torrent DropBox]
-	path = /media/3rdShare/Torrent-DropBox
-
-[Website]
-	path = /var/www
+#Examples
+#
+#[Torrent DropBox]
+#	path = /media/3rdShare/Torrent-DropBox
+#
+#[Website]
+#	path = /var/www
