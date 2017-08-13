@@ -11,7 +11,7 @@ apt install libmono-cil-dev curl mediainfo mono-devel -y
 adduser --disabled-password --system --home /opt/ProgramData/radarr --gecos "Radarr Service" --group radarr
 echo "<--- Downloading latest Radarr --->"
 cd /opt && wget https://github.com/Radarr/Radarr/releases/download/v0.2.0.778/Radarr.develop.0.2.0.778.linux.tar.gz
-tar -xvzf Radarr.develop.0.2.0.778.linux.tar.gz
+tar -xvf Radarr.develop.0.2.0.778.linux.tar.gz
 sleep 5 #sleep for 5 sec to ensure all files are copied over
 #rm -rf Radarr.develop.0.2.0.778.linux.tar.gz
 chown -R radarr:radarr /opt/Radarr/
