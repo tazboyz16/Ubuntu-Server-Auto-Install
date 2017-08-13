@@ -36,7 +36,7 @@ case $mode in
 	echo "Once done total memory is on the bottom of list"
 	du -h --max-depth=1 "$Programloc"
 	echo "Backing up Plex Media Server to /opt/backup"
-	cp "$Programloc" $backupdir
+	cp -rf "$Programloc" $backupdir
     	tar -zcvf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
