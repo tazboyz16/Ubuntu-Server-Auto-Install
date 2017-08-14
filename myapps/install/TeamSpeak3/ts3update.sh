@@ -38,15 +38,15 @@ fi
 
 case $mode in
     	(-b)
-    echo "Stopping TS3 Server"
-    systemctl stop ts3
-    echo "Making sure Backup Dir exists"
-    mkdir -p $backupdir
-    echo "Backing up TS3 Folder to /opt/backup"
-    tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
-    echo "Restarting up Server"
-    systemctl start ts3
-    ;;
+	echo "Stopping TS3 Server"
+	systemctl stop ts3
+	echo "Making sure Backup Dir exists"
+	mkdir -p $backupdir
+	echo "Backing up TS3 Folder to /opt/backup"
+	tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
+	echo "Restarting up Server"
+	systemctl start ts3
+	;;
     	(-i|"")
     	echo "Creating Teamspeak User account"
 	adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
