@@ -25,7 +25,7 @@ a2enmod cgi
 chown -R www-data:www-data /usr/share/zoneminder/
 a2enmod rewrite
 chown www-data:www-data /etc/zm/zm.conf
-cat /opt/install/Zoneminder/php.ini > /etc/php/7.0/apache2/php.ini
+cat /opt/install/Zoneminder/php.ini > /etc/php/7.0/apache2/php.ini #to edit timezone to current TZ
 service apache2 reload
 
 cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
