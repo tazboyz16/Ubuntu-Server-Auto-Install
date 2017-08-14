@@ -88,55 +88,55 @@ case $mode in
 	echo "2) 'Reinstall' over Current Installation"
 	read rianswer
     	case $rianswer in
-        Clean)
-        rm -rf $server
-        echo "Creating Teamspeak User account"
-	adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
-	echo "Downloading Latest Version of TeamSpeak 3 Server"
-	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-	echo "Installing TS3 Server Version $Version"
-	tar -xjf $dl/package.tar.bz2 -C $dl/
-	mv $dl/teamspeak3-server_linux_$arch/* $server
-	rm $dl/package.tar.bz2
-	ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
-	touch /opt/ts3/query_ip_blacklist.txt
-	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
-	cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
-	cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
-	chmod 0777 /opt/ts3 -R
-	chown teamspeak:teamspeak /opt/ts3 -R
-	echo "Creating Startup Script"
-	cp /opt/install/TeamSpeak3/ts3.service /etc/systemd/system/
-	chmod 644 /etc/systemd/system/ts3.service
-	systemctl enable ts3.service
-	systemctl restart ts3.service
-        exit 0;;
-        Reinstall)
-        echo "Stopping TS3 Server"
-	systemctl stop ts3
-	echo "Running Backup of Settings and DB of TeamSpeak Server Before Update"
-	cp $server/query_ip_blacklist.txt $backupdir
-	cp $server/query_ip_whitelist.txt $backupdir
-	cp $server/ts3server.ini $backupdir
-	cp $server/ts3db_mariadb.ini $backupdir
-	cp $server/ts3server.sqlitedb $backupdir
-	echo "Downloading Latest Version of TeamSpeak 3 Server"
-	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-	echo "Installing TS3 Server Version $Version"
-	tar -xjf $dl/package.tar.bz2 -C $dl/
-	cp -rf $dl/teamspeak3-server_linux_$arch/* $server
-	rm $dl/package.tar.bz2
-	echo "Moving back Settings and DB back to TS3 Folder"
-	mv $backupdir/query_ip_blacklist.txt $server
-	mv $backupdir/query_ip_whitelist.txt $server
-	mv $backupdir/ts3server.ini $server
-	mv $backupdir/ts3db_mariadb.ini $server
-	mv $backupdir/ts3server.sqlitedb $server
-	echo $Version > $server/version
-	echo "Starting Updated Server"
-	systemctl start ts3
-  	      exit 0;;
-    	esac
+        	Clean)
+        	rm -rf $server
+        	echo "Creating Teamspeak User account"
+		adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
+		echo "Downloading Latest Version of TeamSpeak 3 Server"
+		wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+		echo "Installing TS3 Server Version $Version"
+		tar -xjf $dl/package.tar.bz2 -C $dl/
+		mv $dl/teamspeak3-server_linux_$arch/* $server
+		rm $dl/package.tar.bz2
+		ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
+		touch /opt/ts3/query_ip_blacklist.txt
+		echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
+		cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
+		cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
+		chmod 0777 /opt/ts3 -R
+		chown teamspeak:teamspeak /opt/ts3 -R
+		echo "Creating Startup Script"
+		cp /opt/install/TeamSpeak3/ts3.service /etc/systemd/system/
+		chmod 644 /etc/systemd/system/ts3.service
+		systemctl enable ts3.service
+		systemctl restart ts3.service
+        	exit 0;;
+        	Reinstall)
+        	echo "Stopping TS3 Server"
+		systemctl stop ts3
+		echo "Running Backup of Settings and DB of TeamSpeak Server Before Update"
+		cp $server/query_ip_blacklist.txt $backupdir
+		cp $server/query_ip_whitelist.txt $backupdir
+		cp $server/ts3server.ini $backupdir
+		cp $server/ts3db_mariadb.ini $backupdir
+		cp $server/ts3server.sqlitedb $backupdir
+		echo "Downloading Latest Version of TeamSpeak 3 Server"
+		wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+		echo "Installing TS3 Server Version $Version"
+		tar -xjf $dl/package.tar.bz2 -C $dl/
+		cp -rf $dl/teamspeak3-server_linux_$arch/* $server
+		rm $dl/package.tar.bz2
+		echo "Moving back Settings and DB back to TS3 Folder"
+		mv $backupdir/query_ip_blacklist.txt $server
+		mv $backupdir/query_ip_whitelist.txt $server
+		mv $backupdir/ts3server.ini $server
+		mv $backupdir/ts3db_mariadb.ini $server
+		mv $backupdir/ts3server.sqlitedb $server
+		echo $Version > $server/version
+		echo "Starting Updated Server"
+		systemctl start ts3
+  	      	exit 0;;
+    		esac
 		echo "Starting TS3 Server"
 		systemctl start ts3 
 		;;
