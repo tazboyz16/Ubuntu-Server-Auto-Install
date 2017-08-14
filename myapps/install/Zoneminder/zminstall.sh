@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 add-apt-repository -y ppa:iconnor/zoneminder
-apt get update 
+apt update 
 
 #mariadb or mysql for the server
 server=mysql-server
