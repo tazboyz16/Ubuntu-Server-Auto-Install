@@ -37,7 +37,9 @@ case $mode in
 	du -h --max-depth=1 "$Programloc"
 	echo "Backing up Plex Media Server to /opt/backup"
 	cp -rf "$Programloc" $backupdir
-    	tar -zcf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
+	#tar -zcf will compress 61M dir to 11M file
+	#
+    	tar -zcf --lzma /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
