@@ -8,8 +8,8 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update(coming soon) 
 mode="$1"
-Programloc=/opt/ubooquity
-backupdir=/opt/backup/ubooquity
+Programloc=/opt/Ubooquity
+backupdir=/opt/backup/Ubooquity
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
