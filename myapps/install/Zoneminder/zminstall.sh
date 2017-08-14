@@ -5,17 +5,19 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-add-apt-repository -y ppa:iconnor/zoneminder
-apt update 
-
 #mariadb or mysql for the server
 server=mysql-server
 sqlpass=xxxpasswordxxx
 zmsqlpass=xxxpasswordxxx
 
+
+
+
+
+add-apt-repository -y ppa:iconnor/zoneminder
+apt update 
 echo $server $server/root_password password $sqlpass | debconf-set-selections
 echo $server $server/root_password_again password $sqlpass | debconf-set-selections
-
 apt install zoneminder php7.0-gd $server -y
 mysql --user=root -p$sqlpass mysql -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmadmin'@localhost identified by '$zmsqlpass';"
 mysql --user=root -p$sqlpass -h localhost zm  < /usr/share/zoneminder/db/zm_create.sql
@@ -27,7 +29,6 @@ a2enmod rewrite
 chown www-data:www-data /etc/zm/zm.conf
 cat /opt/install/Zoneminder/php.ini > /etc/php/7.0/apache2/php.ini #to edit timezone to current TZ
 service apache2 reload
-
 cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
 echo "sql_mode=NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.cnf
 
