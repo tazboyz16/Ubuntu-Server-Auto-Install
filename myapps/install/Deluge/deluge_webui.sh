@@ -67,7 +67,7 @@ case $mode in
 	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Deluge"
 	systemctl start deluged
-	systemctl stop deluge-web
+	systemctl start deluge-web
 	;;
 	(-vpn)
 	#lookup Reverse Proxy with Deluge 
@@ -82,7 +82,7 @@ case $mode in
 	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	echo "Restarting up Deluge"
 	systemctl start deluged
-	systemctl stop deluge-web
+	systemctl start deluge-web
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
