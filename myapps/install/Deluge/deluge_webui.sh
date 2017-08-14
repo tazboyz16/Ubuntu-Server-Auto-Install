@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore -vpn(coming soon)
+# b=backup i=install r=restore -vpn(coming soon) -dd(setup default daemon to localhost)
 mode="$1"
 
 Programloc=/var/lib/deluge
@@ -37,8 +37,6 @@ case $mode in
 	systemctl start deluged
 	systemctl start deluge-web
 	sleep 20
-	echo "Creating Auto load localhost WebUI for DelugeWeb"
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
@@ -74,6 +72,11 @@ case $mode in
 	(-vpn)
 	#lookup Reverse Proxy with Deluge 
 	
+	;;
+	(-dd)
+	echo "Creating Auto load localhost WebUI for DelugeWeb"
+	chmod 0777 -R /var/lib/deluge/
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
