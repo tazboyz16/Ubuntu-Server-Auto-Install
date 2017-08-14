@@ -10,7 +10,7 @@ SCRIPT_PATH="$(dirname "$0")"
 #******1.7.5.4035-313f93718 version installs deb repo for Plex.tv self own repo to Sources.list******
 #systemd file gets saved under /lib/systemd/system
 #ignore cache folder, plug-ins folder,
-
+#https://gist.github.com/ssmereka/8773626
 
 
 
@@ -35,12 +35,10 @@ case $mode in
 	echo "Please Wait Checking Size of Plex Media Server to be backed up"
 	echo "Once done total memory is on the bottom of list"
 	du -h --max-depth=1 "$Programloc"
-	echo "Backing up Plex Media Server to /opt/backup"
-	cp -rf "$Programloc" $backupdir
 	#tar -zcf will compress 61M dir to 11M file
 	#tar -azcf same results with 11M file
 	#tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma $backupdir results 3.8M File
-    	tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma $backupdir
+    	tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma "$Programloc"
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
