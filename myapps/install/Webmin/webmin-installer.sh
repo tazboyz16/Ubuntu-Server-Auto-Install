@@ -8,8 +8,8 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
-Programloc=/opt/Webmin   #need to update for restore nad backup 
-backupdir=/opt/backup/Webmin   #
+Programloc=/opt/Webmin   #need to update for restore and backup 
+backupdir=/opt/backup/Webmin   ##
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
