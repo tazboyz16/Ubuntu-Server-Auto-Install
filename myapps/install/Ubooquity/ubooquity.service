@@ -6,7 +6,7 @@ After=syslog.target network.target
 User=Ubooquity
 Group=Ubooquity
 WorkingDirectory= /opt/Ubooquity
-ExecStart=/usr/bin/java -jar Ubooquity.jar -headless -remoteadmin 
+ExecStart=/usr/bin/java -jar Ubooquity.jar --headless --remoteadmin 
 
 [Install]
 WantedBy=multi-user.target
