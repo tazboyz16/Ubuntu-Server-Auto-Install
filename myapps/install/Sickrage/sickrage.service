@@ -3,8 +3,8 @@ Description=SickRage Daemon
 After=syslog.target network.target
 
 [Service]
-User=sickrage
-Group=sickrage
+User=Sickrage
+Group=Sickrage
 Type=simple
 GuessMainPID=no
 ExecStart=/opt/SickRage/SickBeard.py

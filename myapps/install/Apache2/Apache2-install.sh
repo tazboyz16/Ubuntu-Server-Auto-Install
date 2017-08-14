@@ -5,7 +5,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-apt install apache2 -y
+apt update; apt install apache2 -y
 sleep 15
 
 echo "<--- Restoring Apache2 Settings --->"

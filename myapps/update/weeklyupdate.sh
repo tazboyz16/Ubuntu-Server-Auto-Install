@@ -1,11 +1,7 @@
 #!/bin/bash
 
 echo "SickRage Auto Update"
-sudo systemctl stop sickrage
-sleep 5
-cd /opt/SickRage
-git pull
-sudo systemctl start sickrage
+sudo bash /opt/install/Sickrage/sickrageinstaller.sh -u
 echo
 
 echo "Mylar Update"
@@ -37,7 +33,7 @@ cd /var/www
 sudo grive 
 
 echo "Plex Server Update"
-sudo bash /opt/update/plexupdate.sh -p -a -d -u
+sudo bash /opt/update/plexupdate.sh -p -a -d 
 echo
 
 echo "Running System Security Updates"

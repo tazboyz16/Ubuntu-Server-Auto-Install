@@ -3,10 +3,10 @@ Description=Ubooquity Daemon
 After=syslog.target network.target
 
 [Service]
-User=ubooquity
-Group=ubooquity
-WorkingDirectory= /opt/ubooquity
-ExecStart=/usr/bin/java -jar Ubooquity.jar -headless -remoteadmin 
+User=Ubooquity
+Group=Ubooquity
+WorkingDirectory= /opt/Ubooquity
+ExecStart=/usr/bin/java -jar Ubooquity.jar --headless --remoteadmin 
 
 [Install]
 WantedBy=multi-user.target
