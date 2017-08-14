@@ -74,9 +74,15 @@ case $mode in
 	
 	;;
 	(-dd)
+	echo "Stopping Deluge"
+    	systemctl stop deluged
+	systemctl stop deluge-web
 	echo "Creating Auto load localhost WebUI for DelugeWeb"
 	chmod 0777 -R /var/lib/deluge/
 	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
+	echo "Restarting up Deluge"
+	systemctl start deluged
+	systemctl stop deluge-web
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
