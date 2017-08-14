@@ -30,6 +30,6 @@ systemctl restart apache2
 echo
 
 echo "Running Full System Updates"
-apt get update
+apt update
 sleep 5
-apt get upgrade -y
+apt upgrade -y
