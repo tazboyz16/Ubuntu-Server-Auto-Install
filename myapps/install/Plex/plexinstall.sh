@@ -39,7 +39,7 @@ case $mode in
 	cp -rf "$Programloc" $backupdir
 	#tar -zcf will compress 61M dir to 11M file
 	#
-    	tar -j --lzma /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
+    	tar -azcf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
