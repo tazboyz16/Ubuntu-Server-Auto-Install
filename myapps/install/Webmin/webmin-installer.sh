@@ -48,6 +48,6 @@ case $mode in
     	echo "Restarting up Webmin"
 	systemctl start webmin
 	;;
-
-
-
+	(-*) echo "Invalid Argument"; exit 0;;
+esac
+exit 0
