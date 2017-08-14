@@ -33,10 +33,26 @@ case $mode in
 	systemctl enable ubooquity.service
 	systemctl restart ubooquity.service
 	;;
+	(-r)
+	echo "<--- Restoring Ubooquity Settings --->"
+	echo "Stopping Ubooquity"
+	systemctl stop ubooquity
+	cat /opt/install/Ubooquity/HTPCManager.txt > /opt/HTPCManager/userdata
+	chown -R Ubooquity:Ubooquity /opt/Ubooquity
+	chmod -R 0777 /opt/Ubooquity
+	echo "Starting up Ubooquity"
+	systemctl start ubooquity
+	;;
 	(-b)
-	
-	
-	
+	echo "Stopping Ubooquity"
+    	systemctl stop ubooquity
+    	echo "Making sure Backup Dir exists"
+    	mkdir -p $backupdir
+    	echo "Backing up Ubooquity to /opt/backup"
+	cp -rf /opt/Ubooquity/userdata $backupdir
+    	tar -zcvf /opt/backup/Ubooquity_FullBackup-$time.tar.gz $backupdir
+    	echo "Restarting up Ubooquity"
+	systemctl start ubooquity
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
