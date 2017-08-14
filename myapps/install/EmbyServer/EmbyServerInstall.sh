@@ -35,17 +35,14 @@ case $mode in
 	echo "<--Restoring Emby Server Settings -->"
 	echo "Stopping Emby Server"
 	systemctl stop emby-server
-	service emby-server stop
 	sudo chmod 0777 -R $Programloc
 	cp /opt/install/Jackett/ServerConfig.json /var/lib/emby-server/config/
 	echo "Restarting up Emby Server"
 	systemctl start emby-server
-	service emby-server start
 	;;
 	(-b)
 	echo "Stopping Emby Server"
     	systemctl stop emby-server
-	service emby-server stop
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Emby Server to /opt/backup"
@@ -53,7 +50,6 @@ case $mode in
 	tar -zcvf /opt/backup/EmbyServer_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Emby Server"
 	systemctl start emby-server
-	service emby-server start
 	;;
 	(-f)
 	#only run if getting a libembysqlite3.so.0 error
