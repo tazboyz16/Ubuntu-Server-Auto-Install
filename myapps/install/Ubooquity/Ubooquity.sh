@@ -33,7 +33,7 @@ case $mode in
 	systemctl enable ubooquity.service
 	systemctl restart ubooquity.service
 	;;
-	
+	(-b)
 	
 	
 	
