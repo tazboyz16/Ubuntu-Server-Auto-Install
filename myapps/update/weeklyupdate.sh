@@ -33,7 +33,7 @@ cd /var/www
 sudo grive 
 
 echo "Plex Server Update"
-sudo bash /opt/update/plexupdate.sh -p -a -d -u
+sudo bash /opt/update/plexupdate.sh -p -a -d 
 echo
 
 echo "Running System Security Updates"
