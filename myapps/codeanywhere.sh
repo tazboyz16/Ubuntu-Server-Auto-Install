@@ -4,4 +4,4 @@ apt update; apt upgrade -y --force-yes
 apt install systemd software-properties-common nano dialog debconf apt-transport-https -y
 
 cd myapps
-mv -rf * /opt
+cp -rf * /opt
