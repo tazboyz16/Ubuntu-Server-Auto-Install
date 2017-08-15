@@ -6,6 +6,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo "Installing PlexPy"
+apt update
+apt install python
 adduser --disabled-password --system --home /opt/ProgramData/PlexPy --gecos "PlexPy Service"  --group plexpy
 cd /opt && git clone https://github.com/JonnyWong16/plexpy.git
 #echo "<--- Restoring PLexPy Settings --->"
