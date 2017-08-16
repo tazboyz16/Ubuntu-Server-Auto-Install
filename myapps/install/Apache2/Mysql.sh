@@ -5,13 +5,6 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-sqlpassword=xxxpasswordxxx
-#Phpmyadmin login Secure
-phpadmin=xxxusernamexxx
-phppassword=xxxphppasswordxxx
-#Mysql Admin account for root is disabled
-mysqladmin=xxxsqlxxx
-mysqlpassword=xxxsqlpassxxx
 
 echo mysql-server mysql-server/root_password password $sqlpassword | debconf-set-selections
 echo mysql-server mysql-server/root_password_again password $sqlpassword | debconf-set-selections
