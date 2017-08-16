@@ -1,0 +1,28 @@
+https://doc.nuxeo.com/nxdoc/http-and-https-reverse-proxy-configuration/
+
+sudo a2enmod proxy_http
+sudo a2enmod proxy
+
+
+1)
+ProxyPass /nuxeo/ http://NuxeoServerInternalIp:8080/nuxeo/
+ProxyPassReverse /nuxeo/ http://NuxeoServerInternalIp:8080/nuxeo/
+ProxyPreserveHost On
+
+2)<VirtualHost *:*>
+    ProxyPreserveHost On
+
+    # Servers to proxy the connection, or;
+    # List of application servers:
+    # Usage:
+    # ProxyPass / http://[IP Addr.]:[port]/
+    # ProxyPassReverse / http://[IP Addr.]:[port]/
+    # Example: 
+    ProxyPass / http://0.0.0.0:8080/
+    ProxyPassReverse / http://0.0.0.0:8080/
+
+    ServerName localhost
+</VirtualHost>
+^edit this under the site-enabled 000-default.conf
+
+3)
