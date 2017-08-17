@@ -8,6 +8,9 @@ fi
 apt update; apt install apache2 -y
 sleep 15
 
+echo "Enabling Mods to have Reverse Proxy to services"
+a2enmod rewrite proxy proxy_http headers
+
 echo "<--- Restoring Apache2 Settings --->"
 cat /opt/install/Apache2/apache2.conf > /etc/apache2/apache2.conf
 sleep 5
