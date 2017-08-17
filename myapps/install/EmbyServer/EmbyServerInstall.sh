@@ -1,4 +1,13 @@
 #!/bin/bash
+
+###########################################################
+# Created by @tazboyz16 
+# This Script was created at 
+# https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
+# @ 2017 Creation
+# GNU General Public License v3.0
+###########################################################
+
 #As of 8/3/2017 Emby only has 12.04 14.04 16.04 16.10 17.04 and Next versions of ubuntu
 
 if [[ $EUID -ne 0 ]]; then
