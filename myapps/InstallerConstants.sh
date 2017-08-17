@@ -1,5 +1,13 @@
 #!/bin/bash
 
+###########################################################
+# Created by @tazboyz16 
+# This Script was created at 
+# https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
+# @ 2017 Creation
+# GNU General Public License v3.0
+###########################################################
+
 # source this file in the installers to keep constant info across installs
 
 #if you need a random password to be created use for Example:
