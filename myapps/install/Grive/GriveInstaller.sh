@@ -1,5 +1,13 @@
 #!/bin/bash
 
+###########################################################
+# Created by @tazboyz16 
+# This Script was created at 
+# https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
+# @ 2017 Creation
+# GNU General Public License v3.0
+###########################################################
+
 #http://www.webupd8.org/2015/05/grive2-grive-fork-with-google-drive.html has the DEB File ftp link
 
 if [[ $EUID -ne 0 ]]; then
