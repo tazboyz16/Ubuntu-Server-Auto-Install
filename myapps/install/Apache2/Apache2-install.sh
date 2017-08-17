@@ -1,5 +1,13 @@
 #!/bin/bash
 
+###########################################################
+# Created by @tazboyz16 
+# This Script was created at 
+# https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
+# @ 2017 Creation
+# GNU General Public License v3.0
+###########################################################
+
 if [[ $EUID -ne 0 ]]; then
 	echo "This Script must be run as root"
 	exit 1
@@ -7,6 +15,9 @@ fi
 
 apt update; apt install apache2 -y
 sleep 15
+
+echo "Enabling Mods to have Reverse Proxy to services"
+a2enmod rewrite proxy proxy_http headers
 
 echo "<--- Restoring Apache2 Settings --->"
 cat /opt/install/Apache2/apache2.conf > /etc/apache2/apache2.conf
