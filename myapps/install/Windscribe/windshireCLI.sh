@@ -6,3 +6,5 @@ windscribe login
 windscribe connect
 
 windscribe --help
+### its under beta
+#requires openvpn installed
