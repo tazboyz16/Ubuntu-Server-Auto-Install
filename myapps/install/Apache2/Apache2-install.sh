@@ -22,7 +22,6 @@ echo "Enabling Mods to have Reverse Proxy to services"
 a2enmod rewrite proxy proxy_http headers
 echo "<--- Restoring Apache2 Settings --->"
 cat /opt/install/Apache2/apache2.conf > /etc/apache2/apache2.conf
-cat /opt/install/Apache2/default-ssl.conf > /etc/apache2/sites-available/default-ssl.conf
 cat /opt/install/Apache2/000-default.conf > /etc/apache2/sites-available/000-default.conf
 echo "<- Restoring Apache2 Error Pages ->"
 cat /opt/install/Apache2/localized-error-pages.conf > /etc/apache2/conf-available/localized-error-pages.conf
