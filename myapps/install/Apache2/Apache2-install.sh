@@ -43,7 +43,7 @@ case $mode in
 	systemctl restart apache2
 	;;
 	(-b)
-	cp -rf /var/www $backupdir
+	cp -rf /var/www/ $backupdir
 	cp -rf /etc/apache2/sites-available/000-default.conf $backupdir
 	cp -rf /etc/apache2/apache2.conf $backupdir
 	cp -rf /etc/apache2/conf-available/localized-error-pages.conf $backupdir
