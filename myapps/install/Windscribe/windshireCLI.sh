@@ -8,3 +8,4 @@ windscribe connect
 windscribe --help
 ### its under beta
 #requires openvpn installed
+#https://forum.htpcguides.com/Thread-VPN-Split-Tunneling-problem
