@@ -63,7 +63,7 @@ case $mode in
 	systemctl start radarr
 	;;
 	(-t)
-	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}' | cut -d v" -f 4 )
+	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}' | cut -d v -f 4 )
 	export VERSION1=$(echo $VERSION | grep -o 'tag/[.0-9]*')
 	wget https://api.github.com/repos/Radarr/Radarr/releases/download/v$VERSION/Radarr.develop-$VERSION.linux.tar.gz
 	;;
