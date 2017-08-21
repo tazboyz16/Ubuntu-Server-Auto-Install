@@ -63,7 +63,15 @@ case $mode in
 	systemctl start radarr
 	;;
 	(-t)
-	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep -o 'tag/[.0-9]*' | awk -F/ '{print $2}')
+	LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://api.github.com/repos/Radarr/Radarr/releases/latest)  
+	LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')  
+	ARTIFACT_URL="https://api.github.com/repos/Radarr/Radarr/releases/download/$LATEST_VERSION/myArtifact.zip"  
+	echo $LATEST_RELEASE
+	echo $LATEST_VERSION
+	echo $ARTIFACT_URL
+	
+	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}')
+	export VERSION1=
 	wget https://api.github.com/repos/Radarr/Radarr/releases/download/v$VERSION/Radarr.develop-$VERSION.linux.tar.gz
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
