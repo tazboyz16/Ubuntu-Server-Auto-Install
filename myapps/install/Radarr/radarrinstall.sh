@@ -62,10 +62,6 @@ case $mode in
     	echo "Restarting up Radarr"
 	systemctl start radarr
 	;;
-	(-t)
-	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep linux.tar.gz | grep -o 'v[v.0-9]*')
-	wget https://api.github.com/repos/Radarr/Radarr/releases/download/$VERSION/Radarr.develop-$VERSION.linux.tar.gz
-	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
