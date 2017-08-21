@@ -64,7 +64,6 @@ case $mode in
 	;;
 	(-t)
 	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep linux.tar.gz | grep -o 'v[v.0-9]*')
-	export VERSION1=$(echo $VERSION | grep -o 'tag/[.0-9]*')
 	wget https://api.github.com/repos/Radarr/Radarr/releases/download/$VERSION/Radarr.develop-$VERSION.linux.tar.gz
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
