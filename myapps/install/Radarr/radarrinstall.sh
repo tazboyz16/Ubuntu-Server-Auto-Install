@@ -32,7 +32,7 @@ case $mode in
 	echo "<--- Downloading latest Radarr --->"
 	cd /opt 
 	wget $(curl -s https://api.github.com/repos/radarr/radarr/releases | grep browser_download_url | grep linux.tar.gz | head -n 1 | cut -d '"' -f 4)
-	tar -xvzf Radarr.develop.*.linux.tar.gz
+	tar -xzf Radarr.develop.*.linux.tar.gz --strip-components=1
 	rm -rf Radarr*.tar.gz
 	chown -R Radarr:Radarr /opt/Radarr/
 	chmod -R 0777 /opt/Radarr
