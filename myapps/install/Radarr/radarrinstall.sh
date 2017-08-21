@@ -31,7 +31,7 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Radarr --gecos "Radarr Service" --group Radarr
 	echo "<--- Downloading latest Radarr --->"
 	cd /opt 
-	wget $( curl -s https://api.github.com/repos/Radarr/Radarr/releases | grep linux.tar.gz | grep browser_download_url | head -1 | cut -d \" -f 4 )
+	wget $( curl -s https://api.github.com/repos/Radarr/Radarr/releases | grep linux.tar.gz | grep browser_download_url | head -1 | cut -d \" -f4 )
 	tar -xvzf Radarr.develop.*.linux.tar.gz
 	rm -rf Radarr*.tar.gz
 	chown -R Radarr:Radarr /opt/Radarr/
@@ -63,7 +63,7 @@ case $mode in
 	systemctl start radarr
 	;;
 	(-t)
-	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}' | cut -d v -f 4 )
+	export VERSION=$(curl -s "https://api.github.com/repos/Radarr/Radarr/releases" | grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}' | cut -d v -f1 )
 	export VERSION1=$(echo $VERSION | grep -o 'tag/[.0-9]*')
 	wget https://api.github.com/repos/Radarr/Radarr/releases/download/v$VERSION/Radarr.develop-$VERSION.linux.tar.gz
 	;;
