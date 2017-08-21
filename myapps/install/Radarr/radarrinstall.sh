@@ -63,7 +63,7 @@ case $mode in
 	systemctl start radarr
 	;;
 	(-t)
-	LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://api.github.com/repos/Radarr/Radarr/releases/latest)  
+	LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://api.github.com/repos/Radarr/Radarr/releases)  
 	LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')  
 	ARTIFACT_URL="https://api.github.com/repos/Radarr/Radarr/releases/download/$LATEST_VERSION/myArtifact.zip"  
 	echo $LATEST_RELEASE
