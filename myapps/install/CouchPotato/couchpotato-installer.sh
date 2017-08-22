@@ -17,8 +17,8 @@ fi
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/CouchPotatoServer/
-backupdir=/opt/backup/CouchPotatoServer
+Programloc=/opt/CouchPotato/
+backupdir=/opt/backup/CouchPotato
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
@@ -27,7 +27,7 @@ case $mode in
 	apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 	adduser --disabled-password --system --home /opt/ProgramData/Couchpotato --gecos "CouchPotato Service" --group Couchpotato
 	echo "<--- Downloading latest CouchPotato --->"
-	cd /opt && sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git
+	cd /opt && sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git /opt/CouchPotato
 	chown -R Couchpotato:Couchpotato $Programloc
 	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
@@ -55,7 +55,7 @@ case $mode in
 	cp /opt/ProgramData/Couchpotato/.couchpotato/settings.conf $backupdir
 	echo "Data Folder might be located under /root/.couchpotato/ if theres a Data Folder created"
 	echo "some install dont have it"
-	cp /opt/CouchPotatoServer/Data $backupdir
+	cp /opt/CouchPotato/Data $backupdir
     	tar -zcvf /opt/backup/CouchPotato_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
