@@ -65,13 +65,6 @@ systemctl restart apache2
 echo "<--- Setting up SSL Connections with PHPMyAdmin --->"
 a2enmod ssl
 systemctl restart apache2 
-echo "< ---Creating SSL Certificate ---> "
-mkdir /etc/apache2/ssl
-#Run Certbot.sh and Create Symbolinks to Certbot Certs for they renew 90 days
-sudo bash /opt/install/Apache2/Certbot.sh
-###lines 32 and 33
-sed -i '33s#/etc/ssl/private/ssl-cert-snakeoil.key#/etc/apache2/ssl/apache.key#g' /etc/apache2/sites-available/default-ssl.conf
-sed -i '32s#/etc/ssl/certs/ssl-cert-snakeoil.pem#/etc/apache2/ssl/apache.crt#g' /etc/apache2/sites-available/default-ssl.conf
 printf '\n$cfg["ForceSSL"] = true;' >> /etc/phpmyadmin/config.inc.php
 a2ensite default-ssl.conf
 echo "<--- Restarting Apache2 Finalizing all Settings --->"
