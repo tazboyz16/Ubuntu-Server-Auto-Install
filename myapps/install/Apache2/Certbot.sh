@@ -35,9 +35,9 @@ chmod 0777 -R /etc/letsencrypt/
 chmod 0777 -R /etc/apache2/ssl/
 mv /opt/install/Apache2/cli.ini /etc/letsencrypt/
 
-letsencrypt --apache
+certbot --apache
 
-letsencrypt renew --dry-run --agree-tos
+certbot renew --dry-run --agree-tos
 
 echo "Convert Pem files to Crt,Key, and CA files"
 cat /etc/letsencrypt/live/$domain/cert.pem > /etc/letsencrypt/live/$domain/apache.crt
