@@ -11,7 +11,7 @@ Description=CouchPotato Service
 After=network.target
 
 [Service]
-ExecStart=/opt/CouchPotatoServer/CouchPotato.py
+ExecStart=/opt/CouchPotato/CouchPotato.py
 Type=simple
 User=Couchpotato
 Group=Couchpotato
