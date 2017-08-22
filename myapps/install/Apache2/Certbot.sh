@@ -33,7 +33,7 @@ mkdir /etc/letsencrypt/
 mkdir /etc/apache2/ssl/
 chmod 0777 -R /etc/letsencrypt/
 chmod 0777 -R /etc/apache2/ssl/
-mv /opt/install/Apache2/cli.ini /etc/letsencrypt/
+cp /opt/install/Apache2/cli.ini /etc/letsencrypt/
 
 certbot --apache
 
