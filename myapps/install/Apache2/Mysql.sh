@@ -72,7 +72,7 @@ sudo bash /opt/install/Apache2/Certbot.sh
 ###lines 32 and 33
 sed -i '33s#/etc/ssl/private/ssl-cert-snakeoil.key#/etc/apache2/ssl/apache.key#g' /etc/apache2/sites-available/default-ssl.conf
 sed -i '32s#/etc/ssl/certs/ssl-cert-snakeoil.pem#/etc/apache2/ssl/apache.crt#g' /etc/apache2/sites-available/default-ssl.conf
-sed -i '$cfg["ForceSSL"] = true;' /etc/phpmyadmin/config.inc.php
+sed -i ''$cfg["ForceSSL"] = true;'' /etc/phpmyadmin/config.inc.php
 a2ensite default-ssl.conf
 echo "<--- Restarting Apache2 Finalizing all Settings --->"
 systemctl restart apache2
