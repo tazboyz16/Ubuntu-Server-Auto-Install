@@ -1,9 +1,4 @@
-# Created by @tazboyz16 
-# This Service File was created at 
-# https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
-# @ 2017 Creation
-# GNU General Public License v3.0
-
+# Created by @tazboyz16 at https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 [Unit]
 Description=HTPC-Manager Daemon
 After=network.target
