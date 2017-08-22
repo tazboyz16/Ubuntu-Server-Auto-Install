@@ -10,3 +10,4 @@ windscribe --help
 #requires openvpn installed
 #https://forum.htpcguides.com/Thread-VPN-Split-Tunneling-problem
 # /etc/windscribe has the client.ovpn file
+# when turned on according to ^ interface 'tun' is active
