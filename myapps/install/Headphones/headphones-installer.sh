@@ -17,7 +17,7 @@ fi
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/headphones
+Programloc=/opt/Headphones
 backupdir=/opt/backup/Headphones
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -27,9 +27,9 @@ case $mode in
 	apt install python git-core -y
 	adduser --disabled-password --system --home /opt/ProgramData/Headphones --gecos "Headphones Service" --group Headphones
 	echo '<--- Downloading latest Headphones --->'
-	cd /opt &&  git clone https://github.com/rembo10/headphones.git
-	chown -R Headphones:Headphones /opt/headphones
-	chmod -R 0777 /opt/headphones
+	cd /opt &&  git clone https://github.com/rembo10/headphones.git /opt/Headphones
+	chown -R Headphones:Headphones /opt/Headphones
+	chmod -R 0777 /opt/Headphones
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/headphones.service
@@ -40,9 +40,9 @@ case $mode in
 	echo "<--- Restoring Headphones Settings --->"
 	echo "Stopping Headphones"
 	systemctl stop headphones
-	cat /opt/install/Headphones/Headphones.txt > /opt/headphones/config.ini
-	chown -R Headphones:Headphones /opt/headphones
-	chmod -R 0777 /opt/headphones
+	cat /opt/install/Headphones/Headphones.txt > /opt/Headphones/config.ini
+	chown -R Headphones:Headphones /opt/Headphones
+	chmod -R 0777 /opt/Headphones
 	echo "Starting up Headphones"
 	systemctl start headphones
 	;;
@@ -52,7 +52,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Headphones to /opt/backup"
-	cp /opt/headphones/config.ini $backupdir
+	cp /opt/Headphones/config.ini $backupdir
 	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
 	echo "some install dont have it"
 	cp $Programloc/Data $backupdir
