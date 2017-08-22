@@ -40,7 +40,7 @@ case $mode in
 	echo "<--- Restoring Headphones Settings --->"
 	echo "Stopping Headphones"
 	systemctl stop headphones
-	cat /opt/install/Headphones/Headphones.txt > /opt/headphones/config.ini
+	cat /opt/install/Headphones/Headphones.txt > $Programloc/config.ini
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
 	echo "Starting up Headphones"
