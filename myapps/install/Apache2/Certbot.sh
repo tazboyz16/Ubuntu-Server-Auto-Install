@@ -23,7 +23,12 @@ domain=xxxdomainxxx
 #your ca file will be chain.pem or fullchain.pem ( depending exactly what you need )
 #/etc/letsencrypt/archive and /etc/letsencrypt/keys contain all previous keys and certificates, while /etc/letsencrypt/live symlinks to the latest versions. or live /etc/letsencrypt/live/$domain
 
-apt install python-letsencrypt-apache -y
+apt update
+apt install software-properties-common -y
+add-apt-repository -y ppa:certbot/certbot
+apt update
+apt install python-certbot-apache -y
+
 mkdir /etc/letsencrypt/
 mkdir /etc/apache2/ssl/
 chmod 0777 -R /etc/letsencrypt/
