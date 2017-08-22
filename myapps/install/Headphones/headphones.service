@@ -14,7 +14,7 @@ After=network.target
 User=Headphones
 Group=Headphones
 Type=forking
-ExecStart=/opt/headphones/Headphones.py --daemon --nolaunch
+ExecStart=/opt/Headphones/Headphones.py --daemon --nolaunch
 GuessMainPID=no
 
 [Install]
