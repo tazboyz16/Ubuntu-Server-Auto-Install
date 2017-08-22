@@ -17,8 +17,8 @@ fi
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/CouchPotatoServer/
-backupdir=/opt/backup/CouchPotatoServer
+Programloc=/opt/CouchPotato/
+backupdir=/opt/backup/CouchPotato
 time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
@@ -27,7 +27,7 @@ case $mode in
 	apt install git-core python python-cheetah python-pyasn1 python3-lxml -y
 	adduser --disabled-password --system --home /opt/ProgramData/Couchpotato --gecos "CouchPotato Service" --group Couchpotato
 	echo "<--- Downloading latest CouchPotato --->"
-	cd /opt && sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git
+	cd /opt && sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git /opt/CouchPotato
 	chown -R Couchpotato:Couchpotato $Programloc
 	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
