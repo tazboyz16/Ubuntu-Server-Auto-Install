@@ -1,31 +1,51 @@
 #!/bin/bash
 
-echo "SickRage Auto Update"
-sudo bash /opt/install/Sickrage/sickrageinstaller.sh -u
-echo
-
-echo "Mylar Update"
-sudo systemctl stop Mylar
-sleep 5
-cd /opt/mylar
-git pull
-sudo systemctl start Mylar
-echo
-
-echo "Headphones Update"
-sudo systemctl stop Headphones
-sleep 5
-cd /opt/headphones
-git pull
-sudo systemctl start Headphones
-echo
+echo "Updating all Git Repos"
 
 echo "CouchPotato Auto Update"
-sudo systemctl stop Couchpotato
-sleep 5
-cd /opt/CouchPotatoServer
-git pull
-sudo systemctl start Couchpotato
+sudo bash  /opt/install/CouchPotato/couchpotato-installer.sh -u
+echo
+
+echo "HTPCManger Auto Update"
+sudo bash /opt/install/HTPCManager/HTPCManager.sh -u
+echo
+
+echo "HeadPhones Auto Update"
+sudo bash /opt/install/Headphones/headphones-installer.sh -u
+echo
+
+#Disabled due to it installs by Releases vs git pull
+#echo "Jackett Auto Update"
+#sudo bash /opt/install/Jackett/jackettinstall.sh -u
+#echo
+
+echo "LazyLibrarian Auto Update"
+sudo bash /opt/install/Lazylibrarian/Lazylibrarian.sh -u
+echo
+
+echo "Muximux Auto Update"
+sudo bash /opt/install/Muximux/Muximuxinstall.sh -u
+echo
+
+echo "Mylar Auto Update"
+sudo bash /opt/install/Muximux/Muximuxinstall.sh -u
+echo
+
+echo "Organizr Auto Update"
+sudo bash /opt/install/Organizr/Organizr.sh -u
+echo
+
+#Disabled due to it installs by Releases vs git pull
+#echo "Radarr Auto Update"
+#sudo bash /opt/install/Organizr/Organizr.sh -u
+#echo
+
+echo "Shinobi Auto Update"
+sudo bash /opt/install/Shinobi/Shinobi.sh -u
+echo
+
+echo "Sickrage Auto Update"
+sudo bash /opt/install/Sickrage/sickrage-installer.sh -u
 echo
 
 echo "Grive Website backup" 
@@ -33,7 +53,7 @@ cd /var/www
 sudo grive 
 
 echo "Plex Server Update"
-sudo bash /opt/update/plexupdate.sh -p -a -d 
+sudo bash /opt/install/Plex/plexinstall.sh -u 
 echo
 
 echo "Running System Security Updates"
