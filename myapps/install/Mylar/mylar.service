@@ -10,11 +10,11 @@ Description=Mylar Daemon
 After=network.target
 
 [Service]
-User=mylar
-Group=mylar
+User=Mylar
+Group=Mylar
 Type=simple
 GuessMainPID=no
-ExecStart=/opt/mylar/Mylar.py --nolaunch
+ExecStart=/opt/Mylar/Mylar.py --nolaunch
 
 [Install]
 WantedBy=multi-user.target
