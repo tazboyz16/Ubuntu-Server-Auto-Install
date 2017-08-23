@@ -21,7 +21,7 @@ echo
 echo "Update SSL Certs"
 #run cron job for 'letsencrypt renew' every 90 days
 #plus rewrite files to apache folder every run
-letsencrypt renew 
+certbot renew
 cat /etc/letsencrypt/live/$domain/cert.pem > /etc/letsencrypt/live/$domain/apache.crt
 cat /etc/letsencrypt/live/$domain/privkey.pem > /etc/letsencrypt/live/$domain/apache.key
 cat /etc/letsencrypt/live/$domain/chain.pem > /etc/letsencrypt/live/$domain/apacheca.ca

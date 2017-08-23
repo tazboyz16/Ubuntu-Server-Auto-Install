@@ -36,8 +36,7 @@ npm cache clean -f
 npm install -g n
 sudo n stable
 ln -s /usr/bin/nodejs /usr/bin/node
-#might be harmful to system >
-chmod -R 755 .
+chmod -R 0755 /opt/Shinobi
 mysql -u root -p$sqlpass -e "source sql/user.sql" || true
 mysql -u root -p$sqlpass -e "source sql/framework.sql" || true
 #adding Default user accounts
