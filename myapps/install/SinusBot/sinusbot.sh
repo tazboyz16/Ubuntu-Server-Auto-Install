@@ -46,7 +46,7 @@ case $mode in
 	chown -R sinusbot:sinusbot $Programloc
 	chmod 0777 -R $Programloc
 	echo "Fixing TS3 Client Location and Youtube-DL Location"
-	sed -i 's#TS3Path =* #TS3path = "$TS3Location"#'
+	sed -i 's#TS3Path =* #TS3path = "$TS3Location"#' config.ini
 	echo "Creating Sinusbot startup Script"
 	cp /opt/install/SinusBot/sinusbot.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/sinusbot.service
