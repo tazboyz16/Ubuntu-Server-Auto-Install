@@ -8,6 +8,12 @@
 # GNU General Public License v3.0
 ###########################################################
 
+#ts3server_2017-08-23__04_21_02.*_0.log
+#ts3server_2017-08-23__04_21_02.*_1.log - shows the Token entry - Admin login token
+#http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Quick%20Start.txt
+
+
+
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
    exit 1
