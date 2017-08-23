@@ -16,7 +16,7 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
 mode="$1"
-Programloc=/opt/mylar
+Programloc=/opt/Mylar
 backupdir=/opt/backup/Mylar
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -25,9 +25,9 @@ case $mode in
 	echo '<--- Installing prerequisites for Mylar --->'
 	apt update
 	apt install git-core python python-cheetah python-pyasn1 -y
-	adduser --disabled-password --system --home /opt/ProgramData/mylar --gecos "Mylar Service" --group mylar
+	adduser --disabled-password --system --home /opt/ProgramData/mylar --gecos "Mylar Service" --group Mylar
 	echo '<--- Downloading latest Mylar --->'
-	cd /opt && sudo git clone https://github.com/evilhero/mylar.git
+	cd /opt && sudo git clone https://github.com/evilhero/mylar.git /opt/Mylar
 	echo "Creating Startup Script"
 	cp /opt/install/Mylar/mylar.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/mylar.service
@@ -38,9 +38,9 @@ case $mode in
 	echo "<--- Restoring Mylar Settings --->"
 	echo "Stopping Mylar"
 	systemctl stop mylar
-	cat /opt/install/Mylar/Mylar.txt > /opt/mylar/config.ini
-	chown -R mylar:mylar /opt/mylar
-	chmod -R 0777 /opt/mylar
+	cat /opt/install/Mylar/Mylar.txt > /opt/Mylar/config.ini
+	chown -R Mylar:Mylar /opt/Mylar
+	chmod -R 0777 /opt/Mylar
 	echo "Starting up Mylar"
 	systemctl start mylar
 	;;
@@ -50,7 +50,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Mylar to /opt/backup"
-	cp -rf /opt/mylar/userdata $backupdir
+	cp -rf /opt/Mylar/userdata $backupdir
     	tar -zcvf /opt/backup/Mylar_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Mylar"
 	systemctl start mylar
