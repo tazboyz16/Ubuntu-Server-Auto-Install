@@ -58,6 +58,11 @@ case $mode in
 	systemctl start mylar
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "Mylar not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Mylar to Update"
 	sudo systemctl stop mylar
 	sleep 5
@@ -67,6 +72,11 @@ case $mode in
 	sudo systemctl start mylar
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "Mylar not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Mylar to Force Update"
 	sudo systemctl stop mylar
 	sleep 5
