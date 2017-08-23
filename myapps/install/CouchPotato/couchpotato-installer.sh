@@ -61,9 +61,9 @@ case $mode in
 	;;
 	(-u)
 	#Checking if Program is installed
-		if[! -d "$Programloc"]; then
+		if [ ! -d "$Programloc" ];
 		echo "CouchPotato not installed at '$Programloc'. Update Failed"
-		return
+		exit 0;
 		fi
 	echo "Stopping CouchPotato to Update"
 	sudo systemctl stop couchpotato
@@ -74,6 +74,11 @@ case $mode in
 	sudo systemctl start couchpotato
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "CouchPotato not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping CouchPotato to Force Update"
 	sudo systemctl stop couchpotato
 	sleep 5
