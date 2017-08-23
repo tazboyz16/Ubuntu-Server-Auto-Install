@@ -45,10 +45,11 @@ case $mode in
 	chown -R sinusbot:sinusbot $Programloc
 	chmod 0777 -R $Programloc
 	echo "Fixing TS3 Client Location and Youtube-DL Location"
-	echo 'ListenPort = 8087
+	echo '
+	ListenPort = 8087
     	ListenHost = "0.0.0.0"
     	TS3Path = "'$LOCATION'/teamspeak3-client/ts3client_linux_amd64"
-    	YoutubeDLPath = ""' >> $Programloc/config.ini
+    	YoutubeDLPath = "/usr/local/bin/youtube-dl"' > $Programloc/config.ini
 
 	echo "Creating Sinusbot startup Script"
 	cp /opt/install/SinusBot/sinusbot.service /etc/systemd/system/
