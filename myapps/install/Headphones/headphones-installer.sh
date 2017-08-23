@@ -48,16 +48,16 @@ case $mode in
 	;;
 	(-b)
 	echo "Stopping Headphones"
-    	systemctl stop headphones
-    	echo "Making sure Backup Dir exists"
-    	mkdir -p $backupdir
-    	echo "Backing up Headphones to /opt/backup"
+  systemctl stop headphones
+  echo "Making sure Backup Dir exists"
+  mkdir -p $backupdir
+  echo "Backing up Headphones to /opt/backup"
 	cp $Programloc/config.ini $backupdir
 	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
 	echo "some install dont have it"
 	cp $Programloc/Data $backupdir
-    	tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
-    	echo "Restarting up Headphones"
+  tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
+  echo "Restarting up Headphones"
 	systemctl start headphones
 	;;
 	(-u)

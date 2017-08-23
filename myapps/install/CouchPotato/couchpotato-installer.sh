@@ -16,7 +16,6 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
-
 Programloc=/opt/CouchPotato
 backupdir=/opt/backup/CouchPotato
 time=$(date +"%m_%d_%y-%H_%M")
