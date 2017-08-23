@@ -50,12 +50,22 @@ case $mode in
     	tar -zcvf /opt/backup/Muximux_FullBackup-$time.tar.gz $backupdir
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "Muximux not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Muximux to Update"
 	sleep 5
 	cd $Programloc
 	git pull
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "Muximux not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Muximux to Force Update"
 	sleep 5
 	cd $Programloc
