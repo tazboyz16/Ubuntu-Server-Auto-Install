@@ -8,6 +8,12 @@
 # GNU General Public License v3.0
 ###########################################################
 
+#ts3server_2017-08-23__04_21_02.*_0.log
+#ts3server_2017-08-23__04_21_02.*_1.log - shows the Token entry - Admin login token
+#http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Quick%20Start.txt
+
+
+
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
    exit 1
@@ -18,7 +24,6 @@ fi
 #Modes (Variables)
 # b=backup i=install ri=reinstall r=restore u=update U=Force Update 
 mode="$1"
-
 server=/opt/ts3
 backupdir=/opt/backup/ts3
 dl=/tmp
@@ -45,7 +50,32 @@ fi
 
 
 case $mode in
-    	(-b)
+    	(-i|"")
+    	echo "Creating Teamspeak User account"
+	adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
+	apt install libmariadb2
+	echo "Downloading Latest Version of TeamSpeak 3 Server"
+	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+	echo "Installing TS3 Server Version $Version"
+	mkdir -p $server
+	tar -xjf $dl/package.tar.bz2 -C $dl/
+	cp -rf $dl/teamspeak3-server_linux_$arch/* $server
+	rm $dl/package.tar.bz2
+	rm -rf $dl/teamspeak3-server_linux_$arch
+	ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
+	touch /opt/ts3/query_ip_blacklist.txt
+	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
+	cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
+	cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
+	chmod 0777 -R /opt/ts3
+	chown teamspeak:teamspeak -R /opt/ts3
+	echo "Creating Startup Script"
+	cp /opt/install/TeamSpeak3/ts3.service /etc/systemd/system/
+	chmod 644 /etc/systemd/system/ts3.service
+	systemctl enable ts3.service
+	systemctl restart ts3.service
+    	;;
+	(-b)
 	echo "Stopping TS3 Server"
 	systemctl stop ts3
 	echo "Making sure Backup Dir exists"
@@ -55,30 +85,7 @@ case $mode in
 	echo "Restarting up Server"
 	systemctl start ts3
 	;;
-    	(-i|"")
-    	echo "Creating Teamspeak User account"
-	adduser --no-create-home --disabled-password --gecos "TeamSpeak Server" teamspeak
-	apt install libmariadb2
-	echo "Downloading Latest Version of TeamSpeak 3 Server"
-	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-	echo "Installing TS3 Server Version $Version"
-	tar -xjf $dl/package.tar.bz2 -C $dl/
-	mv $dl/teamspeak3-server_linux_$arch/* $server
-	rm $dl/package.tar.bz2
-	ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
-	touch /opt/ts3/query_ip_blacklist.txt
-	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
-	cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
-	cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
-	chmod 0777 /opt/ts3 -R
-	chown teamspeak:teamspeak /opt/ts3 -R
-	echo "Creating Startup Script"
-	cp /opt/install/TeamSpeak3/ts3.service /etc/systemd/system/
-	chmod 644 /etc/systemd/system/ts3.service
-	systemctl enable ts3.service
-	systemctl restart ts3.service
-    	;;
-    (-r) 
+	(-r) 
     	echo "Stopping TS3 Server"
 	systemctl stop ts3
 	echo "Location with the file name and type of the backup to be restored?"
@@ -150,58 +157,58 @@ case $mode in
 		;;
     (-u) 
     if [ "$BK" == "$Version" ]; then
-    		echo "Server is up to date! Latest Version is $Version. If you want to still install over Installation"
-    		echo "Run Script with '-U' to Force Update"
-    		exit 0
-		fi
-		echo "Stopping TS3 Server"
-		systemctl stop ts3
-		echo "Running Backup of Settings and DB of TeamSpeak Server Before Update"
-		cp $server/query_ip_blacklist.txt $backupdir
-		cp $server/query_ip_whitelist.txt $backupdir
-		cp $server/ts3server.ini $backupdir
-		cp $server/ts3db_mariadb.ini $backupdir
-		cp $server/ts3server.sqlitedb $backupdir
-		echo "Downloading Latest Version of TeamSpeak 3 Server"
-		wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-		echo "Installing TS3 Server Version $Version"
-		tar -xjf $dl/package.tar.bz2 -C $dl/
-		cp -rf $dl/teamspeak3-server_linux_$arch/* $server
-		rm $dl/package.tar.bz2
-		echo "Moving back Settings and DB back to TS3 Folder"
-		mv $backupdir/query_ip_blacklist.txt $server
-		mv $backupdir/query_ip_whitelist.txt $server
-		mv $backupdir/ts3server.ini $server
-		mv $backupdir/ts3db_mariadb.ini $server
-		mv $backupdir/ts3server.sqlitedb $server
-		echo $Version > $server/version
-		echo "Starting Updated Server"
-		systemctl start ts3
-		;;
+    	echo "Server is up to date! Latest Version is $Version. If you want to still install over Installation"
+    	echo "Run Script with '-U' to Force Update"
+    	exit 0
+	fi
+	echo "Stopping TS3 Server"
+	systemctl stop ts3
+	echo "Running Backup of Settings and DB of TeamSpeak Server Before Update"
+	cp $server/query_ip_blacklist.txt $backupdir
+	cp $server/query_ip_whitelist.txt $backupdir
+	cp $server/ts3server.ini $backupdir
+	cp $server/ts3db_mariadb.ini $backupdir
+	cp $server/ts3server.sqlitedb $backupdir
+	echo "Downloading Latest Version of TeamSpeak 3 Server"
+	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+	echo "Installing TS3 Server Version $Version"
+	tar -xjf $dl/package.tar.bz2 -C $dl/
+	cp -rf $dl/teamspeak3-server_linux_$arch/* $server
+	rm $dl/package.tar.bz2
+	echo "Moving back Settings and DB back to TS3 Folder"
+	mv $backupdir/query_ip_blacklist.txt $server
+	mv $backupdir/query_ip_whitelist.txt $server
+	mv $backupdir/ts3server.ini $server
+	mv $backupdir/ts3db_mariadb.ini $server
+	mv $backupdir/ts3server.sqlitedb $server
+	echo $Version > $server/version
+	echo "Starting Updated Server"
+	systemctl start ts3
+	;;
     (-U) 
-    		echo "Stopping TS3 Server"
-		systemctl stop ts3
-		echo "Running Backup of Settings and DB of TeamSpeak Server Before Update"
-		cp $server/query_ip_blacklist.txt $backupdir
-		cp $server/query_ip_whitelist.txt $backupdir
-		cp $server/ts3server.ini $backupdir
-		cp $server/ts3db_mariadb.ini $backupdir
-		cp $server/ts3server.sqlitedb $backupdir
-		echo "Downloading Latest Version of TeamSpeak 3 Server"
-		wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
-		echo "Installing TS3 Server Version $Version"
-		tar -xjf $dl/package.tar.bz2 -C $dl/
-		cp -rf $dl/teamspeak3-server_linux_$arch/* $server
-		rm $dl/package.tar.bz2
-		echo "Moving back Settings and DB back to TS3 Folder"
-		mv $backupdir/query_ip_blacklist.txt $server
-		mv $backupdir/query_ip_whitelist.txt $server
-		mv $backupdir/ts3server.ini $server
-		mv $backupdir/ts3db_mariadb.ini $server
-		mv $backupdir/ts3server.sqlitedb $server
-		echo $Version > $server/version
-		echo "Starting Updated Server"
-		systemctl start ts3
+    	echo "Stopping TS3 Server"
+	systemctl stop ts3
+	echo "Running Backup of Settings and DB of TeamSpeak Server Before Update"
+	cp $server/query_ip_blacklist.txt $backupdir
+	cp $server/query_ip_whitelist.txt $backupdir
+	cp $server/ts3server.ini $backupdir
+	cp $server/ts3db_mariadb.ini $backupdir
+	cp $server/ts3server.sqlitedb $backupdir
+	echo "Downloading Latest Version of TeamSpeak 3 Server"
+	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
+	echo "Installing TS3 Server Version $Version"
+	tar -xjf $dl/package.tar.bz2 -C $dl/
+	cp -rf $dl/teamspeak3-server_linux_$arch/* $server
+	rm $dl/package.tar.bz2
+	echo "Moving back Settings and DB back to TS3 Folder"
+	mv $backupdir/query_ip_blacklist.txt $server
+	mv $backupdir/query_ip_whitelist.txt $server
+	mv $backupdir/ts3server.ini $server
+	mv $backupdir/ts3db_mariadb.ini $server
+	mv $backupdir/ts3server.sqlitedb $server
+	echo $Version > $server/version
+	echo "Starting Updated Server"
+	systemctl start ts3
     ;;
     (-*) echo "Invalid Argument"; exit 0;;
 esac

@@ -31,7 +31,8 @@ case $mode in
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | tee /etc/apt/sources.list.d/mono-offical.list
 	apt update
 	apt install nzbdrone libmono-cil-dev apt-transport-https mono-devel -y
-	chown -R Sonarr:Sonarr /opt/NzbDrone
+	chown -R Sonarr:Sonarr $Programloc
+	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
 	cp /opt/install/Sonarr/sonarr.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/sonarr.service
@@ -53,7 +54,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Sonarr to /opt/backup"
-	cp /opt/Sonarr/Data $backupdir
+	cp $Programloc/Data $backupdir
     	tar -zcvf /opt/backup/Sonarr_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Sonarr"
 	systemctl start sonarr

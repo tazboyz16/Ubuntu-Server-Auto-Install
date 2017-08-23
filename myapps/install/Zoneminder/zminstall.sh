@@ -37,7 +37,7 @@ case $mode in
 	systemctl enable zoneminder
 	a2enconf zoneminder
 	a2enmod cgi
-	chown -R www-data:www-data /usr/share/zoneminder/
+	chown -R www-data:www-data $Programloc
 	a2enmod rewrite
 	chown www-data:www-data /etc/zm/zm.conf
 	cat /opt/install/Zoneminder/php.ini > /etc/php/7.0/apache2/php.ini #to edit timezone to current TZ
@@ -45,8 +45,9 @@ case $mode in
 	cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
 	echo "sql_mode=NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.cnf
 	echo "Enabling Force all to HTTPS Connections"
-	cp /opt/install/Zoneminder/.htaccess /usr/share/zoneminder/www/
-	chown -R www-data:www-data /usr/share/zoneminder/
+	cp /opt/install/Zoneminder/.htaccess $Programloc/www/
+	chown -R www-data:www-data $Programloc
+	chmod -R 0777 $Programloc
 	#echo "Creating Startup Script"
 	#systemctl enable zoneminder.service
 	#systemctl restart zoneminder.service

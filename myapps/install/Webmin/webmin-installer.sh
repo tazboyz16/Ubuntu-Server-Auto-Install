@@ -16,7 +16,7 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
-Programloc=/opt/Webmin   #need to update for restore and backup 
+Programloc=/etc/webmin   #need to update for restore and backup 
 backupdir=/opt/backup/Webmin   ##
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -40,8 +40,8 @@ case $mode in
 	echo "<--- Restoring Webmin Settings --->"
 	echo "Stopping Webmin"
 	systemctl stop webmin
-	cat /opt/install/Webmin/Webmin.txt > /etc/webmin/miniserv.conf
-	cat /opt/install/Webmin/config > /etc/webmin/system-status/config
+	cat /opt/install/Webmin/Webmin.txt > $Programloc/miniserv.conf
+	cat /opt/install/Webmin/config > $Programloc/system-status/config
 	echo "Starting up Webmin"
 	systemctl start webmin
 	;;

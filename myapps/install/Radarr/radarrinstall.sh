@@ -18,7 +18,7 @@ versionm=$(lsb_release -cs)
 #Modes (Variables)
 # b=backup i=install r=restore 
 mode="$1"
-Programloc=/opt/ProgramData/Radarr/.config/Radarr/ #Config Location
+Programloc=/opt/ProgramData/Radarr/.config/Radarr #Config Location
 backupdir=/opt/backup/Radarr
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -31,8 +31,8 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Radarr --gecos "Radarr Service" --group Radarr
 	echo "<--- Downloading latest Radarr --->"
 	cd /opt 
-	wget $( curl -s https://api.github.com/repos/Radarr/Radarr/releases | grep linux.tar.gz | grep browser_download_url | head -1 | cut -d \" -f 4 )
-	tar -xvzf Radarr.develop.*.linux.tar.gz
+	wget $(curl -s https://api.github.com/repos/radarr/radarr/releases | grep browser_download_url | grep linux.tar.gz | head -n 1 | cut -d '"' -f 4)
+	tar -xzf Radarr.develop.*.linux.tar.gz 
 	rm -rf Radarr*.tar.gz
 	chown -R Radarr:Radarr /opt/Radarr/
 	chmod -R 0777 /opt/Radarr

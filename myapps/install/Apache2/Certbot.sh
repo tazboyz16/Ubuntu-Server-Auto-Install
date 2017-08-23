@@ -23,16 +23,21 @@ domain=xxxdomainxxx
 #your ca file will be chain.pem or fullchain.pem ( depending exactly what you need )
 #/etc/letsencrypt/archive and /etc/letsencrypt/keys contain all previous keys and certificates, while /etc/letsencrypt/live symlinks to the latest versions. or live /etc/letsencrypt/live/$domain
 
-apt install python-letsencrypt-apache -y
+apt update
+apt install software-properties-common -y
+add-apt-repository -y ppa:certbot/certbot
+apt update
+apt install python-certbot-apache -y
+
 mkdir /etc/letsencrypt/
 mkdir /etc/apache2/ssl/
 chmod 0777 -R /etc/letsencrypt/
 chmod 0777 -R /etc/apache2/ssl/
-mv /opt/install/Apache2/cli.ini /etc/letsencrypt/
+cp /opt/install/Apache2/cli.ini /etc/letsencrypt/
 
-letsencrypt --apache
+certbot --apache
 
-letsencrypt renew --dry-run --agree-tos
+certbot renew --dry-run --agree-tos
 
 echo "Convert Pem files to Crt,Key, and CA files"
 cat /etc/letsencrypt/live/$domain/cert.pem > /etc/letsencrypt/live/$domain/apache.crt
@@ -48,3 +53,7 @@ ln -s /etc/letsencrypt/live/$domain/apachecafull.ca /etc/apache2/ssl/
 
 chmod 0777 -R /etc/letsencrypt/
 chmod 0777 -R /etc/apache2/ssl/
+
+###lines 32 and 33
+sed -i '33s#/etc/ssl/private/ssl-cert-snakeoil.key#/etc/apache2/ssl/apache.key#g' /etc/apache2/sites-available/default-ssl.conf
+sed -i '32s#/etc/ssl/certs/ssl-cert-snakeoil.pem#/etc/apache2/ssl/apache.crt#g' /etc/apache2/sites-available/default-ssl.conf

@@ -28,8 +28,8 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Headphones --gecos "Headphones Service" --group Headphones
 	echo '<--- Downloading latest Headphones --->'
 	cd /opt &&  git clone https://github.com/rembo10/headphones.git /opt/Headphones
-	chown -R Headphones:Headphones /opt/Headphones
-	chmod -R 0777 /opt/Headphones
+	chown -R Headphones:Headphones $Programloc
+	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/headphones.service
@@ -40,24 +40,24 @@ case $mode in
 	echo "<--- Restoring Headphones Settings --->"
 	echo "Stopping Headphones"
 	systemctl stop headphones
-	cat /opt/install/Headphones/Headphones.txt > /opt/Headphones/config.ini
-	chown -R Headphones:Headphones /opt/Headphones
-	chmod -R 0777 /opt/Headphones
+	cat /opt/install/Headphones/Headphones.txt > $Programloc/config.ini
+	chown -R Headphones:Headphones $Programloc
+	chmod -R 0777 $Programloc
 	echo "Starting up Headphones"
 	systemctl start headphones
 	;;
 	(-b)
 	echo "Stopping Headphones"
-    	systemctl stop headphones
-    	echo "Making sure Backup Dir exists"
-    	mkdir -p $backupdir
-    	echo "Backing up Headphones to /opt/backup"
-	cp /opt/Headphones/config.ini $backupdir
+  systemctl stop headphones
+  echo "Making sure Backup Dir exists"
+  mkdir -p $backupdir
+  echo "Backing up Headphones to /opt/backup"
+	cp $Programloc/config.ini $backupdir
 	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
 	echo "some install dont have it"
 	cp $Programloc/Data $backupdir
-    	tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
-    	echo "Restarting up Headphones"
+  tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
+  echo "Restarting up Headphones"
 	systemctl start headphones
 	;;
 	(-u)

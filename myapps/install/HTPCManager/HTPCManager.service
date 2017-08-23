@@ -13,7 +13,7 @@ After=network.target
 User=HTPCManager
 Group=HTPCManager
 Type=forking
-ExecStart=/usr/bin/python /opt/HTPCManager/Htpc.py
+ExecStart=/usr/bin/python /opt/HTPCManager/Htpc.py --daemon
 GuessMainPID=no
 
 [Install]

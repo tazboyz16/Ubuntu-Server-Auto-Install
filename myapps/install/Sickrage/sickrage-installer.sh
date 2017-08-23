@@ -31,7 +31,7 @@ case $mode in
 	chown -R Sickrage:Sickrage /opt/SickRage
 	chmod -R 0777 /opt/SickRage
 	echo "Creating Startup Script"
-	cp /opt/install/SickRage/sickrage.service /etc/systemd/system/
+	cp /opt/install/Sickrage/sickrage.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/sickrage.service
 	systemctl enable sickrage.service
 	systemctl restart sickrage.service

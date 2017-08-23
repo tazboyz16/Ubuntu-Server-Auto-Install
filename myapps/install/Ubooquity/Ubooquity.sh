@@ -28,13 +28,13 @@ case $mode in
 	echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 	apt install oracle-java8-installer unzip -y
-	mkdir -p /opt/Ubooquity
-	cd /opt/Ubooquity
+	mkdir -p $Programloc
+	cd $Programloc
 	wget "http://vaemendis.net/ubooquity/service/download.php" -O Ubooquity.zip
 	unzip Ubooquity*.zip
 	rm Ubooquity*.zip
-	chmod 0777 -R /opt/Ubooquity
-	chown -R Ubooquity:Ubooquity /opt/Ubooquity
+	chmod 0777 -R $Programloc
+	chown -R Ubooquity:Ubooquity $Programloc
 	echo "Creating Startup Script"
 	cp /opt/install/Ubooquity/ubooquity.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/ubooquity.service
@@ -45,9 +45,9 @@ case $mode in
 	echo "<--- Restoring Ubooquity Settings --->"
 	echo "Stopping Ubooquity"
 	systemctl stop ubooquity
-	cat /opt/install/Ubooquity/HTPCManager.txt > /opt/HTPCManager/userdata
-	chown -R Ubooquity:Ubooquity /opt/Ubooquity
-	chmod -R 0777 /opt/Ubooquity
+	cat /opt/install/Ubooquity/HTPCManager.txt > $Programloc/userdata
+	chown -R Ubooquity:Ubooquity $Programloc
+	chmod -R 0777 $Programloc
 	echo "Starting up Ubooquity"
 	systemctl start ubooquity
 	;;
@@ -57,7 +57,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Ubooquity to /opt/backup"
-	cp -rf /opt/Ubooquity/userdata $backupdir
+	cp -rf $Programloc/userdata $backupdir
     	tar -zcvf /opt/backup/Ubooquity_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Ubooquity"
 	systemctl start ubooquity
