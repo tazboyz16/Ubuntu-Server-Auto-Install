@@ -29,9 +29,11 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Nzbget --gecos "Nzbget Service" --group Nzbget
 	cd /opt && wget https://nzbget.net/download/nzbget-latest-bin-linux.run
 	echo "Installing NZBget"
-	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
+	sh nzbget-latest-bin-linux.run --destdir $Programloc
 	rm -f /opt/nzbget-latest-bin-linux.run
-	sed -i "/DaemonUsername=/c\DaemonUsername=Nzbget" /opt/Nzbget/nzbget.conf
+	chown -R Nzbget:Nzbget $Programloc
+	chmod -R 0777 $Programloc
+	sed -i "/DaemonUsername=/c\DaemonUsername=Nzbget" $Programloc/nzbget.conf
 	echo "Creating Startup Script"
 	cp /opt/install/Nzbget/nzbget.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/nzbget.service
