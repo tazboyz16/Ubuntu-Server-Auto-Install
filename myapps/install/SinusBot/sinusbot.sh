@@ -48,7 +48,7 @@ case $mode in
 	echo '
 	ListenPort = 8087
     	ListenHost = "0.0.0.0"
-    	TS3Path = "'$LOCATION'/teamspeak3-client/ts3client_linux_amd64"
+    	TS3Path = "'$Programloc'/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64"
     	YoutubeDLPath = "/usr/local/bin/youtube-dl"' > $Programloc/config.ini
 
 	echo "Creating Sinusbot startup Script"
