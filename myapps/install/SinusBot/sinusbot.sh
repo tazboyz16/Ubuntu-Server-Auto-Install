@@ -17,7 +17,6 @@ fi
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-TS3Location='/opt/Sinusbot/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64'
 TeamSpeakClient=3.0.19.4
 Programloc=/opt/Sinusbot/
 backupdir=/opt/backup/Sinusbot
@@ -46,7 +45,11 @@ case $mode in
 	chown -R sinusbot:sinusbot $Programloc
 	chmod 0777 -R $Programloc
 	echo "Fixing TS3 Client Location and Youtube-DL Location"
-	sed -i "s#TS3Path =* #TS3path = $TS3Location#" config.ini
+	echo 'ListenPort = 8087
+    	ListenHost = "0.0.0.0"
+    	TS3Path = "'$LOCATION'/teamspeak3-client/ts3client_linux_amd64"
+    	YoutubeDLPath = ""' >> $Programloc/config.ini
+
 	echo "Creating Sinusbot startup Script"
 	cp /opt/install/SinusBot/sinusbot.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/sinusbot.service
