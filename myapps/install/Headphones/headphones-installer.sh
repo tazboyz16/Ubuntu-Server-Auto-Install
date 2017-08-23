@@ -61,6 +61,11 @@ case $mode in
 	systemctl start headphones
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "Headphones not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Headphones to Update"
 	sudo systemctl stop headphones
 	sleep 5
@@ -70,6 +75,11 @@ case $mode in
 	sudo systemctl start headphones
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "Headphones not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Headphones to Force Update"
 	sudo systemctl stop headphones
 	sleep 5
