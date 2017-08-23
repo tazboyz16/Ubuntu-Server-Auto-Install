@@ -28,6 +28,8 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/mylar --gecos "Mylar Service" --group Mylar
 	echo '<--- Downloading latest Mylar --->'
 	cd /opt && sudo git clone https://github.com/evilhero/mylar.git /opt/Mylar
+	chown -R Mylar:Mylar /opt/Mylar
+	chmod -R 0777 /opt/Mylar
 	echo "Creating Startup Script"
 	cp /opt/install/Mylar/mylar.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/mylar.service
