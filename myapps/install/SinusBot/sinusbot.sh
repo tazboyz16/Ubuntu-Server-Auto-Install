@@ -18,7 +18,7 @@ fi
 mode="$1"
 
 TeamSpeakClient=3.0.19.4
-Programloc=/opt/Sinusbot/
+Programloc=/opt/Sinusbot
 backupdir=/opt/backup/Sinusbot
 time=$(date +"%m_%d_%y-%H_%M")
 
