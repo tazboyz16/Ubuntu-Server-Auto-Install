@@ -30,18 +30,20 @@ case $mode in
 	cd $Programloc
 	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2
 	tar -xjf sinusbot-beta.tar.bz2
+	rm sinusbot-beta.tar.bz2
 	#if new install
 	cp config.ini.dist config.ini
-	chown -R sinusbot:sinusbot /opt/Sinusbot
-	chmod 0777 -R /opt/Sinusbot
+	chown -R sinusbot:sinusbot $Programloc
+	chmod 0777 -R $Programloc
 	wget http://dl.4players.de/ts/releases/$TeamSpeakClient/TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
 	chmod 0755 TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
 	printf '\ny\n' | LESS='+q' ./TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
-	wget https://yt-dl.org/downloads/latest/youtube-dl -o /opt/Sinusbot/youtube-dl
-	chmod a+rx /opt/Sinusbot/youtube-dl
+	rm TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
+	wget https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+	chmod a+rx /usr/local/bin/youtube-dl
 	cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
-	chown -R sinusbot:sinusbot /opt/Sinusbot
-	chmod 0777 -R /opt/Sinusbot
+	chown -R sinusbot:sinusbot $Programloc
+	chmod 0777 -R $Programloc
 	
 	echo "Creating Sinusbot startup Script"
 	cp /opt/install/SinusBot/sinusbot.service /etc/systemd/system/
