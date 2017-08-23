@@ -18,7 +18,7 @@ versionm=$(lsb_release -cs)
 #Modes (Variables)
 # b=backup i=install r=restore 
 mode="$1"
-Programloc=/opt/ProgramData/Radarr/.config/Radarr/ #Config Location
+Programloc=/opt/ProgramData/Radarr/.config/Radarr #Config Location
 backupdir=/opt/backup/Radarr
 time=$(date +"%m_%d_%y-%H_%M")
 
