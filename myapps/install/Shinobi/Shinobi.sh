@@ -56,3 +56,14 @@ pm2 save
 
 echo "Creating Symbolic link for Shinobi Service"
 ln -s /etc/systemd/system/pm2-root.service /etc/systemd/system/Shinobi.service
+
+
+
+
+
+
+	#Checking if Program is installed
+	#	if [ ! -d "$Programloc" ];
+	#	echo "CouchPotato not installed at '$Programloc'. Update Failed"
+	#	exit 0;
+	#	fi
