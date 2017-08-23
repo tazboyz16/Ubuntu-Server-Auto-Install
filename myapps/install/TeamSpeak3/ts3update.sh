@@ -53,8 +53,9 @@ case $mode in
 	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
 	echo "Installing TS3 Server Version $Version"
 	tar -xjf $dl/package.tar.bz2 -C $dl/
-	mv $dl/teamspeak3-server_linux_$arch/* $server
+	cp -rf $dl/teamspeak3-server_linux_$arch/* $server
 	rm $dl/package.tar.bz2
+	rm -rf $dl/teamspeak3-server_linux_$arch
 	ln -s /opt/ts3/redist/libmariadb.so.2 /opt/ts3/libmariadb.so.2
 	touch /opt/ts3/query_ip_blacklist.txt
 	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
