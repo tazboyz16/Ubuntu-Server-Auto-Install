@@ -61,8 +61,8 @@ case $mode in
 	echo "127.0.0.1" > /opt/ts3/query_ip_whitelist.txt
 	cat /opt/install/TeamSpeak3/ts3server.txt > /opt/ts3/ts3server.ini
 	cat /opt/install/TeamSpeak3/ts3db_mariadb.txt > /opt/ts3/ts3db_mariadb.ini
-	chmod 0777 /opt/ts3 -R
-	chown teamspeak:teamspeak /opt/ts3 -R
+	chmod 0777 -R /opt/ts3
+	chown teamspeak:teamspeak -R /opt/ts3
 	echo "Creating Startup Script"
 	cp /opt/install/TeamSpeak3/ts3.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/ts3.service
