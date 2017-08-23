@@ -57,6 +57,11 @@ case $mode in
 	systemctl start HTPCManager
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "HTPCManager not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping HTPCManager to Update"
 	sudo systemctl stop HTPCManager
 	sleep 5
@@ -66,6 +71,11 @@ case $mode in
 	sudo systemctl start HTPCManager
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "HTPCManager not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping HTPCManager to Force Update"
 	sudo systemctl stop HTPCManager
 	sleep 5
