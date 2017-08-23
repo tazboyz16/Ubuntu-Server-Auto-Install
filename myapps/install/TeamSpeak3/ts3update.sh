@@ -57,7 +57,7 @@ case $mode in
 	echo "Downloading Latest Version of TeamSpeak 3 Server"
 	wget -nv http://teamspeak.gameserver.gamed.de/ts3/releases/$Version/teamspeak3-server_linux_$arch-$Version.tar.bz2 --output-document=$dl/package.tar.bz2
 	echo "Installing TS3 Server Version $Version"
-	mkdir -p $server
+	mkdir $server
 	tar -xjf $dl/package.tar.bz2 -C $dl/
 	cp -rf $dl/teamspeak3-server_linux_$arch/* $server
 	rm $dl/package.tar.bz2
