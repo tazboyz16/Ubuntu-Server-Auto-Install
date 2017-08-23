@@ -57,6 +57,11 @@ case $mode in
 	systemctl start LazyLibrarian
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "LazyLibrarian not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping LazyLibrarian to Update"
 	sudo systemctl stop LazyLibrarian
 	sleep 5
@@ -66,6 +71,11 @@ case $mode in
 	sudo systemctl start LazyLibrarian
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ];
+		echo "LazyLibrarin not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping LazyLibrarian to Force Update"
 	sudo systemctl stop LazyLibrarian
 	sleep 5
