@@ -58,7 +58,7 @@ case $mode in
 	;;
 	(-u)
 	#Checking if Program is installed
-		if [ ! -d "$Programloc" ];
+		if [ ! -d "$Programloc" ]; then
 		echo "LazyLibrarian not installed at '$Programloc'. Update Failed"
 		exit 0;
 		fi
@@ -72,7 +72,7 @@ case $mode in
 	;;
 	(-U)
 	#Checking if Program is installed
-		if [ ! -d "$Programloc" ];
+		if [ ! -d "$Programloc" ]; then
 		echo "LazyLibrarin not installed at '$Programloc'. Update Failed"
 		exit 0;
 		fi
