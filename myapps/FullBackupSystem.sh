@@ -13,14 +13,14 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-#/opt/Backup  location
-
-if [[ $EUID -ne 0 ]]; then
-	echo "This Script must be run as root"
-	exit 1
+if [ ! /etc/apache2 ]; then
+bash /opt/install/Apache2/Apache2-install.sh -b
+else
+echo "Apache2 is not installed. No backup Require"
 fi
 
-#SickRage
-cd /opt/SickRage
-sudo tar -cvjSf SickRage.tar.bz2 *
-
+if [ ! /opt/CouchPotato ]; then
+bash /opt/install/CouchPotato/couchpotato-installer.sh -b
+else
+echo "CouchPotato is not installed. No backup Require"
+fi
