@@ -26,6 +26,6 @@ apt update; apt install mopidy python-pip -y
 
 # http://localhost:6680/moped
 pip install Mopidy-Moped
-#
+# http://localhost:6680/mopify
 pip install mpoidy-mopfiy
 
