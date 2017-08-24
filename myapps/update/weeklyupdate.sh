@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Updating all Git Repos"
+echo
 
 echo "CouchPotato Auto Update"
 sudo bash  /opt/install/CouchPotato/couchpotato-installer.sh -u
