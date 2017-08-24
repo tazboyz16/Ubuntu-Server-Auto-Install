@@ -20,6 +20,7 @@ wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.lis
 apt update; apt install mopidy python-pip -y
 
 #~/.config/mopidy/mopidy.conf
+#/etc/mopidy/mopidy.conf
 #mopidy config to effective configuration
 #https://docs.mopidy.com/en/latest/service/#service
 #have to edit http section to enable outside localhost connections
