@@ -25,10 +25,11 @@ bash /opt/install/CouchPotato/couchpotato-installer.sh -b
 else
 echo "CouchPotato is not installed. No backup Require"
 fi
-
+echo
 
 if [ -d /var/lib/deluge ]; then
 bash /opt/install/Deluge/deluge_webui.sh -b
 else
 echo "Deluge is not installed. No backup Require"
 fi
+echo
