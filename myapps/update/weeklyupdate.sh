@@ -52,6 +52,7 @@ echo
 echo "Grive Website backup" 
 cd /var/www
 sudo grive 
+echo
 
 echo "Plex Server Update"
 sudo bash /opt/install/Plex/plexinstall.sh -u 
