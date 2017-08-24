@@ -26,9 +26,9 @@ apt update; apt install mopidy python-pip -y
 #have to edit http section to enable outside localhost connections
 
 # http://localhost:6680/moped
-pip install Mopidy-Moped
+pip install mopidy-Moped
 # http://localhost:6680/mopify
-pip install mpoidy-mopfiy
+pip install mopidy-mopfiy
 
 echo "Creating Startup Script"
 cp /opt/install/Mopidy/mopidy.service /etc/systemd/system/
