@@ -16,8 +16,8 @@ fi
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
-Programloc=/opt/CouchPotato
-backupdir=/opt/backup/CouchPotato
+Programloc=/opt/Shinobi
+backupdir=/opt/backup/Shinobi
 time=$(date +"%m_%d_%y-%H_%M")
 
 #Copied Ubuntu install file / will be replaced to support the InstallerConstants.sh
