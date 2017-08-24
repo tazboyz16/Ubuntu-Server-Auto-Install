@@ -29,7 +29,7 @@ sudo bash /opt/install/Muximux/Muximuxinstall.sh -u
 echo
 
 echo "Mylar Auto Update"
-sudo bash /opt/install/Muximux/Muximuxinstall.sh -u
+sudo bash /opt/install/Mylar/mylar-installer.sh -u
 echo
 
 echo "Organizr Auto Update"
