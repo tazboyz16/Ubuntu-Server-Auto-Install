@@ -50,12 +50,22 @@ case $mode in
     	tar -zcvf /opt/backup/Organizr_FullBackup-$time.tar.gz $backupdir
 	;;
 	(-u)
+		#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "Organizr not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Organizr to Update"
 	sleep 5
 	cd $Programloc
 	git pull
 	;;
 	(-U)
+		#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "Organizr not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping Organizr to Force Update"
 	sleep 5
 	cd $Programloc

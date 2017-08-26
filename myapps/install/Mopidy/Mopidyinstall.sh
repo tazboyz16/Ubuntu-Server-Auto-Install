@@ -12,13 +12,26 @@ if [[ $EUID -ne 0 ]]; then
 	echo "This Script must be run as root"
 	exit 1
 fi
+
+
+
 wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
 wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
-apt get update; apt get install mopidy
+apt update; apt install mopidy python-pip -y
 
 #~/.config/mopidy/mopidy.conf
+#/etc/mopidy/mopidy.conf
 #mopidy config to effective configuration
 #https://docs.mopidy.com/en/latest/service/#service
+#have to edit http section to enable outside localhost connections
 
-pip install Mopidy-Moped
 # http://localhost:6680/moped
+pip install mopidy-Moped
+# http://localhost:6680/mopify
+pip install mopidy-mopfiy
+
+echo "Creating Startup Script"
+cp /opt/install/Mopidy/mopidy.service /etc/systemd/system/
+chmod 644 /etc/systemd/system/mopidy.service
+systemctl enable mopidy.service
+systemctl restart mopidy.service 

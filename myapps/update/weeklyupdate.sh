@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Updating all Git Repos"
+echo
 
 echo "CouchPotato Auto Update"
 sudo bash  /opt/install/CouchPotato/couchpotato-installer.sh -u
@@ -28,7 +29,7 @@ sudo bash /opt/install/Muximux/Muximuxinstall.sh -u
 echo
 
 echo "Mylar Auto Update"
-sudo bash /opt/install/Muximux/Muximuxinstall.sh -u
+sudo bash /opt/install/Mylar/mylar-installer.sh -u
 echo
 
 echo "Organizr Auto Update"
@@ -51,6 +52,7 @@ echo
 echo "Grive Website backup" 
 cd /var/www
 sudo grive 
+echo
 
 echo "Plex Server Update"
 sudo bash /opt/install/Plex/plexinstall.sh -u 

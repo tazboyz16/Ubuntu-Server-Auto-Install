@@ -59,6 +59,11 @@ case $mode in
 	systemctl start sickrage
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "SickRage not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping SickRage to Update"
 	sudo systemctl stop sickrage
 	sleep 5
@@ -68,6 +73,11 @@ case $mode in
 	sudo systemctl start sickrage
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "SickRage not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
 	echo "Stopping SickRage to Force Update"
 	sudo systemctl stop sickrage
 	sleep 5
