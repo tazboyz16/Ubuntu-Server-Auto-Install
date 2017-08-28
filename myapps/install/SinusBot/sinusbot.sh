@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update 
+# b=backup i=install r=restore u=update(coming soon) 
 mode="$1"
 
 TeamSpeakClient=3.0.19.4
@@ -56,11 +56,43 @@ case $mode in
 	systemctl enable sinusbot.service
 	systemctl restart sinusbot.service
 	;;
+	(-r)
+	echo "<--- Restoring Sinusbot Settings --->"
+	echo "Stopping Sinusbot"
+	systemctl stop sinusbot
+	cat /opt/install/sinusbot/v.txt > /opt/HTPCManager/userdata
+	chown -R sinusbot:sinusbot /opt/sinusbot
+	chmod -R 0777 /opt/sinusbot
+	echo "Starting up Sinusbot"
+	systemctl start sinusbot
+	;;
+	(-b)
+	#Saved settings
+	#cp /opt/install/SinusBot/config.ini /opt/Sinusbot/config.ini
+	echo "Stopping Sinusbot"
+    	systemctl stop sinusbot
+    	echo "Making sure Backup Dir exists"
+    	mkdir -p $backupdir
+    	echo "Backing up Sinusbot to /opt/backup"
+	cp -rf /opt/Sinusbot/userdata $backupdir
+    	tar -zcvf /opt/backup/Sinusbot_FullBackup-$time.tar.gz $backupdir
+    	echo "Restarting up Sinusbot"
+	systemctl start sinusbot
+	;;
+	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "Sinusbot not installed at '$Programloc'. Update Failed"
+		exit 0;
+		fi
+	echo "Stopping Sinusbot to Update"
+	sudo systemctl stop sinusbot
+	sleep 5
+	cd $Programloc
+	git pull
+	echo "Starting Sinusbot"
+	sudo systemctl start sinusbot
+	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
-
-
-
-	#Saved settings
-	#cp /opt/install/SinusBot/config.ini /opt/Sinusbot/config.ini
