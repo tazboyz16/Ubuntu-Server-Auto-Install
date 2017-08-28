@@ -7,7 +7,8 @@
 [![master](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]()
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()   
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-[![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)
+[![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)   
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)    
      
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
