@@ -1,5 +1,6 @@
 # Ubuntu Server Auto Install 
     
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&utm_medium=referral&utm_content=tazboyz16/Ubuntu-Server-Auto-Install&utm_campaign=badger)
 [![GitHub issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
 [![Release](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 [![Download latest release](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
