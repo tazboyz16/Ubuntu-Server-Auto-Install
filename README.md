@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/tazboyz16/Ubuntu-Server-Auto-Install.png?label=ready&title=Ready)](https://waffle.io/tazboyz16/Ubuntu-Server-Auto-Install?utm_source=badge)
 # Ubuntu Server Auto Install 
     
 [![GitHub issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
