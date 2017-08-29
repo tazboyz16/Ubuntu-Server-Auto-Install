@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update proxy=Reverse Proxy
+# b=(backup) i=(install) r=(restore) u=(update) U=(Force Update) proxy=(Reverse Proxy) port=(Change port)
 mode="$1"
 Programloc=/opt/CouchPotato
 backupdir=/opt/backup/CouchPotato
