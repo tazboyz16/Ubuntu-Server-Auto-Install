@@ -1,15 +1,15 @@
 #!/bin/bash
 
 ###########################################################
-# Created by @tazboyz16 
-# This Script was created at 
+# Created by @tazboyz16
+# This Script was created at
 # https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 # @ 2017 Copyright
 # GNU General Public License v3.0
 ###########################################################
 
 #common locations for the files with Madsonic
-#/var/madsonic, /usr/bin/madsonic, /usr/share/madsonic, /etc/default/madsonic, 
+#/var/madsonic, /usr/bin/madsonic, /usr/share/madsonic, /etc/default/madsonic,
 #https://unix.stackexchange.com/questions/233468/how-does-systemd-use-etc-init-d-scripts
 
 
@@ -43,7 +43,7 @@ case $mode in
 	service madsonic stop
 	sudo killall madsonic
 	sudo update-rc.d -f madsonic remove
-	#sudo rm /etc/default/madsonic 
+	#sudo rm /etc/default/madsonic
 	chmod 644 /etc/systemd/system/madsonic.service
 	systemctl enable madsonic.service
 	systemctl restart madsonic.service
@@ -63,8 +63,8 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Madsonic to /opt/backup"
-	cp /var/lib/madsonic/db $backupdir
-	cp /var/lib/madsonic/madsonic.properties $backupdir
+	cp /var/madsonic/db $backupdir
+	cp /var/madsonic/madsonic.properties $backupdir
 	tar -zcvf /opt/backup/Madsonic_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Madsonic"
 	systemctl start madsonic
@@ -72,6 +72,3 @@ case $mode in
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
-	
-	
-	
