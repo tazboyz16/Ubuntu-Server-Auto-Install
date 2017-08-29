@@ -90,8 +90,8 @@ case $mode in
 	sudo systemctl start couchpotato
 	;;
 	(-proxy)
-	cat /opt/install/CouchPotato/couchpotato.conf >> /etc/apache2/sites-available/000-default.conf
-	a2ensite couchpotato.conf
+	cat /opt/install/CouchPotato/couchpotato.conf >> /etc/apache2/mods-available/proxy.conf
+	#a2ensite couchpotato.conf
 	sed -i "s#url_base = #url_base = /couchpotato#" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	systemctl restart apache2 couchpotato
 	;;
