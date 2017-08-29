@@ -98,7 +98,7 @@ case $mode in
 	(-port)
 	echo "What Port Number Would you like to change CouchPotato to?"
 	read Port
-	sed -i "s#port = 5050#port = $Port#"
+	sed -i "s#port = 5050#port = $Port#" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	echo "Changed Port over to $Port"
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
