@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update 
+# b=backup i=install r=restore u=update U=Force Update proxy=Reverse Proxy
 mode="$1"
 Programloc=/opt/CouchPotato
 backupdir=/opt/backup/CouchPotato
@@ -88,6 +88,9 @@ case $mode in
 	git pull
 	echo "Starting CouchPotato"
 	sudo systemctl start couchpotato
+	;;
+	(-proxy)
+	cp -rf /opt/install/CouchPotato/couchpotato.conf /etc/apache2/sites-available/
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
