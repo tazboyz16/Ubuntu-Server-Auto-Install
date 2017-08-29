@@ -92,7 +92,7 @@ case $mode in
 	(-proxy)
 	cat /opt/install/CouchPotato/couchpotato.conf >> /etc/apache2/mods-available/proxy.conf
 	#a2ensite couchpotato.conf
-	sed -i "s#url_base =#url_base = /couchpotato#g" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	sed -i -e "s#url_base =#url_base = /couchpotato#g" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	systemctl restart apache2 couchpotato
 	;;
 	(-port)
