@@ -95,6 +95,12 @@ case $mode in
 	sed -i "s#url_base = #url_base = /couchpotato#" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	systemctl restart apache2 couchpotato
 	;;
+	(-port)
+	echo "What Port Number Would you like to change CouchPotato to?"
+	read Port
+	sed -i "s#port = 5050#port = $Port#"
+	echo "Changed Port over to $Port"
+	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
