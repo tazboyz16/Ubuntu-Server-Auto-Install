@@ -38,6 +38,7 @@ case $mode in
 	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
 	dpkg -i 20161208_madsonic-6.2.9040.deb
 	rm -rf *_madsonic-*.deb
+	chmod 0777 -R /var/madsonic
 	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
 	service madsonic stop
