@@ -4,8 +4,9 @@
    
 Branch|Build|Size|Version|Stars|Pulls|Docker Hub
 ---|---|---|---|---|---|---
-Master | [![Branch Master](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]() |
-Dev | [![Branch Dev](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]() |
+Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) |
+Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install)
+Overall Status | 
 
 
 
@@ -28,8 +29,6 @@ Dev | [![Branch Dev](https://img.shields.io/badge/Master-stable-green.svg?maxAge
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)
 
 [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master)
-
-[![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install)
 
 [![Codebeat Badge](https://codebeat.co/badges/2fcb06b2-a034-4f1f-a639-48887f0c47c3)](https://codebeat.co/projects/github-com-tazboyz16-ubuntu-server-auto-install-master)
 
