@@ -1,6 +1,14 @@
 # Ubuntu Server Auto Install 
     
-[![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues ?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
+[![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)   
+   
+Branch|Build|Size|Version|Stars|Pulls|Docker Hub
+---|---|---|---|---|---|---
+Master | [![Branch Master](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]() |
+Dev | [![Branch Dev](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]() |
+
+
+
 
 [![Release](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 
@@ -8,8 +16,8 @@
 
 [![Download total](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
 
-[![Branch Master](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]()
-[![Branch Dev](https://img.shields.io/badge/Master-stable-green.svg?maxAge=2592000)]()
+
+
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 
