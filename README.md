@@ -14,7 +14,7 @@
 [![codebeat badge](https://codebeat.co/badges/2fcb06b2-a034-4f1f-a639-48887f0c47c3)](https://codebeat.co/projects/github-com-tazboyz16-ubuntu-server-auto-install-master)
 [![Stories in Ready](https://badge.waffle.io/tazboyz16/Ubuntu-Server-Auto-Install.png?label=ready&title=Ready)](https://waffle.io/tazboyz16/Ubuntu-Server-Auto-Install?utm_source=badge)    
 
-[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
+[![Code Climate](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
 [![Test Coverage](https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg)](https://codeclimate.com/github/codeclimate/codeclimate/coverage)
 [![Issue Count](https://codeclimate.com/github/codeclimate/codeclimate/badges/issue_count.svg)](https://codeclimate.com/github/codeclimate/codeclimate)   
      
