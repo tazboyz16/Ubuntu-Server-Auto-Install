@@ -22,7 +22,7 @@ Please see the wiki for futher information
 To download, go here:   
 [https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)    
   
-# Overall Status of Project 
+## Overall Status of Project 
 
 Branch|Build|Coverage|...|...|...|...
 ---|---|---|---|---|---|---
