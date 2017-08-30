@@ -22,9 +22,6 @@ Please see the wiki for futher information
 To download, go here:   
 [https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)    
   
-# Preview  
-[![Preview Example 1](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)
-
 # Overall Status of Project 
 
 Branch|Build|Coverage|Version|Stars|Pulls|Docker Hub
@@ -58,3 +55,6 @@ Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Instal
 [![Codebeat Badge](https://codebeat.co/badges/2fcb06b2-a034-4f1f-a639-48887f0c47c3)](https://codebeat.co/projects/github-com-tazboyz16-ubuntu-server-auto-install-master)
      
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
+
+# Preview  
+[![Preview Example 1](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)
