@@ -42,7 +42,7 @@ Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Instal
 
 [![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade?branch=master)
 
 [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master)
 
