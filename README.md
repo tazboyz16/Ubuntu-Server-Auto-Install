@@ -1,12 +1,10 @@
 # Ubuntu Server Auto Install 
     
-[![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)   
-   
-Branch|Build|Size|Version|Stars|Pulls|Docker Hub
+Branch|Build|Coverage|Version|Stars|Pulls|Docker Hub
 ---|---|---|---|---|---|---
-Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) |
-Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install)
-Overall Status | 
+Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master)
+Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=Dev)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=Dev)
+Overall Status | [![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues) | 
 
 
 
@@ -31,14 +29,6 @@ Overall Status |
 [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master)
 
 [![Codebeat Badge](https://codebeat.co/badges/2fcb06b2-a034-4f1f-a639-48887f0c47c3)](https://codebeat.co/projects/github-com-tazboyz16-ubuntu-server-auto-install-master)
-
-[![Stories in Ready](https://badge.waffle.io/tazboyz16/Ubuntu-Server-Auto-Install.png?label=ready&title=Ready)](https://waffle.io/tazboyz16/Ubuntu-Server-Auto-Install?utm_source=badge)    
-
-[![Code Climate](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install/badges/gpa.svg)](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install)
-
-[![Test Coverage](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install/coverage.svg)](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install/coverage)
-
-[![Issue Count](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install/badges/issue_count.svg)](https://codeclimate.com/github/tazboyz16/Ubuntu-Server-Auto-Install)   
      
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
