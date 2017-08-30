@@ -24,7 +24,7 @@ To download, go here:
   
 # Overall Status of Project 
 
-Branch|Build|Coverage|Version|Stars|Pulls|Docker Hub
+Branch|Build|Coverage|   |   |   |    
 ---|---|---|---|---|---|---
 Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master)
 Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=Dev)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=Dev)
