@@ -24,7 +24,7 @@ To download, go here:
   
 ### Overall Status of Project 
 
-Branch|Build|Coverage|...|...|...|...
+Branch|Build|Coverage|Codacy Grade|...|...|...
 ---|---|---|---|---|---|---
 Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master) | [![Codacy Master Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824?branch=master)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)
 Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=Dev)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=Dev) | [![Codacy Master Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824?branch=Dev)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)
