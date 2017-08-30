@@ -30,11 +30,7 @@ Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Ins
 Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=Dev)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=Dev)
   
    
-
-| [![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues) | 
-
-
-
+[![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues) 
 
 [![Release](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 
