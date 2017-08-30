@@ -32,7 +32,7 @@ Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Instal
    
 [![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues) 
 
-[![Latest Release Version](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Latest Release&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
+[![Latest Release Version](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?label='Latest Release'&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 
 [![Download latest release](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 
