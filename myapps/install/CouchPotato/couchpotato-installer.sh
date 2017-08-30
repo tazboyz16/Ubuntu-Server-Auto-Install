@@ -97,7 +97,7 @@ case $mode in
 	echo "What Port Number Would you like to change CouchPotato to?"
 	read Port
 	sed -i "s#port = .*#port = $Port#" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
-	sed -i "s#:.*/couchpotato#:$Port/couchpotato#" /etc/apache2/sites-available/000-default.conf
+	sed -i "s#1:.*/couchpotato#1:$Port/couchpotato#" /etc/apache2/sites-available/000-default.conf
 	echo "Changed Port over to $Port"
 	systemctl restart apache2 couchpotato
 	;;
