@@ -22,7 +22,7 @@ Please see the wiki for futher information
 To download, go here:   
 [https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)    
   
-## Overall Status of Project 
+### Overall Status of Project 
 
 Branch|Build|Coverage|...|...|...|...
 ---|---|---|---|---|---|---
@@ -56,5 +56,5 @@ Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Instal
      
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
 
-# Preview  
+### Preview  
 [![Preview Example 1](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)
