@@ -15,7 +15,7 @@ fi
 
 #Modes (Variables)
 # b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon) dd=(setup default daemon to localhost/auto login to localhost GUI)
-# port=(Change Port)
+
 mode="$1"
 
 Programloc=/var/lib/deluge
