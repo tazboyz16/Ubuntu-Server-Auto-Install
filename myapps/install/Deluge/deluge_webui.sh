@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore -vpn(coming soon) -dd(setup default daemon to localhost)
+# b=backup i=install r=restore -vpn(coming soon) -dd=(setup default daemon to localhost/auto login to localhost GUI)
 mode="$1"
 
 Programloc=/var/lib/deluge
@@ -78,7 +78,7 @@ case $mode in
 	systemctl start deluge-web
 	;;
 	(-vpn)
-	#lookup Reverse Proxy with Deluge 
+	#Is already setup in the 000-default.conf for Apache2 just need to finish the Split-tunneling with openvpn
 	
 	;;
 	(-dd)
