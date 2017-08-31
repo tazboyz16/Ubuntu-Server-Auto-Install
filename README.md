@@ -29,22 +29,20 @@ Branch|Build|Coverage|Codacy Grade|...|...|...
 Master | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=master)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master) | [![Codacy Master Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824?branch=master)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)
 Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install.svg?branch=Dev)](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Install) | [![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=Dev)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=Dev) | [![Codacy Master Badge](https://api.codacy.com/project/badge/Grade/c396aaee00d54efda805b5cc145bd824?branch=Dev)](https://www.codacy.com/app/tazboyz_16/Ubuntu-Server-Auto-Install?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tazboyz16/Ubuntu-Server-Auto-Install&amp;utm_campaign=Badge_Grade)
          
+[![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)
 [![GitHub Issues](https://img.shields.io/github/issues/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Issues&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
 [![Latest Release Version](https://img.shields.io/github/release/tazboyz16/Ubuntu-Server-Auto-Install.svg?label=Latest-Release&style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
 [![Latest Release Download](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/latest/total.svg?label=Latest-Downloaded)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)
-[![Total Downloads](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg?label=Total-Downlaods)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
+[![Total Downloads](https://img.shields.io/github/downloads/tazboyz16/Ubuntu-Server-Auto-Install/total.svg?label=Total-Downloads)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases)
+
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 
+
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-
-[![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl.html)
-
-[![Coverage Status](https://coveralls.io/repos/github/tazboyz16/Ubuntu-Server-Auto-Install/badge.svg?branch=master)](https://coveralls.io/github/tazboyz16/Ubuntu-Server-Auto-Install?branch=master)
-
-[![Codebeat Badge](https://codebeat.co/badges/2fcb06b2-a034-4f1f-a639-48887f0c47c3)](https://codebeat.co/projects/github-com-tazboyz16-ubuntu-server-auto-install-master)
-     
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
 [![Feature Requests](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/mFO0OuX.png)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
+
 
 ### Preview  
 [![Preview Example 1](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)](https://github.com/tazboyz16/tazboyz16.github.io/raw/master/ZCzZzLf.png)
