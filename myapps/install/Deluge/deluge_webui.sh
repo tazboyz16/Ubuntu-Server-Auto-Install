@@ -18,7 +18,7 @@ fi
 
 mode="$1"
 
-Programloc=/var/lib/deluge
+Programloc=/opt/Deluge
 backupdir=/opt/backup/Deluge
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -30,7 +30,7 @@ case $mode in
 	apt update
 	## setup deluge user
 	echo "<--- Now we will setup a user for Deluge --->"
-	adduser --disabled-password --system --home /opt/ProgramData/Deluge --gecos "Deluge service" --group Deluge
+	adduser --disabled-password --system --home /opt/Deluge --gecos "Deluge service" --group Deluge
 	sudo touch /var/log/deluged.log
 	sudo touch /var/log/deluge-web.log
 	sudo chown Deluge:Deluge /var/log/deluge*
