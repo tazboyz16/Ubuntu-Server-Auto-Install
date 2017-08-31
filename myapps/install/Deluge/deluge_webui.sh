@@ -44,7 +44,6 @@ case $mode in
 	systemctl enable deluged.service
 	systemctl enable deluge-web.service
 	systemctl start deluged deluge-web
-	sleep 20
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
