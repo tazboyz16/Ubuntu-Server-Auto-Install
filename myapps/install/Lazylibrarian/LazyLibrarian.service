@@ -13,7 +13,7 @@ After=network.target
 User=LazyLibrarian
 Group=LazyLibrarian
 Type=simple
-ExecStart=/opt/LazyLibrarian/LazyLibrarian.py
+ExecStart=/opt/LazyLibrarian/LazyLibrarian.py --config=/opt/LazyLibrarian/config.ini
 GuessMainPID=no
 
 [Install]

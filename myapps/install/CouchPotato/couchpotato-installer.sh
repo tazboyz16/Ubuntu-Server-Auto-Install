@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update 
+# b=(backup) i=(install) r=(restore) u=(update) U=(Force Update) proxy=(Reverse Proxy) port=(Change port)
 mode="$1"
 Programloc=/opt/CouchPotato
 backupdir=/opt/backup/CouchPotato
@@ -88,6 +88,18 @@ case $mode in
 	git pull
 	echo "Starting CouchPotato"
 	sudo systemctl start couchpotato
+	;;
+	(-proxy)
+	sed -i 's#.*url_base = .*#url_base = /couchpotato#' /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	systemctl restart apache2 couchpotato
+	;;
+	(-port)
+	echo "What Port Number Would you like to change CouchPotato to?"
+	read Port
+	sed -i "s#port = .*#port = $Port#" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	sed -i "s#1:.*/couchpotato#1:$Port/couchpotato#" /etc/apache2/sites-available/000-default.conf
+	echo "Changed Port over to $Port"
+	systemctl restart apache2 couchpotato
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac

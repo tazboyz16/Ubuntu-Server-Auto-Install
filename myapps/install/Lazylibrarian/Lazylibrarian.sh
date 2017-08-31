@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore 
+# b=(backup) i=(install) r=(restore) u=(update) U=(Force Update) proxy=(Reverse Proxy) port=(Change port)
 mode="$1"
 
 Programloc=/opt/LazyLibrarian
@@ -85,6 +85,18 @@ case $mode in
 	git pull
 	echo "Starting LazyLibrarian"
 	sudo systemctl start LazyLibrarian
+	;;
+	(-proxy)
+	sed -i 's#.*http_root = .*#http_root = /lazylibrarian#' /opt/LazyLibrarian/config.ini
+	systemctl restart apache2 LazyLibrarian
+	;;
+	(-port)
+	echo "What Port Number Would you like to change LazyLibrarian to?"
+	read Port
+	sed -i "s#http_port = .*#http_port = $Port#" /opt/LazyLibrarian/config.ini
+	sed -i "s#1:.*/lazylibrarian#1:$Port/lazylibrarian#" /etc/apache2/sites-available/000-default.conf
+	echo "Changed Port over to $Port"
+	systemctl restart apache2 LazyLibrarian
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
