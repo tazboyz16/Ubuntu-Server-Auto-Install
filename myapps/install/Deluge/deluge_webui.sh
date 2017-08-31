@@ -30,7 +30,7 @@ case $mode in
 	apt update
 	## setup deluge user
 	echo "<--- Now we will setup a user for Deluge --->"
-	adduser --disabled-password --system --home /var/lib/deluge/.config/deluge --gecos "Deluge service" --group Deluge
+	adduser --disabled-password --system --home /opt/ProgramData/Deluge --gecos "Deluge service" --group Deluge
 	sudo touch /var/log/deluged.log
 	sudo touch /var/log/deluge-web.log
 	sudo chown Deluge:Deluge /var/log/deluge*
