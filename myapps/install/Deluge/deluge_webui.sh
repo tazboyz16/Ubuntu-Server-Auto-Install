@@ -14,7 +14,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore -vpn(coming soon) -dd=(setup default daemon to localhost/auto login to localhost GUI)
+# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon) dd=(setup default daemon to localhost/auto login to localhost GUI)
+# port=(Change Port)
 mode="$1"
 
 Programloc=/var/lib/deluge
@@ -42,8 +43,7 @@ case $mode in
 	chmod 644 /etc/systemd/system/deluge-web.service
 	systemctl enable deluged.service
 	systemctl enable deluge-web.service
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web
 	sleep 20
 	;;
 	(-r)
@@ -53,20 +53,17 @@ case $mode in
 	#core.conf and web.conf
 	#cp /opt/install/Deluge/core.conf /var/lib/deluge/.config/deluge
 	#cp /opt/install/Deluge/web.conf /var/lib/deluge/.config/deluge
-	systemctl stop deluged
-	systemctl stop deluge-web
+	systemctl stop deluged deluge-web
 	sleep 15
 	sudo chmod 0777 -R $Programloc
 	cp /opt/install/Deluge/core.conf $Programloc/.config/deluge
 	cp /opt/install/Deluge/web.conf $Programloc/.config/deluge
 	echo "Restarting up Deluge"
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web
 	;;
 	(-b)
 	echo "Stopping Deluge"
-    	systemctl stop deluged
-	systemctl stop deluge-web
+    	systemctl stop deluged deluge-web
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Deluge to /opt/backup"
@@ -74,23 +71,19 @@ case $mode in
 	cp $Programloc/.config/deluge/web.conf $backupdir
 	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Deluge"
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web
 	;;
 	(-vpn)
 	#Is already setup in the 000-default.conf for Apache2 just need to finish the Split-tunneling with openvpn
-	
 	;;
 	(-dd)
 	echo "Stopping Deluge"
-    	systemctl stop deluged
-	systemctl stop deluge-web
+    	systemctl stop deluged deluge-web
 	echo "Creating Auto load localhost WebUI for DelugeWeb"
 	chmod 0777 -R /var/lib/deluge/
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
 	echo "Restarting up Deluge"
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web 
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
