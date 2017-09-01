@@ -15,10 +15,10 @@ chmod 0777 -R /var/lib/plexmediaserver
 sleep 25
 mkdir -p /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins
 
-Programloc='/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/'
+Programloc='/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins'
 
 echo "Installing CouchPotato"
-git clone https://github.com/mikedm139/CouchPotato.bundle.git "$Programloc"
+git clone https://github.com/mikedm139/CouchPotato.bundle.git "$Programloc"/CouchPotato.bundle
 #rm -r /opt/CouchPotato.bundle
 
 echo "Installing Headphones"
