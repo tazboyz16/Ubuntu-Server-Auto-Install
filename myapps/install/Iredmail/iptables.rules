@@ -150,6 +150,12 @@
 # Plex Media Server
 #-A INPUT -p tcp --dport 32400 -j ACCEPT
 
+# PlexRequests
+#-A INPUT -p tcp --dport 3579 -j ACCEPT
+
+# PlexPY
+#-A INPUT -p tcp --dport 8181 -j ACCEPT
+
 # Radarr
 #-A INPUT -p tcp --dport 7878 -j ACCEPT
 
@@ -180,14 +186,7 @@
 # WebTools
 #-A INPUT -p tcp --dport 33400 -j ACCEPT
 
-
-
-# PlexPY
-#-A INPUT -p tcp --dport 8181 -j ACCEPT
-
-# PlexRequests
-#-A INPUT -p tcp --dport 3579 -j ACCEPT
-
+#### have yet to setup install scripts for Program
 # Sabnzbd
 #-A INPUT -p tcp --dport 8080 -j ACCEPT
 
