@@ -22,27 +22,27 @@ git clone https://github.com/mikedm139/CouchPotato.bundle.git "$Programloc"/Couc
 #rm -r /opt/CouchPotato.bundle
 
 echo "Installing Headphones"
-git clone https://github.com/willpharaoh/headphones.bundle.git "$Programloc"
+git clone https://github.com/willpharaoh/headphones.bundle.git "$Programloc"/headphones.bundle
 #rm -r /opt/headphones.bundle
 
 echo "Installing SickBeard/SickRage"
-git clone https://github.com/mikedm139/SickBeard.bundle.git "$Programloc"
+git clone https://github.com/mikedm139/SickBeard.bundle.git "$Programloc"/SickBeard.bundle
 #rm -r /opt/SickBeard.bundle
 
 echo "Installing Speedtest"
-git clone https://github.com/Twoure/Speedtest.bundle.git "$Programloc"
+git clone https://github.com/Twoure/Speedtest.bundle.git "$Programloc"/Speedtest.bundle
 #rm -r /opt/Speedtest.bundle
 
 echo "Installing SS-Plex"
-git clone https://github.com/mikew/ss-plex.bundle.git "$Programloc"
+git clone https://github.com/mikew/ss-plex.bundle.git "$Programloc"/SS-Plex.bundle
 #rm -r /opt/ss-plex.bundle
 
 echo "Installing Sub Zero Subtitles"
-git clone https://github.com/pannal/Sub-Zero.bundle.git "$Programloc"
+git clone https://github.com/pannal/Sub-Zero.bundle.git "$Programloc"/Sub-Zero.bundle
 #rm -r /opt/Sub-Zero.bundle
 
 echo "Installing WebTools"
-git clone https://github.com/ukdtom/WebTools.bundle.git "$Programloc"
+git clone https://github.com/ukdtom/WebTools.bundle.git "$Programloc"/WebTools.bundle
 #rm -r /opt/WebTools.bundle
 
 chown plex:plex -R /var/lib/plexmediaserver
