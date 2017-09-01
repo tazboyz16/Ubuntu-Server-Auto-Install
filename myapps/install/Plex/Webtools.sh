@@ -10,9 +10,9 @@
 
 
 systemctl stop plexmediaserver
-sleep 15
+#sleep 15
 chmod 0777 -R /var/lib/plexmediaserver
-sleep 25
+#sleep 25
 mkdir -p /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins
 
 Programloc='/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins'
