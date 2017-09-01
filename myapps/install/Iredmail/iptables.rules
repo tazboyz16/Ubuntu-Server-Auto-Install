@@ -151,7 +151,7 @@
 #-A INPUT -p upd --dport 5353 -j ACCEPT
 #-A INPUT -p tcp --dport 8324 -j ACCEPT
 #-A INPUT -p tcp --dport 32469 -j ACCEPT
-#-A INPUT -p tcp --match multiport --dports 32410:32414 -j ACCEPT
+#-A INPUT -p udp --match multiport --dports 32410,32412,32413,32414 -j ACCEPT
 
 # PlexRequests
 #-A INPUT -p tcp --dport 3579 -j ACCEPT
