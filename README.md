@@ -40,6 +40,8 @@ Dev | [![Build Status](https://travis-ci.org/tazboyz16/Ubuntu-Server-Auto-Instal
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8A3H889FURE56&lc=US&item_name=Ubuntu%20Auto%20Install&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/issues)
 [![Feature Requests](https://img.shields.io/badge/Feature%20Requests-Open-green.svg)](http://feathub.com/tazboyz16/Ubuntu-Server-Auto-Install)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/tazboyz16/Ubuntu-Server-Auto-Install.svg)](http://isitmaintained.com/project/tazboyz16/Ubuntu-Server-Auto-Install "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/tazboyz16/Ubuntu-Server-Auto-Install.svg)](http://isitmaintained.com/project/tazboyz16/Ubuntu-Server-Auto-Install "Percentage of issues still open")
 
 
 ### Preview  
