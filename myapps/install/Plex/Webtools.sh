@@ -10,47 +10,33 @@
 
 
 systemctl stop plexmediaserver
-sleep 15
+sleep 10
 chmod 0777 -R /var/lib/plexmediaserver
-sleep 25
+sleep 10
 mkdir -p /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins
 
-cd
+Programloc='/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins'
 
 echo "Installing CouchPotato"
-git clone https://github.com/mikedm139/CouchPotato.bundle.git
-cp -fR /opt/CouchPotato.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/CouchPotato.bundle
+git clone https://github.com/mikedm139/CouchPotato.bundle.git "$Programloc"/CouchPotato.bundle
 
 echo "Installing Headphones"
-git clone https://github.com/willpharaoh/headphones.bundle.git
-cp -fR /opt/headphones.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/headphones.bundle
+git clone https://github.com/willpharaoh/headphones.bundle.git "$Programloc"/Headphones.bundle
 
 echo "Installing SickBeard/SickRage"
-git clone https://github.com/mikedm139/SickBeard.bundle.git
-cp -fR /opt/SickBeard.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/SickBeard.bundle
+git clone https://github.com/mikedm139/SickBeard.bundle.git "$Programloc"/SickBeard.bundle
 
 echo "Installing Speedtest"
-git clone https://github.com/Twoure/Speedtest.bundle.git
-cp -fR /opt/Speedtest.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/Speedtest.bundle
+git clone https://github.com/Twoure/Speedtest.bundle.git "$Programloc"/Speedtest.bundle
 
 echo "Installing SS-Plex"
-git clone https://github.com/mikew/ss-plex.bundle.git
-cp -fR /opt/ss-plex.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/ss-plex.bundle
+git clone https://github.com/mikew/ss-plex.bundle.git "$Programloc"/SS-Plex.bundle
 
 echo "Installing Sub Zero Subtitles"
-git clone https://github.com/pannal/Sub-Zero.bundle.git
-cp -fR /opt/Sub-Zero.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/Sub-Zero.bundle
+git clone https://github.com/pannal/Sub-Zero.bundle.git "$Programloc"/Sub-Zero.bundle
 
 echo "Installing WebTools"
-git clone https://github.com/ukdtom/WebTools.bundle.git
-cp -fR /opt/WebTools.bundle /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
-rm -r /opt/WebTools.bundle
+git clone https://github.com/ukdtom/WebTools.bundle.git "$Programloc"/WebTools.bundle
 
 chown plex:plex -R /var/lib/plexmediaserver
 chmod 0777 -R /var/lib/plexmediaserver

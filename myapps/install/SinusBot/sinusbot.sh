@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update(coming soon) 
+# b=backup i=install r=restore u=update(coming soon) passwd=(Remove the Forced Foobarr password)
 mode="$1"
 
 TeamSpeakClient=3.0.19.4
@@ -92,6 +92,13 @@ case $mode in
 	git pull
 	echo "Starting Sinusbot"
 	sudo systemctl start sinusbot
+	;;
+	(-passwd)
+	echo "Reseting Sinusbot Service back to normal operations"
+ 	systemctl stop sinusbot
+	sed -i 's/ -pwreset=foobar/ /g' /etc/systemd/system/sinusbot.service
+	systemctl daemon-reload
+	systemctl restart sinusbot
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac

@@ -14,10 +14,11 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore -vpn(coming soon) -dd(setup default daemon to localhost)
+# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon) dd=(setup default daemon to localhost/auto login to localhost GUI)
+
 mode="$1"
 
-Programloc=/var/lib/deluge
+Programloc=/opt/Deluge
 backupdir=/opt/backup/Deluge
 time=$(date +"%m_%d_%y-%H_%M")
 
@@ -29,7 +30,7 @@ case $mode in
 	apt update
 	## setup deluge user
 	echo "<--- Now we will setup a user for Deluge --->"
-	adduser --disabled-password --system --home /var/lib/deluge --gecos "Deluge service" --group Deluge
+	adduser --disabled-password --system --home /opt/Deluge --gecos "Deluge service" --group Deluge
 	sudo touch /var/log/deluged.log
 	sudo touch /var/log/deluge-web.log
 	sudo chown Deluge:Deluge /var/log/deluge*
@@ -42,9 +43,7 @@ case $mode in
 	chmod 644 /etc/systemd/system/deluge-web.service
 	systemctl enable deluged.service
 	systemctl enable deluge-web.service
-	systemctl start deluged
-	systemctl start deluge-web
-	sleep 20
+	systemctl start deluged deluge-web
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
@@ -53,20 +52,17 @@ case $mode in
 	#core.conf and web.conf
 	#cp /opt/install/Deluge/core.conf /var/lib/deluge/.config/deluge
 	#cp /opt/install/Deluge/web.conf /var/lib/deluge/.config/deluge
-	systemctl stop deluged
-	systemctl stop deluge-web
+	systemctl stop deluged deluge-web
 	sleep 15
 	sudo chmod 0777 -R $Programloc
 	cp /opt/install/Deluge/core.conf $Programloc/.config/deluge
 	cp /opt/install/Deluge/web.conf $Programloc/.config/deluge
 	echo "Restarting up Deluge"
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web
 	;;
 	(-b)
 	echo "Stopping Deluge"
-    	systemctl stop deluged
-	systemctl stop deluge-web
+    	systemctl stop deluged deluge-web
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Deluge to /opt/backup"
@@ -74,23 +70,19 @@ case $mode in
 	cp $Programloc/.config/deluge/web.conf $backupdir
 	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Deluge"
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web
 	;;
 	(-vpn)
-	#lookup Reverse Proxy with Deluge 
-	
+	#Is already setup in the 000-default.conf for Apache2 just need to finish the Split-tunneling with openvpn
 	;;
 	(-dd)
 	echo "Stopping Deluge"
-    	systemctl stop deluged
-	systemctl stop deluge-web
+    	systemctl stop deluged deluge-web
 	echo "Creating Auto load localhost WebUI for DelugeWeb"
 	chmod 0777 -R /var/lib/deluge/
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' /var/lib/deluge/.config/deluge/web.conf
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
 	echo "Restarting up Deluge"
-	systemctl start deluged
-	systemctl start deluge-web
+	systemctl start deluged deluge-web 
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac

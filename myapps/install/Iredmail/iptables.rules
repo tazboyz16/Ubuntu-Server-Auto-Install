@@ -108,70 +108,87 @@
 #-A INPUT -p tcp --dport 5223 -j ACCEPT
 #-A INPUT -p tcp --dport 5280 -j ACCEPT
 
-
-#Plex Media Server
-#-A INPUT -p tcp --dport 32400 -j ACCEPT
-
-#WebTools
-#-A INPUT -p tcp --dport 33400 -j ACCEPT
-
-#PlexPY
-#-A INPUT -p tcp --dport 8181 -j ACCEPT
-
-#PlexRequests
-#-A INPUT -p tcp --dport 3579 -j ACCEPT
-
-# SickRage
-#-A INPUT -p tcp --dport 8081 -j ACCEPT
-
-# Mylar
-#-A INPUT -p tcp --dport 8090 -j ACCEPT
-
 # CouchPotato
 #-A INPUT -p tcp --dport 5050 -j ACCEPT
-
-# Webmin
-#-A INPUT -p tcp --dport 10000 -j ACCEPT
-
-# Headphones
-#-A INPUT -p tcp --dport 8182 -j ACCEPT
 
 # Deluge Web
 #-A INPUT -p tcp --dport 8112 -j ACCEPT
 
-# Sinusbot
-#-A INPUT -p tcp --dport 8087 -j ACCEPT
-
-# NOIP2 Update DNS Client
-#-A INPUT -p tcp --dport 8254 -j ACCEPT
-
-# Emby Media Server https
+# Emby Media Server https/http
 #-A INPUT -p tcp --dport 8920 -j ACCEPT
-
-# EMBY http
 #-A INPUT -p tcp --dport 8096 -j ACCEPT
 
-# Teamspeak Server 
-#-A INPUT -p tcp --dport 9987 -j ACCEPT
-#-A INPUT -p tcp --dport 10011 -j ACCEPT
-#-A INPUT -p tcp --dport 30033 -j ACCEPT
+# Glances
 
-# LazyLibrarian
-#-A INPUT -p tcp --dport 5299 -j ACCEPT
-
-# Sonarr
-#-A INPUT -p tcp --dport 8989 -j ACCEPT
+# HTPC Manager
+#-A INPUT -p tcp --dport 8085 -j ACCEPT
 
 # Jackett
 #-A INPUT -p tcp --dport 9117 -j ACCEPT
 
+# LazyLibrarian
+#-A INPUT -p tcp --dport 5299 -j ACCEPT
+
+# Madsonic
+#-A INPUT -p tcp --dport 4040 -j ACCEPT
+
+# Mopidy 
+#-A INPUT -p tcp --dport 6680 -j ACCEPT
+
+# Mylar
+#-A INPUT -p tcp --dport 8090 -j ACCEPT
+
+# NOIP2 Update DNS Client
+#-A INPUT -p tcp --dport 8254 -j ACCEPT
+
 # NZBGet
 #-A INPUT -p tcp --dport 6789 -j ACCEPT
 
-# Sabnzbd
-#-A INPUT -p tcp --dport 8080 -j ACCEPT
+# Plex Media Server
+#-A INPUT -p tcp --dport 32400 -j ACCEPT
+#-A INPUT -p udp --dport 1900 -j ACCEPT
+#-A INPUT -p tcp --dport 3005 -j ACCEPT
+#-A INPUT -p upd --dport 5353 -j ACCEPT
+#-A INPUT -p tcp --dport 8324 -j ACCEPT
+#-A INPUT -p tcp --dport 32469 -j ACCEPT
+#-A INPUT -p udp --match multiport --dports 32410,32412,32413,32414 -j ACCEPT
+
+# PlexRequests
+#-A INPUT -p tcp --dport 3579 -j ACCEPT
 
 # Radarr
 #-A INPUT -p tcp --dport 7878 -j ACCEPT
+
+# SickRage
+#-A INPUT -p tcp --dport 8081 -j ACCEPT
+
+# Sinusbot
+#-A INPUT -p tcp --dport 8087 -j ACCEPT
+
+# Sonarr
+#-A INPUT -p tcp --dport 8989 -j ACCEPT
+
+# Teamspeak Server  Voice/ServerQuery/FTP
+#-A INPUT -p tcp --dport 9987 -j ACCEPT
+#-A INPUT -p tcp --dport 10011 -j ACCEPT
+#-A INPUT -p tcp --dport 30033 -j ACCEPT
+
+# Ubooquity Library/Admin
+#-A INPUT -p tcp --dport 2202 -j ACCEPT
+#-A INPUT -p tcp --dport 2203 -j ACCEPT
+
+# Webmin
+#-A INPUT -p tcp --dport 10000 -j ACCEPT
+
+# WebTools
+#-A INPUT -p tcp --dport 33400 -j ACCEPT
+
+###Shared Ports
+
+# Headphones & PlexPy
+#-A INPUT -p tcp --dport 8181 -j ACCEPT
+
+# Shinobi & Sabnzbd
+#-A INPUT -p tcp --dport 8080 -j ACCEPT
 
 COMMIT
