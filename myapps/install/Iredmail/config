@@ -24,4 +24,4 @@ export RCM_DB_PASSWD=''     #30 Char random password
 export SOGO_DB_PASSWD=''      #30 Char random password
 export SOGO_SIEVE_MASTER_PASSWD=''     #30 Char random password
 export IREDAPD_DB_PASSWD=''     #30 Char random password
-#EOF 
+#EOF
