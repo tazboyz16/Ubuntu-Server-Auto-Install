@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###########################################################
-# Created by @tazboyz16 
-# This Script was created at 
+# Created by @tazboyz16
+# This Script was created at
 # https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 # @ 2017 Copyright
 # GNU General Public License v3.0
@@ -29,7 +29,7 @@ case $mode in
    	cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
    	chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
    	chmod -R 0777 /opt/LazyLibrarian
-  	echo "Creating Startup Script" 
+  	echo "Creating Startup Script"
    	cp /opt/install/Lazylibrarian/LazyLibrarian.service /etc/systemd/system/
    	chmod 644 /etc/systemd/system/LazyLibrarian.service
    	systemctl enable LazyLibrarian.service
@@ -87,6 +87,7 @@ case $mode in
 	sudo systemctl start LazyLibrarian
 	;;
 	(-proxy)
+  systemctl restart LazyLibrarian
 	sed -i 's#.*http_root = .*#http_root = /lazylibrarian#' /opt/LazyLibrarian/config.ini
 	systemctl restart apache2 LazyLibrarian
 	;;

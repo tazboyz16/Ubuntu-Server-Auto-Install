@@ -15,17 +15,14 @@ fi
 
 #install Glances
 #run glances with glances -w for WEB GUI
-apt install python-pip -y
-pip install bernhard bottle
-pip install cassandra-driver couchdb
-pip install docker elasticsearch
-pip install hddtemp influxdb
-pip install kafka-python matplotlib
-pip install netifaces nvidia-ml-py3
+apt install python-pip python-dev lm-sensors -y
+pip install bottle docker hddtemp netifaces
+pip install matplotlib
+pip install nvidia-ml-py3
 pip install pika potsdb
 pip install prometheus_client py-cpuinfo
 pip install pymdstat pysnmp
 pip install pystache pyzmq
 pip install requests scandir
-pip install statsd wifi zeroconf
+pip install wifi zeroconf
 pip install glances

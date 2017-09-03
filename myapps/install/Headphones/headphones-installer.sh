@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###########################################################
-# Created by @tazboyz16 
-# This Script was created at 
+# Created by @tazboyz16
+# This Script was created at
 # https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 # @ 2017 Copyright
 # GNU General Public License v3.0
@@ -13,8 +13,10 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+#when setting up proxy its replace line is http_root = /
+
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update 
+# b=backup i=install r=restore u=update U=Force Update
 mode="$1"
 
 Programloc=/opt/Headphones
@@ -35,6 +37,10 @@ case $mode in
 	chmod 644 /etc/systemd/system/headphones.service
 	systemctl enable headphones.service
 	systemctl restart headphones.service
+	echo "Allowing Headphones to be accessed remotely"
+	systemctl stop headphones
+	sed -i "s/localhost/0.0.0.0/g" $Programloc
+	systemctl start headphones
 	;;
 	(-r)
 	echo "<--- Restoring Headphones Settings --->"
