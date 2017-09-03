@@ -88,13 +88,14 @@ case $mode in
 	sudo systemctl start LazyLibrarian
 	;;
 	(-proxy)
-  systemctl restart LazyLibrarian
+ 	systemctl stop LazyLibrarian
 	sed -i 's#.*http_root = .*#http_root = /lazylibrarian#' /opt/LazyLibrarian/config.ini
 	systemctl restart apache2 LazyLibrarian
 	;;
 	(-port)
 	echo "What Port Number Would you like to change LazyLibrarian to?"
 	read Port
+	systemctl stop LazyLibrarian
 	sed -i "s#http_port = .*#http_port = $Port#" /opt/LazyLibrarian/config.ini
 	sed -i "s#1:.*/lazylibrarian#1:$Port/lazylibrarian#" /etc/apache2/sites-available/000-default.conf
 	echo "Changed Port over to $Port"
