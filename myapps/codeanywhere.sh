@@ -11,6 +11,7 @@
 #THIS FILE IS ONLY USED FOR DEVELOP ON CODEANYWHERE.COM
 
 #http://port-5050.ubuntu-server-auto-install-tazboyz16.codeanyapp.com
+#if any issues with running any files install and run dos2unix
 apt update; apt upgrade -y --force-yes
 apt install systemd software-properties-common nano dialog debconf apt-transport-https debconf-utils -y
 
