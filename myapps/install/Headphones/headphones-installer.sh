@@ -16,7 +16,7 @@ fi
 #when setting up proxy its replace line is http_root = /
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update
+# b=backup i=install r=restore u=update U=Force Update proxy=(Reverse Proxy) port=(Change port)
 mode="$1"
 
 Programloc=/opt/Headphones
@@ -95,6 +95,20 @@ case $mode in
 	git pull
 	echo "Starting Headphones"
 	sudo systemctl start headphones
+	;;
+	(-proxy)
+	sudo systemctl stop headphones
+	sed -i 's#.*http_root = .*#http_root = /headphones#' /opt/Headphones/config.ini
+	systemctl restart apache2 headphones
+	;;
+	(-port)
+	echo "What Port Number Would you like to change CouchPotato to?"
+	read Port
+	sudo systemctl stop headphones
+	sed -i "s#http_port = .*#http_port = $Port#" /opt/Headphones/config.ini
+	sed -i "s#1:.*/headphones#1:$Port/headphones#" /etc/apache2/sites-available/000-default.conf
+	echo "Changed Port over to $Port"
+	systemctl restart apache2 headphones
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
