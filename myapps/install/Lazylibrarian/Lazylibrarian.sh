@@ -29,6 +29,7 @@ case $mode in
    	cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
    	chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
    	chmod -R 0777 /opt/LazyLibrarian
+	cp /opt/install/Lazylibrarian/config.ini $Programloc/config.ini
   	echo "Creating Startup Script"
    	cp /opt/install/Lazylibrarian/LazyLibrarian.service /etc/systemd/system/
    	chmod 644 /etc/systemd/system/LazyLibrarian.service
