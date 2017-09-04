@@ -32,7 +32,6 @@ case $mode in
 	cd /opt &&  git clone https://github.com/rembo10/headphones.git /opt/Headphones
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
-	echo "Allowing Headphones to be accessed remotely"
 	cp /opt/install/Headphones/config.ini $Programloc
 	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	echo "Creating Startup Script"
@@ -40,6 +39,9 @@ case $mode in
 	chmod 644 /etc/systemd/system/headphones.service
 	systemctl enable headphones.service
 	systemctl restart headphones.service
+	echo "Allowing Headphones to be accessed remotely"
+	cp /opt/install/Headphones/config.ini $Programloc
+	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	;;
 	(-r)
 	echo "<--- Restoring Headphones Settings --->"
