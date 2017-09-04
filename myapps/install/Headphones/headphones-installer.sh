@@ -30,20 +30,17 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Headphones --gecos "Headphones Service" --group Headphones
 	echo '<--- Downloading latest Headphones --->'
 	cd /opt &&  git clone https://github.com/rembo10/headphones.git /opt/Headphones
-	cp /opt/install/Headphones/config.ini $Programloc
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/headphones.service
 	systemctl enable headphones.service
-	systemctl start headphones.service
-	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
+	systemctl restart headphones.service
 	echo "Allowing Headphones to be accessed remotely"
-	systemctl stop headphones.service
-	#cp /opt/install/Headphones/config.ini $Programloc
-	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
-	systemctl start headphones.service
+	systemctl stop headphones
+	sed -i "s/localhost/0.0.0.0/g" $Programloc
+	systemctl start headphones
 	;;
 	(-r)
 	echo "<--- Restoring Headphones Settings --->"
