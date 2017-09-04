@@ -102,7 +102,7 @@ case $mode in
 	systemctl restart apache2 headphones
 	;;
 	(-port)
-	echo "What Port Number Would you like to change CouchPotato to?"
+	echo "What Port Number Would you like to change Headphones to?"
 	read Port
 	sudo systemctl stop headphones
 	sed -i "s#http_port = .*#http_port = $Port#" /opt/Headphones/config.ini
