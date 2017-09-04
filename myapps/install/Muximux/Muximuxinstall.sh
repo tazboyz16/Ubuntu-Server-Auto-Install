@@ -32,8 +32,6 @@ case $mode in
 	cd /opt && git clone https://github.com/mescon/Muximux.git
 	chown -R Muximux:Muximux /opt/Muximux
 	chmod -R 0777 /opt/Muximux
-	cp /opt/install/Muximux/Muximux.conf /etc/apache2/sites-available/
-	a2ensite Muximux.conf
 	service apache2 restart
 	;;
 	(-r)
