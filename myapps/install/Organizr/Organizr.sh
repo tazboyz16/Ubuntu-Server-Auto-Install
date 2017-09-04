@@ -32,8 +32,6 @@ case $mode in
 	cd /opt && git clone https://github.com/causefx/Organizr.git
 	chown -R Organizr:Organizr /opt/Organizr
 	chmod -R 0777 /opt/Organizr
-	cp /opt/install/Organizr/Organizr.conf /etc/apache2/sites-available/
-	a2ensite Organizr.conf
 	service apache2 restart
 	;;
 	(-r)
