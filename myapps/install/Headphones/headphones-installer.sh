@@ -33,13 +33,8 @@ case $mode in
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
 	echo "Allowing Headphones to be accessed remotely"
-	sudo touch /etc/default/headphones
-	sudo chmod +x /opt/Headphones/init-scripts/init.ubuntu
-	sudo ln -s /opt/Headphones/init-scripts/init.ubuntu /etc/init.d/headphones
-	sudo update-rc.d headphones defaults
-	sudo update-rc.d headphones enable
-	sudo service headphones stop
-	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
+	cp /opt/install/Headphones/config.ini $Programloc
+	#sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/headphones.service
