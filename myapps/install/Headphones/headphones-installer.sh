@@ -39,7 +39,7 @@ case $mode in
 	systemctl restart headphones.service
 	echo "Allowing Headphones to be accessed remotely"
 	systemctl stop headphones
-	sed -i "s/localhost/0.0.0.0/g" $Programloc
+	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	systemctl start headphones
 	;;
 	(-r)
