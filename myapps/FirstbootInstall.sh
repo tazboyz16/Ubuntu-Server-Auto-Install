@@ -14,8 +14,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo "<---Updating System....Please Wait..--->"
-apt get update; apt get upgrade -y
-apt install python2.7 mono-complete git-core python-lxml python-pip unzip libcurl4-openssl-dev bzip2 python python-cheetah python-pyasn1 unrar-free openssl libssl-dev -y
+apt update; apt upgrade -y
+apt install python2.7 git-core python-lxml python-pip unzip libcurl4-openssl-dev bzip2 python python-cheetah python-pyasn1 unrar-free openssl libssl-dev -y
 echo "<--- Running Install Scripts --->" 
 echo "<--- Installing iRedMail --->"; bash /opt/install/Iredmail/mailinstaller.sh
 echo "<--- Installing Apache2 --->"; bash /opt/install/Apache2/Apache2-install.sh
