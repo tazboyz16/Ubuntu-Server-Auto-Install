@@ -32,15 +32,17 @@ case $mode in
 	cd /opt &&  git clone https://github.com/rembo10/headphones.git /opt/Headphones
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
+	echo "Allowing Headphones to be accessed remotely"
+	sudo ln -s /opt/headphones/init-scripts/init.ubuntu /etc/init.d/headphones
+	sudo update-rc.d headphones defaults
+	sudo update-rc.d headphones enable
+	sudo service headphones stop
+	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/headphones.service
 	systemctl enable headphones.service
 	systemctl restart headphones.service
-	echo "Allowing Headphones to be accessed remotely"
-	systemctl stop headphones
-	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
-	systemctl start headphones
 	;;
 	(-r)
 	echo "<--- Restoring Headphones Settings --->"
