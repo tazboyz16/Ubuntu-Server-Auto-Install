@@ -34,8 +34,8 @@ case $mode in
 	chmod -R 0777 $Programloc
 	echo "Allowing Headphones to be accessed remotely"
 	sudo touch /etc/default/headphones
-	sudo chmod +x /opt/headphones/init-scripts/init.ubuntu
-	sudo ln -s /opt/headphones/init-scripts/init.ubuntu /etc/init.d/headphones
+	sudo chmod +x /opt/Headphones/init-scripts/init.ubuntu
+	sudo ln -s /opt/Headphones/init-scripts/init.ubuntu /etc/init.d/headphones
 	sudo update-rc.d headphones defaults
 	sudo update-rc.d headphones enable
 	sudo service headphones stop
