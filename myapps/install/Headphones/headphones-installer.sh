@@ -34,7 +34,7 @@ case $mode in
 	chmod -R 0777 $Programloc
 	echo "Allowing Headphones to be accessed remotely"
 	cp /opt/install/Headphones/config.ini $Programloc
-	#sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
+	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	echo "Creating Startup Script"
 	cp /opt/install/Headphones/headphones.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/headphones.service
