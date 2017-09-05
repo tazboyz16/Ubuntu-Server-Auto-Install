@@ -85,13 +85,8 @@ case $mode in
 		echo "Sinusbot not installed at '$Programloc'. Update Failed"
 		exit 0;
 		fi
-	echo "Stopping Sinusbot to Update"
-	sudo systemctl stop sinusbot
-	sleep 5
-	cd $Programloc
-	git pull
-	echo "Starting Sinusbot"
-	sudo systemctl start sinusbot
+	bash /opt/install/SinusBot/sinusbot.sh -b
+	bash /opt/install/SinusBot/sinusbot.sh -i
 	;;
 	(-passwd)
 	echo "Reseting Sinusbot Service back to normal operations"
