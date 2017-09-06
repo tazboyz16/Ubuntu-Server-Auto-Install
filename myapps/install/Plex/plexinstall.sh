@@ -61,10 +61,20 @@ case $mode in
 	systemctl start plexmediaserver
 	;;
 	(-u)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "Plex Media Server not installed at '$Programloc'. Update Failed"
+		exit 0;
+	fi
 	echo "<--- Updating Plex Media Server ->"
 	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d
 	;;
 	(-U)
+	#Checking if Program is installed
+		if [ ! -d "$Programloc" ]; then
+		echo "Plex Media Server not installed at '$Programloc'. Update Failed"
+		exit 0;
+	fi
 	echo "<--- Force Updating Plex Media Server ->"
 	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d -f
 	;;
