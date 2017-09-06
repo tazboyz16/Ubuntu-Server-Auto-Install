@@ -72,7 +72,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Sinusbot to /opt/backup"
-	cp -rf /opt/Sinusbot/ $backupdir
+	cp -rf /opt/Sinusbot $backupdir
     	tar -zcvf /opt/backup/Sinusbot_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Sinusbot"
 	systemctl start sinusbot
