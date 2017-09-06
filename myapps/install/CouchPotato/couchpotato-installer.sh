@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/CouchPotato
 backupdir=/opt/backup/CouchPotato
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -51,7 +50,8 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
 	cp /opt/ProgramData/Couchpotato/.couchpotato/settings.conf $backupdir
-    	tar -zcvf /opt/backup/CouchPotato_FullBackup.tar.gz $backupdir
+    	tar -zcvf /opt/backup/CouchPotato_FullBackup.tar.gz /opt/backup
+	rm -rf $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
 	;;
