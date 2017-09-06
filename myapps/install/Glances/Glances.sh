@@ -17,7 +17,6 @@ fi
 #run glances with glances -w for WEB GUI
 apt install python-pip python-dev lm-sensors -y
 pip install bottle docker hddtemp netifaces
-pip install matplotlib
 pip install nvidia-ml-py3
 pip install pika potsdb
 pip install prometheus_client py-cpuinfo
