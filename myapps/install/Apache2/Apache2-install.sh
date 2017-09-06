@@ -53,6 +53,7 @@ case $mode in
 	cp -rf /etc/apache2/conf-available/localized-error-pages.conf $backupdir
 	cd $backupdir
 	tar -zcvf /opt/backup/Apache2_Backup.tar.gz *
+	chmod 0777 /opt/backup/Apache2_Backup.tar.gz
 	rm -rf $backupdir
 	echo "Restarting up Apache2"
 	systemctl start apache2
