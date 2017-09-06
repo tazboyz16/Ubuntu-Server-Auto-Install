@@ -26,9 +26,7 @@ case $mode in
 	(-i|"")
 	apt install debconf-utils lsb-release screen x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 less python -y
 	adduser --disabled-password --system --home /opt/ProgramData/Sinusbot --gecos "Sinusbot Service" --group sinusbot
-	mkdir -p $Programloc
-	cd $Programloc
-	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2
+	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2 -O $Programloc
 	tar -xjf sinusbot-beta.tar.bz2
 	rm sinusbot-beta.tar.bz2
 	#if new install
@@ -85,8 +83,26 @@ case $mode in
 		echo "Sinusbot not installed at '$Programloc'. Update Failed"
 		exit 0;
 		fi
+	echo "Performing Backup of SinusBot Dir"
 	bash /opt/install/SinusBot/sinusbot.sh -b
-	bash /opt/install/SinusBot/sinusbot.sh -i
+	
+	echo "Updating SinusBot"
+	systemctl stop sinusbot
+	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2 -O $Programloc
+	tar -xjf sinusbot-beta.tar.bz2
+	rm sinusbot-beta.tar.bz2
+	chown -R sinusbot:sinusbot $Programloc
+	chmod 0777 -R $Programloc
+	wget http://dl.4players.de/ts/releases/$TeamSpeakClient/TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
+	chmod 0755 TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
+	printf '\ny\n' | LESS='+q' ./TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
+	rm TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
+	wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+	chmod a+rx /usr/local/bin/youtube-dl
+	cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
+	chown -R sinusbot:sinusbot $Programloc
+	chmod 0777 -R $Programloc
+	systemctl restart sinusbot.service
 	;;
 	(-passwd)
 	echo "Reseting Sinusbot Service back to normal operations"
