@@ -39,6 +39,7 @@ case $mode in
 	echo "Stopping CouchPotato"
 	systemctl stop couchpotato
 	chmod -R 0777 /opt/ProgramData/Couchpotato
+	#add the untar the backup
 	cp /opt/backup/CouchPotato/CouchPotato.txt /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	echo "Starting CouchPotato"
     	systemctl start couchpotato	
@@ -50,7 +51,7 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
 	cp /opt/ProgramData/Couchpotato/.couchpotato/settings.conf $backupdir
-    	tar -zcvf /opt/backup/CouchPotato_FullBackup.tar.gz $backupdir
+    	tar -zcvf /opt/backup/CouchPotato_Backup.tar.gz $backupdir
 	rm -rf $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
