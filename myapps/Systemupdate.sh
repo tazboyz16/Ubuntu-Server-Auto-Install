@@ -31,7 +31,7 @@ case $mode in
 	;;
 	(-m)
 	domain=xxxDomainxxx
-	echo "Running SinusBot update"; sudo bash /opt/install/Sinusbot/sinusbot.sh -u; echo
+	echo "Running SinusBot update"; sudo bash /opt/install/SinusBot/sinusbot.sh -u; echo
 	echo "Update SSL Certs"
 	#run cron job for 'letsencrypt renew' every 90 days
 	#plus rewrite files to apache folder every run
