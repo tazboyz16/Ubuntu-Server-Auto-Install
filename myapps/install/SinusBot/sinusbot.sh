@@ -26,7 +26,7 @@ case $mode in
 	(-i|"")
 	apt install debconf-utils lsb-release screen x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 less python -y
 	adduser --disabled-password --system --home /opt/ProgramData/Sinusbot --gecos "Sinusbot Service" --group sinusbot
-	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2 -O $Programloc/
+	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2 -P $Programloc/
 	tar -xjf sinusbot-beta.tar.bz2
 	rm sinusbot-beta.tar.bz2
 	#if new install
