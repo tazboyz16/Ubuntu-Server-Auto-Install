@@ -50,7 +50,7 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
 	cp /opt/ProgramData/Couchpotato/.couchpotato/settings.conf $backupdir
-    	tar -zcvf /opt/backup/CouchPotato_FullBackup.tar.gz /opt/backup
+    	tar -zcvf /opt/backup/CouchPotato_FullBackup.tar.gz $backupdir
 	rm -rf $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
