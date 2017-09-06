@@ -39,8 +39,7 @@ case $mode in
 	echo "Stopping CouchPotato"
 	systemctl stop couchpotato
 	chmod -R 0777 /opt/ProgramData/Couchpotato
-	tar -xvzf /opt/backup/CouchPotato_Backup.tar.gz $backupdir
-	cp -rf /opt/backup/CouchPotato/settings.conf /opt/ProgramData/Couchpotato/.couchpotato/
+	tar -xvzf /opt/backup/CouchPotato_Backup.tar.gz -C /opt/ProgramData/Couchpotato/.couchpotato/
 	rm -rf $backupdir
 	echo "Starting CouchPotato"
     	systemctl start couchpotato	
