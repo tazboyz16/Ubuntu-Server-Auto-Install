@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install r=restore u=update(coming soon) passwd=(Remove the Forced Foobarr password)
+# b=backup i=install r=restore u=update passwd=(Remove the Forced Foobarr password)
 mode="$1"
 
 TeamSpeakClient=3.0.19.4
