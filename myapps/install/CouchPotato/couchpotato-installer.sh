@@ -40,8 +40,7 @@ case $mode in
 	echo "Stopping CouchPotato"
 	systemctl stop couchpotato
 	chmod -R 0777 /opt/ProgramData/Couchpotato
-	#NEEDS TO BE EDITED FOR UNZIP TAR FILE TO RESTORE SETTINGS VS SINGLE FILE RESTORE
-	cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	cp /opt/backup/CouchPotato/CouchPotato.txt /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	echo "Starting CouchPotato"
     	systemctl start couchpotato	
 	;;
@@ -52,10 +51,7 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
 	cp /opt/ProgramData/Couchpotato/.couchpotato/settings.conf $backupdir
-	echo "Data Folder might be located under /root/.couchpotato/ if theres a Data Folder created"
-	echo "some install dont have it"
-	cp /opt/CouchPotato/Data $backupdir
-    	tar -zcvf /opt/backup/CouchPotato_FullBackup-$time.tar.gz $backupdir
+    	tar -zcvf /opt/backup/CouchPotato_FullBackup.tar.gz $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
 	;;
