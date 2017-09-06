@@ -17,7 +17,6 @@ fi
 # b=backup i=install b=backup 
 mode="$1"
 backupdir=/opt/backup/Apache
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
