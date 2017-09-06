@@ -26,8 +26,8 @@ case $mode in
 	exit 0
 	;;
 	(-a)
-	bash /opt/install/Systemupdate.sh -w
-	bash /opt/install/Systemupdate.sh -m
+	bash /opt/Systemupdate.sh -w
+	bash /opt/Systemupdate.sh -m
 	;;
 	(-m)
 	domain=xxxDomainxxx
