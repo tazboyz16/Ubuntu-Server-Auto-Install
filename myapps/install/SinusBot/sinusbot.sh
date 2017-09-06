@@ -37,7 +37,7 @@ case $mode in
 	chmod 0755 TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
 	printf '\ny\n' | LESS='+q' ./TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
 	rm TeamSpeak3-Client-linux_amd64-$TeamSpeakClient.run
-	wget https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+	wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 	chmod a+rx /usr/local/bin/youtube-dl
 	cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
 	chown -R sinusbot:sinusbot $Programloc
@@ -72,7 +72,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Sinusbot to /opt/backup"
-	cp -rf /opt/Sinusbot/userdata $backupdir
+	cp -rf /opt/Sinusbot/config.ini $backupdir
     	tar -zcvf /opt/backup/Sinusbot_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Sinusbot"
 	systemctl start sinusbot
@@ -88,7 +88,8 @@ case $mode in
 	
 	echo "Updating SinusBot"
 	systemctl stop sinusbot
-	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2 -O $Programloc
+	cd $Programloc
+	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2
 	tar -xjf sinusbot-beta.tar.bz2
 	rm sinusbot-beta.tar.bz2
 	chown -R sinusbot:sinusbot $Programloc
