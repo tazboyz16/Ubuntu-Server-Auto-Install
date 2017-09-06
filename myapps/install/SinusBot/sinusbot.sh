@@ -68,12 +68,14 @@ case $mode in
 	(-b)
 	#Saved settings
 	#cp /opt/install/SinusBot/config.ini /opt/Sinusbot/config.ini
+	#and cp /data folder
 	echo "Stopping Sinusbot"
     	systemctl stop sinusbot
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Sinusbot to /opt/backup"
-	cp -rf /opt/Sinusbot/* $backupdir
+	cp -rf /opt/Sinusbot/config.ini $backupdir
+	cp -rf /opt/Sinusbot/data $backupdir
     	tar -zcvf /opt/backup/Sinusbot_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Sinusbot"
 	systemctl start sinusbot
