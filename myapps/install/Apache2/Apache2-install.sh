@@ -36,7 +36,7 @@ case $mode in
 	echo "Stopping Apache2"
     	systemctl stop apache2
 	cd /opt/backup
-	tar -xvzf /opt/install/Apache2/www.tar.bz2
+	tar -xvzf /opt/backup/Apache2_Backup.tar.gz
 	rm -rf /var/www; mv /opt/backup/www/ /var
 	rm -rf /etc/apache2/sites-available/000-default.conf; mv /opt/backup/000-default.conf /etc/apache2/sites-available/
 	rm -rf /etc/apache2/apache2.conf; mv /opt/backup/apache2.conf /etc/apache2/
