@@ -33,12 +33,17 @@ case $mode in
 	;;
 	(-r)
 	echo "<--- Restoring WWW files for Website --->"
-	rm -rf /var/www
+	echo "Stopping Apache2"
+    	systemctl stop apache2
 	cd /opt/backup
-	tar xjf /opt/install/Apache2/www.tar.bz2
-	mv /opt/backup/www/ /var
+	tar -xvzf /opt/install/Apache2/www.tar.bz2
+	rm -rf /var/www; mv /opt/backup/www/ /var
+	rm -rf /etc/apache2/sites-available/000-default.conf; mv /opt/backup/000-default.conf /etc/apache2/sites-available/
+	rm -rf /etc/apache2/apache2.conf; mv /opt/backup/apache2.conf /etc/apache2/
+	rm -rf /etc/apache2/conf-available/localized-error-pages.conf; mv /opt/backup/localized-error-pages.conf /etc/apache2/conf-available/
 	chmod 0777 -R /var/www
 	chown www-data:www-data -R /var/www
+	echo "Restarting up Apache2"
 	systemctl restart apache2
 	;;
 	(-b)
