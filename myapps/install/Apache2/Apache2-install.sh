@@ -47,13 +47,13 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
 	echo "Backing up Apache2 to /opt/backup"
-	#cp -rf /var/www/ $backupdir
-	#cp -rf /etc/apache2/sites-available/000-default.conf $backupdir
-	#cp -rf /etc/apache2/apache2.conf $backupdir
-	#cp -rf /etc/apache2/conf-available/localized-error-pages.conf $backupdir
+	cp -rf /var/www/ $backupdir
+	cp -rf /etc/apache2/sites-available/000-default.conf $backupdir
+	cp -rf /etc/apache2/apache2.conf $backupdir
+	cp -rf /etc/apache2/conf-available/localized-error-pages.conf $backupdir
 	chmod 0777 -R $backupdir
 	cd $backupdir
-	tar -zcvf /opt/backup/Apache2_Backup.tar.gz /etc/apache2/conf-available/localized-error-pages.conf /var/www/ /etc/apache2/sites-available/000-default.conf /etc/apache2/apache2.conf
+	tar -zcvf /opt/backup/Apache2_Backup.tar.gz *
 	#rm -rf $backupdir
 	echo "Restarting up Apache2"
 	systemctl start apache2
@@ -61,6 +61,3 @@ case $mode in
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
 exit 0
-	
-	
-	
