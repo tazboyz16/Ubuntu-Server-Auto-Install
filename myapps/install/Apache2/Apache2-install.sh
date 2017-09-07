@@ -54,7 +54,7 @@ case $mode in
 	chmod 0777 -R $backupdir
 	cd $backupdir
 	tar -zcvf /opt/backup/Apache2_Backup.tar.gz *
-	rm -rf $backupdir
+	#rm -rf $backupdir
 	echo "Restarting up Apache2"
 	systemctl start apache2
 	;;
