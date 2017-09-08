@@ -66,9 +66,11 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Deluge to /opt/backup"
-	cp $Programloc/.config/deluge/core.conf $backupdir
-	cp $Programloc/.config/deluge/web.conf $backupdir
-	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
+	chmod 0777 -R $Programloc
+	cp -rf $Programloc/.config/deluge/core.conf $backupdir
+	cp -rf $Programloc/.config/deluge/web.conf $backupdir
+	cd $backupdir
+	tar -zcvf Deluged_FullBackup-$time.tar.gz *
     	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
