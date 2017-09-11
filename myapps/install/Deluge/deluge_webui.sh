@@ -36,6 +36,7 @@ case $mode in
 	sudo chown Deluge:Deluge /var/log/deluge*
 	apt install python python-twisted python-openssl python-setuptools intltool python-xdg python-chardet geoip-database python-libtorrent python-notify python-pygame python-glade2 librsvg2-common xdg-utils python-mako -y
 	apt install deluge deluged deluge-webui deluge-console -y
+	chmod 0777 -R $Programloc
 	echo "Creating Startup Scripts For Deluged and Deluge-WebUI"
 	cp /opt/install/Deluge/deluged.service /etc/systemd/system/
 	cp /opt/install/Deluge/deluge-web.service /etc/systemd/system/
@@ -48,10 +49,8 @@ case $mode in
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
 	echo "Stopping Deluge"
-	#defaults settings stored at /var/lib/deluge/.config/deluge
-	#core.conf and web.conf
-	#cp /opt/install/Deluge/core.conf /var/lib/deluge/.config/deluge
-	#cp /opt/install/Deluge/web.conf /var/lib/deluge/.config/deluge
+	#defaults settings stored at User home dir that runs Deluge process
+	#Primary setting files core.conf and web.conf
 	systemctl stop deluged deluge-web
 	sleep 15
 	sudo chmod 0777 -R $Programloc
@@ -81,7 +80,7 @@ case $mode in
 	echo "Stopping Deluge"
     	systemctl stop deluged deluge-web
 	echo "Creating Auto load localhost WebUI for DelugeWeb"
-	chmod 0777 -R /var/lib/deluge/
+	chmod 0777 -R $Programloc
 	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
 	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web 
