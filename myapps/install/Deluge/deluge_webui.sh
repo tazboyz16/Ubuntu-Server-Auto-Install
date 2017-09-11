@@ -88,11 +88,20 @@ case $mode in
 	echo "Adding OpenVPN Repositories for Latest Verison"
 	wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
 	echo "deb http://build.openvpn.net/debian/openvpn/stable $versionm main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
-	apt update; apt install openvpn
+	apt update; apt install openvpn -y
 	#https://www.htpcguides.com/force-torrent-traffic-vpn-split-tunnel-debian-8-ubuntu-16-04/
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key FDC247B7
 	echo 'deb https://repo.windscribe.com/ubuntu $versionm main' > /etc/apt/sources.list.d/windscribe-repo.list
-	apt update; apt install windscribe-cli
+	apt update; apt install windscribe-cli -y
+	windscribe login
+	windscribe connect
+
+	#windscribe --help
+	### its under beta
+	#requires openvpn installed
+	#https://forum.htpcguides.com/Thread-VPN-Split-Tunneling-problem
+	# /etc/windscribe has the client.ovpn file
+	# when turned on according to ^ interface 'tun' is active
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
