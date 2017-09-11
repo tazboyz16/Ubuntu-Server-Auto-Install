@@ -94,15 +94,21 @@ case $mode in
 	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
 	apt update; apt install windscribe-cli -y
 	windscribe login
-	
-	#windscribe connect     #This command will auto connect to windscribe service
-
+	windscribe connect best     #This command will auto connect to windscribe service
+	sleep 15 #allowing creation of openvpn config file to be created
+	windscribe disconnect
 	#windscribe --help
 	### its under beta
 	#requires openvpn installed
 	#https://forum.htpcguides.com/Thread-VPN-Split-Tunneling-problem
 	# /etc/windscribe has the client.ovpn file
 	# when turned on according to ^ interface 'tun' is active
+	#windscribe connect best
+	#windscribe connect US
+	#windscribe firewall on/off/auto
+	#windscribe protocol TCP/UDP def is UDP
+	
+	
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
