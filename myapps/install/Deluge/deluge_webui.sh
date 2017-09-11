@@ -91,7 +91,7 @@ case $mode in
 	apt update; apt install openvpn -y
 	#https://www.htpcguides.com/force-torrent-traffic-vpn-split-tunnel-debian-8-ubuntu-16-04/
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key FDC247B7
-	echo 'deb https://repo.windscribe.com/ubuntu $versionm main' > /etc/apt/sources.list.d/windscribe-repo.list
+	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
 	apt update; apt install windscribe-cli -y
 	windscribe login
 	windscribe connect
