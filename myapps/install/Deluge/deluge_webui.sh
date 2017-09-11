@@ -94,14 +94,23 @@ case $mode in
 	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
 	apt update; apt install windscribe-cli -y
 	windscribe login
-	windscribe connect best     #This command will auto connect to windscribe service
-	sleep 15 #allowing creation of openvpn config file to be created
-	windscribe disconnect
-	#windscribe --help
+	#windscribe connect best     #This command will auto connect to windscribe service
+	#sleep 15 #allowing creation of openvpn config file to be created
+	#windscribe disconnect
+	
+	auth-nocache
+	route-noexec
+	#up and down scripts to be executed when VPN starts or stops
+	up /etc/openvpn/iptables.sh
+	down /etc/openvpn/update-resolv-con
+	
+	####
+	##windscribe --help
 	### its under beta
 	#requires openvpn installed
 	#https://forum.htpcguides.com/Thread-VPN-Split-Tunneling-problem
 	# /etc/windscribe has the client.ovpn file
+	#windscribe has a update-resolv-conf in /etc/windscribe
 	# when turned on according to ^ interface 'tun' is active
 	#windscribe connect best
 	#windscribe connect US
