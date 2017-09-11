@@ -106,6 +106,7 @@ case $mode in
 	#down /etc/openvpn/update-resolv-con
 	
 	####
+	#/etc/init.d/windscribe-cli
 	##windscribe --help
 	### its under beta
 	#requires openvpn installed
