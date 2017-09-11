@@ -57,12 +57,11 @@ case $mode in
 	echo "<--Restoring Deluge Settings -->"
 	echo "Stopping Deluge"
 	systemctl stop deluged deluge-web
-	sleep 5
 	cd /opt/backup
 	tar -xvzf /opt/backup/Deluged_Backup.tar.gz
 	sudo chmod 0777 -R $Programloc
-	cp /opt/backup/Deluge/core.conf $Programloc/.config/deluge
-	cp /opt/backup/Deluge/web.conf $Programloc/.config/deluge
+	cp core.conf $Programloc/.config/deluge; rm core.conf
+	cp web.conf $Programloc/.config/deluge; rm web.conf
 	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
