@@ -94,15 +94,15 @@ case $mode in
 	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
 	apt update; apt install windscribe-cli -y
 	windscribe login
-	#windscribe connect best     #This command will auto connect to windscribe service
-	#sleep 15 #allowing creation of openvpn config file to be created
-	#windscribe disconnect
-	
+	windscribe connect best     #This command will auto connect to windscribe service
+	sleep 5 #allowing creation of openvpn config file to be created
+	windscribe disconnect
+	echo "
 	auth-nocache
-	route-noexec
+	route-noexec" >> /etc/windscribe/client.ovpn
 	#up and down scripts to be executed when VPN starts or stops
-	up /etc/openvpn/iptables.sh
-	down /etc/openvpn/update-resolv-con
+	#up /etc/openvpn/iptables.sh
+	#down /etc/openvpn/update-resolv-con
 	
 	####
 	##windscribe --help
