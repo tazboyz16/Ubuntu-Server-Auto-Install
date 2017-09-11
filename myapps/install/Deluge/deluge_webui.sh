@@ -20,6 +20,7 @@ mode="$1"
 
 Programloc=/opt/Deluge
 backupdir=/opt/backup/Deluge
+versionm=$(lsb_release -cs)
 
 case $mode in
 	(-i|"")
@@ -84,6 +85,14 @@ case $mode in
 	;;
 	(-vpn)
 	#Is already setup in the 000-default.conf for Apache2 just need to finish the Split-tunneling with openvpn
+	echo "Adding OpenVPN Repositories for Latest Verison"
+	wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
+	echo "deb http://build.openvpn.net/debian/openvpn/stable $versionm main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
+	apt update; apt install openvpn
+	#https://www.htpcguides.com/force-torrent-traffic-vpn-split-tunnel-debian-8-ubuntu-16-04/
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key FDC247B7
+	echo 'deb https://repo.windscribe.com/ubuntu $versionm main' > /etc/apt/sources.list.d/windscribe-repo.list
+	apt update; apt install windscribe-cli
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
