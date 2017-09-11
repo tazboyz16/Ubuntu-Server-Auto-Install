@@ -19,7 +19,6 @@ mode="$1"
 
 Programloc=/opt/HTPCManager
 backupdir=/opt/backup/HTPCManager
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -39,7 +38,9 @@ case $mode in
 	echo "<--- Restoring HTPCManager Settings --->"
 	echo "Stopping HTPCManager"
 	systemctl stop HTPCManager
-	cat /opt/install/HTPCManager/HTPCManager.txt > /opt/HTPCManager/userdata
+	cd /opt/backup
+	tar -xvzf /opt/backup/HTPCManager_Backup.tar.gz
+	rm -rf /opt/HTPCManager/userdata/database.db; cp -rf database.db /opt/HTPCManager/userdata
 	chown -R HTPCManager:HTPCManager /opt/HTPCManager
 	chmod -R 0777 /opt/HTPCManager
 	echo "Starting up HTPCManager"
@@ -51,8 +52,10 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up HTPCManager to /opt/backup"
-	cp -rf /opt/HTPCManager/userdata $backupdir
-    	tar -zcvf /opt/backup/HTPCManager_FullBackup-$time.tar.gz $backupdir
+	cp -rf /opt/HTPCManager/userdata/database.db $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/HTPCManager_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up HTPCManager"
 	systemctl start HTPCManager
 	;;
