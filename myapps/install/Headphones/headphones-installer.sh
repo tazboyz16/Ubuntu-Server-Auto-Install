@@ -44,7 +44,10 @@ case $mode in
 	echo "<--- Restoring Headphones Settings --->"
 	echo "Stopping Headphones"
 	systemctl stop headphones
-	cat /opt/install/Headphones/Headphones.txt > $Programloc/config.ini
+	cd /opt/backup
+	tar -xvzf /opt/backup/Headphones_Backup.tar.gz
+	rm -rf /opt/Headphones/config.ini; mv config.ini /opt/Headphones
+	rm -rf /opt/Headphones/data; mv /opt/backup/data /opt/Headphones 
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
 	echo "Starting up Headphones"
@@ -52,16 +55,16 @@ case $mode in
 	;;
 	(-b)
 	echo "Stopping Headphones"
-  systemctl stop headphones
-  echo "Making sure Backup Dir exists"
-  mkdir -p $backupdir
-  echo "Backing up Headphones to /opt/backup"
-	cp $Programloc/config.ini $backupdir
-	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
-	echo "some install dont have it"
-	cp $Programloc/Data $backupdir
-  tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
-  echo "Restarting up Headphones"
+  	systemctl stop headphones
+ 	echo "Making sure Backup Dir exists"
+  	mkdir -p $backupdir
+  	echo "Backing up Headphones to /opt/backup"
+	cp -rf $Programloc/config.ini $backupdir
+	cp -rf $Programloc/Data/ $backupdir
+	cd $backupdir
+  	tar -zcvf /opt/backup/Headphones_Backup.tar.gz *
+	rm -rf $backupdir
+  	echo "Restarting up Headphones"
 	systemctl start headphones
 	;;
 	(-u)
