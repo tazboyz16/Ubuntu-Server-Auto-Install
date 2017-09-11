@@ -35,7 +35,7 @@ case $mode in
 	sudo touch /var/log/deluge-web.log
 	sudo chown Deluge:Deluge /var/log/deluge*
 	apt install python python-twisted python-openssl python-setuptools intltool python-xdg python-chardet geoip-database python-libtorrent python-notify python-pygame python-glade2 librsvg2-common xdg-utils python-mako -y
-	apt install deluged deluge-webui -y
+	apt install deluge deluged deluge-webui deluge-console -y
 	echo "Creating Startup Scripts For Deluged and Deluge-WebUI"
 	cp /opt/install/Deluge/deluged.service /etc/systemd/system/
 	cp /opt/install/Deluge/deluge-web.service /etc/systemd/system/
