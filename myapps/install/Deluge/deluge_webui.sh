@@ -94,6 +94,7 @@ case $mode in
 	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
 	apt update; apt install windscribe-cli -y
 	windscribe login
+	windscribe firewall off
 	windscribe connect best     #This command will auto connect to windscribe service
 	sleep 5 #allowing creation of openvpn config file to be created
 	windscribe disconnect
@@ -117,7 +118,9 @@ case $mode in
 	#windscribe firewall on/off/auto
 	#windscribe protocol TCP/UDP def is UDP
 	
-	
+	#DNS Server 1 208.67.222.222
+	#DNS Server 2 208.67.222.220
+	#Change 3 option in Resolv to Google DNS
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
