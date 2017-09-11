@@ -58,7 +58,7 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up Jackett to /opt/backup"
 	chmod 0777 -R /opt/ProgramData/Jackett
-	cp /opt/ProgramData/Jackett/.config/Jackett/ServerConfig.json $backupdir
+	cp /opt/ProgramData/Jackett/.config/Jackett/ServerConfig.json *
 	cd $backupdir
 	tar -zcvf /opt/backup/Jackett_Backup.tar.gz $backupdir
 	rm -rf $backupdir
