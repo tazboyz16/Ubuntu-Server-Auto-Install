@@ -45,10 +45,9 @@ case $mode in
 	systemctl enable deluged.service
 	systemctl enable deluge-web.service
 	systemctl start deluged deluge-web
-	sleep 15
+	sleep 5
 	echo "Stopping Deluge"
     	systemctl stop deluged deluge-web
-	sleep 5
 	echo "Creating Auto load localhost WebUI for DelugeWeb"
 	chmod 0777 -R $Programloc
 	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
