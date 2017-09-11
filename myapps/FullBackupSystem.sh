@@ -13,6 +13,9 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+time=$(date +"%m_%d_%y-%H_%M")
+
+
 if [ -d /etc/apache2 ]; then
 bash /opt/install/Apache2/Apache2-install.sh -b
 else
