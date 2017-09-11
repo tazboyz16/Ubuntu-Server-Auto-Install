@@ -20,7 +20,6 @@ mode="$1"
 
 Programloc=/opt/Deluge
 backupdir=/opt/backup/Deluge
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -57,17 +56,19 @@ case $mode in
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
 	echo "Stopping Deluge"
-	#defaults settings stored at User home dir that runs Deluge process
-	#Primary setting files core.conf and web.conf
 	systemctl stop deluged deluge-web
-	sleep 15
+	sleep 5
+	cd /opt/backup
+	tar -xvzf /opt/backup/Deluged_Backup.tar.gz
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Deluge/core.conf $Programloc/.config/deluge
-	cp /opt/install/Deluge/web.conf $Programloc/.config/deluge
+	cp /opt/backup/Deluge/core.conf $Programloc/.config/deluge
+	cp /opt/backup/Deluge/web.conf $Programloc/.config/deluge
 	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
 	(-b)
+	#defaults settings stored at User home dir that runs Deluge process
+	#Primary setting files core.conf and web.conf
 	echo "Stopping Deluge"
     	systemctl stop deluged deluge-web
     	echo "Making sure Backup Dir exists"
@@ -77,7 +78,7 @@ case $mode in
 	cp -rf $Programloc/.config/deluge/core.conf $backupdir
 	cp -rf $Programloc/.config/deluge/web.conf $backupdir
 	cd $backupdir
-	tar -zcvf Deluged_FullBackup-$time.tar.gz *
+	tar -zcvf Deluged_Backup.tar.gz *
     	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
