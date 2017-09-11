@@ -60,7 +60,7 @@ case $mode in
   	mkdir -p $backupdir
   	echo "Backing up Headphones to /opt/backup"
 	cp -rf $Programloc/config.ini $backupdir
-	cp -rf $Programloc/Data/ $backupdir
+	cp -rf $Programloc/data/ $backupdir
 	cd $backupdir
   	tar -zcvf /opt/backup/Headphones_Backup.tar.gz *
 	rm -rf $backupdir
