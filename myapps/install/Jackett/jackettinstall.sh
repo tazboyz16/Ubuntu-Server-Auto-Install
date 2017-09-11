@@ -47,7 +47,7 @@ case $mode in
 	chmod 0777 -R $Programloc /opt/ProgramData/Jackett
 	cd /opt/backup
 	tar -xvzf /opt/backup/Jackett_Backup.tar.gz
-	cp ServerConfig.json /opt/ProgramData/Jackett/.config/Jackett
+	cp ServerConfig.json /opt/ProgramData/Jackett/.config/Jackett; rm -rf ServerConfig.json
 	echo "Restarting up Jackett"
 	systemctl start jackett
 	;;
