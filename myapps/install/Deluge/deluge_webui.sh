@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon) dd=(setup default daemon to localhost/auto login to localhost GUI)
+# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon)
 
 mode="$1"
 
@@ -45,6 +45,15 @@ case $mode in
 	systemctl enable deluged.service
 	systemctl enable deluge-web.service
 	systemctl start deluged deluge-web
+	sleep 15
+	echo "Stopping Deluge"
+    	systemctl stop deluged deluge-web
+	sleep 5
+	echo "Creating Auto load localhost WebUI for DelugeWeb"
+	chmod 0777 -R $Programloc
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
+	echo "Restarting up Deluge"
+	systemctl start deluged deluge-web 
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
@@ -75,15 +84,6 @@ case $mode in
 	;;
 	(-vpn)
 	#Is already setup in the 000-default.conf for Apache2 just need to finish the Split-tunneling with openvpn
-	;;
-	(-dd)
-	echo "Stopping Deluge"
-    	systemctl stop deluged deluge-web
-	echo "Creating Auto load localhost WebUI for DelugeWeb"
-	chmod 0777 -R $Programloc
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
-	echo "Restarting up Deluge"
-	systemctl start deluged deluge-web 
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac
