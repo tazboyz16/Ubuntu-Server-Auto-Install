@@ -19,7 +19,6 @@ mode="$1"
 
 Programloc=/opt/LazyLibrarian
 backupdir=/opt/backup/LazyLibrarian
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -29,6 +28,7 @@ case $mode in
    	cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
    	chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
    	chmod -R 0777 /opt/LazyLibrarian
+	#config file will not show up till after making any changes to settings so doing a default copy 
 	cp /opt/install/Lazylibrarian/config.ini $Programloc/config.ini
   	echo "Creating Startup Script"
    	cp /opt/install/Lazylibrarian/LazyLibrarian.service /etc/systemd/system/
@@ -41,7 +41,9 @@ case $mode in
 	echo "Stopping LazyLibrarian"
 	systemctl stop LazyLibrarian
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json $Programloc/config.ini
+	cd /opt/backup
+	tar -xvzf /opt/backup/LazyLibrarian_Backup.tar.gz
+	cp -rf config.ini $Programloc; rm -rf config.ini	
 	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
 	;;
@@ -50,10 +52,10 @@ case $mode in
     	systemctl stop LazyLibrarian
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
-	#config file will not show up till after making any changes to settings
     	echo "Backing up LazyLibrarian to /opt/backup"
 	cp $Programloc/config.ini $backupdir
-	tar -zcvf /opt/backup/LazyLibrarian_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/LazyLibrarian_Backup.tar.gz *
     	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
 	;;
