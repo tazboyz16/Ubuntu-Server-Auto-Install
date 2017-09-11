@@ -56,6 +56,7 @@ case $mode in
 	cp $Programloc/config.ini $backupdir
 	cd $backupdir
 	tar -zcvf /opt/backup/LazyLibrarian_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
 	;;
