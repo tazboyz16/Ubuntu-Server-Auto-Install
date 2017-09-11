@@ -78,7 +78,7 @@ case $mode in
 	cp -rf $Programloc/.config/deluge/core.conf $backupdir
 	cp -rf $Programloc/.config/deluge/web.conf $backupdir
 	cd $backupdir
-	tar -zcvf Deluged_Backup.tar.gz *
+	tar -zcvf /opt/backup/Deluged_Backup.tar.gz *
     	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
