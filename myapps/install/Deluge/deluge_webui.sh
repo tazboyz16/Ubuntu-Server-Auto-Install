@@ -94,7 +94,8 @@ case $mode in
 	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
 	apt update; apt install windscribe-cli -y
 	windscribe login
-	windscribe connect
+	
+	#windscribe connect     #This command will auto connect to windscribe service
 
 	#windscribe --help
 	### its under beta
