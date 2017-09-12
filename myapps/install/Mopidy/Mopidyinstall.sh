@@ -13,7 +13,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-#~/.config/mopidy/mopidy.conf
+#~/.config/mopidy/mopidy.conf -Main config file
 #/etc/mopidy/mopidy.conf
 #mopidy config to effective configuration
 #https://docs.mopidy.com/en/latest/service/#service
@@ -23,12 +23,11 @@ fi
 #Modes (Variables)
 # b=(backup) i=(install) r=(restore) u=(update) U=(Force Update) proxy=(Reverse Proxy) port=(Change port)
 mode="$1"
-Programloc=/opt/Mopidy
+Programloc=~/.config/mopidy/
 backupdir=/opt/backup/Mopidy
 
 case $mode in
 	(-i|"")
-	adduser --disabled-password --system --home /opt/Mopidy --gecos "Mopidy Service" --group mopidy
 	wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
 	wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
 	apt update; apt install mopidy python-pip -y
@@ -41,8 +40,28 @@ case $mode in
 	systemctl restart mopidy.service 
 	;;
 	(-r)
+	echo "<--- Restoring Mopidy Settings --->"
+	echo "Stopping Mopidy"
+	systemctl stop mopidy
+	chmod -R 0777 ~/.config/
+	cd /opt/backup
+	tar -xvzf /opt/backup/Mopidy_Backup.tar.gz
+	cp -rf mopidy.conf ~/.config/mopidy/; rm -rf mopidy.conf 
+	echo "Starting up Mopidy"
+	systemctl start mopidy
 	;;
 	(-b)
+	echo "Stopping Mopidy"
+  	systemctl stop mopidy
+ 	echo "Making sure Backup Dir exists"
+  	mkdir -p $backupdir
+  	echo "Backing up Mopidy to /opt/backup"
+	cp -rf $Programloc/mopidy.conf $backupdir
+	cd $backupdir
+  	tar -zcvf /opt/backup/Mopidy_Backup.tar.gz *
+	rm -rf $backupdir
+  	echo "Restarting up Mopidy"
+	systemctl start mopidy
 	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
