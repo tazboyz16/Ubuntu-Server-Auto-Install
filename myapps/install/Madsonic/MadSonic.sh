@@ -23,7 +23,7 @@ fi
 mode="$1"
 Programloc=/etc/default/madsonic
 backupdir=/opt/backup/Madsonic
-time=$(date +"%m_%d_%y-%H_%M")
+MadSonicDeb=20161208_madsonic-6.2.9040.deb
 
 case $mode in
 	(-i|"")
@@ -33,11 +33,11 @@ case $mode in
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 	apt install oracle-java8-installer -y
 	adduser --disabled-password --system --home /opt/ProgramData/Madsonic --gecos "Madsonic Service" --group Madsonic
-	#Latest Stable as of 5/29/2017
+	#Latest Stable as of 9/2017
 	#http://beta.madsonic.org/pages/download.jsp
-	wget http://madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
-	dpkg -i 20161208_madsonic-6.2.9040.deb
-	rm -rf *_madsonic-*.deb
+	wget http://madsonic.org/download/6.2/$MadSonicDeb
+	dpkg -i $MadSonicDeb
+	rm -rf $MadSonicDeb
 	chmod 0777 -R /var/madsonic
 	#Changing user account choice vs running as root
 	service madsonic stop
@@ -56,8 +56,11 @@ case $mode in
 	echo "<-- Restoring Madsonic Settings -->"
 	echo "Stopping Madsonic"
 	systemctl stop madsonic
-	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Madsonic/ServerConfig.json ~/.config/Jackett/
+	cd /opt/backup
+	sudo chmod 0777 -R /var/madsonic
+	tar -xvzf /opt/backup/Madsonic_Backup.tar.gz
+	cp -rf /opt/backup/db /var/madsonic; rm -rf /opt/backup/db
+	cp -rf madsonic.properties /var/madsonic; rm -rf madsonic.properties
 	echo "Restarting up Madsonic"
 	systemctl start madsonic
 	;;
@@ -67,9 +70,11 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Madsonic to /opt/backup"
-	cp /var/madsonic/db $backupdir
-	cp /var/madsonic/madsonic.properties $backupdir
-	tar -zcvf /opt/backup/Madsonic_FullBackup-$time.tar.gz $backupdir
+	cp -rf /var/madsonic/db $backupdir
+	cp -rf /var/madsonic/madsonic.properties $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Madsonic_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Madsonic"
 	systemctl start madsonic
 	;;
