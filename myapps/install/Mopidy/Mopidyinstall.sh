@@ -28,6 +28,7 @@ backupdir=/opt/backup/Mopidy
 
 case $mode in
 	(-i|"")
+	adduser --disabled-password --system --home /opt/Mopidy --gecos "Mopidy Service" --group mopidy
 	wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
 	wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
 	apt update; apt install mopidy python-pip -y
