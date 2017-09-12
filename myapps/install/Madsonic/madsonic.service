@@ -10,13 +10,12 @@ Description=Madsonic Media Server
 After=network.target
 
 [Service]
-User=root
+User=Madsonic
 Group=Madsonic
-Type=forking
-ExecStart=/etc/init.d/madsonic start
-ExecStop=/etc/init.d/madsonic stop
-Restart=on-failure
-GuessMainPID=no
+ExecStart=/usr/bin/madsonic 
+ExecStop=/usr/bin/madsonic
+PIDFile=/run/madsonic/madsonic.pid
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
