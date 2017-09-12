@@ -10,8 +10,8 @@ Description=Madsonic Media Server
 After=network.target
 
 [Service]
-User=madsonic
-Group=madsonic
+User=Madsonic
+Group=Madsonic
 Type=forking
 ExecStart=/etc/init.d/madsonic start
 ExecStop=/etc/init.d/madsonic stop
