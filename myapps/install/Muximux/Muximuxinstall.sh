@@ -39,7 +39,7 @@ case $mode in
 	systemctl stop apache2
 	cd /opt/backup
 	tar -xvzf /opt/backup/Muximux_Backup.tar.gz
-	cp -rf Muximux/ /opt
+	cp -rf Muximux/ /opt; rm -rf Muximux/
 	chown -R Muximux:Muximux /opt/Muximux
 	chmod -R 0777 /opt/Muximux
 	echo "Restarting up Apache2 for Muximux"
