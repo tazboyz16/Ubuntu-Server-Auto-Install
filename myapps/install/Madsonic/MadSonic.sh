@@ -39,6 +39,9 @@ case $mode in
 	dpkg -i 20161208_madsonic-6.2.9040.deb
 	rm -rf *_madsonic-*.deb
 	chmod 0777 -R /var/madsonic
+	#Changing user account choice vs running as root
+	service madsonic stop
+	sed -i "s#MADSONIC_USER=root#MADSONIC_USER=Madsonic#" /etc/default/madsonic
 	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
 	service madsonic stop
