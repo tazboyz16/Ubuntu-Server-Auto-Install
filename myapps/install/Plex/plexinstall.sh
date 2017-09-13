@@ -41,6 +41,7 @@ case $mode in
 	sleep 5
 	cd "$Programloc"
     	tar -cf /opt/backup/PlexMediaServer_Backup.tar.gz --lzma *
+	rm -rf $backupdir
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
@@ -49,7 +50,7 @@ case $mode in
 	echo "<--- Stopping Plex Media Server ->"
 	sudo systemctl stop plexmediaserver
 	chmod 0777 -R "$Programloc"
-	tar xjf $backupdir/PlexMediaServer_Backup.tar.gz "$Programloc"
+	tar xjf /opt/backup/PlexMediaServer_Backup.tar.gz "$Programloc"
 	sleep 20
 	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
