@@ -21,7 +21,6 @@ mode="$1"
 
 Programloc=/opt/Headphones
 backupdir=/opt/backup/Headphones
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
