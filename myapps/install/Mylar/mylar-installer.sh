@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/Mylar
 backupdir=/opt/backup/Mylar
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -40,7 +39,11 @@ case $mode in
 	echo "<--- Restoring Mylar Settings --->"
 	echo "Stopping Mylar"
 	systemctl stop mylar
-	cat /opt/install/Mylar/Mylar.txt > /opt/Mylar/config.ini
+	cd /opt/backup
+	tar -xvzf /opt/backup/Mylar_Backup.tar.gz
+	cp -rf data/ $Programloc; rm -rf data/
+	cp -rf cache/ $Programloc; rm -rf cache/
+	cp -rf config.ini $Programloc; rm -rf config.ini
 	chown -R Mylar:Mylar /opt/Mylar
 	chmod -R 0777 /opt/Mylar
 	echo "Starting up Mylar"
@@ -52,8 +55,12 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Mylar to /opt/backup"
-	cp -rf /opt/Mylar/userdata $backupdir
-    	tar -zcvf /opt/backup/Mylar_FullBackup-$time.tar.gz $backupdir
+	cp -rf /opt/Mylar/data/ $backupdir
+	cp -rf /opt/Mylar/cache/ $backupdir
+	cp -rf /opt/Mylar/config.ini $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Mylar_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Mylar"
 	systemctl start mylar
 	;;
