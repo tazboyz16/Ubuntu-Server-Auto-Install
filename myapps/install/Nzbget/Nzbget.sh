@@ -13,7 +13,6 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-#Successfully installed into /home/cabox/workspace/nzbget
 #Web-interface is on http://127.0.0.2:6789 (login:nzbget, password:tegbzn6789) - Default settings
 
 #Modes (Variables)
@@ -21,7 +20,6 @@ fi
 mode="$1"
 Programloc=/opt/Nzbget
 backupdir=/opt/backup/Nzbget
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -44,7 +42,9 @@ case $mode in
 	echo "<--- Restoring Nzbget Settings --->"
 	echo "Stopping Nzbget"
 	systemctl stop nzbget
-	cp /opt/install/Nzbget/nzbget.conf  $Programloc/
+	cd /opt/backup
+	tar -xvzf /opt/backup/Nzbget_Backup.tar.gz
+	cp -rf nzbget.conf $Programloc/; rm -rf nzbget.conf
 	chown -R Nzbget:Nzbget /opt/Nzbget
 	chmod -R 0777 /opt/Nzbget
 	echo "Starting up nzbget"
@@ -57,7 +57,9 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up Nzbget to /opt/backup"
 	cp -rf $Programloc/nzbget.conf $backupdir
-    	tar -zcvf /opt/backup/Nzbget_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Nzbget_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Nzbget"
 	systemctl start nzbget
 	;;
