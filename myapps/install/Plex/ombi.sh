@@ -30,12 +30,12 @@ case $mode in
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 	apt update; apt install mono-complete unzip -y
 	adduser --disabled-password --system --home /opt/ProgramData/Ombi --gecos "Ombi Service" --group ombi
-	mkdir /opt/Ombi && cd /opt/Ombi
+	mkdir /opt/Ombi && cd $Programloc
 	wget $(curl -s https://api.github.com/repos/tidusjar/Ombi/releases/latest | grep 'browser_' | cut -d\" -f4)
 	unzip Ombi.zip; rm Ombi.zip
 	cp -rf Release/* .; rm -rf Release/
-	chown -R ombi:ombi /opt/Ombi
-	chmod -R 0777 /opt/Ombi
+	chown -R ombi:ombi $Programloc
+	chmod -R 0777 $Programloc
 	echo "Creating Startup Script for PlexRequests"
 	cp /opt/install/Plex/ombi.service /etc/systemd/system/
 	chmod 0777 /etc/systemd/system/ombi.service
@@ -48,7 +48,7 @@ case $mode in
 	systemctl stop ombi
 	cd /opt/backup
 	tar -xvzf /opt/backup/Ombi_Backup.tar.gz
-	cp -rf Ombi.sqlite /opt/Ombi/; rm -rf Ombi.sqlite
+	cp -rf Ombi.sqlite $Programloc; rm -rf Ombi.sqlite
 	echo "Restarting up Ombi"
 	systemctl start ombi
 	;;
@@ -58,7 +58,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Ombi to /opt/backup"
-	cp /opt/Ombi/Ombi.sqlite $backupdir
+	cp $Programloc/Ombi.sqlite $backupdir
 	cd $backupdir
 	tar -zcvf /opt/backup/Ombi_Backup.tar.gz *
 	rm -rf $backupdir
