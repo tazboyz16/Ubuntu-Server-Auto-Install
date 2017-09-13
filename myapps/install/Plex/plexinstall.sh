@@ -40,7 +40,7 @@ case $mode in
 	du -h --max-depth=1 "$Programloc"
 	sleep 5
 	cd "$Programloc"
-    	tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma *
+    	tar -cf /opt/backup/PlexMediaServer_Backup.tar.gz --lzma *
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
@@ -49,7 +49,7 @@ case $mode in
 	echo "<--- Stopping Plex Media Server ->"
 	sudo systemctl stop plexmediaserver
 	chmod 0777 -R "$Programloc"
-	tar xjf $backupdir/PlexMediaServer_FullBackup-*.tar.gz "$Programloc"
+	tar xjf $backupdir/PlexMediaServer_Backup.tar.gz "$Programloc"
 	sleep 20
 	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
@@ -61,7 +61,7 @@ case $mode in
 		exit 0;
 	fi
 	echo "<--- Updating Plex Media Server ->"
-	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d
+	bash /opt/install/Plex/plexupdate.sh -p -a -d
 	;;
 	(-U)
 	#Checking if Program is installed
@@ -70,7 +70,7 @@ case $mode in
 		exit 0;
 	fi
 	echo "<--- Force Updating Plex Media Server ->"
-	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d -f
+	bash /opt/install/Plex/plexupdate.sh -p -a -d -f
 	;;
 	(-*) echo "Invalid Argument"; exit 0;;
 esac
