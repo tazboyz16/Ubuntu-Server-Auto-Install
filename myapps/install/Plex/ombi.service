@@ -13,8 +13,8 @@ After=network.target
 User=ombi
 Group=ombi
 Type=simple
-WorkingDirectory=/opt/Ombi/Release/
-ExecStart=/usr/bin/mono /opt/Ombi/Release/Ombi.exe
+WorkingDirectory=/opt/Ombi/
+ExecStart=/usr/bin/mono /opt/Ombi/Ombi.exe
 Restart=always
 TimeoutStopSec=30
 
