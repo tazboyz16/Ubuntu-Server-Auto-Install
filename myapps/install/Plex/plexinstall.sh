@@ -23,7 +23,6 @@ fi
 mode="$1"
 Programloc='/var/lib/plexmediaserver/Library/Application Support/Plex Media Server'
 backupdir=/opt/backup/Plex
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -39,10 +38,9 @@ case $mode in
 	echo "Please Wait Checking Size of Plex Media Server to be backed up"
 	echo "Once done total memory is on the bottom of list"
 	du -h --max-depth=1 "$Programloc"
-	#tar -zcf will compress 61M dir to 11M file
-	#tar -azcf same results with 11M file
-	#tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma $backupdir results 3.8M File
-    	tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma "$Programloc"
+	sleep 5
+	cd "$Programloc"
+    	tar -cf /opt/backup/PlexMediaServer_FullBackup-$time.tar.gz --lzma *
     	echo "Restarting up Plex Media Server"
 	systemctl start plexmediaserver
 	;;
