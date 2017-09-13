@@ -31,15 +31,17 @@ case $mode in
 	echo "<--- Restoring Noipy Settings --->"
 	cd /opt/backup
 	tar -xvzf /opt/backup/Noipy_Backup.tar.gz
+	chmod 0777 -R ~/.noipy
 	cp -rf .noipy/  ~/; rm .noipy/
 	;;
 	(-b)
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Noipy to /opt/backup"
+	chmod 0777 -R ~/.noipy
 	cp -rf $Programloc/ $backupdir
 	cd $backupdir
-    	tar -zcvf /opt/backup/Noipy_FullBackup-$time.tar.gz *
+    	tar -zcvf /opt/backup/Noipy_Backup.tar.gz *
 	cd $backupdir
 	;;
 	(-u)
