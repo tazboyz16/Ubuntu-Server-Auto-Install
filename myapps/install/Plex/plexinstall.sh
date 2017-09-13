@@ -12,15 +12,11 @@ if [[ $EUID -ne 0 ]]; then
 	echo "This Script must be run as root"
 	exit 1
 fi
-SCRIPT_PATH="$(dirname "$0")"
-
 
 #******1.7.5.4035-313f93718 version installs deb repo for Plex.tv self own repo to Sources.list******
 #systemd file gets saved under /lib/systemd/system
 #ignore cache folder, plug-ins folder,
 #https://gist.github.com/ssmereka/8773626
-
-
 
 #Modes (Variables)
 # b=backup i=install r=restore u=update U=Force Update
@@ -32,7 +28,7 @@ time=$(date +"%m_%d_%y-%H_%M")
 case $mode in
 	(-i|"")
 	echo "<--- Installing Plex Media Server ->"
-	bash ${SCRIPT_PATH}/plexupdate.sh -p -a -d
+	bash /opt/install/Plex/plexupdate.sh -p -a -d
 	;;
 	(-b)
 	echo "Backing up Plex Media Server"
