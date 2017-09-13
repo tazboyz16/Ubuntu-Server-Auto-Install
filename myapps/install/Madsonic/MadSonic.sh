@@ -41,7 +41,7 @@ case $mode in
 	chmod 0777 -R /var/madsonic
 	#Changing user account choice vs running as root
 	service madsonic stop
-	sed -i "s#MADSONIC_USER=root#MADSONIC_USER=Madsonic#" /etc/default/madsonic
+	sed -i "s#MADSONIC_USER=root#MADSONIC_USER=Madsonic#" $Programloc
 	echo "Creating Systemd Startup Script"
 	cp /opt/install/Madsonic/madsonic.service /etc/systemd/system/
 	service madsonic stop
