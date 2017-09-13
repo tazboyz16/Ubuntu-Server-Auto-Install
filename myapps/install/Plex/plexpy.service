@@ -9,7 +9,7 @@
 Description=PlexPy Daemon
 
 [Service]
-ExecStart=/opt/plexpy/PlexPy.py --quiet --daemon --nolaunch --config /opt/plexpy/config.ini --datadir /opt/plexpy
+ExecStart=/opt/Plexpy/PlexPy.py --quiet --daemon --nolaunch --config /opt/Plexpy/config.ini --datadir /opt/Plexpy
 GuessMainPID=no
 Type=forking
 User=plexpy
