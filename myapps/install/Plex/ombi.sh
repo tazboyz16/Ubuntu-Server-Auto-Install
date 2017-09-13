@@ -17,7 +17,8 @@ apt update; apt install mono-complete unzip -y
 adduser --disabled-password --system --home /opt/ProgramData/Ombi --gecos "Ombi Service" --group ombi
 mkdir /opt/Ombi && cd /opt/Ombi
 wget $(curl -s https://api.github.com/repos/tidusjar/Ombi/releases/latest | grep 'browser_' | cut -d\" -f4)
-unzip Ombi.zip && sudo rm Ombi.zip
+unzip Ombi.zip; rm Ombi.zip
+cp -rf Release/* .; rm -rf Release/
 chown -R ombi:ombi /opt/Ombi
 chmod -R 0777 /opt/Ombi
 echo "Creating Startup Script for PlexRequests"
