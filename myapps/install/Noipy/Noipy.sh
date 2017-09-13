@@ -39,7 +39,7 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up Noipy to /opt/backup"
 	chmod 0777 -R ~/.noipy
-	cp -rf $Programloc/ $backupdir
+	cp -r $Programloc/ $backupdir
 	cd $backupdir
     	tar -zcvf /opt/backup/Noipy_Backup.tar.gz *
 	cd $backupdir
