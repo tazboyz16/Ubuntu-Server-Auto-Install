@@ -51,7 +51,7 @@ case $mode in
 	cp -rf logs/ $Programloc; cp -rf logs.db $Programloc; cp -rf logs.db-shm $Programloc; cp -rf logs.db-wal $Programloc
 	cp -rf nzbdrone.db $Programloc; cp -rf nzbdrone.db-shm $Programloc; cp -rf nzbdrone.db-wal $Programloc; 
 	cp -rf nzbdrone.pid $Programloc
-	rm -rf configs.xml logs/ logs.db logs.db-shm logs.db-wal nzbdrone.db nzbdrone.db-shm nzbdrone.db-wal nzbdrone.pid
+	rm -rf config.xml logs/ logs.db logs.db-shm logs.db-wal nzbdrone.db nzbdrone.db-shm nzbdrone.db-wal nzbdrone.pid
 	echo "Restarting up Radarr"
 	systemctl start radarr
 	;;
