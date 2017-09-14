@@ -63,7 +63,7 @@ case $mode in
     	echo "Backing up Radarr to /opt/backup"
 	cp -rf $Programloc/* $backupdir
 	cd $backupdir
-	tar -zcvf /opt/backup/Radarr_Backup.tar.gz *$backupdir
+	tar -zcvf /opt/backup/Radarr_Backup.tar.gz *
 	rm -rf $backupdir
     	echo "Restarting up Radarr"
 	systemctl start radarr
