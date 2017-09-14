@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/SickRage
 backupdir=/opt/backup/SickRage
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
