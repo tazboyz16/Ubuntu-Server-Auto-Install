@@ -52,8 +52,12 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up SickRage to /opt/backup"
 	#backup files are in sickrage install location for items Cache Folder, failed.db,sickbeard.db, and cache.db
-	cp /opt/ProgramData/Sickrage/.couchpotato/settings.conf $backupdir
-    	tar -zcvf /opt/backup/Sickrage_FullBackup-$time.tar.gz $backupdir
+	cp -rf $Programloc/cache/ $backupdir
+	cp -rf $Programloc/failed.db $backupdir
+	cp -rf $Programloc/sickbeard.db $backupdir
+	cp -rf $Programloc/cache.db $backupdir
+    	cp -rf $Programloc/config.ini $backupdir
+	tar -zcvf /opt/backup/Sickrage_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up SickRage"
 	systemctl start sickrage
 	;;
