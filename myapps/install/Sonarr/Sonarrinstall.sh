@@ -20,7 +20,6 @@ mode="$1"
 
 Programloc=/opt/NzbDrone
 backupdir=/opt/backup/Sonarr
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -44,6 +43,7 @@ case $mode in
 	echo "Stopping Sonarr"
 	systemctl stop sonarr
 	chmod -R 0777 /opt/ProgramData/Sonarr
+	
 	cp /opt/install/Sonarr/CouchPotato.txt /opt/ProgramData/Sonarr/.couchpotato/settings.conf
 	echo "Starting Sonarr"
     	systemctl start sonarr	
@@ -55,8 +55,9 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up Sonarr to /opt/backup"
 	cp $Programloc/Data $backupdir
-	
-    	tar -zcvf /opt/backup/Sonarr_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Sonarr_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Sonarr"
 	systemctl start sonarr
 	;;
