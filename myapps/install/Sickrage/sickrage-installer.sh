@@ -62,7 +62,7 @@ case $mode in
 	cp -rf $Programloc/cache.db $backupdir
     	cp -rf $Programloc/config.ini $backupdir
 	cd $backupdir
-	tar -zcvf /opt/backup/Sickrage_Backup.tar.gz $backupdir
+	tar -zcvf /opt/backup/Sickrage_Backup.tar.gz *
 	rm -rf $backupdir
     	echo "Restarting up SickRage"
 	systemctl start sickrage
