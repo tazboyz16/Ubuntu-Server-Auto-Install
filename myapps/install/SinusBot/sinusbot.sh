@@ -62,8 +62,8 @@ case $mode in
 	tar -xvzf /opt/backup/Sinusbot_Backup.tar.gz
 	cp -rf config.ini $Programloc
 	cp -rf data/ $Programloc
-	chown -R sinusbot:sinusbot /opt/sinusbot
-	chmod -R 0777 /opt/sinusbot
+	chown -R sinusbot:sinusbot $Programloc
+	chmod -R 0777 $Programloc
 	echo "Starting up Sinusbot"
 	systemctl start sinusbot
 	;;
