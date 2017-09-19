@@ -20,7 +20,6 @@ mode="$1"
 TeamSpeakClient=3.0.19.4
 Programloc=/opt/Sinusbot
 backupdir=/opt/backup/Sinusbot
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -59,7 +58,10 @@ case $mode in
 	echo "<--- Restoring Sinusbot Settings --->"
 	echo "Stopping Sinusbot"
 	systemctl stop sinusbot
-	cat /opt/install/sinusbot/v.txt > /opt/HTPCManager/userdata
+	cd /opt/backup
+	tar -xvzf /opt/backup/Sinusbot_Backup.tar.gz
+	cp -rf config.ini $Programloc
+	cp -rf data/ $Programloc
 	chown -R sinusbot:sinusbot /opt/sinusbot
 	chmod -R 0777 /opt/sinusbot
 	echo "Starting up Sinusbot"
@@ -76,7 +78,9 @@ case $mode in
     	echo "Backing up Sinusbot to /opt/backup"
 	cp -rf /opt/Sinusbot/config.ini $backupdir
 	cp -rf /opt/Sinusbot/data $backupdir
-    	tar -zcvf /opt/backup/Sinusbot_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Sinusbot_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Sinusbot"
 	systemctl start sinusbot
 	;;
