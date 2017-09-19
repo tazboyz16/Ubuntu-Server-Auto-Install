@@ -55,6 +55,7 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up Sonarr to /opt/backup"
 	cp $Programloc/Data $backupdir
+	
     	tar -zcvf /opt/backup/Sonarr_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Sonarr"
 	systemctl start sonarr
