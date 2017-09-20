@@ -86,8 +86,8 @@ case $mode in
 	(-r) 
     	echo "Stopping TS3 Server"
 	systemctl stop ts3
+	rm -rf /opt/ts3/*	
 	tar -xvzf /opt/backup/ts3_Backup.tar.gz -C $server
-
 	echo "Starting TS3 Server"
 	systemctl start ts3
 	;;
