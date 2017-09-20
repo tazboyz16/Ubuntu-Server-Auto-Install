@@ -60,8 +60,8 @@ case $mode in
 	systemctl stop sinusbot
 	cd /opt/backup
 	tar -xvzf /opt/backup/Sinusbot_Backup.tar.gz
-	cp -rf config.ini $Programloc
-	cp -rf data/ $Programloc
+	cp -rf config.ini $Programloc; rm -rf config.ini
+	cp -rf data/ $Programloc; rm -rf data/
 	chown -R sinusbot:sinusbot $Programloc
 	chmod -R 0777 $Programloc
 	echo "Starting up Sinusbot"
