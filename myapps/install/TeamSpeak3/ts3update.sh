@@ -76,7 +76,7 @@ case $mode in
 	echo "Stopping TS3 Server"
 	systemctl stop ts3
 	echo "Making sure Backup Dir exists"
- -	mkdir -p /opt/backup
+ 	mkdir -p /opt/backup
 	echo "Backing up TS3 Folder to /opt/backup"
 	cd $server
 	tar -zcvf /opt/backup/ts3_Backup.tar.gz *
