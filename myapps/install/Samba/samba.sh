@@ -8,6 +8,8 @@
 # GNU General Public License v3.0
 ###########################################################
 
+apt install samba*
+touch /etc/libuser.conf
 echo "<--- Setting up Samaba Smb Access Password --->"
 echo -e "xxxpasswordxxx\nxxxpasswordxxx" | sudo smbpasswd -a xxxusernamexxx
 echo "<--- Restoring Samba Settings --->"
