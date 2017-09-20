@@ -44,7 +44,7 @@ case $mode in
 	systemctl stop sonarr
 	cd /opt/backup
 	tar -xvzf /opt/backup/Sonarr_Backup.tar.gz
-	cp configs.xml $Programloc
+	cp config.xml $Programloc
 	cp -rf logs/ $Programloc; cp -rf logs.db $Programloc; cp -rf logs.db-shm $Programloc; cp -rf logs.db-wal $Programloc
 	cp -rf nzbdrone.db $Programloc; cp -rf nzbdrone.db-shm $Programloc; cp -rf nzbdrone.db-wal $Programloc; 
 	cp -rf nzbdrone.pid $Programloc
