@@ -39,14 +39,18 @@ case $mode in
 	systemctl restart sonarr.service
 	;;
 	(-r)
-	echo "<--- Restoring Sonarr Settings --->"
+	echo "<--Restoring Sonarr Settings -->"
 	echo "Stopping Sonarr"
 	systemctl stop sonarr
-	chmod -R 0777 /opt/ProgramData/Sonarr
-	
-	cp /opt/install/Sonarr/CouchPotato.txt /opt/ProgramData/Sonarr/.couchpotato/settings.conf
-	echo "Starting Sonarr"
-    	systemctl start sonarr	
+	cd /opt/backup
+	tar -xvzf /opt/backup/Sonarr_Backup.tar.gz
+	cp configs.xml $Programloc
+	cp -rf logs/ $Programloc; cp -rf logs.db $Programloc; cp -rf logs.db-shm $Programloc; cp -rf logs.db-wal $Programloc
+	cp -rf nzbdrone.db $Programloc; cp -rf nzbdrone.db-shm $Programloc; cp -rf nzbdrone.db-wal $Programloc; 
+	cp -rf nzbdrone.pid $Programloc
+	rm -rf config.xml logs/ logs.db logs.db-shm logs.db-wal nzbdrone.db nzbdrone.db-shm nzbdrone.db-wal nzbdrone.pid
+	echo "Restarting up Sonarr"
+	systemctl start sonarr
 	;;
 	(-b)
 	echo "Stopping Sonarr"
@@ -54,9 +58,9 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Sonarr to /opt/backup"
-	cp $Programloc/Data $backupdir
+	cp -rf $Programloc/* $backupdir
 	cd $backupdir
-    	tar -zcvf /opt/backup/Sonarr_Backup.tar.gz *
+	tar -zcvf /opt/backup/Sonarr_Backup.tar.gz *
 	rm -rf $backupdir
     	echo "Restarting up Sonarr"
 	systemctl start sonarr
