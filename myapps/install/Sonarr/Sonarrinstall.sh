@@ -18,7 +18,7 @@ versionm=$(lsb_release -cs)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/NzbDrone
+Programloc=/opt/ProgramData/Sonarr/.config/NzbDrone #Config Location
 backupdir=/opt/backup/Sonarr
 
 case $mode in
@@ -30,8 +30,8 @@ case $mode in
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | tee /etc/apt/sources.list.d/mono-offical.list
 	apt update
 	apt install nzbdrone libmono-cil-dev apt-transport-https mono-devel -y
-	chown -R Sonarr:Sonarr $Programloc
-	chmod -R 0777 $Programloc
+	chown -R Sonarr:Sonarr /opt/NzbDrone
+	chmod -R 0777 /opt/NzbDrone
 	echo "Creating Startup Script"
 	cp /opt/install/Sonarr/sonarr.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/sonarr.service
