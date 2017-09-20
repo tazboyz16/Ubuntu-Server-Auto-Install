@@ -25,11 +25,9 @@ case $mode in
 	apt update
 	apt install python -y
 	adduser --disabled-password --system --home /opt/ProgramData/PlexPy --gecos "PlexPy Service"  --group plexpy
-	cd /opt && git clone https://github.com/JonnyWong16/plexpy.git /opt/Plexpy
-	#echo "<--- Restoring PLexPy Settings --->"
-	#cat /opt/install/PlexAddons/Headphones.txt > /opt/.headphones/config.ini
-	chown -R plexpy:plexpy /opt/Plexpy
-	chmod -R 0777 /opt/Plexpy
+	cd /opt && git clone https://github.com/JonnyWong16/plexpy.git $Programloc
+	chown -R plexpy:plexpy $Programloc
+	chmod -R 0777 $Programloc
 	echo "Creating Startup Script for PlexPy"
 	cp /opt/install/Plex/plexpy.service /etc/systemd/system/
 	chmod 0777 /etc/systemd/system/plexpy.service
