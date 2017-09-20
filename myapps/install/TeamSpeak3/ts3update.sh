@@ -29,7 +29,6 @@ backupdir=/opt/backup/ts3
 dl=/tmp
 BK=$(cat $server/version)
 
-echo "Preforming System Check Up and Getting Latest Version Number from TeamSpeak"
 #System Specs
 arch=$(uname -m)
 if [ "$arch" == "x86_64" ]; then
@@ -38,7 +37,6 @@ else
     arch="x86"
 fi
 
-echo "Getting Current Version Info"
 wget -q https://www.teamspeak.com/downloads --output-document=$dl/Temp
 Version=$(grep -Pom 1 "server_linux_$arch-\K.*?(?=\.tar\.bz)" $dl/Temp)
 rm $dl/Temp
