@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/Ubooquity
 backupdir=/opt/backup/Ubooquity
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -45,7 +44,11 @@ case $mode in
 	echo "<--- Restoring Ubooquity Settings --->"
 	echo "Stopping Ubooquity"
 	systemctl stop ubooquity
-	cat /opt/install/Ubooquity/HTPCManager.txt > $Programloc/userdata
+	cd /opt/backup
+	tar -xvzf /opt/backup/Ubooquity_Backup.tar.gz
+	cp -rf preferences.json $Programloc
+	cp -rf ubooquity-5.mv.db $Programloc
+	cp -rf webadmin.cred $Programloc
 	chown -R Ubooquity:Ubooquity $Programloc
 	chmod -R 0777 $Programloc
 	echo "Starting up Ubooquity"
@@ -57,8 +60,12 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Ubooquity to /opt/backup"
-	cp -rf $Programloc/userdata $backupdir
-    	tar -zcvf /opt/backup/Ubooquity_FullBackup-$time.tar.gz $backupdir
+	cp -rf $Programloc/preferences.json $backupdir
+	cp -rf $Programloc/ubooquity-5.mv.db $backupdir
+	cp -rf $Programloc/webadmin.cred $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Ubooquity_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Ubooquity"
 	systemctl start ubooquity
 	;;
