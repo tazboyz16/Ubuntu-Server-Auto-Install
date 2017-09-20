@@ -86,11 +86,9 @@ case $mode in
 	(-r) 
     	echo "Stopping TS3 Server"
 	systemctl stop ts3
-	echo "Location with the file name and type of the backup to be restored?"
-	echo "Ex. /opt/backup/ts3_Backup.tar.gz"
-	read restorebackup
-	echo "Untar Zip file to /opt/ts3"
-	tar -xjf $restorebackup /opt/ts3
+	tar -xvzf /opt/backup/ts3_Backup.tar.gz -C $server
+
+
 	echo "Starting TS3 Server"
 	systemctl start ts3
 	;;
