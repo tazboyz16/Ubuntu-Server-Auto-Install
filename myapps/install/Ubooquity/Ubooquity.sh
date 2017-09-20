@@ -46,10 +46,10 @@ case $mode in
 	systemctl stop ubooquity
 	cd /opt/backup
 	tar -xvzf /opt/backup/Ubooquity_Backup.tar.gz
-	cp -rf preferences.json $Programloc
-	cp -rf ubooquity-5.mv.db $Programloc
-	cp -rf webadmin.cred $Programloc
-	chown -R Ubooquity:Ubooquity $Programloc
+	cp -rf preferences.json $Programloc; rm -rf preferences.json
+	cp -rf ubooquity-5.mv.db $Programloc; rm -rf ubooquity-5.mv.db
+	cp -rf webadmin.cred $Programloc; rm -rf webadmin.cred
+	chown -R Ubooquity:Ubooquity $Programloc; 
 	chmod -R 0777 $Programloc
 	echo "Starting up Ubooquity"
 	systemctl start ubooquity
