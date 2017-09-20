@@ -80,7 +80,8 @@ case $mode in
 	echo "Making sure Backup Dir exists"
 	mkdir -p $backupdir
 	echo "Backing up TS3 Folder to /opt/backup"
-	tar -zcvf $backupdir/ts3_Backup.tar.gz $server
+	cd $server
+	tar -zcvf $backupdir/ts3_Backup.tar.gz *
 	echo "Restarting up Server"
 	systemctl start ts3
 	;;
@@ -88,7 +89,7 @@ case $mode in
     	echo "Stopping TS3 Server"
 	systemctl stop ts3
 	echo "Location with the file name and type of the backup to be restored?"
-	echo "Ex. /opt/backup/ts3_FullBackup-xxx.tar.gz"
+	echo "Ex. /opt/backup/ts3_Backup.tar.gz"
 	read restorebackup
 	echo "Untar Zip file to /opt/ts3"
 	tar -xjf $restorebackup /opt/ts3
