@@ -28,7 +28,6 @@ server=/opt/ts3
 backupdir=/opt/backup/ts3
 dl=/tmp
 BK=$(cat $server/version)
-time=$(date +"%m_%d_%y-%H_%M")
 
 echo "Preforming System Check Up and Getting Latest Version Number from TeamSpeak"
 #System Specs
@@ -81,7 +80,7 @@ case $mode in
 	echo "Making sure Backup Dir exists"
 	mkdir -p $backupdir
 	echo "Backing up TS3 Folder to /opt/backup"
-	tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
+	tar -zcvf $backupdir/ts3_Backup.tar.gz $server
 	echo "Restarting up Server"
 	systemctl start ts3
 	;;
