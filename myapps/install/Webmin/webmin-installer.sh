@@ -29,6 +29,7 @@ case $mode in
 	wget http://www.webmin.com/download/deb/webmin-current.deb -O /opt/install/Webmin/webmin_all.deb
 	dpkg -i /opt/install/Webmin/webmin_all.deb
 	sleep 1
+	rm -rf /opt/install/Webmin/webmin_all.deb	
 	echo "Creating Startup Script"
 	update-rc.d webmin remove
 	cp /opt/install/Webmin/webmin.service /etc/systemd/system/
