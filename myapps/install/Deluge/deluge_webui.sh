@@ -123,6 +123,13 @@ case $mode in
 	#DNS Server 2 208.67.222.220
 	#Change 3 option in Resolv to Google DNS
 	;;
-    	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument" 
+	echo "**Running install script without arguments will running install**"
+	echo "-vpn"
+	
+	
+	
+	
+	exit 0;;
 esac
 exit 0
