@@ -51,7 +51,7 @@ echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget/Nzbget.sh
 
 echo "<--- Installing Cron Jobs --->"; bash /opt/install/System/Cronjobs.sh
 echo "<--- Restoring Fstab settings --->"; cat /opt/install/System/fstab.txt >> /etc/fstab
-echo "<--- Running Cleanup from Installs --->"; bash /opt/Cleanup.sh
+echo "<--- Disabling Install Services for Auto Installer --- >"; systemctl disable Installserver.service; systemctl mask Installserver.service
 echo "<--- Reboot is needed to take effect of All System Restores and Installs------>"
 sleep 5
 sudo reboot
