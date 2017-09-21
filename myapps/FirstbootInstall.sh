@@ -39,7 +39,6 @@ echo "<--- Installing TeamSpeak Server --->"; bash /opt/install/TeamSpeak3/ts3in
 echo "<--- Installing Sonarr --->"; bash /opt/install/Sonarr/sonarrinstall.sh
 echo "<--- Installing Jackett --->"; bash /opt/install/Jackett/jackettinstall.sh
 echo "<--- Installing Samba --->"; bash /opt/install/Samba/samba.sh
-echo "<--- Installing Kodi --->"; bash /opt/install/Kodi/Kodi-install.sh
 echo "<--- Installing Muximux --->"; bash /opt/install/Muximux/Muximuxinstall.sh
 echo "<--- Installing HTPC-Manager --->"; bash /opt/install/HTPCManager/HTPCManager.sh
 echo "<--- Installing LazyLibrarian --->"; bash /opt/install/Lazylibrarian/Lazylibrarian.sh
