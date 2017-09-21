@@ -101,6 +101,14 @@ case $mode in
 	echo "Changed Port over to $Port"
 	systemctl restart apache2 couchpotato
 	;;
-    	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument"
+	echo "-b For Backup Settings"
+	echo "-i For Install"
+	echo "-r For Restore Settings"
+	echo "-u For Update"
+	echo "-U For Force Update"
+	echo "-proxy To enable Reverse Proxy"
+	echo "-port To Change port number"
+	exit 0;;
 esac
 exit 0
