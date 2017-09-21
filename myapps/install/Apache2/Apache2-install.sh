@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install b=backup 
+# b=backup i=install r=restore 
 mode="$1"
 backupdir=/opt/backup/Apache
 
@@ -63,6 +63,11 @@ case $mode in
 	echo "Restarting up Apache2"
 	systemctl start apache2
 	;;
-	(-*) echo "Invalid Argument"; exit 0;;
+	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will running install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	exit 0;;
 esac
 exit 0
