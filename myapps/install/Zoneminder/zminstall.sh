@@ -32,8 +32,8 @@ case $mode in
 	echo $server $server/root_password password $sqlpass | debconf-set-selections
 	echo $server $server/root_password_again password $sqlpass | debconf-set-selections
 	apt install zoneminder php7.0-gd $server -y
-	mysql --user=root -p$sqlpass mysql -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmadmin'@localhost identified by '$zmsqlpass';"
-	mysql --user=root -p$sqlpass -h localhost zm  < /usr/share/zoneminder/db/zm_create.sql
+	mysql -uroot -p$sqlpass mysql -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmadmin'@localhost identified by '$zmsqlpass';"
+	mysql -uroot -p$sqlpass -h localhost zm  < /usr/share/zoneminder/db/zm_create.sql
 	systemctl enable zoneminder
 	a2enconf zoneminder
 	a2enmod cgi
