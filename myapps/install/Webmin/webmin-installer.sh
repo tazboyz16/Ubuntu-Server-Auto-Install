@@ -40,8 +40,10 @@ case $mode in
 	echo "<--- Restoring Webmin Settings --->"
 	echo "Stopping Webmin"
 	systemctl stop webmin
-	cat /opt/install/Webmin/Webmin.txt > $Programloc/miniserv.conf
-	cat /opt/install/Webmin/config > $Programloc/system-status/config
+	cd /opt/backup
+	tar -xvzf /opt/backup/Webmin_Backup.tar.gz
+	cp -rf miniserv.conf $Programloc/; rm -rf miniserv.conf
+	cp -rf config $Programloc/system-status/; rm -rf config
 	echo "Starting up Webmin"
 	systemctl start webmin
 	;;
@@ -51,8 +53,11 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Webmin to /opt/backup"
-	cp -rf /opt/HTPCManager/userdata $backupdir
-    	tar -zcvf /opt/backup/Webmin_FullBackup-$time.tar.gz $backupdir
+	cp -rf $Programloc/miniserv.conf $backupdir
+	cp -rf $Programloc/system-status/config $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Webmin_Backup.tar.gz $backupdir
+	rm -rf $backupdir
     	echo "Restarting up Webmin"
 	systemctl start webmin
 	;;
