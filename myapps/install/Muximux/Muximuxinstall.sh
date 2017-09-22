@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/Muximux
 backupdir=/opt/backup/Muximux
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -32,22 +31,28 @@ case $mode in
 	cd /opt && git clone https://github.com/mescon/Muximux.git
 	chown -R Muximux:Muximux /opt/Muximux
 	chmod -R 0777 /opt/Muximux
-	cp /opt/install/Muximux/Muximux.conf /etc/apache2/sites-available/
-	a2ensite Muximux.conf
 	service apache2 restart
 	;;
 	(-r)
 	echo "<--- Restoring Muximux Settings --->"
-	cat /opt/install/Muximux/Mylar.txt > /opt/Muximux/
+	echo "Stopping Apache2 for Muximux"
+	systemctl stop apache2
+	cd /opt/backup
+	tar -xvzf /opt/backup/Muximux_Backup.tar.gz
+	cp -rf Muximux/ /opt; rm -rf Muximux/
 	chown -R Muximux:Muximux /opt/Muximux
 	chmod -R 0777 /opt/Muximux
+	echo "Restarting up Apache2 for Muximux"
+	systemctl restart apache2
 	;;
 	(-b)
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Muximux to /opt/backup"
 	cp -rf /opt/Muximux/ $backupdir
-    	tar -zcvf /opt/backup/Muximux_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Muximux_Backup.tar.gz *
+	rm -rf $backupdir
 	;;
 	(-u)
 	#Checking if Program is installed

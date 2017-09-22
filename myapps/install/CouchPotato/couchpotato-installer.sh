@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/CouchPotato
 backupdir=/opt/backup/CouchPotato
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -40,8 +39,8 @@ case $mode in
 	echo "Stopping CouchPotato"
 	systemctl stop couchpotato
 	chmod -R 0777 /opt/ProgramData/Couchpotato
-	#NEEDS TO BE EDITED FOR UNZIP TAR FILE TO RESTORE SETTINGS VS SINGLE FILE RESTORE
-	cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	tar -xvzf /opt/backup/CouchPotato_Backup.tar.gz -C /opt/ProgramData/Couchpotato/.couchpotato/
+	rm -rf $backupdir
 	echo "Starting CouchPotato"
     	systemctl start couchpotato	
 	;;
@@ -52,10 +51,9 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up CouchPotato to /opt/backup"
 	cp /opt/ProgramData/Couchpotato/.couchpotato/settings.conf $backupdir
-	echo "Data Folder might be located under /root/.couchpotato/ if theres a Data Folder created"
-	echo "some install dont have it"
-	cp /opt/CouchPotato/Data $backupdir
-    	tar -zcvf /opt/backup/CouchPotato_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/CouchPotato_Backup.tar.gz settings.conf
+	rm -rf $backupdir
     	echo "Restarting up CouchPotato"
 	systemctl start couchpotato
 	;;
@@ -90,17 +88,28 @@ case $mode in
 	sudo systemctl start couchpotato
 	;;
 	(-proxy)
+	sudo systemctl stop couchpotato
 	sed -i 's#.*url_base = .*#url_base = /couchpotato#' /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	systemctl restart apache2 couchpotato
 	;;
 	(-port)
 	echo "What Port Number Would you like to change CouchPotato to?"
 	read Port
+	sudo systemctl stop couchpotato
 	sed -i "s#port = .*#port = $Port#" /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
 	sed -i "s#1:.*/couchpotato#1:$Port/couchpotato#" /etc/apache2/sites-available/000-default.conf
 	echo "Changed Port over to $Port"
 	systemctl restart apache2 couchpotato
 	;;
-    	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will running install**"
+	echo "-b For Backup Settings"
+	echo "-i For Install"
+	echo "-r For Restore Settings"
+	echo "-u For Update"
+	echo "-U For Force Update"
+	echo "-proxy To enable Reverse Proxy"
+	echo "-port To Change port number"
+	exit 0;;
 esac
 exit 0

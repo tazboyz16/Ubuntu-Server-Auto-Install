@@ -14,13 +14,13 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon) dd=(setup default daemon to localhost/auto login to localhost GUI)
+# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon)
 
 mode="$1"
 
 Programloc=/opt/Deluge
 backupdir=/opt/backup/Deluge
-time=$(date +"%m_%d_%y-%H_%M")
+versionm=$(lsb_release -cs)
 
 case $mode in
 	(-i|"")
@@ -35,7 +35,8 @@ case $mode in
 	sudo touch /var/log/deluge-web.log
 	sudo chown Deluge:Deluge /var/log/deluge*
 	apt install python python-twisted python-openssl python-setuptools intltool python-xdg python-chardet geoip-database python-libtorrent python-notify python-pygame python-glade2 librsvg2-common xdg-utils python-mako -y
-	apt install deluged deluge-webui -y
+	apt install deluge deluged deluge-webui deluge-console -y
+	chmod 0777 -R $Programloc
 	echo "Creating Startup Scripts For Deluged and Deluge-WebUI"
 	cp /opt/install/Deluge/deluged.service /etc/systemd/system/
 	cp /opt/install/Deluge/deluge-web.service /etc/systemd/system/
@@ -44,46 +45,91 @@ case $mode in
 	systemctl enable deluged.service
 	systemctl enable deluge-web.service
 	systemctl start deluged deluge-web
+	sleep 5
+	echo "Stopping Deluge"
+    	systemctl stop deluged deluge-web
+	echo "Creating Auto load localhost WebUI for DelugeWeb"
+	chmod 0777 -R $Programloc
+	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
+	echo "Restarting up Deluge"
+	systemctl start deluged deluge-web 
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
 	echo "Stopping Deluge"
-	#defaults settings stored at /var/lib/deluge/.config/deluge
-	#core.conf and web.conf
-	#cp /opt/install/Deluge/core.conf /var/lib/deluge/.config/deluge
-	#cp /opt/install/Deluge/web.conf /var/lib/deluge/.config/deluge
 	systemctl stop deluged deluge-web
-	sleep 15
+	cd /opt/backup
+	tar -xvzf /opt/backup/Deluged_Backup.tar.gz
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Deluge/core.conf $Programloc/.config/deluge
-	cp /opt/install/Deluge/web.conf $Programloc/.config/deluge
+	cp core.conf $Programloc/.config/deluge; rm core.conf
+	cp web.conf $Programloc/.config/deluge; rm web.conf
 	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
 	(-b)
+	#defaults settings stored at User home dir that runs Deluge process
+	#Primary setting files core.conf and web.conf
 	echo "Stopping Deluge"
     	systemctl stop deluged deluge-web
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Deluge to /opt/backup"
-	cp $Programloc/.config/deluge/core.conf $backupdir
-	cp $Programloc/.config/deluge/web.conf $backupdir
-	tar -zcvf /opt/backup/Deluged_FullBackup-$time.tar.gz $backupdir
+	chmod 0777 -R $Programloc
+	cp -rf $Programloc/.config/deluge/core.conf $backupdir
+	cp -rf $Programloc/.config/deluge/web.conf $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Deluged_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web
 	;;
 	(-vpn)
 	#Is already setup in the 000-default.conf for Apache2 just need to finish the Split-tunneling with openvpn
+	echo "Adding OpenVPN Repositories for Latest Verison"
+	wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
+	echo "deb http://build.openvpn.net/debian/openvpn/stable $versionm main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
+	apt update; apt install openvpn -y
+	#https://www.htpcguides.com/force-torrent-traffic-vpn-split-tunnel-debian-8-ubuntu-16-04/
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key FDC247B7
+	echo "deb https://repo.windscribe.com/ubuntu $versionm main" > /etc/apt/sources.list.d/windscribe-repo.list
+	apt update; apt install windscribe-cli -y
+	windscribe login
+	windscribe firewall off
+	windscribe connect best     #This command will auto connect to windscribe service
+	sleep 5 #allowing creation of openvpn config file to be created
+	windscribe disconnect
+	echo "
+	auth-nocache
+	route-noexec" >> /etc/windscribe/client.ovpn
+	#up and down scripts to be executed when VPN starts or stops
+	#up /etc/openvpn/iptables.sh
+	#down /etc/openvpn/update-resolv-con
+	
+	####
+	#/etc/init.d/windscribe-cli
+	##windscribe --help
+	### its under beta
+	#requires openvpn installed
+	#https://forum.htpcguides.com/Thread-VPN-Split-Tunneling-problem
+	# /etc/windscribe has the client.ovpn file
+	#windscribe has a update-resolv-conf in /etc/windscribe
+	# when turned on according to ^ interface 'tun' is active
+	#windscribe connect best
+	#windscribe connect US
+	#windscribe firewall on/off/auto
+	#windscribe protocol TCP/UDP def is UDP
+	
+	#DNS Server 1 208.67.222.222
+	#DNS Server 2 208.67.222.220
+	#Change 3 option in Resolv to Google DNS
 	;;
-	(-dd)
-	echo "Stopping Deluge"
-    	systemctl stop deluged deluge-web
-	echo "Creating Auto load localhost WebUI for DelugeWeb"
-	chmod 0777 -R /var/lib/deluge/
-	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
-	echo "Restarting up Deluge"
-	systemctl start deluged deluge-web 
-	;;
-    	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument" 
+	echo "**Running install script without arguments will running install**"
+	echo "-vpn"
+	
+	
+	
+	
+	exit 0;;
 esac
 exit 0

@@ -20,7 +20,6 @@ versionm=$(lsb_release -cs)
 mode="$1"
 Programloc=/opt/Jackett
 backupdir=/opt/backup/Jackett
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -45,8 +44,10 @@ case $mode in
 	echo "<--Restoring Jackett Settings -->"
 	echo "Stopping Jackett"
 	systemctl stop jackett
-	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json ~/.config/Jackett/
+	chmod 0777 -R $Programloc /opt/ProgramData/Jackett
+	cd /opt/backup
+	tar -xvzf /opt/backup/Jackett_Backup.tar.gz
+	cp ServerConfig.json /opt/ProgramData/Jackett/.config/Jackett; rm -rf ServerConfig.json
 	echo "Restarting up Jackett"
 	systemctl start jackett
 	;;
@@ -56,8 +57,11 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Jackett to /opt/backup"
-	cp ~/.config/Jackett/ServerConfig.json $backupdir
-	tar -zcvf /opt/backup/Jackett_FullBackup-$time.tar.gz $backupdir
+	chmod 0777 -R /opt/ProgramData/Jackett
+	cp /opt/ProgramData/Jackett/.config/Jackett/ServerConfig.json $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Jackett_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Jackett"
 	systemctl start jackett
 	;;

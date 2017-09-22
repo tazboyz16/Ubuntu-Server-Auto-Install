@@ -10,7 +10,7 @@ Description=Madsonic Media Server
 After=network.target
 
 [Service]
-User=root
+User=Madsonic
 Group=Madsonic
 Type=forking
 ExecStart=/etc/init.d/madsonic start

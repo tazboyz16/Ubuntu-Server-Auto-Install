@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###########################################################
-# Created by @tazboyz16 
-# This Script was created at 
+# Created by @tazboyz16
+# This Script was created at
 # https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 # @ 2017 Copyright
 # GNU General Public License v3.0
@@ -19,7 +19,6 @@ mode="$1"
 
 Programloc=/opt/LazyLibrarian
 backupdir=/opt/backup/LazyLibrarian
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -29,7 +28,9 @@ case $mode in
    	cd /opt &&  git clone https://github.com/DobyTang/LazyLibrarian.git
    	chown -R LazyLibrarian:LazyLibrarian /opt/LazyLibrarian
    	chmod -R 0777 /opt/LazyLibrarian
-  	echo "Creating Startup Script" 
+	#config file will not show up till after making any changes to settings so doing a default copy 
+	cp /opt/install/Lazylibrarian/config.ini $Programloc/config.ini
+  	echo "Creating Startup Script"
    	cp /opt/install/Lazylibrarian/LazyLibrarian.service /etc/systemd/system/
    	chmod 644 /etc/systemd/system/LazyLibrarian.service
    	systemctl enable LazyLibrarian.service
@@ -40,7 +41,9 @@ case $mode in
 	echo "Stopping LazyLibrarian"
 	systemctl stop LazyLibrarian
 	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json $Programloc/config.ini
+	cd /opt/backup
+	tar -xvzf /opt/backup/LazyLibrarian_Backup.tar.gz
+	cp -rf config.ini $Programloc; rm -rf config.ini	
 	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
 	;;
@@ -49,10 +52,11 @@ case $mode in
     	systemctl stop LazyLibrarian
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
-	#config file will not show up till after making any changes to settings
     	echo "Backing up LazyLibrarian to /opt/backup"
 	cp $Programloc/config.ini $backupdir
-	tar -zcvf /opt/backup/LazyLibrarian_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/LazyLibrarian_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up LazyLibrarian"
 	systemctl start LazyLibrarian
 	;;
@@ -87,12 +91,14 @@ case $mode in
 	sudo systemctl start LazyLibrarian
 	;;
 	(-proxy)
+ 	systemctl stop LazyLibrarian
 	sed -i 's#.*http_root = .*#http_root = /lazylibrarian#' /opt/LazyLibrarian/config.ini
 	systemctl restart apache2 LazyLibrarian
 	;;
 	(-port)
 	echo "What Port Number Would you like to change LazyLibrarian to?"
 	read Port
+	systemctl stop LazyLibrarian
 	sed -i "s#http_port = .*#http_port = $Port#" /opt/LazyLibrarian/config.ini
 	sed -i "s#1:.*/lazylibrarian#1:$Port/lazylibrarian#" /etc/apache2/sites-available/000-default.conf
 	echo "Changed Port over to $Port"

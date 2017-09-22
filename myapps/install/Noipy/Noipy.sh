@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=~/.noipy
 backupdir=/opt/backup/Noipy
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -30,14 +29,20 @@ case $mode in
 	;;
 	(-r)
 	echo "<--- Restoring Noipy Settings --->"
-	cp $backupdir  $Programloc
+	cd /opt/backup
+	tar -xvzf /opt/backup/Noipy_Backup.tar.gz
+	chmod 0777 -R ~/.noipy
+	cp -rf .noipy/  ~/; rm .noipy/
 	;;
 	(-b)
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Noipy to /opt/backup"
-	cp -rf $Programloc $backupdir
-    	tar -zcvf /opt/backup/Noipy_FullBackup-$time.tar.gz $backupdir
+	chmod 0777 -R ~/.noipy
+	cp -r $Programloc/ $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Noipy_Backup.tar.gz *
+	cd $backupdir
 	;;
 	(-u)
 	noipy -n xxxdomainxxx --url https://api.dynu.com

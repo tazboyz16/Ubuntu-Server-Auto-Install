@@ -18,9 +18,8 @@ versionm=$(lsb_release -cs)
 # b=backup i=install r=restore u=update U=Force Update 
 mode="$1"
 
-Programloc=/opt/NzbDrone
+Programloc=/opt/ProgramData/Sonarr/.config/NzbDrone #Config Location
 backupdir=/opt/backup/Sonarr
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -31,8 +30,8 @@ case $mode in
 	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | tee /etc/apt/sources.list.d/mono-offical.list
 	apt update
 	apt install nzbdrone libmono-cil-dev apt-transport-https mono-devel -y
-	chown -R Sonarr:Sonarr $Programloc
-	chmod -R 0777 $Programloc
+	chown -R Sonarr:Sonarr /opt/NzbDrone
+	chmod -R 0777 /opt/NzbDrone
 	echo "Creating Startup Script"
 	cp /opt/install/Sonarr/sonarr.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/sonarr.service
@@ -40,13 +39,18 @@ case $mode in
 	systemctl restart sonarr.service
 	;;
 	(-r)
-	echo "<--- Restoring Sonarr Settings --->"
+	echo "<--Restoring Sonarr Settings -->"
 	echo "Stopping Sonarr"
 	systemctl stop sonarr
-	chmod -R 0777 /opt/ProgramData/Sonarr
-	cp /opt/install/Sonarr/CouchPotato.txt /opt/ProgramData/Sonarr/.couchpotato/settings.conf
-	echo "Starting Sonarr"
-    	systemctl start sonarr	
+	cd /opt/backup
+	tar -xvzf /opt/backup/Sonarr_Backup.tar.gz
+	cp config.xml $Programloc
+	cp -rf logs/ $Programloc; cp -rf logs.db $Programloc; cp -rf logs.db-shm $Programloc; cp -rf logs.db-wal $Programloc
+	cp -rf nzbdrone.db $Programloc; cp -rf nzbdrone.db-shm $Programloc; cp -rf nzbdrone.db-wal $Programloc; 
+	cp -rf nzbdrone.pid $Programloc
+	rm -rf config.xml logs/ logs.db logs.db-shm logs.db-wal nzbdrone.db nzbdrone.db-shm nzbdrone.db-wal nzbdrone.pid
+	echo "Restarting up Sonarr"
+	systemctl start sonarr
 	;;
 	(-b)
 	echo "Stopping Sonarr"
@@ -54,8 +58,10 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Sonarr to /opt/backup"
-	cp $Programloc/Data $backupdir
-    	tar -zcvf /opt/backup/Sonarr_FullBackup-$time.tar.gz $backupdir
+	cp -rf $Programloc/* $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Sonarr_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Sonarr"
 	systemctl start sonarr
 	;;

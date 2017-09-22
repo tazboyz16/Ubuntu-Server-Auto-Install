@@ -28,9 +28,7 @@ server=/opt/ts3
 backupdir=/opt/backup/ts3
 dl=/tmp
 BK=$(cat $server/version)
-time=$(date +"%m_%d_%y-%H_%M")
 
-echo "Preforming System Check Up and Getting Latest Version Number from TeamSpeak"
 #System Specs
 arch=$(uname -m)
 if [ "$arch" == "x86_64" ]; then
@@ -39,7 +37,6 @@ else
     arch="x86"
 fi
 
-echo "Getting Current Version Info"
 wget -q https://www.teamspeak.com/downloads --output-document=$dl/Temp
 Version=$(grep -Pom 1 "server_linux_$arch-\K.*?(?=\.tar\.bz)" $dl/Temp)
 rm $dl/Temp
@@ -79,20 +76,18 @@ case $mode in
 	echo "Stopping TS3 Server"
 	systemctl stop ts3
 	echo "Making sure Backup Dir exists"
-	mkdir -p $backupdir
+ 	mkdir -p /opt/backup
 	echo "Backing up TS3 Folder to /opt/backup"
-	tar -zcvf $backupdir/ts3_FullBackup-$time.tar.gz $server
+	cd $server
+	tar -zcvf /opt/backup/ts3_Backup.tar.gz *
 	echo "Restarting up Server"
 	systemctl start ts3
 	;;
 	(-r) 
     	echo "Stopping TS3 Server"
 	systemctl stop ts3
-	echo "Location with the file name and type of the backup to be restored?"
-	echo "Ex. /opt/backup/ts3_FullBackup-xxx.tar.gz"
-	read restorebackup
-	echo "Untar Zip file to /opt/ts3"
-	tar -xjf $restorebackup /opt/ts3
+	rm -rf /opt/ts3/*	
+	tar -xvzf /opt/backup/ts3_Backup.tar.gz -C $server
 	echo "Starting TS3 Server"
 	systemctl start ts3
 	;;

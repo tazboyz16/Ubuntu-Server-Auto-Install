@@ -39,7 +39,6 @@ echo "<--- Installing TeamSpeak Server --->"; bash /opt/install/TeamSpeak3/ts3in
 echo "<--- Installing Sonarr --->"; bash /opt/install/Sonarr/sonarrinstall.sh
 echo "<--- Installing Jackett --->"; bash /opt/install/Jackett/jackettinstall.sh
 echo "<--- Installing Samba --->"; bash /opt/install/Samba/samba.sh
-echo "<--- Installing Kodi --->"; bash /opt/install/Kodi/Kodi-install.sh
 echo "<--- Installing Muximux --->"; bash /opt/install/Muximux/Muximuxinstall.sh
 echo "<--- Installing HTPC-Manager --->"; bash /opt/install/HTPCManager/HTPCManager.sh
 echo "<--- Installing LazyLibrarian --->"; bash /opt/install/Lazylibrarian/Lazylibrarian.sh
@@ -52,7 +51,7 @@ echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget/Nzbget.sh
 
 echo "<--- Installing Cron Jobs --->"; bash /opt/install/System/Cronjobs.sh
 echo "<--- Restoring Fstab settings --->"; cat /opt/install/System/fstab.txt >> /etc/fstab
-echo "<--- Running Cleanup from Installs --->"; bash /opt/Cleanup.sh
+echo "<--- Disabling Install Services for Auto Installer --- >"; systemctl disable Installserver.service; systemctl mask Installserver.service
 echo "<--- Reboot is needed to take effect of All System Restores and Installs------>"
 sleep 5
 sudo reboot

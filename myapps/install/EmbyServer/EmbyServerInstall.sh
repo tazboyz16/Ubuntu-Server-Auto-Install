@@ -22,7 +22,6 @@ versionm=$(lsb_release -cs)
 mode="$1"
 Programloc=/usr/lib/emby-server
 backupdir=/opt/backup/EmbyServer
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -45,8 +44,12 @@ case $mode in
 	echo "<--Restoring Emby Server Settings -->"
 	echo "Stopping Emby Server"
 	systemctl stop emby-server
-	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json /var/lib/emby-server/config/
+	cd /opt/backup
+	tar -xvzf /opt/backup/EmbyServer_Backup.tar.gz
+	cp -rf dlna/ /var/lib/emby-server/config; rm -rf dlna/
+	cp -rf encoding.xml /var/lib/emby-server/config; rm -rf encoding.xml
+	cp -rf system.xml /var/lib/emby-server/config; rm -rf system.xml
+	cp -rf users/ /var/lib/emby-server/config; rm -rf users/
 	echo "Restarting up Emby Server"
 	systemctl start emby-server
 	;;
@@ -56,9 +59,11 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Emby Server to /opt/backup"
-	cp /var/lib/emby-server/config/system.xml $backupdir
-	tar -zcvf /opt/backup/EmbyServer_FullBackup-$time.tar.gz $backupdir
-    	echo "Restarting up Emby Server"
+	cp -rf /var/lib/emby-server/config/* $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/EmbyServer_Backup.tar.gz *
+    	rm -rf $backupdir
+	echo "Restarting up Emby Server"
 	systemctl start emby-server
 	;;
 	(-f)

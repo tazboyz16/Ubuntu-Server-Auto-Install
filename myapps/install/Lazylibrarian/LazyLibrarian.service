@@ -1,6 +1,6 @@
 ###########################################################
-# Created by @tazboyz16 
-# This Service File was created at 
+# Created by @tazboyz16
+# This Service File was created at
 # https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 # @ 2017 Copyright
 # GNU General Public License v3.0
@@ -13,7 +13,7 @@ After=network.target
 User=LazyLibrarian
 Group=LazyLibrarian
 Type=simple
-ExecStart=/opt/LazyLibrarian/LazyLibrarian.py --config=/opt/LazyLibrarian/config.ini
+ExecStart=/opt/LazyLibrarian/LazyLibrarian.py 
 GuessMainPID=no
 
 [Install]

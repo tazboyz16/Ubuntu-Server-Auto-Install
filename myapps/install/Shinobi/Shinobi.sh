@@ -18,12 +18,11 @@ fi
 mode="$1"
 Programloc=/opt/Shinobi
 backupdir=/opt/backup/Shinobi
-time=$(date +"%m_%d_%y-%H_%M")
 
 #Copied Ubuntu install file / will be replaced to support the InstallerConstants.sh
 #mariadb or mysql-server
 server=mysql-server
-sqlpass=Z874HBVbD3augd2A
+sqlpass=Z874HBVbD3augd2A  #random example password 
 
 case $mode in
 	(-i|"")
@@ -67,7 +66,9 @@ case $mode in
 	echo "<--- Restoring Shinobi Settings --->"
 	echo "Stopping Shinobi"
 	systemctl stop Shinobi
-	cat /opt/install/Shinobi/HTPCManager.txt > /opt/Shinobi/userdata
+	cd /opt/backup
+	tar -xvzf /opt/backup/Shinobi_Backup.tar.gz
+	cp conf.json $Programloc; rm -rf conf.json
 	chown -R Shinobi:Shinobi /opt/Shinobi
 	chmod -R 0777 /opt/Shinobi
 	echo "Starting up Shinobi"
@@ -79,8 +80,10 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Shinobi to /opt/backup"
-	cp -rf /opt/Shinobi/userdata $backupdir
-    	tar -zcvf /opt/backup/Shinobi_FullBackup-$time.tar.gz $backupdir
+	cp -rf /opt/Shinobi/conf.json $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Shinobi_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Shinobi"
 	systemctl start Shinobi
 	;;

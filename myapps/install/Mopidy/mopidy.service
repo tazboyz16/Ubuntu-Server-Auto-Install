@@ -1,3 +1,4 @@
+#https://github.com/mopidy/mopidy/blob/master/extra/systemd/mopidy.service
 [Unit]
 Description=Mopidy music server
 After=avahi-daemon.service
@@ -10,7 +11,7 @@ After=sound.target
 
 [Service]
 User=mopidy
-ExecStart=/usr/bin/mopidy --config /usr/share/mopidy/conf.d:/etc/mopidy/mopidy.conf
+ExecStart=/usr/bin/mopidy --config /usr/share/mopidy/conf.d:/etc/mopidy/mopidy.conf -o http/hostname=0.0.0.0
 
 [Install]
 WantedBy=multi-user.target

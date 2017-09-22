@@ -14,10 +14,9 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Modes (Variables)
-# b=backup i=install b=backup 
+# b=backup i=install r=restore 
 mode="$1"
 backupdir=/opt/backup/Apache
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -34,24 +33,41 @@ case $mode in
 	;;
 	(-r)
 	echo "<--- Restoring WWW files for Website --->"
-	rm -rf /var/www
+	echo "Stopping Apache2"
+    	systemctl stop apache2
 	cd /opt/backup
-	tar xjf /opt/install/Apache2/www.tar.bz2
-	mv /opt/backup/www/ /var
+	tar -xvzf /opt/backup/Apache2_Backup.tar.gz
+	rm -rf /var/www; mv /opt/backup/www/ /var
+	rm -rf /etc/apache2/sites-available/000-default.conf; mv /opt/backup/000-default.conf /etc/apache2/sites-available/
+	rm -rf /etc/apache2/apache2.conf; mv /opt/backup/apache2.conf /etc/apache2/
+	rm -rf /etc/apache2/conf-available/localized-error-pages.conf; mv /opt/backup/localized-error-pages.conf /etc/apache2/conf-available/
 	chmod 0777 -R /var/www
 	chown www-data:www-data -R /var/www
+	echo "Restarting up Apache2"
 	systemctl restart apache2
 	;;
 	(-b)
+	echo "Stopping Apache2"
+    	systemctl stop apache2
+    	echo "Making sure Backup Dir exists"
+    	mkdir -p $backupdir
+	echo "Backing up Apache2 to /opt/backup"
 	cp -rf /var/www/ $backupdir
 	cp -rf /etc/apache2/sites-available/000-default.conf $backupdir
 	cp -rf /etc/apache2/apache2.conf $backupdir
 	cp -rf /etc/apache2/conf-available/localized-error-pages.conf $backupdir
-	tar -zcvf /opt/backup/Apache2_FullBackup-$time.tar.gz $backupdir
+	chmod 0777 -R $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Apache2_Backup.tar.gz *
+	rm -rf $backupdir
+	echo "Restarting up Apache2"
+	systemctl start apache2
 	;;
-	(-*) echo "Invalid Argument"; exit 0;;
+	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will running install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	exit 0;;
 esac
 exit 0
-	
-	
-	

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###########################################################
-# Created by @tazboyz16 
-# This Script was created at 
+# Created by @tazboyz16
+# This Script was created at
 # https://github.com/tazboyz16/Ubuntu-Server-Auto-Install
 # @ 2017 Copyright
 # GNU General Public License v3.0
@@ -13,13 +13,14 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+#when setting up proxy its replace line is http_root = /
+
 #Modes (Variables)
-# b=backup i=install r=restore u=update U=Force Update 
+# b=backup i=install r=restore u=update U=Force Update proxy=(Reverse Proxy) port=(Change port)
 mode="$1"
 
 Programloc=/opt/Headphones
 backupdir=/opt/backup/Headphones
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -28,6 +29,8 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Headphones --gecos "Headphones Service" --group Headphones
 	echo '<--- Downloading latest Headphones --->'
 	cd /opt &&  git clone https://github.com/rembo10/headphones.git /opt/Headphones
+	cp /opt/install/Headphones/config.ini /opt/Headphones
+	sed -i "s/localhost/0.0.0.0/g" $Programloc/config.ini
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
 	echo "Creating Startup Script"
@@ -40,7 +43,10 @@ case $mode in
 	echo "<--- Restoring Headphones Settings --->"
 	echo "Stopping Headphones"
 	systemctl stop headphones
-	cat /opt/install/Headphones/Headphones.txt > $Programloc/config.ini
+	cd /opt/backup
+	tar -xvzf /opt/backup/Headphones_Backup.tar.gz
+	rm -rf /opt/Headphones/config.ini; mv config.ini /opt/Headphones
+	rm -rf /opt/Headphones/data; mv /opt/backup/data /opt/Headphones 
 	chown -R Headphones:Headphones $Programloc
 	chmod -R 0777 $Programloc
 	echo "Starting up Headphones"
@@ -48,16 +54,16 @@ case $mode in
 	;;
 	(-b)
 	echo "Stopping Headphones"
-  systemctl stop headphones
-  echo "Making sure Backup Dir exists"
-  mkdir -p $backupdir
-  echo "Backing up Headphones to /opt/backup"
-	cp $Programloc/config.ini $backupdir
-	echo "Data Folder might be located under $Programloc if theres a Data Folder created"
-	echo "some install dont have it"
-	cp $Programloc/Data $backupdir
-  tar -zcvf /opt/backup/Headphones_FullBackup-$time.tar.gz $backupdir
-  echo "Restarting up Headphones"
+  	systemctl stop headphones
+ 	echo "Making sure Backup Dir exists"
+  	mkdir -p $backupdir
+  	echo "Backing up Headphones to /opt/backup"
+	cp -rf $Programloc/config.ini $backupdir
+	cp -rf $Programloc/data/ $backupdir
+	cd $backupdir
+  	tar -zcvf /opt/backup/Headphones_Backup.tar.gz *
+	rm -rf $backupdir
+  	echo "Restarting up Headphones"
 	systemctl start headphones
 	;;
 	(-u)
@@ -89,6 +95,20 @@ case $mode in
 	git pull
 	echo "Starting Headphones"
 	sudo systemctl start headphones
+	;;
+	(-proxy)
+	sudo systemctl stop headphones
+	sed -i 's#.*http_root = .*#http_root = /headphones#' /opt/Headphones/config.ini
+	systemctl restart apache2 headphones
+	;;
+	(-port)
+	echo "What Port Number Would you like to change Headphones to?"
+	read Port
+	sudo systemctl stop headphones
+	sed -i "s#http_port = .*#http_port = $Port#" /opt/Headphones/config.ini
+	sed -i "s#1:.*/headphones#1:$Port/headphones#" /etc/apache2/sites-available/000-default.conf
+	echo "Changed Port over to $Port"
+	systemctl restart apache2 headphones
 	;;
     	(-*) echo "Invalid Argument"; exit 0;;
 esac

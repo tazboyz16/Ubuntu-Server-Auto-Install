@@ -1,0 +1,27 @@
+export STORAGE_BASE_DIR='/var/vmail'
+export WEB_SERVER='APACHE'
+export BACKEND_ORIG='MYSQL'
+export BACKEND='MYSQL'
+export VMAIL_DB_BIND_PASSWD='xxxpasswordxxx'      #30 Char random password
+export VMAIL_DB_ADMIN_PASSWD='xxxpasswordxxx'     #30 Char random password
+export MYSQL_ROOT_PASSWD='xxxpasswordxxx'
+export SITE_ADMIN_NAME='xxxUsernamexxx@xxxdomainxxx'
+export SITE_ADMIN_PASSWD='xxxpasswordxxx'
+export FIRST_DOMAIN='xxxdomainxxx'
+export DOMAIN_ADMIN_NAME='xxxUsernamexxx'
+export DOMAIN_ADMIN_PASSWD_PLAIN='xxxpasswordxxx'
+export DOMAIN_ADMIN_PASSWD='xxxpasswordxxx'
+export FIRST_USER='xxxUsernamexxx'     #First user is the primary email account for iredmail and roundcube
+export FIRST_USER_PASSWD='xxxpasswordxxx'
+export FIRST_USER_PASSWD_PLAIN='xxxpasswordxxx'
+export USE_IREDADMIN='YES'
+export USE_ROUNDCUBE='YES'
+export USE_AWSTATS='YES'
+export USE_FAIL2BAN='YES'
+export AMAVISD_DB_PASSWD=''     #30 Char random password
+export IREDADMIN_DB_PASSWD=''     #30 Char random password
+export RCM_DB_PASSWD=''     #30 Char random password
+export SOGO_DB_PASSWD=''      #30 Char random password
+export SOGO_SIEVE_MASTER_PASSWD=''     #30 Char random password
+export IREDAPD_DB_PASSWD=''     #30 Char random password
+#EOF

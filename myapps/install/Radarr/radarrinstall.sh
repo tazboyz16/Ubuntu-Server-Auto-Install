@@ -20,7 +20,6 @@ versionm=$(lsb_release -cs)
 mode="$1"
 Programloc=/opt/ProgramData/Radarr/.config/Radarr #Config Location
 backupdir=/opt/backup/Radarr
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -46,8 +45,13 @@ case $mode in
 	echo "<--Restoring Radarr Settings -->"
 	echo "Stopping Radarr"
 	systemctl stop radarr
-	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Radarr/ServerConfig.json /opt/ProgramData/Radarr/.config/Radarr/
+	cd /opt/backup
+	tar -xvzf /opt/backup/Radarr_Backup.tar.gz
+	cp config.xml $Programloc
+	cp -rf logs/ $Programloc; cp -rf logs.db $Programloc; cp -rf logs.db-shm $Programloc; cp -rf logs.db-wal $Programloc
+	cp -rf nzbdrone.db $Programloc; cp -rf nzbdrone.db-shm $Programloc; cp -rf nzbdrone.db-wal $Programloc; 
+	cp -rf nzbdrone.pid $Programloc
+	rm -rf config.xml logs/ logs.db logs.db-shm logs.db-wal nzbdrone.db nzbdrone.db-shm nzbdrone.db-wal nzbdrone.pid
 	echo "Restarting up Radarr"
 	systemctl start radarr
 	;;
@@ -57,8 +61,10 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Radarr to /opt/backup"
-	cp /opt/ProgramData/Radarr/.config/Radarr $backupdir
-	tar -zcvf /opt/backup/Radarr_FullBackup-$time.tar.gz $backupdir
+	cp -rf $Programloc/* $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Radarr_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up Radarr"
 	systemctl start radarr
 	;;

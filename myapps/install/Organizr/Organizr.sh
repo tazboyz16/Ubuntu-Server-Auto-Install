@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/Organizr
 backupdir=/opt/backup/Organizr
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -32,22 +31,28 @@ case $mode in
 	cd /opt && git clone https://github.com/causefx/Organizr.git
 	chown -R Organizr:Organizr /opt/Organizr
 	chmod -R 0777 /opt/Organizr
-	cp /opt/install/Organizr/Organizr.conf /etc/apache2/sites-available/
-	a2ensite Organizr.conf
 	service apache2 restart
 	;;
 	(-r)
 	echo "<--- Restoring Organizr Settings --->"
-	cat /opt/install/Organizr/Mylar.txt > /opt/Organizr/
+	echo "Stopping Apache2 for Organizr"
+	systemctl stop apache2
+	cd /opt/backup
+	tar -xvzf /opt/backup/Organizr_Backup.tar.gz
+	cp -rf Organizr/ /opt; rm -rf Organizr/
 	chown -R Organizr:Organizr /opt/Organizr
 	chmod -R 0777 /opt/Organizr
+	echo "Restarting up Apache2 for Organizr"
+	systemctl restart apache2
 	;;
 	(-b)
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Organizr to /opt/backup"
 	cp -rf /opt/Organizr/ $backupdir
-    	tar -zcvf /opt/backup/Organizr_FullBackup-$time.tar.gz $backupdir
+	cd $backupdir
+    	tar -zcvf /opt/backup/Organizr_Backup.tar.gz *
+	rm -rf $backupdir
 	;;
 	(-u)
 		#Checking if Program is installed

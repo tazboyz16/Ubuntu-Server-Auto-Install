@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/opt/SickRage
 backupdir=/opt/backup/SickRage
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
@@ -40,9 +39,13 @@ case $mode in
 	echo "<--- Restoring SickRage Settings --->"
 	echo "Stopping SickRage"
 	systemctl stop sickrage
-	chmod -R 0777 /opt/ProgramData/Sickrage
-	#NEEDS TO BE EDITED FOR UNZIP TAR FILE TO RESTORE SETTINGS VS SINGLE FILE RESTORE
-	cp /opt/install/CouchPotato/CouchPotato.txt /opt/ProgramData/Couchpotato/.couchpotato/settings.conf
+	cd /opt/backup
+	tar -xvzf /opt/backup/Sickrage_Backup.tar.gz
+	cp -rf cache/ $Programloc; rm -rf cache/
+	cp -rf failed.db $Programloc; rm -rf failed.db
+	cp -rf sickbeard.db $Programloc; rm -rf sickbeard.db
+	cp -rf cache.db $Programloc; rm -rf cache.db
+    	cp -rf config.ini $Programloc; rm -rf config.ini
 	echo "Starting SickRage"
     	systemctl start sickrage	
 	;;
@@ -53,8 +56,14 @@ case $mode in
     	mkdir -p $backupdir
     	echo "Backing up SickRage to /opt/backup"
 	#backup files are in sickrage install location for items Cache Folder, failed.db,sickbeard.db, and cache.db
-	cp /opt/ProgramData/Sickrage/.couchpotato/settings.conf $backupdir
-    	tar -zcvf /opt/backup/Sickrage_FullBackup-$time.tar.gz $backupdir
+	cp -rf $Programloc/cache/ $backupdir
+	cp -rf $Programloc/failed.db $backupdir
+	cp -rf $Programloc/sickbeard.db $backupdir
+	cp -rf $Programloc/cache.db $backupdir
+    	cp -rf $Programloc/config.ini $backupdir
+	cd $backupdir
+	tar -zcvf /opt/backup/Sickrage_Backup.tar.gz *
+	rm -rf $backupdir
     	echo "Restarting up SickRage"
 	systemctl start sickrage
 	;;
