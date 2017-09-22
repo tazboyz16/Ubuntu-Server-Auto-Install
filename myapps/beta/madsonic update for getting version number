@@ -1,5 +1,7 @@
 beta for grep version number for stabe version on
 view-source:http://beta.madsonic.org/pages/download.jsp
+\b\d+(?:\.\d+)*\b
+(\d{1}.\d{1}.\d{4}.)
 
 
 "
