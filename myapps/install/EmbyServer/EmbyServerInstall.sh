@@ -43,10 +43,13 @@ case $mode in
 	(-r)
 	echo "<--Restoring Emby Server Settings -->"
 	echo "Stopping Emby Server"
-	systemctl stop emby-server.
-	
-	sudo chmod 0777 -R $Programloc
-	cp /opt/install/Jackett/ServerConfig.json /var/lib/emby-server/config/
+	systemctl stop emby-server
+	cd /opt/backup
+	tar -xvzf /opt/backup/EmbyServer_Backup.tar.gz
+	cp -rf dlna/ /var/lib/emby-server/config; rm -rf dlna/
+	cp -rf encoding.xml /var/lib/emby-server/config; rm -rf encoding.xml
+	cp -rf system.xml /var/lib/emby-server/config; rm -rf system.xml
+	cp -rf users/ /var/lib/emby-server/config; rm -rf users/
 	echo "Restarting up Emby Server"
 	systemctl start emby-server
 	;;
