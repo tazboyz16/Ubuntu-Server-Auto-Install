@@ -63,6 +63,11 @@ case $mode in
   	echo "Restarting up Mopidy"
 	systemctl start mopidy
 	;;
-	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will running install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	; exit 0;;
 esac
 exit 0	
