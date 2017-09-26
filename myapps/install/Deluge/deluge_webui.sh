@@ -124,6 +124,7 @@ case $mode in
 	#Change 3 option in Resolv to Google DNS
 	;;
     	(-*) echo "Invalid Argument" 
+	# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon)
 	echo "**Running install script without arguments will running install**"
 	echo "-vpn"
 	
