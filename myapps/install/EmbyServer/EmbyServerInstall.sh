@@ -18,7 +18,7 @@ fi
 version=$(lsb_release -rs)
 versionm=$(lsb_release -cs)
 #Modes (Variables)
-# b=backup i=install r=restore 
+# b=backup i=install r=restore f=fix for the libembysqlite3.so.0 error
 mode="$1"
 Programloc=/usr/lib/emby-server
 backupdir=/opt/backup/EmbyServer
@@ -73,6 +73,12 @@ case $mode in
 	ln -s /usr/lib/emby-server/x86_64-linux-gnu/libembysqlite3.so.0 /usr/lib/emby-server/bin
 	ln -s /usr/lib/emby-server/x86_64-linux-gnu/libembysqlite3.so.0 /usr/lib/emby-server/etc
 	;;
-	(-*) echo "Invalid Argument"; exit 0;;
+	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will running install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	echo "-f for Fixing issues with the libembysqlite3.so.0 error"
+	exit 0;;
 esac
 exit 0
