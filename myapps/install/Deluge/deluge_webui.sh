@@ -126,11 +126,10 @@ case $mode in
     	(-*) echo "Invalid Argument" 
 	# b=(backup) i=(install) r=(restore) vpn=(Split-tunneling with VPN-coming soon)
 	echo "**Running install script without arguments will running install**"
-	echo "-vpn"
-	
-	
-	
-	
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	echo "-vpn for the Split Tunneling with VPN"	
 	exit 0;;
 esac
 exit 0
