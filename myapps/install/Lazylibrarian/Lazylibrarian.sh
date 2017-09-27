@@ -113,6 +113,6 @@ case $mode in
 	echo "-U for Force Update"
 	echo "-proxy for Reverse Proxy"
 	echo "-port for change port"
-	; exit 0;;
+	exit 0;;
 esac
 exit 0
