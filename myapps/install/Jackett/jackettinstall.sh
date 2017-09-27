@@ -71,6 +71,6 @@ case $mode in
 	echo "-i for Install"
 	echo "-r for Restore Settings"
 	#echo "-u for Update"  being worked on
-	; exit 0;;
+	exit 0;;
 esac
 exit 0
