@@ -68,6 +68,6 @@ case $mode in
 	echo "-b for Backup Settings"
 	echo "-i for Install"
 	echo "-r for Restore Settings"
-	; exit 0;;
+	exit 0;;
 esac
 exit 0	
