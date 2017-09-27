@@ -96,6 +96,6 @@ case $mode in
 	echo "-r for Restore Settings"
 	echo "-u for Update"
 	echo "-U for Force Update"
-	; exit 0;;
+	exit 0;;
 esac
 exit 0
