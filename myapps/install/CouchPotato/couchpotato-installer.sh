@@ -102,7 +102,7 @@ case $mode in
 	systemctl restart apache2 couchpotato
 	;;
     	(-*) echo "Invalid Argument"
-	echo "**Running install script without arguments will running install**"
+	echo "**Running install script without arguments will Run install**"
 	echo "-b For Backup Settings"
 	echo "-i For Install"
 	echo "-r For Restore Settings"
