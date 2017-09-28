@@ -74,7 +74,7 @@ case $mode in
 	ln -s /usr/lib/emby-server/x86_64-linux-gnu/libembysqlite3.so.0 /usr/lib/emby-server/etc
 	;;
 	(-*) echo "Invalid Argument"
-	echo "**Running install script without arguments will running install**"
+	echo "**Running install script without arguments will Run install**"
 	echo "-b for Backup Settings"
 	echo "-i for Install"
 	echo "-r for Restore Settings"
