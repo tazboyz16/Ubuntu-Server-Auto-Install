@@ -68,7 +68,7 @@ case $mode in
 	sh nzbget-latest-bin-linux.run --destdir /opt/Nzbget
 	rm -f /opt/nzbget-latest-bin-linux.run
 	;;
-	    	(-*) echo "Invalid Argument"
+	(-*) echo "Invalid Argument"
 	echo "**Running install script without arguments will Run install**"
 	echo "-b for Backup Settings"
 	echo "-i for Install"
