@@ -64,7 +64,7 @@ case $mode in
 	systemctl start apache2
 	;;
 	(-*) echo "Invalid Argument"
-	echo "**Running install script without arguments will running install**"
+	echo "**Running install script without arguments will Run install**"
 	echo "-b for Backup Settings"
 	echo "-i for Install"
 	echo "-r for Restore Settings"
