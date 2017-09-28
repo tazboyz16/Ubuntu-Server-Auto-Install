@@ -46,10 +46,10 @@ case $mode in
 	systemctl stop emby-server
 	cd /opt/backup
 	tar -xvzf /opt/backup/EmbyServer_Backup.tar.gz
-	cp -rf dlna/ /var/lib/emby-server/config; rm -rf dlna/
-	cp -rf encoding.xml /var/lib/emby-server/config; rm -rf encoding.xml
-	cp -rf system.xml /var/lib/emby-server/config; rm -rf system.xml
-	cp -rf users/ /var/lib/emby-server/config; rm -rf users/
+	cp -rf dlna/ $Programloc/config; rm -rf dlna/
+	cp -rf encoding.xml $Programloc/config; rm -rf encoding.xml
+	cp -rf system.xml $Programloc/config; rm -rf system.xml
+	cp -rf users/ $Programloc/config; rm -rf users/
 	echo "Restarting up Emby Server"
 	systemctl start emby-server
 	;;
@@ -59,7 +59,7 @@ case $mode in
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
     	echo "Backing up Emby Server to /opt/backup"
-	cp -rf /var/lib/emby-server/config/* $backupdir
+	cp -rf $Programloc/config/* $backupdir
 	cd $backupdir
 	tar -zcvf /opt/backup/EmbyServer_Backup.tar.gz *
     	rm -rf $backupdir
