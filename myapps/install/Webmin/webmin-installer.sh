@@ -18,7 +18,6 @@ fi
 mode="$1"
 Programloc=/etc/webmin   #need to update for restore and backup 
 backupdir=/opt/backup/Webmin   ##
-time=$(date +"%m_%d_%y-%H_%M")
 
 case $mode in
 	(-i|"")
