@@ -31,7 +31,7 @@
 if [ -z "${BASH_VERSINFO}" ]; then
 	echo "ERROR: You must execute this script with BASH" >&2
 	exit 255
-fi 
+fi
 
 ##############################################################################
 # Don't change anything below this point, use a plexupdate.conf file
@@ -96,7 +96,6 @@ usage() {
 	exit 0
 }
 
-#copied over from the plexupdate-core
 ######## INDEX ########
 # GPT -> getPlexToken
 # GPS -> getPlexServerToken
@@ -276,8 +275,17 @@ getLocalSHA() {
 
 # RNNG
 running() {
-	local DATA="$(wget --no-check-certificate -q -O - https://$1:$3/status/sessions?X-Plex-Token=$2)"
+	# If a server is unclaimed, it probably doesn't have TLS enabled either
+	local DATA="$(wget -q -O - http://$1:$2/status/sessions)"
 	local RET=$?
+
+	if [ ${RET} -eq 6 ]; then
+		# Server may be claimed, in which case we should use TLS and pass a token
+		getPlexToken
+		DATA="$(wget --no-check-certificate -q -O - https://$1:$2/status/sessions?X-Plex-Token=$TOKEN)"
+		RET=$?
+	fi
+
 	if [ ${RET} -eq 0 ]; then
 		if [ -z "${DATA}" ]; then
 			# Odd, but usually means noone is watching
@@ -558,13 +566,9 @@ if [ "${CHECKUPDATE}" = "yes" -a "${AUTOUPDATE}" = "no" ]; then
 	popd > /dev/null
 fi
 
-if [ "${PUBLIC}" = "no" -a -z "$TOKEN" ]; then
-	TO_SOURCE="$(dirname "$0")/extras/get-plex-token"
-	[ -f "$TO_SOURCE" ] && source $TO_SOURCE
-	if ! getPlexToken; then
-		error "Unable to get Plex token, falling back to public release"
-		PUBLIC="yes"
-	fi
+if [ "${PUBLIC}" = "no" ] && ! getPlexToken; then
+	error "Unable to get Plex token, falling back to public release"
+	PUBLIC="yes"
 fi
 
 if [ "$PUBLIC" != "no" ]; then
@@ -573,7 +577,13 @@ if [ "$PUBLIC" != "no" ]; then
 fi
 
 if [ "${LISTOPTS}" = "yes" ]; then
-	opts="$(wget "${URL_DOWNLOAD}" -O - 2>/dev/null | grep -oe '"label"[^}]*' | grep -v Download | sed 's/"label":"\([^"]*\)","build":"\([^"]*\)","distro":"\([^"]*\)".*/"\3" "\2" "\1"/' | uniq | sort)"
+	wgetresults="$(wget "${URL_DOWNLOAD}" -o "${FILE_WGETLOG}" -O -)"
+	if [ $? -ne 0 ]; then
+		error "Unable to retrieve available builds due to a wget error, run with -v for details"
+		[ "$VERBOSE" = "yes" ] && cat "${FILE_WGETLOG}"
+		exit 1
+	fi
+	opts="$(grep -oe '"label"[^}]*' <<<"${wgetresults}" | grep -v Download | sed 's/"label":"\([^"]*\)","build":"\([^"]*\)","distro":"\([^"]*\)".*/"\3" "\2" "\1"/' | uniq | sort)"
 	eval opts=( "DISTRO" "BUILD" "DESCRIPTION" "======" "=====" "==============================================" $opts )
 
 	BUILD=
@@ -597,7 +607,13 @@ fi
 info "Retrieving list of available distributions"
 
 # Set "X-Plex-Token" to the auth token, if no token is specified or it is invalid, the list will return public downloads by default
-RELEASE=$(wget --header "X-Plex-Token:"${TOKEN}"" "${URL_DOWNLOAD}" -O - 2>/dev/null | grep -ioe '"label"[^}]*' | grep -i "\"distro\":\"${DISTRO}\"" | grep -m1 -i "\"build\":\"${BUILD}\"")
+wgetresults="$(wget --header "X-Plex-Token:"${TOKEN}"" "${URL_DOWNLOAD}" -o "${FILE_WGETLOG}" -O -)"
+if [ $? -ne 0 ]; then
+	error "Unable to retrieve the URL needed for download due to a wget error, run with -v for details"
+	[ "$VERBOSE" = "yes" ] && cat "${FILE_WGETLOG}"
+	exit 1
+fi
+RELEASE=$(grep -ioe '"label"[^}]*' <<<"${wgetresults}" | grep -i "\"distro\":\"${DISTRO}\"" | grep -m1 -i "\"build\":\"${BUILD}\"")
 DOWNLOAD=$(echo ${RELEASE} | grep -m1 -ioe 'https://[^\"]*')
 CHECKSUM=$(echo ${RELEASE} | grep -ioe '\"checksum\"\:\"[^\"]*' | sed 's/\"checksum\"\:\"//')
 
@@ -698,9 +714,9 @@ if ! sha1sum --status -c "${FILE_SHA}"; then
 	exit 4
 fi
 
-if [ ! -z "${PLEXSERVER}" -a "${AUTOINSTALL}" = "yes" ]; then
+if [ -n "${PLEXSERVER}" -a "${AUTOINSTALL}" = "yes" ]; then
 	# Check if server is in-use before continuing (thanks @AltonV, @hakong and @sufr3ak)...
-	if running ${PLEXSERVER} ${TOKEN} ${PLEXPORT}; then
+	if running "${PLEXSERVER}" "${PLEXPORT}"; then
 		error "Server ${PLEXSERVER} is currently being used by one or more users, skipping installation. Please run again later"
 		exit 6
 	fi
