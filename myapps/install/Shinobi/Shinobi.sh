@@ -117,6 +117,13 @@ case $mode in
 	echo "Starting Shinobi"
 	sudo systemctl start Shinobi
 	;;
-    	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will Run install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	echo "-u for Update"
+	echo "-U for Force Update"
+	exit 0;;
 esac
 exit 0
