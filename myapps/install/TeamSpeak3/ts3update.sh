@@ -204,7 +204,14 @@ case $mode in
 	echo $Version > $server/version
 	echo "Starting Updated Server"
 	systemctl start ts3
-    ;;
-    (-*) echo "Invalid Argument"; exit 0;;
+  	;;
+  	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will Run install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	echo "-u for Update"
+	echo "-U for Force Update"
+	exit 0;;
 esac
 exit 0
