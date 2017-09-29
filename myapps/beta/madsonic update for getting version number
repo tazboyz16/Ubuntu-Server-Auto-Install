@@ -10,3 +10,6 @@ view-source:http://beta.madsonic.org/pages/download.jsp
 			   <i class="fa fa-flask" style="margin-left:2px;margin-right:5px; color:rgba(110, 110, 110, 0.8);"></i><b>stable</b> 6.2.9040<br>
 			   <i class="fa fa-flask" style="margin-left:2px;margin-right:5px; color:rgba(110, 110, 110, 0.8);"></i><b>beta</b> 6.2.9080<br>
          "
+
+
+curl -s http://beta.madsonic.org/pages/download.jsp | grep -w "stable" #grab full line with work stable that has the version #
