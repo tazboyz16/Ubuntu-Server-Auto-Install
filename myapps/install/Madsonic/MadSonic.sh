@@ -23,8 +23,8 @@ fi
 mode="$1"
 Programloc=/etc/default/madsonic
 backupdir=/opt/backup/Madsonic
-MadSonicDeb=20161208_madsonic-6.2.9040.deb
-
+version=$(curl http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}")
+miniversion=$(curl http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}" | cut -c1-3)
 case $mode in
 	(-i|"")
 	add-apt-repository -y ppa:webupd8team/java
@@ -35,7 +35,7 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Madsonic --gecos "Madsonic Service" --group Madsonic
 	#Latest Stable as of 9/2017
 	#http://beta.madsonic.org/pages/download.jsp
-	wget http://madsonic.org/download/6.2/$MadSonicDeb
+	wget http://madsonic.org/download/$miniversion/$MadSonicDeb
 	dpkg -i $MadSonicDeb
 	rm -rf $MadSonicDeb
 	chmod 0777 -R /var/madsonic
