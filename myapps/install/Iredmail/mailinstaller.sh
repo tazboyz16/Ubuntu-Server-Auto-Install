@@ -15,9 +15,6 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-#Update to Latest Version
-iRedMailVer=0.9.7
-
 echo "<--- Restoring Hostname and FQ Hostname --->"
 cat /opt/install/System/host.txt > /etc/hosts
 #Double Checking for hostname has been updated
@@ -25,10 +22,11 @@ hostname -f
 sleep 1
 
 echo "<--- Downloading Latest IredMail Version --->"
-cd /opt && wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$iRedMailVer.tar.bz2
+latest=$(curl -s https://bitbucket.org/zhb/iredmail/downloads/ | grep -e ".tar.bz2" | head -1 | grep -oP 'href="\K[^"]+')
+wget https://bitbucket.org$latest -P /opt
 
 echo "<--- Installing iRedMail email--->"
-tar xjf /opt/iRedMail-$iRedMailVer.tar.bz2
+tar xjf /opt/iRedMail-*.tar.bz2; rm iRedMail-*.tar.bz2
 
 cp /opt/install/Iredmail/config /opt/iRedMail-$iRedMailVer/
 
