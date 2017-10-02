@@ -44,59 +44,49 @@ echo "Emby Server is not installed. No Backup Require"
 fi
 echo
 
-#
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
+if [ -d /opt/HTPCManager ]; then
+bash /opt/install/HTPCManager/HTPCManager.sh -b
 else
-echo "Deluge is not installed. No Backup Require"
+echo "HTPCManager is not installed. No Backup Require"
 fi
 echo
 
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
+if [ -d /opt/Headphones ]; then
+bash /opt/install/Headphones/headphones-installer.sh -b
 else
-echo "Deluge is not installed. No Backup Require"
+echo "Headphones is not installed. No Backup Require"
 fi
 echo
 
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
+# iRedMail Backup option once installer is fully setup
+#if [ -d /opt/mail ]; then
+#bash /opt/install/Iredmail/mailinstaller.sh -b
+#else
+#echo "Iredmail is not installed. No Backup Require"
+#fi
+#echo
+
+
+if [ -d /opt/HTPCManager ]; then
+bash /opt/install/HTPCManager/HTPCManager.sh -b
 else
-echo "Deluge is not installed. No Backup Require"
+echo "HTPCManager is not installed. No Backup Require"
 fi
 echo
 
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
+
+if [ -d /opt/HTPCManager ]; then
+bash /opt/install/HTPCManager/HTPCManager.sh -b
 else
-echo "Deluge is not installed. No Backup Require"
+echo "HTPCManager is not installed. No Backup Require"
 fi
 echo
 
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
+
+if [ -d /opt/HTPCManager ]; then
+bash /opt/install/HTPCManager/HTPCManager.sh -b
 else
-echo "Deluge is not installed. No Backup Require"
+echo "HTPCManager is not installed. No Backup Require"
 fi
 echo
 
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
-else
-echo "Deluge is not installed. No Backup Require"
-fi
-echo
-
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
-else
-echo "Deluge is not installed. No Backup Require"
-fi
-echo
-
-if [ -d /var/lib/deluge ]; then
-bash /opt/install/Deluge/deluge_webui.sh -b
-else
-echo "Deluge is not installed. No Backup Require"
-fi
-echo
