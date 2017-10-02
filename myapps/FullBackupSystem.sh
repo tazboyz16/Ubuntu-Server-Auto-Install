@@ -66,8 +66,30 @@ echo
 #fi
 #echo
 
+if [ -d /opt/Jackett ]; then
+bash /opt/install/Jackett/jackettinstall.sh -b
+else
+echo "Jackett is not installed. No Backup Require"
+fi
+echo
 
-if [ -d /opt/HTPCManager ]; then
+if [ -d /opt/LazyLibrarian ]; then
+bash /opt/install/Lazylibrarian/Lazylibrarian.sh -b
+else
+echo "LazyLibrarian is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /etc/default/madsonic ]; then
+bash /opt/install/MadSonic/MadSonic.sh -b
+else
+echo "MadSonic is not installed. No Backup Require"
+fi
+echo
+
+
+###
+if [ -d ~/.config/mopidy/ ]; then
 bash /opt/install/HTPCManager/HTPCManager.sh -b
 else
 echo "HTPCManager is not installed. No Backup Require"
@@ -75,12 +97,10 @@ fi
 echo
 
 
-if [ -d /opt/HTPCManager ]; then
-bash /opt/install/HTPCManager/HTPCManager.sh -b
-else
-echo "HTPCManager is not installed. No Backup Require"
-fi
-echo
+
+
+
+
 
 
 if [ -d /opt/HTPCManager ]; then
