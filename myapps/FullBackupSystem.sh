@@ -36,3 +36,67 @@ else
 echo "Deluge is not installed. No Backup Require"
 fi
 echo
+
+if [ -d /usr/lib/emby-server ]; then
+bash /opt/install/EmbyServer/EmbyServerInstall.sh -b
+else
+echo "Emby Server is not installed. No Backup Require"
+fi
+echo
+
+#
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /var/lib/deluge ]; then
+bash /opt/install/Deluge/deluge_webui.sh -b
+else
+echo "Deluge is not installed. No Backup Require"
+fi
+echo
