@@ -87,12 +87,24 @@ echo "MadSonic is not installed. No Backup Require"
 fi
 echo
 
-
-###
 if [ -d ~/.config/mopidy/ ]; then
-bash /opt/install/HTPCManager/HTPCManager.sh -b
+bash /opt/install/Mopidy/Mopidyinstall.sh -b
 else
-echo "HTPCManager is not installed. No Backup Require"
+echo "Mopidy is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /opt/Muximux ]; then
+bash /opt/install/Muximux/Muximuxinstall.sh -b
+else
+echo "Muximux is not installed. No Backup Require"
+fi
+echo
+
+if [ -d /opt/Mylar ]; then
+bash /opt/install/Mylar/mylar-installer.sh -b
+else
+echo "Mylar is not installed. No Backup Require"
 fi
 echo
 
@@ -101,6 +113,8 @@ echo
 
 
 
+
+ 
 
 
 if [ -d /opt/HTPCManager ]; then
