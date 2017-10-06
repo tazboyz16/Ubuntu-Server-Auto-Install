@@ -42,5 +42,6 @@ AUTO_USE_EXISTING_CONFIG_FILE=y \
 
 echo "Adding Relay to PostFix"
 #Change smtp server to according to Your Outbound ISP email server
+#Relay Host setting due to Some email Providers will Declined if not Provided
 echo "relayhost = smtp-server.rochester.rr.com" >> /etc/postfix/main.cf
 cat /opt/install/Iredmail/iptables.rules > /etc/default/iptables
