@@ -7,3 +7,7 @@ ProxyPassReverse "/mail" "https://192.168.1.160/mail"
 
 
 sudo certbot certonly -w /etc/apache2/ssl --email taz@tazserver.ga --rsa-key-size 4096 -d tazserver.ga -d mail.tazserver.ga -d www.tazserver.ga
+
+
+
+https://www.apachelounge.com/viewtopic.php?t=5756
