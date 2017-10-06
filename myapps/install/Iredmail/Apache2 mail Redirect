@@ -4,3 +4,6 @@ add to apache to have Proxypass and the Reverse Proxypass to point to the email 
 ProxyPass "/mail" "https://192.168.1.160/mail"
 ProxyPassReverse "/mail" "https://192.168.1.160/mail"
 
+
+
+sudo certbot certonly -w /etc/apache2/ssl --email taz@tazserver.ga --rsa-key-size 4096 -d tazserver.ga -d mail.tazserver.ga -d www.tazserver.ga
