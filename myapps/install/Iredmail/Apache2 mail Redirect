@@ -1,0 +1,6 @@
+add to apache to have Proxypass and the Reverse Proxypass to point to the email server if hidden behind first server
+ example:
+ 
+ProxyPass "/mail" "https://192.168.1.160/mail"
+ProxyPassReverse "/mail" "https://192.168.1.160/mail"
+
