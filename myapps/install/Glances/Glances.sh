@@ -26,6 +26,5 @@ pip install requests scandir
 pip install wifi zeroconf
 pip install glances
 
-
-echo "Beta on auto setup Lm-Sensors"
-printf "y\ny\ny\ny\ny\ny" | sudo sensors-detect
+echo "Auto setup Lm-Sensors"
+sensors-detect --auto

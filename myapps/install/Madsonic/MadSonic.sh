@@ -23,7 +23,19 @@ fi
 mode="$1"
 Programloc=/etc/default/madsonic
 backupdir=/opt/backup/Madsonic
-MadSonicDeb=20161208_madsonic-6.2.9040.deb
+
+#grabing latest version number and its download page
+#http://beta.madsonic.org/pages/download62.jsp
+#madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
+version=$(curl -s http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}" | cut -c1-3 | tr -d '.')
+echo $version
+mainversion=$(curl -s http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}" | cut -c1-3)
+echo $mainversion
+stableversion=$(curl -s http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}")
+echo $stableversion
+dateversion=$(curl -s http://beta.madsonic.org/pages/download$version.jsp | grep -Pe "[\d]+_madsonic-6.2.9040.deb" | grep -Poe "request.jsp\?branch=6.2&target=[\d]+_madsonic-6.2.9040.deb" | grep -Poe "[\d]{8}")
+echo $dateversion
+
 
 case $mode in
 	(-i|"")
@@ -33,11 +45,9 @@ case $mode in
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 	apt install oracle-java8-installer -y
 	adduser --disabled-password --system --home /opt/ProgramData/Madsonic --gecos "Madsonic Service" --group Madsonic
-	#Latest Stable as of 9/2017
-	#http://beta.madsonic.org/pages/download.jsp
-	wget http://madsonic.org/download/6.2/$MadSonicDeb
-	dpkg -i $MadSonicDeb
-	rm -rf $MadSonicDeb
+	wget http://madsonic.org/download/$mainversion/$dateversion\_madsonic-$stableversion.deb -O madsonic.deb
+	dpkg -i madsonic.deb
+	rm -rf madsonic.deb
 	chmod 0777 -R /var/madsonic
 	#Changing user account choice vs running as root
 	service madsonic stop
@@ -78,6 +88,12 @@ case $mode in
     	echo "Restarting up Madsonic"
 	systemctl start madsonic
 	;;
-	(-*) echo "Invalid Argument"; exit 0;;
+    	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will Run install**"
+	echo "-b for Backup Settings"
+	echo "-i for Install"
+	echo "-r for Restore Settings"
+	#echo "-u for Update"
+	exit 0;;
 esac
 exit 0

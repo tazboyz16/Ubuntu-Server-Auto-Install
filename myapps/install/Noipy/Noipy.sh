@@ -47,6 +47,12 @@ case $mode in
 	(-u)
 	noipy -n xxxdomainxxx --url https://api.dynu.com
 	;;
-	(-*) echo "Invalid Argument"; exit 0;;
+	(-*) echo "Invalid Argument"
+	echo "**Running install script without arguments will Run install**"
+	echo "-b For Backup Settings"
+	echo "-i For Install"
+	echo "-r For Restore Settings"
+	echo "-u For Update"
+	exit 0;;
 esac
 exit 0

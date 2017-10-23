@@ -1,0 +1,22 @@
+
+#first setup a fresh mybb download install
+
+chmod 0777 -R "forums dir"/inc
+chmod 0777 -R /cache
+
+
+
+
+MyBB requires PHP to be compiled with support for XML Data Handling. Please see PHP.net for more information.
+
+
+The cache directory (cache/) is not writable. Please adjust the chmod permissions to allow it to be written to.
+The uploads directory (uploads/) is not writable. Please adjust the chmod permissions to allow it to be written to.
+The avatars directory (uploads/avatars/) is not writable. Please adjust the chmod permissions to allow it to be written to.
+
+
+just chmod full dir of forum location
+
+
+
+install php-xml

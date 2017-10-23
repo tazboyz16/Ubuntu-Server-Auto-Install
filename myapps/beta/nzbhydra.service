@@ -1,0 +1,16 @@
+[Unit]
+Description=NZBHydra Daemon
+Documentation=https://github.com/theotherp/nzbhydra
+After=network.target
+
+[Service]
+User=Nzbhydra
+Group=Nzbhydra
+Type=simple
+ExecStart=/usr/bin/python /opt/Nzbhydra/nzbhydra.py --daemon --nobrowser
+
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

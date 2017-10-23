@@ -33,7 +33,6 @@ echo "<--- Installing Plex Addon - OMBI --->"; bash  /opt/install/Plex/ombi.sh
 echo "<--- Installing Plex Addon - WebTools --->"; bash  /opt/install/Plex/Webtools.sh  
 echo "<--- Installing Plex Addon - PlexPY --->"; bash  /opt/install/Plex/plexpy.sh 
 echo "<--- Installing Emby Media Server --->"; bash /opt/install/EmbyServer/EmbyServerInstall.sh
-echo "<--- Installing Grive --->"; bash /opt/install/Grive/GriveInstaller.sh
 echo "<--- Installing ZoneMinder --->"; bash /opt/install/Zoneminder/zminstall.sh
 echo "<--- Installing TeamSpeak Server --->"; bash /opt/install/TeamSpeak3/ts3install.sh
 echo "<--- Installing Sonarr --->"; bash /opt/install/Sonarr/sonarrinstall.sh
