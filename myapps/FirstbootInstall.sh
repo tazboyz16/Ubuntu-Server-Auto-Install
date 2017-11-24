@@ -47,6 +47,7 @@ echo "<--- Installing Organizr --->"; bash /opt/install/Organizr/Organizr.sh
 echo "<--- Installing Ubooquity --->"; bash /opt/install/Ubooquity/Ubooquity.sh
 echo "<--- Installing SinusBot --->"; bash /opt/install/SinusBot/sinusbot.sh
 echo "<--- Installing NZBget --->"; bash /opt/install/Nzbget/Nzbget.sh
+echo "<--- Installing Nzbhydra --->"; bash /opt/install/Nzbhydra/Nzbhydra.sh
 
 echo "<--- Installing Cron Jobs --->"; bash /opt/install/System/Cronjobs.sh
 echo "<--- Restoring Fstab settings --->"; cat /opt/install/System/fstab.txt >> /etc/fstab
