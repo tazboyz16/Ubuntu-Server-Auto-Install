@@ -61,7 +61,7 @@ case $mode in
 	echo "Sickrage Auto Update"; sudo bash /opt/install/Sickrage/sickrage-installer.sh -u; echo
 	echo "Grive Website backup"; cd /var/www; sudo grive; echo
 	echo "Plex Server Update"; sudo bash /opt/install/Plex/plexinstall.sh -u; echo
-	echo "Running System Security Updates"; unattended-upgrades -v
+	echo "Running Full System Updates"; apt update; apt upgrade -y
 	;;
 	(-*) echo "Invalid Argument"
 	echo "Sorry, Please Pick an option"
