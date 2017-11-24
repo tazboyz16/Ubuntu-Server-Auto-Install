@@ -54,6 +54,7 @@ case $mode in
 	echo "LazyLibrarian Auto Update"; sudo bash /opt/install/Lazylibrarian/Lazylibrarian.sh -u; echo
 	echo "Muximux Auto Update"; sudo bash /opt/install/Muximux/Muximuxinstall.sh -u; echo
 	echo "Mylar Auto Update"; sudo bash /opt/install/Mylar/mylar-installer.sh -u; echo
+	echo "Nzbhydra Auto Update"; sudo bash /opt/install/Nzbhydra/Nzbhydra.sh -u; echo
 	echo "Organizr Auto Update"; sudo bash /opt/install/Organizr/Organizr.sh -u; echo
 	#Disabled due to it installs by Releases vs git pull
 	#echo "Radarr Auto Update"; sudo bash /opt/install/Organizr/Organizr.sh -u; echo
