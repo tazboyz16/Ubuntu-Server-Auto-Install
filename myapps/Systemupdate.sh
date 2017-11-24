@@ -62,6 +62,8 @@ case $mode in
 	echo "Sickrage Auto Update"; sudo bash /opt/install/Sickrage/sickrage-installer.sh -u; echo
 	echo "Grive Website backup"; cd /var/www; sudo grive; echo
 	echo "Plex Server Update"; sudo bash /opt/install/Plex/plexinstall.sh -u; echo
+	#Disabled till remade the ts3 install/update process
+	#echo "TS3 Auto Update"; sudo bash /opt/install/TeamSpeak3/ts3update.sh -u; echo
 	echo "Running Full System Updates"; apt update; apt upgrade -y
 	;;
 	(-*) echo "Invalid Argument"
