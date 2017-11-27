@@ -24,12 +24,12 @@ sleep 1
 echo "<--- Downloading Latest IredMail Version --->"
 latest=$(curl -s https://bitbucket.org/zhb/iredmail/downloads/ | grep -e ".tar.bz2" | head -1 | grep -oP 'href="\K[^"]+')
 wget https://bitbucket.org$latest -P /opt
+iRedMailVer=$(echo $latest | grep -oPe "[\d]+.[\d]+.[\d]+")
 
 echo "<--- Installing iRedMail email--->"
-tar xjf /opt/iRedMail-*.tar.bz2; rm iRedMail-*.tar.bz2
+tar xjf /opt/iRedMail-$iRedMailVer.tar.bz2; rm iRedMail-$iRedMailVer.tar.bz2
 
 cp /opt/install/Iredmail/config /opt/iRedMail-$iRedMailVer/
-
 AUTO_USE_EXISTING_CONFIG_FILE=y \
     AUTO_INSTALL_WITHOUT_CONFIRM=y \
     AUTO_CLEANUP_REMOVE_SENDMAIL=y \
