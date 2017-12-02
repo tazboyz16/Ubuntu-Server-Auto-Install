@@ -13,6 +13,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+exec &> /opt/install/Install.log
+
 echo "<---Updating System....Please Wait..--->"
 apt update; apt upgrade -y
 apt install python2.7 git-core python-lxml python-pip unzip libcurl4-openssl-dev bzip2 python python-cheetah python-pyasn1 unrar-free openssl libssl-dev -y
