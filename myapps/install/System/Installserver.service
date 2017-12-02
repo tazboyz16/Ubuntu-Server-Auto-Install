@@ -14,7 +14,7 @@ After=network-online.target
 User=root
 Type=oneshot
 #dump log of install script to allow tail -f to follow progress
-ExecStart= /opt/FirstbootInstall.sh &> /opt/install/Install.log
+ExecStart= /opt/FirstbootInstall.sh 
 
 [Install]
 WantedBy=multi-user.target
