@@ -45,6 +45,11 @@ case $mode in
 	chmod -R 0777 /opt/HTPCManager
 	echo "Starting up HTPCManager"
 	systemctl start HTPCManager
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 8085 -j ACCEPT/-A INPUT -p tcp --dport 8085 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+        fi
 	;;
 	(-b)
 	echo "Stopping HTPCManager"
