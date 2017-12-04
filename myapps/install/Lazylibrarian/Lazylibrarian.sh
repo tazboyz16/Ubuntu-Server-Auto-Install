@@ -35,6 +35,11 @@ case $mode in
    	chmod 644 /etc/systemd/system/LazyLibrarian.service
    	systemctl enable LazyLibrarian.service
    	systemctl restart LazyLibrarian.service
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 5299 -j ACCEPT/-A INPUT -p tcp --dport 5299 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
    	;;
    	(-r)
 	echo "<--Restoring LazyLibrarian Settings -->"
