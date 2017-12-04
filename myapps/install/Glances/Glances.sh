@@ -28,3 +28,9 @@ pip install glances
 
 echo "Auto setup Lm-Sensors"
 sensors-detect --auto
+
+#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 61209 -j ACCEPT/-A INPUT -p tcp --dport 61209 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+fi
