@@ -53,6 +53,12 @@ case $mode in
 	sed -i 's#"default_daemon": ""#"default_daemon": "127.0.0.1:58846"#' $Programloc/.config/deluge/web.conf
 	echo "Restarting up Deluge"
 	systemctl start deluged deluge-web 
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 8112 -j ACCEPT/-A INPUT -p tcp --dport 8112 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
+
 	;;
 	(-r)
 	echo "<--Restoring Deluge Settings -->"
