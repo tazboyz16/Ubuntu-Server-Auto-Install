@@ -39,6 +39,11 @@ case $mode in
 	chmod 644 /etc/systemd/system/jackett.service
 	systemctl enable jackett.service
 	systemctl restart jackett.service
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 9117 -j ACCEPT/-A INPUT -p tcp --dport 9117 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--Restoring Jackett Settings -->"
