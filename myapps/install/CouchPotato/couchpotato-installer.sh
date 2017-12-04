@@ -33,6 +33,11 @@ case $mode in
 	chmod 644 /etc/systemd/system/couchpotato.service
 	systemctl enable couchpotato.service
 	systemctl restart couchpotato.service 
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 5050 -j ACCEPT/-A INPUT -p tcp --dport 5050 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--- Restoring CouchPotato Settings --->"
