@@ -13,6 +13,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+# This will have the Script run in the BG and saving to a log file
 exec &> /opt/install/Install.log
 
 echo "<---Updating System....Please Wait..--->"
