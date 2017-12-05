@@ -33,6 +33,11 @@ case $mode in
 	chmod 0777 /etc/systemd/system/plexpy.service
 	systemctl enable plexpy.service
 	systemctl restart plexpy.service
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 8181 -j ACCEPT/-A INPUT -p tcp --dport 8181 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--Restoring Plexpy Settings -->"
