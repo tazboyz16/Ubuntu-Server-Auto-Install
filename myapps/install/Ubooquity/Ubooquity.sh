@@ -39,6 +39,12 @@ case $mode in
 	chmod 644 /etc/systemd/system/ubooquity.service
 	systemctl enable ubooquity.service
 	systemctl restart ubooquity.service
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 2202 -j ACCEPT/-A INPUT -p tcp --dport 2202 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p tcp --dport 2203 -j ACCEPT/-A INPUT -p tcp --dport 2203 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--- Restoring Ubooquity Settings --->"
