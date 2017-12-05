@@ -36,6 +36,7 @@ case $mode in
 		sed -i "s/#-A INPUT -p tcp --dport 5353 -j ACCEPT/-A INPUT -p tcp --dport 5353 -j ACCEPT/g" /etc/default/iptables
 		sed -i "s/#-A INPUT -p tcp --dport 8324 -j ACCEPT/-A INPUT -p tcp --dport 8324 -j ACCEPT/g" /etc/default/iptables
 		sed -i "s/#-A INPUT -p tcp --dport 32469 -j ACCEPT/-A INPUT -p tcp --dport 32469 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p udp --match multiport --dport 32410,32412:32414 -j ACCEPT/-A INPUT -p udp --match multiport --dport 32410,32412:32414 -j ACCEPT/g" /etc/default/iptables
 	        /etc/init.d/iptables restart
 	   fi
 	;;
