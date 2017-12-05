@@ -37,6 +37,11 @@ case $mode in
 	chmod 644 /etc/systemd/system/nzbget.service
 	systemctl enable nzbget.service
 	systemctl restart nzbget.service
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 6789 -j ACCEPT/-A INPUT -p tcp --dport 6789 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--- Restoring Nzbget Settings --->"
