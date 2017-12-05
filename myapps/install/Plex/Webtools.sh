@@ -30,3 +30,9 @@ echo "Installing Sub Zero Subtitles"; git clone https://github.com/pannal/Sub-Ze
 echo "Installing WebTools"; git clone https://github.com/ukdtom/WebTools.bundle.git "$Programloc"/WebTools.bundle
 
 chown plex:plex -R /var/lib/plexmediaserver; chmod 0777 -R /var/lib/plexmediaserver; systemctl start plexmediaserver
+
+#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 33400 -j ACCEPT/-A INPUT -p tcp --dport 33400 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
