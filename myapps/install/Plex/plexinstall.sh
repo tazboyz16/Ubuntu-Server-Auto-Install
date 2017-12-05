@@ -28,6 +28,16 @@ case $mode in
 	(-i|"")
 	echo "<--- Installing Plex Media Server ->"
 	bash /opt/install/Plex/plexupdate.sh -p -a -d
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 32400 -j ACCEPT/-A INPUT -p tcp --dport 32400 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p tcp --dport 1900 -j ACCEPT/-A INPUT -p tcp --dport 1900 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p tcp --dport 3005 -j ACCEPT/-A INPUT -p tcp --dport 3005 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p tcp --dport 5353 -j ACCEPT/-A INPUT -p tcp --dport 5353 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p tcp --dport 8324 -j ACCEPT/-A INPUT -p tcp --dport 8324 -j ACCEPT/g" /etc/default/iptables
+		sed -i "s/#-A INPUT -p tcp --dport 32469 -j ACCEPT/-A INPUT -p tcp --dport 32469 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-b)
 	echo "Backing up Plex Media Server"
