@@ -34,6 +34,11 @@ case $mode in
 	chmod 644 /etc/systemd/system/sickrage.service
 	systemctl enable sickrage.service
 	systemctl restart sickrage.service
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 8081 -j ACCEPT/-A INPUT -p tcp --dport 8081 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--- Restoring SickRage Settings --->"
