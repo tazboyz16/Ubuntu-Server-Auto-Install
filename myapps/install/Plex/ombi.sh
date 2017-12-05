@@ -41,6 +41,11 @@ case $mode in
 	chmod 0777 /etc/systemd/system/ombi.service
 	systemctl enable ombi.service
 	systemctl restart ombi.service
+	#Checking if Iptables is installed and updating with port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 3579 -j ACCEPT/-A INPUT -p tcp --dport 3579 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--Restoring Ombi Settings -->"
