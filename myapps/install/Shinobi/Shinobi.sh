@@ -61,6 +61,11 @@ case $mode in
 	pm2 save
 	echo "Creating Symbolic link for Shinobi Service"
 	ln -s /etc/systemd/system/pm2-root.service /etc/systemd/system/Shinobi.service
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 8080 -j ACCEPT/-A INPUT -p tcp --dport 8080 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--- Restoring Shinobi Settings --->"
