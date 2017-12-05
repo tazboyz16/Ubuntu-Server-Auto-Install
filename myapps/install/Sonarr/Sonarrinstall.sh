@@ -37,6 +37,11 @@ case $mode in
 	chmod 644 /etc/systemd/system/sonarr.service
 	systemctl enable sonarr.service
 	systemctl restart sonarr.service
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 8989 -j ACCEPT/-A INPUT -p tcp --dport 8989 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--Restoring Sonarr Settings -->"
