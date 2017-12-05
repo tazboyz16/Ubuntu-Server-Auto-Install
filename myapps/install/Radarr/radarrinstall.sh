@@ -40,6 +40,11 @@ case $mode in
 	chmod 644 /etc/systemd/system/radarr.service
 	systemctl enable radarr.service
 	systemctl restart radarr.service
+	#Checking if Iptables is installed and updating with CP port settings
+	    if [ -f /etc/default/iptables ]; then
+	        sed -i "s/#-A INPUT -p tcp --dport 7878 -j ACCEPT/-A INPUT -p tcp --dport 7878 -j ACCEPT/g" /etc/default/iptables
+	        /etc/init.d/iptables restart
+	   fi
 	;;
 	(-r)
 	echo "<--Restoring Radarr Settings -->"
