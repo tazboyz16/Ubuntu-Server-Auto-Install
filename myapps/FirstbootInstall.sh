@@ -26,10 +26,10 @@ echo "<--- Installing SSL Cert --->"; bash /opt/install/Apache2/Certbot.sh
 echo "<--- Installing Mysql and Phpmyadmin --->"; bash /opt/install/Apache2/Mysql.sh
 #echo "<--- Installing Noip --->"; bash /opt/install/Noip2/Noip2Install.sh
 echo "<--- Installing Deluge --->"; bash /opt/install/Deluge/deluge_webui.sh
-echo "<--- Installing CouchPotato --->"; bash /opt/install/couchpotato-installer.sh
+echo "<--- Installing CouchPotato --->"; bash /opt/install/CouchPotato/couchpotato-installer.sh
 echo "<--- Installing Headphones --->"; bash /opt/install/Headphones/headphones-installer.sh
 echo "<--- Installing Mylar --->"; bash /opt/install/Mylar/mylar-installer.sh
-echo "<--- Installing SickRage --->"; bash /opt/install/SickRage/sickrage-installer.sh
+echo "<--- Installing SickRage --->"; bash /opt/install/Sickrage/sickrage-installer.sh
 echo "<--- Installing Webmin --->"; bash /opt/install/Webmin/webmin-installer.sh
 echo "<--- Installing Plex Media Server --->"; bash /opt/install/Plex/plexupdate.sh -p -a -d
 echo "<--- Installing Plex Addon - OMBI --->"; bash  /opt/install/Plex/ombi.sh 
