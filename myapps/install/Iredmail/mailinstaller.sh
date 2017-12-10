@@ -45,3 +45,9 @@ echo "Adding Relay to PostFix"
 #Change smtp server to according to Your Outbound ISP email server
 #Relay Host setting due to Some email Providers will Declined if not Provided
 echo "relayhost = smtp-server.rochester.rr.com" >> /etc/postfix/main.cf
+
+#Added the iptable list and removes COMMIT and readds it for IPTables has issues if theres a whitespace with/after COMMIT line
+cat /opt/install/Iredmail/iptables.rules > /etc/default/iptables
+sudo sed -i "$d" /etc/default/iptables
+echo "COMMIT" >> /etc/default/iptables
+/etc/init.d/iptables restart
