@@ -34,7 +34,7 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Ombi --gecos "Ombi Service" --group ombi
 	mkdir /opt/Ombi && cd $Programloc
 	wget $(curl -s https://api.github.com/repos/tidusjar/Ombi/releases/latest | grep 'browser_' | cut -d\" -f4)
-	unzip Ombi.zip; rm Ombi.zip
+	unzip -q Ombi.zip; rm Ombi.zip
 	cp -rf Release/* .; rm -rf Release/
 	chown -R ombi:ombi $Programloc
 	chmod -R 0777 $Programloc
