@@ -31,7 +31,7 @@ case $mode in
 	apt update
 	apt install mono-complete libcurl4-openssl-dev -y
 	wget $(curl -s https://api.github.com/repos/Jackett/Jackett/releases/latest | grep 'Jackett.Binaries.Mono.tar.gz' | cut -d\" -f4)
-	tar -xvf Jackett.Binaries.Mono.tar.gz && sudo rm Jackett.Binaries.Mono.tar.gz
+	tar -xvf Jackett.Binaries.Mono.tar.gz >/dev/null && sudo rm Jackett.Binaries.Mono.tar.gz
 	mkdir /opt/Jackett
 	mv Jackett/* /opt/Jackett
 	chmod 0777 -R /opt/Jackett
