@@ -28,14 +28,9 @@ backupdir=/opt/backup/Madsonic
 #http://beta.madsonic.org/pages/download62.jsp
 #madsonic.org/download/6.2/20161208_madsonic-6.2.9040.deb
 version=$(curl -s http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}" | cut -c1-3 | tr -d '.')
-echo $version
 mainversion=$(curl -s http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}" | cut -c1-3)
-echo $mainversion
 stableversion=$(curl -s http://beta.madsonic.org/pages/download.jsp | grep -P -e "stable" | grep -Po -e "[\d]{1,3}.[\d]{1,3}.[\d]{1,6}")
-echo $stableversion
 dateversion=$(curl -s http://beta.madsonic.org/pages/download$version.jsp | grep -Pe "[\d]+_madsonic-6.2.9040.deb" | grep -Poe "request.jsp\?branch=6.2&target=[\d]+_madsonic-6.2.9040.deb" | grep -Poe "[\d]{8}")
-echo $dateversion
-
 
 case $mode in
 	(-i|"")
