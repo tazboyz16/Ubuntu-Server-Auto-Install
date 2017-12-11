@@ -17,7 +17,7 @@ fi
 # b=backup i=install r=restore u=update passwd=(Remove the Forced Foobarr password)
 mode="$1"
 
-TeamSpeakClient=3.0.19.4
+TeamSpeakClient=3.1.6
 Programloc=/opt/Sinusbot
 backupdir=/opt/backup/Sinusbot
 
