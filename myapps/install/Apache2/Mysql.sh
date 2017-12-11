@@ -16,11 +16,12 @@ fi
 
 echo mysql-server mysql-server/root_password password $sqlpassword | debconf-set-selections
 echo mysql-server mysql-server/root_password_again password $sqlpassword | debconf-set-selections
-echo phpmyadmin phpmyadmin/dbconfig-install boolean true | debconf-set-selections
-echo phpmyadmin phpmyadmin/app-password-confirm password $sqlpassword | deconf-set-selections
-echo phpmyadmin phpmyadmin/mysql/admin-pass password $sqlpassword | deconf-set-selections
-echo phpmyadmin phpmyadmin/mysql/app-pass password $sqlpassword | debconf-set-selections
 echo phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2 | debconf-set-selections
+echo phpmyadmin phpmyadmin/dbconfig-install boolean true | debconf-set-selections
+echo phpmyadmin phpmyadmin/mysql/app-pass password $app_password | debconf-set-selections
+echo phpmyadmin phpmyadmin/app-password-confirm password $app_password | deconf-set-selections
+echo phpmyadmin phpmyadmin/mysql/admin-user string root | debconf-set-selections  
+echo phpmyadmin phpmyadmin/mysql/admin-pass password $sqlpassword | deconf-set-selections
 
 echo "<--- Installing Mysql, Phpmyadmin and PHP --->"
 apt install mysql-server phpmyadmin -y
