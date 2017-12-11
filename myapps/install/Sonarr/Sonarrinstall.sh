@@ -26,10 +26,8 @@ case $mode in
 	adduser --disabled-password --system --home /opt/ProgramData/Sonarr --gecos "Sonarr Service" --group Sonarr
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC
 	echo "deb http://apt.sonarr.tv/ master main" | tee /etc/apt/sources.list.d/sonarr.list
-		if [ ! -f /etc/apt/sources.list.d/mono-xamarin.list ]; then
-		apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-		echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-		fi
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
 	apt update
 	apt install nzbdrone libmono-cil-dev apt-transport-https mono-devel -y
 	chown -R Sonarr:Sonarr /opt/NzbDrone
