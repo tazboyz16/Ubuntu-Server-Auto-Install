@@ -2,6 +2,5 @@
 15   5   *   *   1   sudo bash /opt/Systemupdate.sh -w
 #monthly on 1st of every month
 15   4   1   *   *   sudo bash /opt/Systemupdate.sh -m
-
 #weekly Reboot
 0    4   *   *   1   sudo reboot
