@@ -33,7 +33,7 @@ case $mode in
 	#Mono
 		if [ ! -f /etc/apt/sources.list.d/mono-xamarin.list ]; then
 		apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-		echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+		echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
 		fi
 	echo "<--- Installing Emby Server --->"
 	apt update
