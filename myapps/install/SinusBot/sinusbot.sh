@@ -23,7 +23,7 @@ backupdir=/opt/backup/Sinusbot
 
 case $mode in
 	(-i|"")
-	apt install debconf-utils lsb-release screen x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 less python -y
+	apt install debconf-utils lsb-release screen x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 less python libnss3 libegl1-mesa x11-xkb-utils libasound2 -y
 	adduser --disabled-password --system --home /opt/ProgramData/Sinusbot --gecos "Sinusbot Service" --group sinusbot
 	wget https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2 -P $Programloc/
 	cd $Programloc/
