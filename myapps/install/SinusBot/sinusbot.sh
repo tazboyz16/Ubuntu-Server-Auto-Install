@@ -40,6 +40,9 @@ case $mode in
 	wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 	chmod a+rx /usr/local/bin/youtube-dl
 	cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins
+	    if [-f TeamSpeak3-Client-linux_amd64/xcbglintegrations/libqxcb-glx-integration.so ]; then
+	    rm TeamSpeak3-Client-linux_amd64/xcbglintegrations/libqxcb-glx-integration.so
+	    fi
 	chown -R sinusbot:sinusbot $Programloc
 	chmod 0777 -R $Programloc
 	echo "Fixing TS3 Client Location and Youtube-DL Location in Config"
