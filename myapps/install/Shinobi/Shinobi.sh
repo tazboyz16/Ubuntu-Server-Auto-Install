@@ -28,7 +28,10 @@ case $mode in
 	(-i|"")
 	apt update
 	adduser --disabled-password --system --home /opt/ProgramData/Shinobi --gecos "Shinobi Service" --group Shinobi
-	cd /opt &&  git clone https://github.com/moeiscool/Shinobi.git
+	# CE edition
+	#cd /opt &&  git clone https://github.com/moeiscool/Shinobi.git
+	# Pro edition
+	cd /opt &&  git clone https://github.com/ShinobiCCTV/Shinobi.git
 	chown -R Shinobi:Shinobi /opt/Shinobi
 	chmod -R 0777 /opt/Shinobi
 	cd /opt/Shinobi
