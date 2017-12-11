@@ -31,10 +31,8 @@ case $mode in
 	wget -nv http://download.opensuse.org/repositories/home:emby/xUbuntu_$version/Release.key -O Release.key
 	apt-key add - < Release.key
 	#Mono
-		if [ ! -f /etc/apt/sources.list.d/mono-xamarin.list ]; then
-		apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-		echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
-		fi
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+	echo "deb http://download.mono-project.com/repo/ubuntu $versionm main" | sudo tee /etc/apt/sources.list.d/mono-offical.list
 	echo "<--- Installing Emby Server --->"
 	apt update
 	apt install mono-complete mono-devel -y
