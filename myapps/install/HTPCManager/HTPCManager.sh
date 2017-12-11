@@ -23,11 +23,12 @@ backupdir=/opt/backup/HTPCManager
 case $mode in
 	(-i|"")
 	apt update
-	apt install libjpeg-dev libpng12-dev libfreetype6-dev zlib1g-dev libc6-dev libc-dev libjpeg8-dev python -y
+	apt install libjpeg-dev libpng12-dev libfreetype6-dev zlib1g-dev libc6-dev libc-dev libjpeg8-dev python python*-requests -y
 	adduser --disabled-password --system --home /opt/ProgramData/HTPCManager --gecos "HTPCManager Service" --group HTPCManager
 	git clone https://github.com/styxit/HTPC-Manager.git /opt/HTPCManager
 	chown -R HTPCManager:HTPCManager /opt/HTPCManager
 	chmod -R 0777 /opt/HTPCManager
+	rm -rf /opt/HTPCManager/libs/requests; ln -sf /usr/lib/python3/dist-packages/requests /opt/HTPCManager/libs/
 	echo "Creating Startup Script"
 	cp /opt/install/HTPCManager/HTPCManager.service /etc/systemd/system/
 	chmod 644 /etc/systemd/system/HTPCManager.service
