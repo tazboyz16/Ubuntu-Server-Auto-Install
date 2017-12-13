@@ -29,8 +29,13 @@ add-apt-repository -y ppa:certbot/certbot
 apt update
 apt install python-certbot-apache -y
 
+if [ ! -d /etc/letsencrypt/ ]; then
 mkdir /etc/letsencrypt/
+fi
+if [ ! -d /etc/apache2/ssl/ ]; then
 mkdir /etc/apache2/ssl/
+fi
+
 chmod 0777 -R /etc/letsencrypt/
 chmod 0777 -R /etc/apache2/ssl/
 cp /opt/install/Apache2/cli.ini /etc/letsencrypt/
