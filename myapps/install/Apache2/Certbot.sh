@@ -42,8 +42,6 @@ cp /opt/install/Apache2/cli.ini /etc/letsencrypt/
 
 certbot --apache
 
-certbot renew --dry-run --agree-tos
-
 echo "Convert Pem files to Crt,Key, and CA files"
 cat /etc/letsencrypt/live/$domain/cert.pem > /etc/letsencrypt/live/$domain/apache.crt
 cat /etc/letsencrypt/live/$domain/privkey.pem > /etc/letsencrypt/live/$domain/apache.key
