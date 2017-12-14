@@ -21,7 +21,6 @@ backupdir=/opt/backup/Plexpy
 
 case $mode in
 	(-i|"")
-	echo "Installing PlexPy"
 	apt update
 	apt install python -y
 	adduser --disabled-password --system --home /opt/ProgramData/PlexPy --gecos "PlexPy Service"  --group plexpy
