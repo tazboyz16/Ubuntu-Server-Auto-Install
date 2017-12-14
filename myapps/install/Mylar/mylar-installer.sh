@@ -21,7 +21,6 @@ backupdir=/opt/backup/Mylar
 
 case $mode in
 	(-i|"")
-	echo '<--- Installing prerequisites for Mylar --->'
 	apt update
 	apt install git-core python python-cheetah python-pyasn1 -y
 	adduser --disabled-password --system --home /opt/ProgramData/mylar --gecos "Mylar Service" --group Mylar
