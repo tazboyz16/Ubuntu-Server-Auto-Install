@@ -28,5 +28,23 @@ fi
 
 
 echo "Adding CronJobs for Update System daily and monthly"
-#will save in /var/spool/cron/crontabs
-crontab /opt/install/System/SystemupdateCronjobs.txt
+
+echo "#weekly on Mondays
+15 5 * * 1 root sudo bash /opt/Systemupdate.sh -w
+" > /etc/cron.d/WeeklyUpdate
+
+echo "#monthly on 1st of every month
+15 4 1 * * root sudo bash /opt/Systemupdate.sh -m
+" > /etc/cron.d/MonthlyUpdate
+
+echo "#weekly Reboot
+0 4 * * 1 root sudo reboot
+" > /etc/cron.d/WeeklyReboot
+
+echo "#IP Address Update 
+*/5 * *	* *	root sudo bash /opt/IpAddressupdate.sh
+" > /etc/cron.d/IpUpdate
+
+
+echo "#IP Address Update 
+*/5 * *	* *	root sudo bash /opt/IpAddressupdate.sh" > /etc/cron.d/IpUpdate
