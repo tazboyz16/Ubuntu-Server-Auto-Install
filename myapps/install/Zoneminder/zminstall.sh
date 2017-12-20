@@ -74,7 +74,7 @@ case $mode in
     	systemctl stop zoneminder
     	echo "Making sure Backup Dir exists"
     	mkdir -p $backupdir
-    	echo "Backing up HTPCManager to /opt/backup"
+    	echo "Backing up Zoneminder to /opt/backup"
 	cp -rf /opt/Zoneminder/userdata $backupdir
     	tar -zcvf /opt/backup/Zoneminder_FullBackup-$time.tar.gz $backupdir
     	echo "Restarting up Zoneminder"
