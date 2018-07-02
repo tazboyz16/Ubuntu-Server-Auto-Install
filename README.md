@@ -3,6 +3,10 @@
 Currently Using 16.04.2 LTS on my personal Server 64bit as of 8/2017  
 Also tested with [Codeanywhere](https://codeanywhere.com) for Ubuntu 14LTS, and on [Codenvy](https://codenvy.io) for ubuntu 16 installs        
 
+****I will be no longer be updating this for Repo, For I have started up my own GitLab Server to contiune this work. For those that are following this Repo and forking it I hope you enjoy the work I have done so far. Thank you!!!
+
+https://gitlab.tazserver.ga/root/Ubuntu-Server-Auto-Install***
+
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
    
 Steps are under Wiki for installation and creating the ISO   
