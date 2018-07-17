@@ -5,7 +5,19 @@ Also tested with [Codeanywhere](https://codeanywhere.com) for Ubuntu 14LTS, and 
 
 ****I will be no longer be updating this for Repo, For I have started up my own GitLab Server to contiune this work. For those that are following this Repo and forking it I hope you enjoy the work I have done so far. Thank you!!!
 
-https://gitlab.tazserver.ga/root/Ubuntu-Server-Auto-Install***
+https://gitlab.tazserver.ga/root/Ubuntu-Server-Auto-Install
+
+Update 7/17/2018: Im also in the process of creating Deb files to install any Software thats listed on Git Repos with this Scripting 
+Please check my gitlab repo for any updates on these Deb files 
+
+Versions of Deb files:
+--Latest Released Version
+--Latest Commit Stable Version (Non-git update)
+--Latest Commit Rolling Version (git clone installed)
+****
+
+
+
 
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
    
@@ -13,18 +25,8 @@ Steps are under Wiki for installation and creating the ISO
 Before creating ISO edit FirstbootInstall.sh for what programs to be install   
 
 If anyone has ideas to help set up the process faster or add more programs to this list feel free to Click on the Feature Link  
-   
-Finished Creating a Script to Download Ubuntu ISO, Download this repo, walkthrough questions to full setup install ISO and make the Finished ISO    
-[https://github.com/tazboyz16/Ubuntu-Full-Installer-Script](https://github.com/tazboyz16/Ubuntu-Full-Installer-Script)
-   
-Take a look also to my mini plex server instructions / might create a auto install for it soon to   
-[https://github.com/tazboyz16/Ubuntu-Portable-PMS](https://github.com/tazboyz16/Ubuntu-Portable-PMS)   
   
 Please see the wiki for futher information   
-[https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/wiki)
-   
-To download, go here:   
-[https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest](https://github.com/tazboyz16/Ubuntu-Server-Auto-Install/releases/latest)    
   
 ### Overall Status of Project 
          
