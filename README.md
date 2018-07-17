@@ -11,9 +11,13 @@ Update 7/17/2018: Im also in the process of creating Deb files to install any So
 Please check my gitlab repo for any updates on these Deb files 
 
 Versions of Deb files:
+
 --Latest Released Version
+
 --Latest Commit Stable Version (Non-git update)
+
 --Latest Commit Rolling Version (git clone installed)
+
 ****
 
 
