@@ -23,6 +23,7 @@ case $mode in
 	(-i|"")
 	apt update
 	apt install git-core unrar-free openssl libssl-dev python -y
+	#You may need to install nodejs for some of the Search Providers 
 	adduser --disabled-password --system --home /opt/ProgramData/Sickrage --gecos "Sickrage Service" --group Sickrage
 	echo '<--- Downloading latest SickRage --->'
 	cd /opt && git clone https://github.com/SickRage/SickRage.git 
