@@ -21,7 +21,7 @@ Versions of Deb files:
 ****
 
 
-***10/23/2018 Just got noticed the SickRage Repo now is own my its old owner. I have found a different repo  https://github.com/SickChill/SickChill/ **
+***10/23/2018 Just got noticed the SickRage Repo now is own by its old owner. I have found a different repo  https://github.com/SickChill/SickChill/ **
 
 My setup is great for Fresh installs and for Reinstall with applying your current settings   
    
