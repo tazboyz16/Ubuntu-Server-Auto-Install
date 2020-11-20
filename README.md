@@ -5,7 +5,7 @@ Also tested with [Codeanywhere](https://codeanywhere.com) for Ubuntu 14LTS, and 
 
 ****I will be no longer be updating this Repo, For I have started up my own GitLab Server to contiune this work. For those that are following this Repo and forking it I hope you enjoy the work I have done so far. Thank you!!!
 
-https://gitlab.tazserver.ga/root/Ubuntu-Server-Auto-Install
+https://gitlab.tazserver.xyz/root/Ubuntu-Server-Auto-Install
 
 Update 7/17/2018: Im also in the process of creating Deb files to install any Software thats listed on Git Repos with this Scripting 
 Please check my gitlab repo for any updates on these Deb files 
