@@ -3,9 +3,7 @@
 Currently Using 16.04.2 LTS on my personal Server 64bit as of 8/2017  
 Also tested with [Codeanywhere](https://codeanywhere.com) for Ubuntu 14LTS, and on [Codenvy](https://codenvy.io) for ubuntu 16 installs        
 
-****I will be no longer be updating this Repo, For I have started up my own GitLab Server to contiune this work. For those that are following this Repo and forking it I hope you enjoy the work I have done so far. Thank you!!!
-
-https://gitlab.tazserver.xyz/root/Ubuntu-Server-Auto-Install
+****I will be no longer be updating this Repo. I hope you enjoy the work I have done so far. Thank you!!!
 
 Update 7/17/2018: Im also in the process of creating Deb files to install any Software thats listed on Git Repos with this Scripting 
 Please check my gitlab repo for any updates on these Deb files 
